@@ -1,0 +1,21 @@
+<#-- footer.ftlh -->
+
+<style>
+    .footer {
+        position: fixed;
+        right: 0;
+        bottom: 25px;
+        left: 0;
+        padding: 2px;
+        background-color: #103cef;
+        text-align: center;
+        height: 30px;
+        color: yellow;
+    }
+</style>
+
+<footer class="footer">
+
+    <p class="float"> Elektroniczne Skrzynki Podawcze</a></p>
+
+</footer>

@@ -132,7 +132,7 @@
 
         </plugins>
 
-        <finalName>ElectronicInbox</finalName>
+        <finalName>electronicinbox</finalName>
     </build>
 
 </project>
