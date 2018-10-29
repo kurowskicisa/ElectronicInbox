@@ -4,11 +4,11 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
   http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd" version="2.2">
     <persistence-unit name="demoPU" transaction-type="JTA">
-    </persistence-unit>
-</persistence>    
+    </persistence-unit>            
+</persistence>
 
 <!--
-
+    <persistence-unit name="demoPU" transaction-type="JTA">
         <jta-data-source>java:ds/demods</jta-data-source>
 
         <properties>
@@ -20,6 +20,6 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
-
+    </persistence-unit>
 -->
 
