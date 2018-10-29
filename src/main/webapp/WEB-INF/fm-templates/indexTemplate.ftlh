@@ -9,30 +9,60 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<!--
-    <link rel="stylesheet" href="resources/styles/css/custom.css">
--->
+    <!--
+        <link rel="stylesheet" href="resources/styles/css/custom.css">
+    -->
     <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
-<body>
+<body style="background-color: blue">
 
-<!-- As a heading -->
+
 <nav class="navbar navbar-light bg-light">
     <span class="navbar-brand mb-3 h1">Elektroniczne Skrzynki Podawcze</span>
 </nav>
 
 
-<nav class="navbar navbar-light bg-light">
-    <form class="form-inline">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<div class="container-fluid">
+    <form class="form-inline" style="width: 100%;">
+        <button class="btn btn-outline-alert my-3 mr-sm-3"
+                type="submit">
+            usuń filtry
+        </button>
+        <div class="form-group form-control">
+
+        <input class="form-control mr-sm-1"
+               id="inputName"
+               placeholder="Nazwa instytucji (fragment)"
+               >
+
+        </div>
+
+        <div class="form-group form-control">
+
+        <input class="form-control mr-sm-1"
+               id="inputAddress"
+               type="search"
+               placeholder="ulica (fragment)"
+>
+  </div>
+
+        <div class="form-group form-control">
+        <input class="form-control mr-sm-1"
+               type="search"
+               placeholder="miejscowość (fragment)"
+               >
+
+        </div>
+
+        <button class="btn btn-outline-success my-2 mr-sm-1"
+                type="submit">
+            Szukaj
+        </button>
+
     </form>
-</nav>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -166,7 +196,6 @@
 
 
 </div>
-</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -179,9 +208,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
+<!--
 <#include "include/footer.ftlh">
-
+-->
 </body>
 
 </html>
