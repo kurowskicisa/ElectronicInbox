@@ -9,40 +9,78 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<!--
-    <link rel="stylesheet" href="resources/styles/css/custom.css">
--->
+
     <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
-<body>
+<body style="background-color: white">
 
-<!-- As a heading -->
-<nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-3 h1">Elektroniczne Skrzynki Podawcze</span>
-</nav>
+<div class="position-sticky sticky-top">
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-3 h1">Elektroniczne Skrzynki Podawcze</span>
+    </nav>
 
 
-<nav class="navbar navbar-light bg-light">
-    <form class="form-inline">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <input class="form-control mr-sm-6" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
+    <div class="container-fluid nopadding" style="padding-left: 0; padding-right: 0;">
+
+        <nav class="navbar navbar-light bg-light">
+            <form style="width: 100%;">
+
+                <div class="form-group row" style="margin-bottom: 0;">
+
+                    <div class="col-lg-4">
+                        <input class="form-group form-control"
+                               style="margin-bottom: 0;"
+                               id="inputName"
+                               type="search"
+                               placeholder="Nazwa instytucji (fragment)"
+                               aria-label="Search">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <input class="form-group form-control"
+                               style="margin-bottom: 0;"
+                               id="inputAddress"
+                               type="search"
+                               placeholder="ulica (fragment)"
+                               aria-label="Search">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <input class="form-group form-control"
+                               style="margin-bottom: 0;"
+                               id="inputPlace"
+                               type="search"
+                               placeholder="miejscowość (fragment)"
+                               aria-label="Search">
+                    </div>
+
+                    <div class="col-lg-2 form-group">
+                        <button class="btn btn-outline-success btn-block"
+                                style="margin-bottom: 0;"
+                                type="submit">
+                            Szukaj
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </nav>
+    </div>
+</div>
+
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-lg">
 
-            <div class="card mr-sm-3">
-                <div class="card-body  mr-sm-3">
+            <div class="card">
+                <div class="card-body mr-sm-3">
                     <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
                         card's content.</p>
                 </div>
             </div>
@@ -50,13 +88,14 @@
     </div>
 
     <div class="row">
-        <div class="col-sm">
+        <div class="col-lg">
 
-            <div class="card mr-sm-3">
-                <div class="card-body  mr-sm-3">
+            <div class="card">
+                <div class="card-body mr-lg-3">
                     <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
                         card's content.</p>
                 </div>
             </div>
@@ -64,13 +103,14 @@
     </div>
 
     <div class="row">
-        <div class="col-sm">
+        <div class="col-lg">
 
-            <div class="card mr-sm-3">
-                <div class="card-body  mr-sm-3">
+            <div class="card">
+                <div class="card-body mr-lg-3">
                     <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
                         card's content.</p>
                 </div>
             </div>
@@ -78,13 +118,14 @@
     </div>
 
     <div class="row">
-        <div class="col-sm">
+        <div class="col-lg">
 
-            <div class="card mr-sm-3">
-                <div class="card-body  mr-sm-3">
+            <div class="card">
+                <div class="card-body mr-lg-3">
                     <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
                         card's content.</p>
                 </div>
             </div>
@@ -92,13 +133,14 @@
     </div>
 
     <div class="row">
-        <div class="col-sm">
+        <div class="col-lg">
 
-            <div class="card mr-sm-3">
-                <div class="card-body  mr-sm-3">
+            <div class="card">
+                <div class="card-body mr-lg-3">
                     <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
                         card's content.</p>
                 </div>
             </div>
@@ -113,10 +155,11 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #007bff; padding: 0;">
     <div class="row">
-        <div class="col-xl-12">
+        <div class="col-lg-12">
             <a class="btn btn-primary btn-lg btn-block"
+               style="padding: 0;"
                href="https://epuap.gov.pl/wps/portal/strefa-urzednika/pomoc_urzednik/" role="button" target="_new">
                 <button type="button" class="btn btn-info col-12">
                     Źródło:
@@ -128,16 +171,18 @@
 
     <div class="row">
 
-        <div class="col-xl-6">
+        <div class="col-lg-6">
             <a class="btn btn-primary btn-lg btn-block"
+               style="padding: 0;"
                href="https://epuap.gov.pl/LESP/LESP.csv" role="button" target="_new">
                 <button type="button" class="btn btn-info col-12">Pobierz plik w formacie csv
                 </button>
             </a>
         </div>
 
-        <div class="col-xl-6">
+        <div class="col-lg-6">
             <a class="btn btn-primary btn-lg btn-block"
+               style="padding: 0;"
                href="https://epuap.gov.pl/LESP/LESP.xml" role="button" target="_new">
                 <button type="button" class="btn btn-info col-12">Pobierz plik w formacie xml
                 </button>
@@ -145,27 +190,12 @@
         </div>
     </div>
 
-
     <div class="row">
-        <div class="col-xl-12">
+        <div class="col-lg-12">
             &nbsp;
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xl-12">
-            &nbsp;
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xl-12">
-            &nbsp;
-        </div>
-    </div>
-
-
-</div>
 </div>
 
 <!-- Optional JavaScript -->
@@ -179,8 +209,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
-<#include "include/footer.ftlh">
 
 </body>
 

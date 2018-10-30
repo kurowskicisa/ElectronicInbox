@@ -16,7 +16,6 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/")
 public class IndexServlet extends HttpServlet {
 
-
     @Inject
     private TemplateProvider templateProvider;
 
