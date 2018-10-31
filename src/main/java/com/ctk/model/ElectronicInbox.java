@@ -2,7 +2,7 @@ package com.ctk.model;
 
 public class ElectronicInbox {
 
-    private Long id;
+ //   private Long id;
     private String name;
     private String regon;
     private String addres;
@@ -13,8 +13,7 @@ public class ElectronicInbox {
     public ElectronicInbox() {
     }
 
-    public ElectronicInbox(Long id, String name, String regon, String addres, String zip, String place, String uri) {
-        this.id = id;
+    public ElectronicInbox(String name, String regon, String addres, String zip, String place, String uri) {
         this.name = name;
         this.regon = regon;
         this.addres = addres;
@@ -23,13 +22,7 @@ public class ElectronicInbox {
         this.uri = uri;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -86,7 +79,6 @@ public class ElectronicInbox {
 
         ElectronicInbox that = (ElectronicInbox) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (regon != null ? !regon.equals(that.regon) : that.regon != null) return false;
         if (addres != null ? !addres.equals(that.addres) : that.addres != null) return false;
@@ -97,8 +89,7 @@ public class ElectronicInbox {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = (name != null ? name.hashCode() : 0);
         result = 31 * result + (regon != null ? regon.hashCode() : 0);
         result = 31 * result + (addres != null ? addres.hashCode() : 0);
         result = 31 * result + (zip != null ? zip.hashCode() : 0);
@@ -110,7 +101,6 @@ public class ElectronicInbox {
     @Override
     public String toString() {
         return "ElectronicInbox{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", regon='" + regon + '\'' +
                 ", addres='" + addres + '\'' +

@@ -1,5 +1,6 @@
 package com.ctk.servlet;
 
+import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
