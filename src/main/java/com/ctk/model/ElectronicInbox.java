@@ -1,8 +1,12 @@
 package com.ctk.model;
 
-public class ElectronicInbox {
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 
- //   private Long id;
+@SessionScoped
+public class ElectronicInbox implements Serializable {
+
+    //   private Long id;
     private String name;
     private String regon;
     private String addres;
@@ -21,8 +25,6 @@ public class ElectronicInbox {
         this.place = place;
         this.uri = uri;
     }
-
-
 
     public String getName() {
         return name;

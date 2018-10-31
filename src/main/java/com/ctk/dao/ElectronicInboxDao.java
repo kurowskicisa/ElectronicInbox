@@ -2,9 +2,11 @@ package com.ctk.dao;
 
 import com.ctk.model.ElectronicInbox;
 
+import javax.enterprise.context.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequestScoped
 public class ElectronicInboxDao {
 
     private final List<ElectronicInbox> list = new ArrayList<>();
@@ -13,7 +15,7 @@ public class ElectronicInboxDao {
         return list;
     }
 
-    private void setList(ElectronicInbox electronicInbox){
-        this.list.add(electronicInbox);
+    public void setList(ElectronicInbox eInbox) {
+        this.list.add(eInbox);
     }
 }
