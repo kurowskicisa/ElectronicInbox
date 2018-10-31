@@ -37,17 +37,34 @@ public class ElectrinicInboxFilter {
         filterElectronicInbox = electronicInboxDao.getList();
 
         filterElectronicInboxByName(choiceName);
+        filterElectronicInboxByAddress(choiceAddress);
+        filterElectronicInboxByPlace(choicePlace);
 
         return filterElectronicInbox.stream()
                 .sorted(Comparator.comparing(ElectronicInbox::getName))
                 .collect(Collectors.toList());
     }
 
-
     private void filterElectronicInboxByName(String choiceName) {
         if(!choiceName.isEmpty()) {
             filterElectronicInbox = filterElectronicInbox.stream()
                     .filter(eib -> electronicInbox.getName().equals(choiceName))
+                    .collect(Collectors.toList());
+        }
+    }
+
+    private void filterElectronicInboxByAddress(String choiceAddress) {
+        if(!choiceAddress.isEmpty()) {
+            filterElectronicInbox = filterElectronicInbox.stream()
+                    .filter(eib -> electronicInbox.getName().equals(choiceAddress))
+                    .collect(Collectors.toList());
+        }
+    }
+
+    private void filterElectronicInboxByPlace(String choicePlace) {
+        if(!choicePlace.isEmpty()) {
+            filterElectronicInbox = filterElectronicInbox.stream()
+                    .filter(eib -> electronicInbox.getName().equals(choicePlace))
                     .collect(Collectors.toList());
         }
     }
