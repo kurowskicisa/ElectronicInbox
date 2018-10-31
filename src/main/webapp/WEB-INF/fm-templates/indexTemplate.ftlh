@@ -26,7 +26,8 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <form action="/electronicinbox/szukaj?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>" method="get" style="width: 100%;">
+            <form action="/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>"
+                  method="get" style="width: 100%;">
 
                 <div class="form-group row" style="margin-bottom: 0;">
 
@@ -76,23 +77,29 @@
 </div>
 
 <#if database??>
-<#list database as d>
+    <#list database as d>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg">
 
             <div class="card">
                 <div class="card-body mr-sm-3">
-                    <h5 class="card-title">${d.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's content.</p>
+                    <h6 class="card-title"><#if d.name??>${d.name}</#if></h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <#if d.regon??>Regon: ${d.regon}</#if>
+                        , adres:
+                        <#if d.address??>${d.address}</#if>
+                        <#if d.zip??>${d.zip}</#if>
+                        <#if d.place??>${d.place}</#if></h6>
+                    <h6 class="card-text">
+                        <#if d.uri??>${d.uri}</#if>
+                        </h6>
+
                 </div>
             </div>
         </div>
     </div>
-
+<#--
     <div class="row">
         <div class="col-lg">
 
@@ -152,10 +159,10 @@
             </div>
         </div>
     </div>
-
+-->
 </div>
 
-</#list>
+    </#list>
 </#if>
 
 <div class="container-fluid">

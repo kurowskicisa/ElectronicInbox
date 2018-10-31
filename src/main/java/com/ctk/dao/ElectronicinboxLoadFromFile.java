@@ -21,7 +21,7 @@ public class ElectronicinboxLoadFromFile {
     @Inject
     private ElectronicInboxDao electronicInboxDao;
 
-    public void loadData() {
+    public void loadData(int page) {
 
         String line = null;
         Reader reader = null;
@@ -35,10 +35,10 @@ public class ElectronicinboxLoadFromFile {
             e1.printStackTrace();
         }
 
-        if (!line.isEmpty()) {
+        if (line != null && !line.isEmpty()) {
 
             try {
-                readingLESPLinesFromFile(line, (BufferedReader) reader);
+                readingLESPLinesFromFile(line, (BufferedReader) reader, page);
                 reader.close();
 
             } catch (IOException e) {
@@ -47,23 +47,30 @@ public class ElectronicinboxLoadFromFile {
         }
     }
 
-    private void readingLESPLinesFromFile(String line, BufferedReader reader) throws IOException {
+    private void readingLESPLinesFromFile(String line, BufferedReader reader, int page) throws IOException {
 
-        while (line != null) {
+        double dataCounter = 0;
+      //  int pageCounter = 0;
 
-            if (!line.equals("")) {
-                List<String> tempList = Arrays.asList(line.split(","));
+       // if (pageCounter <= 5) {
 
-                electronicInboxDao.setList(new ElectronicInbox(
-                        tempList.get(0).trim(),
-                        tempList.get(1).trim(),
-                        tempList.get(2).trim(),
-                        tempList.get(3).trim(),
-                        tempList.get(4).trim(),
-                        tempList.get(5).trim()));
-            }
+            while (line != null) {
+                if (dataCounter >= 1 + (5 * page) && dataCounter <= 5 + (5 * page)) {
+                    if (!line.equals("")) {
+                        List<String> tempList = Arrays.asList(line.split(","));
 
-            line = reader.readLine();
+                        electronicInboxDao.setList(new ElectronicInbox(
+                                tempList.get(0).trim().replace("\"", ""),
+                                tempList.get(1).trim().replace("\"", ""),
+                                tempList.get(2).trim().replace("\"", ""),
+                                tempList.get(3).trim().replace("\"", ""),
+                                tempList.get(4).trim().replace("\"", ""),
+                                tempList.get(5).trim().replace("\"", "")));
+                    }
+                }
+                dataCounter++;
+                line = reader.readLine();
+        //    }
         }
     }
 }

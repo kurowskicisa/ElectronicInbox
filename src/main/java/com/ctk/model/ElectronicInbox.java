@@ -9,7 +9,7 @@ public class ElectronicInbox implements Serializable {
     //   private Long id;
     private String name;
     private String regon;
-    private String addres;
+    private String address;
     private String zip;
     private String place;
     private String uri;
@@ -17,10 +17,10 @@ public class ElectronicInbox implements Serializable {
     public ElectronicInbox() {
     }
 
-    public ElectronicInbox(String name, String regon, String addres, String zip, String place, String uri) {
+    public ElectronicInbox(String name, String regon, String address, String zip, String place, String uri) {
         this.name = name;
         this.regon = regon;
-        this.addres = addres;
+        this.address = address;
         this.zip = zip;
         this.place = place;
         this.uri = uri;
@@ -43,11 +43,11 @@ public class ElectronicInbox implements Serializable {
     }
 
     public String getAddres() {
-        return addres;
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddres(String address) {
+        this.address = address;
     }
 
     public String getZip() {
@@ -83,7 +83,7 @@ public class ElectronicInbox implements Serializable {
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (regon != null ? !regon.equals(that.regon) : that.regon != null) return false;
-        if (addres != null ? !addres.equals(that.addres) : that.addres != null) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (zip != null ? !zip.equals(that.zip) : that.zip != null) return false;
         if (place != null ? !place.equals(that.place) : that.place != null) return false;
         return uri != null ? uri.equals(that.uri) : that.uri == null;
@@ -93,7 +93,7 @@ public class ElectronicInbox implements Serializable {
     public int hashCode() {
         int result = (name != null ? name.hashCode() : 0);
         result = 31 * result + (regon != null ? regon.hashCode() : 0);
-        result = 31 * result + (addres != null ? addres.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (zip != null ? zip.hashCode() : 0);
         result = 31 * result + (place != null ? place.hashCode() : 0);
         result = 31 * result + (uri != null ? uri.hashCode() : 0);
@@ -105,7 +105,7 @@ public class ElectronicInbox implements Serializable {
         return "ElectronicInbox{" +
                 ", name='" + name + '\'' +
                 ", regon='" + regon + '\'' +
-                ", addres='" + addres + '\'' +
+                ", address='" + address + '\'' +
                 ", zip='" + zip + '\'' +
                 ", place='" + place + '\'' +
                 ", uri='" + uri + '\'' +
