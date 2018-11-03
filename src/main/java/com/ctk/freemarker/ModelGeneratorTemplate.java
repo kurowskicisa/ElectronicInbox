@@ -1,4 +1,4 @@
-package com.ctk.servlet;
+package com.ctk.freemarker;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.HashMap;
