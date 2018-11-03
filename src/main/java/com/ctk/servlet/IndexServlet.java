@@ -1,11 +1,12 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.ElectrinicInboxFilter;
 import com.ctk.dao.ElectronicInboxDao;
-import com.ctk.dao.ElectronicinboxLoadFromFile;
+import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
+import com.ctk.model.ElectronicInboxFilterFile;
+
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-import com.ctk.model.ElectronicInbox;
+
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 
@@ -29,16 +31,13 @@ public class IndexServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private ElectronicinboxLoadFromFile electronicinboxLoadFromFile;
+    private ElectronicinboxLoadFromFileFiltered electronicinboxLoadFromFileFiltered;
 
     @Inject
     private ElectronicInboxDao electronicInboxDao;
 
     @Inject
-    private ElectronicInbox electronicInbox;
-
-    @Inject
-    private ElectrinicInboxFilter electrinicInboxFilter;
+    private ElectronicInboxFilterFile electronicInboxFilterFile;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,28 +45,45 @@ public class IndexServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-
-
-        electronicinboxLoadFromFile.loadData(1);
-
         try {
             final String choiceName = req.getParameter("nazwa").trim();
             final String choiceAddress = req.getParameter("adres").trim();
             final String choicePlace = req.getParameter("miejscowosc").trim();
+            final String choicePage = req.getParameter("strona").trim();
 
+            electronicInboxFilterFile.setName(choiceName);
+            electronicInboxFilterFile.setAddress(choiceAddress);
+            electronicInboxFilterFile.setPlace(choicePlace);
+
+            if (Integer.parseInt(choicePage) == 0) {
+                electronicInboxFilterFile.setPage("1");
+            } else {
+                electronicInboxFilterFile.setPage(choicePage);
+            }
+
+            electronicinboxLoadFromFileFiltered.loadData();
 
             modelGeneratorTemplate.setModel("choiceName_", choiceName);
             modelGeneratorTemplate.setModel("choiceAddress_", choiceAddress);
             modelGeneratorTemplate.setModel("choicePlace_", choicePlace);
+            modelGeneratorTemplate.setModel("choicePage_", choicePage);
+
+            modelGeneratorTemplate.setModel("choiceTotalPages_", electronicInboxFilterFile.getTotalPages());
+
+            if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
+                modelGeneratorTemplate.setModel("choicePrevPage_", Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+            }
+
+            if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
+                modelGeneratorTemplate.setModel("choiceNextPage_", Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+            }
 
             modelGeneratorTemplate.setModel("database",
                     electronicInboxDao.getList());
-             //       electrinicInboxFilter.filterElectronicInbox(choiceName, choiceAddress, choicePlace));
 
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "indexTemplate");

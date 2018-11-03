@@ -42,11 +42,11 @@ public class ElectronicInbox implements Serializable {
         this.regon = regon;
     }
 
-    public String getAddres() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddres(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -102,13 +102,13 @@ public class ElectronicInbox implements Serializable {
 
     @Override
     public String toString() {
-        return "ElectronicInbox{" +
-                ", name='" + name + '\'' +
+        return "ElectronicInbox{" + '\n' +
+                "name='" + name + '\'' +
                 ", regon='" + regon + '\'' +
                 ", address='" + address + '\'' +
                 ", zip='" + zip + '\'' +
                 ", place='" + place + '\'' +
-                ", uri='" + uri + '\'' +
+                ", uri='" + uri + '\'' + '\n' +
                 '}';
     }
 }
