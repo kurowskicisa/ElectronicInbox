@@ -6,7 +6,6 @@ import java.io.Serializable;
 @SessionScoped
 public class ElectronicInbox implements Serializable {
 
-    //   private Long id;
     private String name;
     private String regon;
     private String address;

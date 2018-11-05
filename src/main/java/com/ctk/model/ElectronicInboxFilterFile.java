@@ -12,7 +12,6 @@ public class ElectronicInboxFilterFile implements Serializable {
     private String page;
     private Integer totalPages;
 
-
     public ElectronicInboxFilterFile() {
     }
 

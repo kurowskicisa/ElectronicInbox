@@ -30,7 +30,6 @@
 
                 <div class="form-group row" style="margin-bottom: 0;">
 
-
                     <div class="col-lg-4">
                         <input class="form-group form-control"
                                style="margin-bottom: 0;"
@@ -70,7 +69,6 @@
                         >
                     </div>
 
-
                     <div class="col-lg-2 form-group">
                         <button class="btn btn-outline-success btn-block"
                                 style="margin-bottom: 0;"
@@ -83,14 +81,14 @@
 
 <#if choiceTotalPages_??>
 
-                                <input
-                                        id="inputPage"
-                                        name="strona"
-                                        type="hidden"
-                                        value=<#if choicePage_??>${choicePage_}<#else >1</#if>
-                                >
-                <div class="form-group row" style="margin-bottom: 0;">
+                <input
+                        id="inputPage"
+                        name="strona"
+                        type="hidden"
+                        value=<#if choicePage_??>${choicePage_}<#else >1</#if>
+                >
 
+                <div class="form-group row" style="margin-bottom: 0;">
 
                     <div class="col-lg-3">
                         <button class="btn btn-outline-success btn-block"
@@ -100,7 +98,6 @@
                             ||<<<<<
                         </button>
                     </div>
-
 
                     <div class="col-lg-3">
                         <button class="btn btn-outline-success btn-block"
@@ -128,18 +125,15 @@
                             >>>>>||
                         </button>
                     </div>
-
-
                 </div>
 <#else >
-                    <input
-                            id="inputPage"
-                            name="strona"
-                            type="hidden"
-                            value=1
-                    >
+                <input
+                        id="inputPage"
+                        name="strona"
+                        type="hidden"
+                        value=1
+                >
 </#if>
-
 
             </form>
         </nav>
@@ -148,30 +142,238 @@
 
 <#if database??>
     <#list database as d>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg">
 
-            <div class="card">
-                <div class="card-body mr-sm-3">
-                    <h6 class="card-title"><#if d.name??>${d.name}</#if></h6>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        <#if d.regon??>Regon: ${d.regon}</#if>
-                        , adres:
-                        <#if d.address??>${d.address}</#if>
-                        <#if d.zip??>${d.zip}</#if>
-                        <#if d.place??>${d.place}</#if></h6>
-                    <h6 class="card-text">
-                        <#if d.uri??>${d.uri}</#if>
-                    </h6>
-
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"><#if d.name??>${d.name}</#if></h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <#if d.regon??>Regon: ${d.regon}</#if>
+                                , adres:
+                                <#if d.address??>${d.address}</#if>
+                                <#if d.zip??>${d.zip}</#if>
+                                <#if d.place??>${d.place}</#if></h6>
+                            <h6 class="card-text">
+                                <#if d.uri??>${d.uri}</#if>
+                            </h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="container-fluid">
+            <#if database?size < 5>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 4>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 3>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 2>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 1>
+                <div class="row">
+                    <div class="col-lg">
+
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+        </div>
 
     </#list>
+
+<#else >
+
+    <nav class="navbar navbar-light bg-light">
+
+        <div class="form-group row" style="margin-bottom: 0;">
+
+            <div class="col-lg-3">
+                &nbsp;
+            </div>
+
+            <div class="col-lg-3">
+                &nbsp;
+            </div>
+
+            <div class="col-lg-3">
+                &nbsp;
+            </div>
+
+            <div class="col-lg-3">
+                &nbsp;
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg">
+
+                <div class="card">
+                    <div class="card-body mr-sm-3">
+                        <h6 class="card-title"> &nbsp;</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            &nbsp;
+                        </h6>
+                        <h6 class="card-text">
+                            &nbsp;
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg">
+
+                <div class="card">
+                    <div class="card-body mr-sm-3">
+                        <h6 class="card-title"> &nbsp;</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            &nbsp;
+                        </h6>
+                        <h6 class="card-text">
+                            &nbsp;
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg">
+
+                <div class="card">
+                    <div class="card-body mr-sm-3">
+                        <h6 class="card-title"> &nbsp;</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            &nbsp;
+                        </h6>
+                        <h6 class="card-text">
+                            &nbsp;
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg">
+
+                <div class="card">
+                    <div class="card-body mr-sm-3">
+                        <h6 class="card-title"> &nbsp;</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            &nbsp;
+                        </h6>
+                        <h6 class="card-text">
+                            &nbsp;
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg">
+
+                <div class="card">
+                    <div class="card-body mr-sm-3">
+                        <h6 class="card-title"> &nbsp;</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            &nbsp;
+                        </h6>
+                        <h6 class="card-text">
+                            &nbsp;
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </#if>
 
 <div class="container-fluid">
@@ -215,13 +417,7 @@
             </a>
         </div>
     </div>
-<!--
-    <div class="row">
-        <div class="col-lg-12">
-            &nbsp;
-        </div>
-    </div>
--->
+
 </div>
 
 <!-- Optional JavaScript -->
@@ -247,7 +443,7 @@
 
         document.getElementById('inputPage').value = 1;
 
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
     });
 
 </script>
@@ -257,7 +453,7 @@
 
         document.getElementById('inputPage').value = 1;
 
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
     });
 
 </script>
@@ -265,9 +461,9 @@
 <script>
     $('#btnPrevPage').on('click', function () {
 
-        document.getElementById('inputPage').value =<#if choicePrevPage_??>${choicePrevPage_}</#if> ;
+        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> ;
 
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePrevPage_??>${choicePrevPage_}</#if>';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>';
     });
 
 </script>
@@ -276,9 +472,9 @@
 <script>
     $('#btnNextPage').on('click', function () {
 
-        document.getElementById('inputPage').value =<#if choiceNextPage_??>${choiceNextPage_}</#if> ;
+        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> ;
 
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceNextPage_??>${choiceNextPage_}</#if>';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>';
     });
 
 </script>
@@ -286,9 +482,9 @@
 <script>
     $('#btnLastPage').on('click', function () {
 
-        document.getElementById('inputPage').value =<#if choiceTotalPages_??>${choiceTotalPages_}</#if> ;
+        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> ;
 
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceTotalPages_??>${choiceTotalPages_}</#if>';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>';
     });
 
 </script>

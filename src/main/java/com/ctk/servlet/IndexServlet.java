@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-
 @WebServlet(urlPatterns = "/")
 public class IndexServlet extends HttpServlet {
 
@@ -72,10 +71,14 @@ public class IndexServlet extends HttpServlet {
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
                 modelGeneratorTemplate.setModel("choicePrevPage_", Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+            } else {
+                modelGeneratorTemplate.setModel("choicePrevPage_", 1);
             }
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
                 modelGeneratorTemplate.setModel("choiceNextPage_", Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+            } else {
+                modelGeneratorTemplate.setModel("choiceNextPage_", electronicInboxFilterFile.getTotalPages());
             }
 
             modelGeneratorTemplate.setModel("database",
