@@ -1,8 +1,10 @@
 package com.ctk.model;
 
 import javax.enterprise.context.SessionScoped;
+
 import java.io.Serializable;
-import java.util.Optional;
+
+
 
 @SessionScoped
 public class ElectronicInboxFilterFile implements Serializable {
@@ -12,6 +14,7 @@ public class ElectronicInboxFilterFile implements Serializable {
     private String place;
     private String page;
     private Integer totalPages;
+    private double totalFilteredRecords;
 
     public ElectronicInboxFilterFile() {
     }
@@ -56,4 +59,11 @@ public class ElectronicInboxFilterFile implements Serializable {
         this.totalPages = totalPages;
     }
 
+    public double getTotalFilteredRecords() {
+        return totalFilteredRecords;
+    }
+
+    public void setTotalFilteredRecords(double totalRecords) {
+        this.totalFilteredRecords = totalRecords;
+    }
 }

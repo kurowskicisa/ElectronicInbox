@@ -5,13 +5,16 @@ import com.ctk.model.ElectronicInboxFilterFile;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+
 import java.util.Arrays;
 import java.util.List;
+
 
 @RequestScoped
 public class ElectronicinboxLoadFromFileFiltered {
@@ -54,7 +57,7 @@ public class ElectronicinboxLoadFromFileFiltered {
         if (line != null && !line.isEmpty()) {
 
             try {
-                readingLESPLinesFromFileFiltered(line, (BufferedReader) reader);
+                readingLESPLinesFromFileFiltered(line, reader);
                 reader.close();
 
             } catch (IOException e) {
@@ -112,12 +115,14 @@ public class ElectronicinboxLoadFromFileFiltered {
 
             line = reader.readLine();
         }
+
         pagesCounter = (dataCounter / RECORDS_ON_PAGE);
 
         if (dataCounter % RECORDS_ON_PAGE != 0) {
             pagesCounter++;
         }
 
+        electronicInboxFilterFile.setTotalFilteredRecords(dataCounter);
         electronicInboxFilterFile.setTotalPages((int) pagesCounter);
     }
 }

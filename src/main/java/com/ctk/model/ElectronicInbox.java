@@ -3,6 +3,7 @@ package com.ctk.model;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
+
 @SessionScoped
 public class ElectronicInbox implements Serializable {
 
