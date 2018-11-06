@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-
 @RequestScoped
 public class ElectronicinboxLoadFromFileFiltered {
 
@@ -25,7 +24,6 @@ public class ElectronicinboxLoadFromFileFiltered {
 
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
-
 
     double dataCounter = 0.00;
     double pagesCounter = 0;
@@ -40,14 +38,14 @@ public class ElectronicinboxLoadFromFileFiltered {
 
     public void loadData() {
         String line = null;
-        Reader reader = null;
+        BufferedReader reader = null;
 
         try {
 
             reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
-            line = ((BufferedReader) reader).readLine();
+            line =  reader.readLine();
 
-            line = ((BufferedReader) reader).readLine();
+            line = reader.readLine();
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -116,7 +114,7 @@ public class ElectronicinboxLoadFromFileFiltered {
         }
         pagesCounter = (dataCounter / RECORDS_ON_PAGE);
 
-        if (dataCounter % RECORDS_ON_PAGE != 0){
+        if (dataCounter % RECORDS_ON_PAGE != 0) {
             pagesCounter++;
         }
 
