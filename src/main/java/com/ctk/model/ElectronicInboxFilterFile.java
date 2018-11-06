@@ -2,6 +2,7 @@ package com.ctk.model;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Optional;
 
 @SessionScoped
 public class ElectronicInboxFilterFile implements Serializable {
