@@ -164,100 +164,104 @@
             </div>
         </div>
 
-        <div class="container-fluid">
-            <#if database?size < 5>
-                <div class="row">
-                    <div class="col-lg">
-                        <div class="card">
-                            <div class="card-body mr-sm-3">
-                                <h6 class="card-title"> &nbsp;</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    &nbsp;
-                                </h6>
-                                <h6 class="card-text">
-                                    &nbsp;
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#if>
-
-            <#if database?size < 4>
-                <div class="row">
-                    <div class="col-lg">
-                        <div class="card">
-                            <div class="card-body mr-sm-3">
-                                <h6 class="card-title"> &nbsp;</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    &nbsp;
-                                </h6>
-                                <h6 class="card-text">
-                                    &nbsp;
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#if>
-
-            <#if database?size < 3>
-                <div class="row">
-                    <div class="col-lg">
-                        <div class="card">
-                            <div class="card-body mr-sm-3">
-                                <h6 class="card-title"> &nbsp;</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    &nbsp;
-                                </h6>
-                                <h6 class="card-text">
-                                    &nbsp;
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#if>
-
-            <#if database?size < 2>
-                <div class="row">
-                    <div class="col-lg">
-                        <div class="card">
-                            <div class="card-body mr-sm-3">
-                                <h6 class="card-title"> &nbsp;</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    &nbsp;
-                                </h6>
-                                <h6 class="card-text">
-                                    &nbsp;
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#if>
-
-            <#if database?size < 1>
-                <div class="row">
-                    <div class="col-lg">
-
-                        <div class="card">
-                            <div class="card-body mr-sm-3">
-                                <h6 class="card-title"> &nbsp;</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    &nbsp;
-                                </h6>
-                                <h6 class="card-text">
-                                    &nbsp;
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </#if>
-        </div>
-
     </#list>
+</#if>
+
+<#if database??>
+
+    <div class="container-fluid">
+
+        <#if database?size < 5>
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
+        <#if database?size < 4>
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
+        <#if database?size < 3>
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
+        <#if database?size < 2>
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
+        <#if database?size < 1>
+            <div class="row">
+                <div class="col-lg">
+
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+    </div>
 
 <#else >
 
