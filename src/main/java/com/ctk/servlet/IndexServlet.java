@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalTime;
+
+import static java.time.LocalTime.now;
 
 
 @WebServlet(urlPatterns = "/")
@@ -42,10 +45,14 @@ public class IndexServlet extends HttpServlet {
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
 
-    final Logger appLogger = LoggerFactory.getLogger(IndexServlet.class);
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        final Logger appLogger = LoggerFactory.getLogger(IndexServlet.class);
+
+        LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
@@ -97,15 +104,15 @@ public class IndexServlet extends HttpServlet {
                 modelGeneratorTemplate.setModel("choiceNextPage_", electronicInboxFilterFile.getTotalPages());
             }
 
-            appLogger.info("[counter: onPage] "+electronicInboxDao.getList().size());
+            appLogger.info("[counter: onPage] " + electronicInboxDao.getList().size());
             appLogger.info("[counter: Total filtered records] " + electronicInboxFilterFile.getTotalFilteredRecords());
-
+            appLogger.info("[counter: Total records         ] " + electronicInboxFilterFile.getTotalRecords());
 
             modelGeneratorTemplate.setModel("database",
                     electronicInboxDao.getList());
         } catch (NullPointerException e) {
             appLogger.debug("[No data]");
-            appLogger.info("[No data]");
+            // appLogger.info("[No data]");
         }
 
         try {
@@ -116,5 +123,8 @@ public class IndexServlet extends HttpServlet {
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+
+        LocalTime stopDoGet = now();
+        appLogger.info("[time of action (milliseconds)] " + ((stopDoGet.getNano()-startDoGet.getNano())/1000000));
     }
 }

@@ -15,6 +15,7 @@ public class ElectronicInboxFilterFile implements Serializable {
     private String page;
     private Integer totalPages;
     private double totalFilteredRecords;
+    private double totalRecords;
 
     public ElectronicInboxFilterFile() {
     }
@@ -65,5 +66,13 @@ public class ElectronicInboxFilterFile implements Serializable {
 
     public void setTotalFilteredRecords(double totalRecords) {
         this.totalFilteredRecords = totalRecords;
+    }
+
+    public double getTotalRecords() {
+        return totalRecords;
+    }
+
+    public void setTotalRecords(double totalRecords) {
+        this.totalRecords = totalRecords;
     }
 }

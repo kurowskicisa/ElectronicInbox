@@ -28,9 +28,6 @@ public class ElectronicinboxLoadFromFileFiltered {
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
 
-    double dataCounter = 0.00;
-    double pagesCounter = 0;
-
     private static final int RECORDS_ON_PAGE = 5;
     private static final int FIELD_NAME = 0;
     private static final int FIELD_REGON = 1;
@@ -71,6 +68,10 @@ public class ElectronicinboxLoadFromFileFiltered {
             BufferedReader reader)
             throws IOException {
 
+        double pagesCounter = 0;
+        double dataCounter = 0.00;
+        double dataTotalCounter = 0.00;
+
         Integer currentPage = Integer.parseInt(electronicInboxFilterFile.getPage());
         String name = electronicInboxFilterFile.getName();
         String address = electronicInboxFilterFile.getAddress();
@@ -84,6 +85,8 @@ public class ElectronicinboxLoadFromFileFiltered {
 
             if (!line.equals("")) {
                 List<String> tempList = Arrays.asList(line.split(","));
+
+                dataTotalCounter++;
 
                 nameToCompare = tempList.get(FIELD_NAME).trim().replace("\"", "").toLowerCase();
                 name = name.toLowerCase();
@@ -122,7 +125,8 @@ public class ElectronicinboxLoadFromFileFiltered {
             pagesCounter++;
         }
 
-        electronicInboxFilterFile.setTotalFilteredRecords(dataCounter);
         electronicInboxFilterFile.setTotalPages((int) pagesCounter);
+        electronicInboxFilterFile.setTotalFilteredRecords(dataCounter);
+        electronicInboxFilterFile.setTotalRecords(dataTotalCounter);
     }
 }
