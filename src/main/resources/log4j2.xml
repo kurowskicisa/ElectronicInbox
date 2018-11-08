@@ -6,7 +6,7 @@
             <PatternLayout pattern="[%d{HH:mm:ss.SSS} - %-6level] %msg%n"/>
         </Console>
 
-        <File name="LogFile" fileName="eib_app.log">
+        <File name="LogFile" fileName="eib_app.log" append="true" bufferedIO="true" bufferSize="8192">
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
@@ -15,13 +15,12 @@
         <Async name="Async">
             <AppenderRef ref="LogFile"/>
         </Async>
-    </Appenders>
 
+    </Appenders>
     <Loggers>
         <Root level="ALL">
-            <AppenderRef ref="Console" level="WARN" />
+            <AppenderRef ref="Console" level="INFO" />
             <AppenderRef ref="Async" level="INFO" />
         </Root>
     </Loggers>
-
 </Configuration>

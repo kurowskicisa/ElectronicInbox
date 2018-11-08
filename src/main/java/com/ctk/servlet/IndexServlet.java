@@ -47,7 +47,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        final Logger appLogger = LoggerFactory.getLogger(IndexServlet.class);
+        final Logger APPLOGGER = LoggerFactory.getLogger(IndexServlet.class);
 
         LocalTime startDoGet = now();
 
@@ -57,16 +57,16 @@ public class IndexServlet extends HttpServlet {
         try {
             final String choiceName = req.getParameter("nazwa").trim();
 
-            appLogger.info("[choiceName   ] " + choiceName);
+            APPLOGGER.info("[choiceName   ] " + choiceName);
 
             final String choiceAddress = req.getParameter("adres").trim();
-            appLogger.info("[choiceAddress] " + choiceAddress);
+            APPLOGGER.info("[choiceAddress] " + choiceAddress);
 
             final String choicePlace = req.getParameter("miejscowosc").trim();
-            appLogger.info("[choicePlace  ] " + choicePlace);
+            APPLOGGER.info("[choicePlace  ] " + choicePlace);
 
             final String choicePage = req.getParameter("strona").trim();
-            appLogger.info("[choicePage   ] " + choicePage);
+            APPLOGGER.info("[choicePage   ] " + choicePage);
 
 
             electronicInboxFilterFile.setName(String.valueOf(choiceName));
@@ -101,16 +101,16 @@ public class IndexServlet extends HttpServlet {
                 modelGeneratorTemplate.setModel("choiceNextPage_", electronicInboxFilterFile.getTotalPages());
             }
 
-            appLogger.info("[counter: onPage] " + electronicInboxDao.getList().size());
-            appLogger.info("[counter: Total filtered records] " + electronicInboxFilterFile.getTotalFilteredRecords());
-            appLogger.info("[counter: Total records         ] " + electronicInboxFilterFile.getTotalRecords());
+            APPLOGGER.info("[counter: onPage] " + electronicInboxDao.getList().size());
+            APPLOGGER.info("[counter: Total filtered records] " + electronicInboxFilterFile.getTotalFilteredRecords());
+            APPLOGGER.info("[counter: Total records         ] " + electronicInboxFilterFile.getTotalRecords());
 
             modelGeneratorTemplate.setModel("database",
                     electronicInboxDao.getList());
 
         } catch (NullPointerException e) {
-            appLogger.warn("[No web arameters]");
-            appLogger.info("[No web arameters]");
+            APPLOGGER.warn("[No web arameters]");
+            APPLOGGER.info("[No web arameters]");
 
         }
 
@@ -124,6 +124,6 @@ public class IndexServlet extends HttpServlet {
         }
 
         LocalTime stopDoGet = now();
-        appLogger.info("[time of action (milliseconds)] " + ((stopDoGet.getNano()-startDoGet.getNano())/1000000));
+        APPLOGGER.info("[time of action (milliseconds)] " + ((stopDoGet.getNano()-startDoGet.getNano())/1000000));
     }
 }
