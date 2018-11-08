@@ -68,7 +68,7 @@ public class ElectronicinboxLoadFromFileFiltered {
             BufferedReader reader)
             throws IOException {
 
-        double pagesCounter = 0;
+        double pagesCounter = 0.00;
         double dataCounter = 0.00;
         double dataTotalCounter = 0.00;
 

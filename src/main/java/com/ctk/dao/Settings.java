@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 
 import java.time.format.DateTimeFormatter;
 
-
 @ApplicationScoped
 public class Settings {
 

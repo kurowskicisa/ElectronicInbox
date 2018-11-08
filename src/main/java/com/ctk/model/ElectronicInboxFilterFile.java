@@ -4,8 +4,6 @@ import javax.enterprise.context.SessionScoped;
 
 import java.io.Serializable;
 
-
-
 @SessionScoped
 public class ElectronicInboxFilterFile implements Serializable {
 

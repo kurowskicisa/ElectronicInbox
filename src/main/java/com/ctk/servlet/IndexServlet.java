@@ -26,7 +26,6 @@ import java.time.LocalTime;
 
 import static java.time.LocalTime.now;
 
-
 @WebServlet(urlPatterns = "/")
 public class IndexServlet extends HttpServlet {
 
@@ -44,8 +43,6 @@ public class IndexServlet extends HttpServlet {
 
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
-
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -110,9 +107,11 @@ public class IndexServlet extends HttpServlet {
 
             modelGeneratorTemplate.setModel("database",
                     electronicInboxDao.getList());
+
         } catch (NullPointerException e) {
-            appLogger.debug("[No data]");
-            // appLogger.info("[No data]");
+            appLogger.warn("[No web arameters]");
+            appLogger.info("[No web arameters]");
+
         }
 
         try {
