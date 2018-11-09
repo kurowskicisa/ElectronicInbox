@@ -44,10 +44,10 @@ public class IndexServlet extends HttpServlet {
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
 
+    private static final Logger APPLOGGER = LoggerFactory.getLogger(IndexServlet.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        final Logger APPLOGGER = LoggerFactory.getLogger(IndexServlet.class);
 
         LocalTime startDoGet = now();
 
@@ -109,9 +109,8 @@ public class IndexServlet extends HttpServlet {
                     electronicInboxDao.getList());
 
         } catch (NullPointerException e) {
-            APPLOGGER.warn("[No web arameters]");
-            APPLOGGER.info("[No web arameters]");
-
+            APPLOGGER.warn("[No web parameters]");
+            APPLOGGER.info("[No web parameters]");
         }
 
         try {
@@ -124,6 +123,8 @@ public class IndexServlet extends HttpServlet {
         }
 
         LocalTime stopDoGet = now();
+
         APPLOGGER.info("[time of action (milliseconds)] " + ((stopDoGet.getNano()-startDoGet.getNano())/1000000));
+
     }
 }
