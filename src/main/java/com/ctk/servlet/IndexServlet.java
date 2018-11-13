@@ -58,16 +58,16 @@ public class IndexServlet extends HttpServlet {
         try {
             final String choiceName = req.getParameter("nazwa").trim();
 
-            APPLOGGER.info("[choiceName   ] " + choiceName);
+            APPLOGGER.info("[choiceName   ] |" + choiceName);
 
             final String choiceAddress = req.getParameter("adres").trim();
-            APPLOGGER.info("[choiceAddress] " + choiceAddress);
+            APPLOGGER.info("[choiceAddress] |" + choiceAddress);
 
             final String choicePlace = req.getParameter("miejscowosc").trim();
-            APPLOGGER.info("[choicePlace  ] " + choicePlace);
+            APPLOGGER.info("[choicePlace  ] |" + choicePlace);
 
             final String choicePage = req.getParameter("strona").trim();
-            APPLOGGER.info("[choicePage   ] " + choicePage);
+            APPLOGGER.info("[choicePage   ] |" + choicePage);
 
 
             electronicInboxFilterFile.setName(String.valueOf(choiceName));
@@ -125,7 +125,7 @@ public class IndexServlet extends HttpServlet {
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[time of action (milliseconds)] " + (ChronoUnit.NANOS.between(startDoGet, stopDoGet))/1000000);
+        APPLOGGER.info("[time of action (milliseconds)] |" + (ChronoUnit.NANOS.between(startDoGet, stopDoGet))/1000000);
 
     }
 }
