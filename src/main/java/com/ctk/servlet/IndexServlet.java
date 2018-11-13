@@ -10,8 +10,8 @@ import com.ctk.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
@@ -44,7 +45,9 @@ public class IndexServlet extends HttpServlet {
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
 
-    private static final Logger APPLOGGER = LoggerFactory.getLogger(IndexServlet.class);
+ //   private static final Logger APPLOGGER = LoggerFactory.getLogger(IndexServlet.class.getName());
+
+    static Logger APPLOGGER = LogManager.getLogger(IndexServlet.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -124,7 +127,7 @@ public class IndexServlet extends HttpServlet {
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[time of action (milliseconds)] " + ((stopDoGet.getNano()-startDoGet.getNano())/1000000));
+        APPLOGGER.info("[time of action (milliseconds)] " + (ChronoUnit.NANOS.between(startDoGet, stopDoGet))/1000000);
 
     }
 }

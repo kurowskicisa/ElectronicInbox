@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="ALL">
+
+
+<Configuration status="INFO" name="ElectronicInBox" packages="">
+
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%d{HH:mm:ss.SSS} - %-6level] in %logger - %msg%n"/>
-        </Console>
-        <File name="LogFile" fileName="app.log">
-            <PatternLayout>
-                <Pattern>[%d{HH:mm:ss.SSS} - %-6level] in %logger - %msg%n</Pattern>
-            </PatternLayout>
+        <!--
+        https://stackoverflow.com/questions/11668770/log4j-log-file-in-user-home-directory
+        -->
+        <!-- LIN -->
+        <!--
+        <File name="File" fileName="logfile.log">
+        -->
+        <!-- WIN -->
+
+        <File name="File" fileName="%LOCALAPPDATA%\\logfile.log">
+
+            <PatternLayout
+                    pattern="%d{dd/MM/yyyy - HH:mm:ss} | %-5level | %logger{36}: %M(): %msg%n" />
         </File>
-        <Async name="Async">
-            <AppenderRef ref="LogFile"/>
-        </Async>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{dd/MM/yyyy - HH:mm:ss} | %-5level | %logger{36}: %M(): %msg%n" />
+        </Console>
     </Appenders>
+
     <Loggers>
-        <Root level="ALL">
-            <AppenderRef ref="Console" level="ALL"/>
-            <AppenderRef ref="Async" level="INFO"/>
+        <logger name="com.ctk.servlet.IndexServlet" level="INFO">
+            <AppenderRef ref="File" level="INFO" />
+            <AppenderRef ref="Console" level="INFO"/>
+        </logger>
+
+        <Root level="ERROR">
         </Root>
     </Loggers>
+
 </Configuration>
