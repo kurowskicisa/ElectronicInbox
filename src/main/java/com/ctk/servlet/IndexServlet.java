@@ -44,15 +44,15 @@ public class IndexServlet extends HttpServlet {
 
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
-    
-    static Logger APPLOGGER = LogManager.getLogger(IndexServlet.class.getName());
+
+    private static Logger APPLOGGER = LogManager.getLogger(IndexServlet.class.getName());
 
     @Override
-    public void init(){
-       electronicInboxFilterFile.setName("");
-       electronicInboxFilterFile.setAddress("");
-       electronicInboxFilterFile.setPlace("");
-       electronicInboxFilterFile.setPage("");
+    public void init() {
+        electronicInboxFilterFile.setName("");
+        electronicInboxFilterFile.setAddress("");
+        electronicInboxFilterFile.setPlace("");
+        electronicInboxFilterFile.setPage("");
     }
 
     @Override
@@ -96,23 +96,29 @@ public class IndexServlet extends HttpServlet {
             modelGeneratorTemplate.setModel("choicePage_", choicePage);
 
 
-            modelGeneratorTemplate.setModel("choiceTotalPages_", electronicInboxFilterFile.getTotalPages());
+            modelGeneratorTemplate.setModel("choiceTotalPages_",
+                    electronicInboxFilterFile.getTotalPages());
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
-                modelGeneratorTemplate.setModel("choicePrevPage_", Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+                modelGeneratorTemplate.setModel("choicePrevPage_",
+                        Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
             } else {
                 modelGeneratorTemplate.setModel("choicePrevPage_", 1);
             }
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
-                modelGeneratorTemplate.setModel("choiceNextPage_", Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+                modelGeneratorTemplate.setModel("choiceNextPage_",
+                        Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
             } else {
-                modelGeneratorTemplate.setModel("choiceNextPage_", electronicInboxFilterFile.getTotalPages());
+                modelGeneratorTemplate.setModel("choiceNextPage_",
+                        electronicInboxFilterFile.getTotalPages());
             }
 
             APPLOGGER.info("[counter: onPage] | " + electronicInboxDao.getList().size());
-            APPLOGGER.info("[counter: Total filtered records] | " + electronicInboxFilterFile.getTotalFilteredRecords());
-            APPLOGGER.info("[counter: Total records         ] | " + electronicInboxFilterFile.getTotalRecords());
+            APPLOGGER.info("[counter: Total filtered records] | "
+                    + electronicInboxFilterFile.getTotalFilteredRecords());
+            APPLOGGER.info("[counter: Total records         ] | "
+                    + electronicInboxFilterFile.getTotalRecords());
 
             modelGeneratorTemplate.setModel("database",
                     electronicInboxDao.getList());
@@ -133,7 +139,7 @@ public class IndexServlet extends HttpServlet {
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[time of action (milliseconds)] | " + (ChronoUnit.NANOS.between(startDoGet, stopDoGet))/1000000);
-
+        APPLOGGER.info("[time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 }
