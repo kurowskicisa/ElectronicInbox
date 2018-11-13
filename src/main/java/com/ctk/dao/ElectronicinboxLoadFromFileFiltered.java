@@ -5,13 +5,16 @@ import com.ctk.model.ElectronicInboxFilterFile;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+
 import java.util.Arrays;
 import java.util.List;
+
 
 @RequestScoped
 public class ElectronicinboxLoadFromFileFiltered {
@@ -24,9 +27,6 @@ public class ElectronicinboxLoadFromFileFiltered {
 
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
-
-    double dataCounter = 0.00;
-    double pagesCounter = 0;
 
     private static final int RECORDS_ON_PAGE = 5;
     private static final int FIELD_NAME = 0;
@@ -54,7 +54,7 @@ public class ElectronicinboxLoadFromFileFiltered {
         if (line != null && !line.isEmpty()) {
 
             try {
-                readingLESPLinesFromFileFiltered(line, (BufferedReader) reader);
+                readingLESPLinesFromFileFiltered(line, reader);
                 reader.close();
 
             } catch (IOException e) {
@@ -67,6 +67,10 @@ public class ElectronicinboxLoadFromFileFiltered {
             String line,
             BufferedReader reader)
             throws IOException {
+
+        double pagesCounter = 0.00;
+        double dataCounter = 0.00;
+        double dataTotalCounter = 0.00;
 
         Integer currentPage = Integer.parseInt(electronicInboxFilterFile.getPage());
         String name = electronicInboxFilterFile.getName();
@@ -81,6 +85,8 @@ public class ElectronicinboxLoadFromFileFiltered {
 
             if (!line.equals("")) {
                 List<String> tempList = Arrays.asList(line.split(","));
+
+                dataTotalCounter++;
 
                 nameToCompare = tempList.get(FIELD_NAME).trim().replace("\"", "").toLowerCase();
                 name = name.toLowerCase();
@@ -112,6 +118,7 @@ public class ElectronicinboxLoadFromFileFiltered {
 
             line = reader.readLine();
         }
+
         pagesCounter = (dataCounter / RECORDS_ON_PAGE);
 
         if (dataCounter % RECORDS_ON_PAGE != 0) {
@@ -119,5 +126,7 @@ public class ElectronicinboxLoadFromFileFiltered {
         }
 
         electronicInboxFilterFile.setTotalPages((int) pagesCounter);
+        electronicInboxFilterFile.setTotalFilteredRecords(dataCounter);
+        electronicInboxFilterFile.setTotalRecords(dataTotalCounter);
     }
 }
