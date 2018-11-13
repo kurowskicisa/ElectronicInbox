@@ -44,9 +44,7 @@ public class IndexServlet extends HttpServlet {
 
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
-
- //   private static final Logger APPLOGGER = LoggerFactory.getLogger(IndexServlet.class.getName());
-
+    
     static Logger APPLOGGER = LogManager.getLogger(IndexServlet.class.getName());
 
     @Override
@@ -104,16 +102,16 @@ public class IndexServlet extends HttpServlet {
                 modelGeneratorTemplate.setModel("choiceNextPage_", electronicInboxFilterFile.getTotalPages());
             }
 
-            APPLOGGER.info("[counter: onPage] " + electronicInboxDao.getList().size());
-            APPLOGGER.info("[counter: Total filtered records] " + electronicInboxFilterFile.getTotalFilteredRecords());
-            APPLOGGER.info("[counter: Total records         ] " + electronicInboxFilterFile.getTotalRecords());
+            APPLOGGER.info("[counter: onPage] |" + electronicInboxDao.getList().size());
+            APPLOGGER.info("[counter: Total filtered records] |" + electronicInboxFilterFile.getTotalFilteredRecords());
+            APPLOGGER.info("[counter: Total records         ] |" + electronicInboxFilterFile.getTotalRecords());
 
             modelGeneratorTemplate.setModel("database",
                     electronicInboxDao.getList());
 
         } catch (NullPointerException e) {
-            APPLOGGER.warn("[No web parameters]");
-            APPLOGGER.info("[No web parameters]");
+            APPLOGGER.warn("[No web parameters] |");
+            APPLOGGER.info("[No web parameters] |");
         }
 
         try {
