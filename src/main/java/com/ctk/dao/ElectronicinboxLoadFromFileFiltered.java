@@ -43,7 +43,7 @@ public class ElectronicinboxLoadFromFileFiltered {
         try {
 
             reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
-            line =  reader.readLine();
+            line = reader.readLine();
 
             line = reader.readLine();
 
