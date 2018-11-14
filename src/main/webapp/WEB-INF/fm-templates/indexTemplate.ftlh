@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pl">
 <#setting number_format="##0">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -38,7 +39,6 @@
                                type="search"
                                placeholder="Nazwa instytucji (fragment)"
                                aria-label="Search"
-                               pattern=".{0}|.{3,}"
                                 value=<#if choiceName_??>${choiceName_}<#else >""</#if>
                         >
                     </div>
@@ -136,6 +136,7 @@
 </#if>
 
             </form>
+
         </nav>
     </div>
 </div>

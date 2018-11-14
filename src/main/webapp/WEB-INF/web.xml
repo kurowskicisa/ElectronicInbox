@@ -14,9 +14,49 @@
   </data-source>
 -->
 
+
   <welcome-file-list>
-    <welcome-file>/electronicinbox</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
+    <welcome-file-list>
+        <welcome-file>/electronicinbox</welcome-file>
+    </welcome-file-list>
+
   <display-name>Electronic Inbox</display-name>
+
+  <servlet>
+    <display-name>ESP</display-name>
+
+
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>com.ctk.servlet.IndexServlet</servlet-class>
+
+    <init-param>
+      <param-name>nazwa</param-name>
+      <param-value></param-value>
+    </init-param>
+
+      <init-param>
+      <param-name>adres</param-name>
+      <param-value></param-value>
+      </init-param>
+
+      <init-param>
+      <param-name>miejscowosc</param-name>
+      <param-value></param-value>
+      </init-param>
+
+      <init-param>
+      <param-name>strona</param-name>
+      <param-value>1</param-value>
+    </init-param>
+
+  </servlet>
+
 </web-app>

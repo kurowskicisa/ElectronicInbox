@@ -71,11 +71,19 @@ public class ElectronicinboxLoadFromFileFiltered {
         double pagesCounter = 0.00;
         double dataCounter = 0.00;
         double dataTotalCounter = 0.00;
+        Integer currentPageN = 0;
 
-        Integer currentPage = Integer.parseInt(electronicInboxFilterFile.getPage());
+        //   Integer currentPage = Integer.parseInt(electronicInboxFilterFile.getPage());
+        String currentPage = electronicInboxFilterFile.getPage();
         String name = electronicInboxFilterFile.getName();
         String address = electronicInboxFilterFile.getAddress();
         String place = electronicInboxFilterFile.getPlace();
+
+        if (currentPage.isEmpty()) {
+            currentPageN = 1;
+        } else {
+            currentPageN = Integer.parseInt(currentPage);
+        }
 
         String nameToCompare;
         String addressToCompare;
@@ -102,8 +110,8 @@ public class ElectronicinboxLoadFromFileFiltered {
                         && addressToCompare.contains(address)) {
                     dataCounter++;
 
-                    if (dataCounter >= 1 + (RECORDS_ON_PAGE * currentPage) - RECORDS_ON_PAGE
-                            && dataCounter <= (RECORDS_ON_PAGE * currentPage)) {
+                    if (dataCounter >= 1 + (RECORDS_ON_PAGE * currentPageN) - RECORDS_ON_PAGE
+                            && dataCounter <= (RECORDS_ON_PAGE * currentPageN)) {
                         electronicInboxDao.setList(new ElectronicInbox(
                                 tempList.get(FIELD_NAME).trim().replace("\"", ""),
                                 tempList.get(FIELD_REGON).trim().replace("\"", ""),
@@ -111,7 +119,6 @@ public class ElectronicinboxLoadFromFileFiltered {
                                 tempList.get(FIELD_ZIP).trim().replace("\"", ""),
                                 tempList.get(FIELD_PLACE).trim().replace("\"", ""),
                                 tempList.get(FIELD_URI).trim().replace("\"", "")));
-
                     }
                 }
             }

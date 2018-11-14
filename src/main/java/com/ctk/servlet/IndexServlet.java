@@ -49,10 +49,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void init() {
-        electronicInboxFilterFile.setName("");
-        electronicInboxFilterFile.setAddress("");
-        electronicInboxFilterFile.setPlace("");
-        electronicInboxFilterFile.setPage("");
+        APPLOGGER.info(" | ");
     }
 
     @Override
@@ -62,6 +59,8 @@ public class IndexServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+
+        resetWebDate();
 
         try {
             final String choiceName = req.getParameter("nazwa").trim();
@@ -77,15 +76,14 @@ public class IndexServlet extends HttpServlet {
             final String choicePage = req.getParameter("strona").trim();
             APPLOGGER.info("[choicePage   ] | " + choicePage);
 
+            electronicInboxFilterFile.setName(choiceName);
+            electronicInboxFilterFile.setAddress(choiceAddress);
+            electronicInboxFilterFile.setPlace(choicePlace);
 
-            electronicInboxFilterFile.setName(String.valueOf(choiceName));
-            electronicInboxFilterFile.setAddress(String.valueOf(choiceAddress));
-            electronicInboxFilterFile.setPlace(String.valueOf(choicePlace));
-
-            if (Integer.parseInt(String.valueOf(choicePage)) == 0) {
+            if (choicePage == null ) {
                 electronicInboxFilterFile.setPage("1");
             } else {
-                electronicInboxFilterFile.setPage((String.valueOf(choicePage)));
+                electronicInboxFilterFile.setPage(choicePage);
             }
 
             electronicinboxLoadFromFileFiltered.loadData();
@@ -95,9 +93,12 @@ public class IndexServlet extends HttpServlet {
             modelGeneratorTemplate.setModel("choicePlace_", choicePlace);
             modelGeneratorTemplate.setModel("choicePage_", choicePage);
 
-
             modelGeneratorTemplate.setModel("choiceTotalPages_",
                     electronicInboxFilterFile.getTotalPages());
+
+            if(electronicInboxFilterFile.getPage().isEmpty()){
+                electronicInboxFilterFile.setPage("1");
+            }
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
                 modelGeneratorTemplate.setModel("choicePrevPage_",
@@ -129,17 +130,48 @@ public class IndexServlet extends HttpServlet {
         }
 
         try {
+
+            electronicInboxFilterFile.setName("");
+            electronicInboxFilterFile.setAddress("");
+            electronicInboxFilterFile.setPlace("");
+            electronicInboxFilterFile.setPage("1");
+
             Template template = templateProvider.getTemplate(getServletContext(), "indexTemplate");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
+            APPLOGGER.info("[WEB loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
+            APPLOGGER.info("[WEB NOT loaded] |");
         }
+
+        APPLOGGER.info("getName() | " + electronicInboxFilterFile.getName());
+        APPLOGGER.info("getAddress() | " + electronicInboxFilterFile.getAddress());
+        APPLOGGER.info("getPlace() | " + electronicInboxFilterFile.getPlace());
+        APPLOGGER.info("getPage() | " + electronicInboxFilterFile.getPage());
 
         LocalTime stopDoGet = now();
 
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+    }
+
+    private void resetWebDate() {
+        electronicInboxFilterFile.setName("");
+        electronicInboxFilterFile.setAddress("");
+        electronicInboxFilterFile.setPlace("");
+        electronicInboxFilterFile.setPage("");
+
+        modelGeneratorTemplate.setModel("database", null);
+
+        modelGeneratorTemplate.setModel("choiceName_", "");
+        modelGeneratorTemplate.setModel("choiceAddress_", "");
+        modelGeneratorTemplate.setModel("choicePlace_", "");
+        modelGeneratorTemplate.setModel("choicePage_", "");
+
+        modelGeneratorTemplate.setModel("choiceTotalPages_", "");
+        modelGeneratorTemplate.setModel("choicePrevPage_","");
+        modelGeneratorTemplate.setModel("choiceNextPage_","");
     }
 }
