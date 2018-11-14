@@ -31,16 +31,26 @@
 
                 <div class="form-group row" style="margin-bottom: 0;">
 
-                    <div class="col-lg-4">
-                        <input class="form-group form-control"
+                    <div class="input-group col-lg-4">
+                        <input class="form-control"
                                style="margin-bottom: 0;"
                                id="inputName"
                                name="nazwa"
                                type="search"
                                placeholder="Nazwa instytucji (fragment)"
                                aria-label="Search"
-                                value=<#if choiceName_??>${choiceName_}<#else >""</#if>
+                               aria-describedby="btnName"
+                                value="<#if choiceName_??>${choiceName_}<#else >""</#if>"
                         >
+                            <div class="input-group-append" style="display: inline-block;">
+                                <button class="btn btn-outline-secondary"
+                                        style="margin-bottom: 0;"
+                                        id="btnName"
+                                        type="button">
+                                    O
+                                </button>
+                            </div>
+
                     </div>
 
                     <div class="col-lg-3">
@@ -51,8 +61,7 @@
                                type="search"
                                placeholder="ulica (fragment)"
                                aria-label="Search"
-                               pattern=".{0}|.{3,}"
-                                value=<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>
+                                value="<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>"
                         >
                     </div>
 
@@ -64,8 +73,7 @@
                                type="search"
                                placeholder="miejscowość (fragment)"
                                aria-label="Search"
-                               pattern=".{0}|.{3,}"
-                                value=<#if choicePlace_??>${choicePlace_}<#else >""</#if>
+                                value="<#if choicePlace_??>${choicePlace_}<#else >""</#if>"
                         >
                     </div>
 

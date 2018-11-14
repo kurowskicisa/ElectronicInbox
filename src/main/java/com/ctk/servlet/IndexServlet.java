@@ -2,6 +2,7 @@ package com.ctk.servlet;
 
 import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
+
 import com.ctk.model.ElectronicInboxFilterFile;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
@@ -80,7 +81,7 @@ public class IndexServlet extends HttpServlet {
             electronicInboxFilterFile.setAddress(choiceAddress);
             electronicInboxFilterFile.setPlace(choicePlace);
 
-            if (choicePage == null ) {
+            if (choicePage == null) {
                 electronicInboxFilterFile.setPage("1");
             } else {
                 electronicInboxFilterFile.setPage(choicePage);
@@ -88,15 +89,22 @@ public class IndexServlet extends HttpServlet {
 
             electronicinboxLoadFromFileFiltered.loadData();
 
-            modelGeneratorTemplate.setModel("choiceName_", choiceName);
-            modelGeneratorTemplate.setModel("choiceAddress_", choiceAddress);
-            modelGeneratorTemplate.setModel("choicePlace_", choicePlace);
-            modelGeneratorTemplate.setModel("choicePage_", choicePage);
+            modelGeneratorTemplate.setModel("choiceName_",
+                    electronicInboxFilterFile.getName());
+
+            modelGeneratorTemplate.setModel("choiceAddress_",
+                    electronicInboxFilterFile.getAddress());
+
+            modelGeneratorTemplate.setModel("choicePlace_",
+                    electronicInboxFilterFile.getPlace());
+
+            modelGeneratorTemplate.setModel("choicePage_",
+                    electronicInboxFilterFile.getPage());
 
             modelGeneratorTemplate.setModel("choiceTotalPages_",
                     electronicInboxFilterFile.getTotalPages());
 
-            if(electronicInboxFilterFile.getPage().isEmpty()){
+            if (electronicInboxFilterFile.getPage().isEmpty()) {
                 electronicInboxFilterFile.setPage("1");
             }
 
@@ -146,11 +154,6 @@ public class IndexServlet extends HttpServlet {
             APPLOGGER.info("[WEB NOT loaded] |");
         }
 
-        APPLOGGER.info("getName() | " + electronicInboxFilterFile.getName());
-        APPLOGGER.info("getAddress() | " + electronicInboxFilterFile.getAddress());
-        APPLOGGER.info("getPlace() | " + electronicInboxFilterFile.getPlace());
-        APPLOGGER.info("getPage() | " + electronicInboxFilterFile.getPage());
-
         LocalTime stopDoGet = now();
 
         APPLOGGER.info("[time of action (milliseconds)] | "
@@ -171,7 +174,7 @@ public class IndexServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choicePage_", "");
 
         modelGeneratorTemplate.setModel("choiceTotalPages_", "");
-        modelGeneratorTemplate.setModel("choicePrevPage_","");
-        modelGeneratorTemplate.setModel("choiceNextPage_","");
+        modelGeneratorTemplate.setModel("choicePrevPage_", "");
+        modelGeneratorTemplate.setModel("choiceNextPage_", "");
     }
 }
