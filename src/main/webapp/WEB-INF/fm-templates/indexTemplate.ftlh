@@ -53,7 +53,7 @@
 
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="input-group col-lg-3">
                         <input class="form-group form-control"
                                style="margin-bottom: 0;"
                                id="inputAddress"
@@ -63,9 +63,18 @@
                                aria-label="Search"
                                 value="<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>"
                         >
+                            <div class="input-group-append" style="display: inline-block;">
+                                <button class="btn btn-outline-secondary"
+                                        style="margin-bottom: 0;"
+                                        id="btnAddress"
+                                        type="button">
+                                    O
+                                </button>
+                            </div>
+
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="input-group col-lg-3">
                         <input class="form-group form-control"
                                style="margin-bottom: 0;"
                                id="inputPlace"
@@ -75,6 +84,15 @@
                                aria-label="Search"
                                 value="<#if choicePlace_??>${choicePlace_}<#else >""</#if>"
                         >
+                            <div class="input-group-append" style="display: inline-block;">
+                                <button class="btn btn-outline-secondary"
+                                        style="margin-bottom: 0;"
+                                        id="btnPlace"
+                                        type="button">
+                                    O
+                                </button>
+                            </div>
+
                     </div>
 
                     <div class="col-lg-2 form-group">
@@ -450,7 +468,23 @@
         crossorigin="anonymous">
 </script>
 
+<script>
+    $('#btnName').on('click', function () {
+        document.getElementById('inputName').value = "";
+    });
+</script>
 
+<script>
+    $('#btnAddress').on('click', function () {
+        document.getElementById('inputAddress').value = "";
+    });
+</script>
+
+<script>
+    $('#btnPlace').on('click', function () {
+        document.getElementById('inputPlace').value = "";
+    });
+</script>
 <script>
     $('#btnSearch').on('click', function () {
         document.getElementById('inputPage').value = 1;
