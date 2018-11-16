@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pl">
 <#setting number_format="##0">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -30,20 +31,29 @@
 
                 <div class="form-group row" style="margin-bottom: 0;">
 
-                    <div class="col-lg-4">
-                        <input class="form-group form-control"
+                    <div class="input-group col-lg-4">
+                        <input class="form-control"
                                style="margin-bottom: 0;"
                                id="inputName"
                                name="nazwa"
                                type="search"
                                placeholder="Nazwa instytucji (fragment)"
                                aria-label="Search"
-                               pattern=".{0}|.{3,}"
-                                value=<#if choiceName_??>${choiceName_}<#else >""</#if>
+                               aria-describedby="btnName"
+                                value="<#if choiceName_??>${choiceName_}<#else >""</#if>"
                         >
+                            <div class="input-group-append" style="display: inline-block;">
+                                <button class="btn btn-outline-secondary"
+                                        style="margin-bottom: 0;"
+                                        id="btnName"
+                                        type="submit">
+                                    O
+                                </button>
+                            </div>
+
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="input-group col-lg-3">
                         <input class="form-group form-control"
                                style="margin-bottom: 0;"
                                id="inputAddress"
@@ -51,12 +61,20 @@
                                type="search"
                                placeholder="ulica (fragment)"
                                aria-label="Search"
-                               pattern=".{0}|.{3,}"
-                                value=<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>
+                                value="<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>"
                         >
+                            <div class="input-group-append" style="display: inline-block;">
+                                <button class="btn btn-outline-secondary"
+                                        style="margin-bottom: 0;"
+                                        id="btnAddress"
+                                        type="submit">
+                                    O
+                                </button>
+                            </div>
+
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="input-group col-lg-3">
                         <input class="form-group form-control"
                                style="margin-bottom: 0;"
                                id="inputPlace"
@@ -64,9 +82,17 @@
                                type="search"
                                placeholder="miejscowość (fragment)"
                                aria-label="Search"
-                               pattern=".{0}|.{3,}"
-                                value=<#if choicePlace_??>${choicePlace_}<#else >""</#if>
+                                value="<#if choicePlace_??>${choicePlace_}<#else >""</#if>"
                         >
+                            <div class="input-group-append" style="display: inline-block;">
+                                <button class="btn btn-outline-secondary"
+                                        style="margin-bottom: 0;"
+                                        id="btnPlace"
+                                        type="submit">
+                                    O
+                                </button>
+                            </div>
+
                     </div>
 
                     <div class="col-lg-2 form-group">
@@ -136,6 +162,7 @@
 </#if>
 
             </form>
+
         </nav>
     </div>
 </div>
@@ -439,6 +466,31 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous">
+</script>
+
+
+<script>
+    $('#btnName').on('click', function () {
+        document.getElementById('inputName').value = "";
+        document.getElementById('inputPage').value = 1;
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
+    });
+</script>
+
+<script>
+    $('#btnAddress').on('click', function () {
+        document.getElementById('inputAddress').value = "";
+        document.getElementById('inputPage').value = 1;
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
+    });
+</script>
+
+<script>
+    $('#btnPlace').on('click', function () {
+        document.getElementById('inputPlace').value = "";
+        document.getElementById('inputPage').value = 1;
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=&strona=1';
+    });
 </script>
 
 

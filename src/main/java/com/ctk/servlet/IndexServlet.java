@@ -2,6 +2,7 @@ package com.ctk.servlet;
 
 import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
+
 import com.ctk.model.ElectronicInboxFilterFile;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
@@ -49,10 +50,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void init() {
-        electronicInboxFilterFile.setName("");
-        electronicInboxFilterFile.setAddress("");
-        electronicInboxFilterFile.setPlace("");
-        electronicInboxFilterFile.setPage("");
+        APPLOGGER.info(" | ");
     }
 
     @Override
@@ -62,6 +60,8 @@ public class IndexServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+
+        resetWebDate();
 
         try {
             final String choiceName = req.getParameter("nazwa").trim();
@@ -77,42 +77,69 @@ public class IndexServlet extends HttpServlet {
             final String choicePage = req.getParameter("strona").trim();
             APPLOGGER.info("[choicePage   ] | " + choicePage);
 
+            electronicInboxFilterFile.setName(choiceName);
+            electronicInboxFilterFile.setAddress(choiceAddress);
+            electronicInboxFilterFile.setPlace(choicePlace);
 
-            electronicInboxFilterFile.setName(String.valueOf(choiceName));
-            electronicInboxFilterFile.setAddress(String.valueOf(choiceAddress));
-            electronicInboxFilterFile.setPlace(String.valueOf(choicePlace));
-
-            if (Integer.parseInt(String.valueOf(choicePage)) == 0) {
+            if (choicePage == null) {
                 electronicInboxFilterFile.setPage("1");
+                APPLOGGER.info("[getPage()   ] | null ");
+
             } else {
-                electronicInboxFilterFile.setPage((String.valueOf(choicePage)));
+                electronicInboxFilterFile.setPage(choicePage);
+                APPLOGGER.info("[getPage()   ] | NOT null ");
+
             }
 
             electronicinboxLoadFromFileFiltered.loadData();
 
-            modelGeneratorTemplate.setModel("choiceName_", choiceName);
-            modelGeneratorTemplate.setModel("choiceAddress_", choiceAddress);
-            modelGeneratorTemplate.setModel("choicePlace_", choicePlace);
-            modelGeneratorTemplate.setModel("choicePage_", choicePage);
+            modelGeneratorTemplate.setModel("choiceName_",
+                    electronicInboxFilterFile.getName());
 
+            modelGeneratorTemplate.setModel("choiceAddress_",
+                    electronicInboxFilterFile.getAddress());
+
+            modelGeneratorTemplate.setModel("choicePlace_",
+                    electronicInboxFilterFile.getPlace());
+
+            modelGeneratorTemplate.setModel("choicePage_",
+                    electronicInboxFilterFile.getPage());
 
             modelGeneratorTemplate.setModel("choiceTotalPages_",
                     electronicInboxFilterFile.getTotalPages());
 
-            if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
-                modelGeneratorTemplate.setModel("choicePrevPage_",
-                        Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
-            } else {
-                modelGeneratorTemplate.setModel("choicePrevPage_", 1);
+            if (electronicInboxFilterFile.getPage().isEmpty()) {
+                electronicInboxFilterFile.setPage("1");
             }
 
-            if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
-                modelGeneratorTemplate.setModel("choiceNextPage_",
-                        Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+            APPLOGGER.info("[getPage()   ] | " + electronicInboxFilterFile.getPage());
+
+            if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
+                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+                //    modelGeneratorTemplate.setModel("choicePrevPage_",
+                //           Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
             } else {
-                modelGeneratorTemplate.setModel("choiceNextPage_",
-                        electronicInboxFilterFile.getTotalPages());
+                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
+
             }
+
+            modelGeneratorTemplate.setModel("choicePrevPage_",
+                    electronicInboxFilterFile.getPrevPage());
+            APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilterFile.getPrevPage());
+
+            if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
+                electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+
+                //    modelGeneratorTemplate.setModel("choiceNextPage_",
+                //            Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+            } else {
+                electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
+            }
+
+            modelGeneratorTemplate.setModel("choiceNextPage_",
+                    electronicInboxFilterFile.getNextPage());
+            APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
+
 
             APPLOGGER.info("[counter: onPage] | " + electronicInboxDao.getList().size());
             APPLOGGER.info("[counter: Total filtered records] | "
@@ -129,17 +156,43 @@ public class IndexServlet extends HttpServlet {
         }
 
         try {
+
+            electronicInboxFilterFile.setName("");
+            electronicInboxFilterFile.setAddress("");
+            electronicInboxFilterFile.setPlace("");
+            electronicInboxFilterFile.setPage("1");
+
             Template template = templateProvider.getTemplate(getServletContext(), "indexTemplate");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
+            APPLOGGER.info("[WEB loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
+            APPLOGGER.info("[WEB NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();
 
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+    }
+
+    private void resetWebDate() {
+        electronicInboxFilterFile.setName("");
+        electronicInboxFilterFile.setAddress("");
+        electronicInboxFilterFile.setPlace("");
+        electronicInboxFilterFile.setPage("");
+
+        modelGeneratorTemplate.setModel("database", null);
+
+        modelGeneratorTemplate.setModel("choiceName_", "");
+        modelGeneratorTemplate.setModel("choiceAddress_", "");
+        modelGeneratorTemplate.setModel("choicePlace_", "");
+        modelGeneratorTemplate.setModel("choicePage_", "");
+
+        modelGeneratorTemplate.setModel("choiceTotalPages_", "");
+        modelGeneratorTemplate.setModel("choicePrevPage_", "");
+        modelGeneratorTemplate.setModel("choiceNextPage_", "");
     }
 }
