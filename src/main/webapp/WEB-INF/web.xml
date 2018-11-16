@@ -29,7 +29,7 @@
     </welcome-file-list>
 
   <display-name>Electronic Inbox</display-name>
-
+<!--
   <servlet>
     <display-name>ESP</display-name>
 
@@ -58,5 +58,5 @@
     </init-param>
 
   </servlet>
-
+-->
 </web-app>

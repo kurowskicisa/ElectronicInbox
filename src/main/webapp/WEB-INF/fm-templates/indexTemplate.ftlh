@@ -46,7 +46,7 @@
                                 <button class="btn btn-outline-secondary"
                                         style="margin-bottom: 0;"
                                         id="btnName"
-                                        type="button">
+                                        type="submit">
                                     O
                                 </button>
                             </div>
@@ -67,7 +67,7 @@
                                 <button class="btn btn-outline-secondary"
                                         style="margin-bottom: 0;"
                                         id="btnAddress"
-                                        type="button">
+                                        type="submit">
                                     O
                                 </button>
                             </div>
@@ -88,7 +88,7 @@
                                 <button class="btn btn-outline-secondary"
                                         style="margin-bottom: 0;"
                                         id="btnPlace"
-                                        type="button">
+                                        type="submit">
                                     O
                                 </button>
                             </div>
@@ -473,7 +473,7 @@
     $('#btnName').on('click', function () {
         document.getElementById('inputName').value = "";
         document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
     });
 </script>
 
@@ -481,7 +481,7 @@
     $('#btnAddress').on('click', function () {
         document.getElementById('inputAddress').value = "";
         document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
     });
 </script>
 

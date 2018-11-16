@@ -11,6 +11,8 @@ public class ElectronicInboxFilterFile implements Serializable {
     private String address;
     private String place;
     private String page;
+    private Integer prevPage;
+    private Integer nextPage;
     private Integer totalPages;
     private double totalFilteredRecords;
     private double totalRecords;
@@ -48,6 +50,22 @@ public class ElectronicInboxFilterFile implements Serializable {
 
     public void setPage(String page) {
         this.page = page;
+    }
+
+    public Integer getPrevPage() {
+        return prevPage;
+    }
+
+    public void setPrevPage(Integer prevPage) {
+        this.prevPage = prevPage;
+    }
+
+    public Integer getNextPage() {
+        return nextPage;
+    }
+
+    public void setNextPage(Integer nextPage) {
+        this.nextPage = nextPage;
     }
 
     public Integer getTotalPages() {

@@ -83,8 +83,12 @@ public class IndexServlet extends HttpServlet {
 
             if (choicePage == null) {
                 electronicInboxFilterFile.setPage("1");
+                APPLOGGER.info("[getPage()   ] | null ");
+
             } else {
                 electronicInboxFilterFile.setPage(choicePage);
+                APPLOGGER.info("[getPage()   ] | NOT null ");
+
             }
 
             electronicinboxLoadFromFileFiltered.loadData();
@@ -108,20 +112,34 @@ public class IndexServlet extends HttpServlet {
                 electronicInboxFilterFile.setPage("1");
             }
 
+            APPLOGGER.info("[getPage()   ] | " + electronicInboxFilterFile.getPage());
+
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
-                modelGeneratorTemplate.setModel("choicePrevPage_",
-                        Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+                //    modelGeneratorTemplate.setModel("choicePrevPage_",
+                //           Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
             } else {
-                modelGeneratorTemplate.setModel("choicePrevPage_", 1);
+                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
+
             }
 
+            modelGeneratorTemplate.setModel("choicePrevPage_",
+                    electronicInboxFilterFile.getPrevPage());
+            APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilterFile.getPrevPage());
+
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
-                modelGeneratorTemplate.setModel("choiceNextPage_",
-                        Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+                electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+
+                //    modelGeneratorTemplate.setModel("choiceNextPage_",
+                //            Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
             } else {
-                modelGeneratorTemplate.setModel("choiceNextPage_",
-                        electronicInboxFilterFile.getTotalPages());
+                electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
             }
+
+            modelGeneratorTemplate.setModel("choiceNextPage_",
+                    electronicInboxFilterFile.getNextPage());
+            APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
+
 
             APPLOGGER.info("[counter: onPage] | " + electronicInboxDao.getList().size());
             APPLOGGER.info("[counter: Total filtered records] | "
