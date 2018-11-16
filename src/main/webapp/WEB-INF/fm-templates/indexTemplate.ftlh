@@ -468,23 +468,32 @@
         crossorigin="anonymous">
 </script>
 
+
 <script>
     $('#btnName').on('click', function () {
         document.getElementById('inputName').value = "";
+        document.getElementById('inputPage').value = 1;
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
     });
 </script>
 
 <script>
     $('#btnAddress').on('click', function () {
         document.getElementById('inputAddress').value = "";
+        document.getElementById('inputPage').value = 1;
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
     });
 </script>
 
 <script>
     $('#btnPlace').on('click', function () {
         document.getElementById('inputPlace').value = "";
+        document.getElementById('inputPage').value = 1;
+        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=&strona=1';
     });
 </script>
+
+
 <script>
     $('#btnSearch').on('click', function () {
         document.getElementById('inputPage').value = 1;
