@@ -4,59 +4,58 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         version="3.1">
 
-<!--
-  <data-source>
-    <name>java:ds/demods</name>
-    <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
-    <url>jdbc:mysql://0.0.0.0:3306/test?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
-    <user></user>
-    <password></password>
-  </data-source>
--->
+    <!--
+      <data-source>
+        <name>java:ds/demods</name>
+        <class-name>com.mysql.cj.jdbc.MysqlDataSource</class-name>
+        <url>jdbc:mysql://0.0.0.0:3306/test?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Warsaw</url>
+        <user></user>
+        <password></password>
+      </data-source>
+    -->
 
 
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
 
     <welcome-file-list>
         <welcome-file>/electronicinbox</welcome-file>
     </welcome-file-list>
 
-  <display-name>Electronic Inbox</display-name>
-<!--
-  <servlet>
-    <display-name>ESP</display-name>
+    <display-name>Electronic Inbox</display-name>
+    <!--
+      <servlet>
+        <display-name>ESP</display-name>
 
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>com.ctk.servlet.IndexServlet</servlet-class>
 
-    <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>com.ctk.servlet.IndexServlet</servlet-class>
+        <init-param>
+          <param-name>nazwa</param-name>
+          <param-value></param-value>
+        </init-param>
 
-    <init-param>
-      <param-name>nazwa</param-name>
-      <param-value></param-value>
-    </init-param>
+        <init-param>
+          <param-name>adres</param-name>
+          <param-value></param-value>
+        </init-param>
 
-      <init-param>
-      <param-name>adres</param-name>
-      <param-value></param-value>
-      </init-param>
+        <init-param>
+          <param-name>miejscowosc</param-name>
+          <param-value></param-value>
+        </init-param>
 
-      <init-param>
-      <param-name>miejscowosc</param-name>
-      <param-value></param-value>
-      </init-param>
+        <init-param>
+          <param-name>strona</param-name>
+          <param-value>1</param-value>
+        </init-param>
 
-      <init-param>
-      <param-name>strona</param-name>
-      <param-value>1</param-value>
-    </init-param>
-
-  </servlet>
--->
+      </servlet>
+    -->
 </web-app>

@@ -20,7 +20,6 @@ public class StatisticSourceFileESPReadFile {
     private StatisticSourceFileESP statisticSourceFileESP
             = new StatisticSourceFileESP();
 
-    private static final int RECORDS_ON_PAGE = 5;
     private static final int FIELD_NAME = 0;
     private static final int FIELD_REGON = 1;
     private static final int FIELD_ADDRESS = 2;
