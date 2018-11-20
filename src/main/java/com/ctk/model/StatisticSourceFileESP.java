@@ -1,6 +1,10 @@
 package com.ctk.model;
 
-public class StatisticSourceFileESP {
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+
+@SessionScoped
+public class StatisticSourceFileESP implements Serializable {
 
     private Integer nameLengthMin = 0;
     private Integer nameLengthMax = 0;
@@ -168,8 +172,8 @@ public class StatisticSourceFileESP {
         return uriCounterEmpty;
     }
 
-    public void setUriCounterEmpty(Integer uruCounterEmpyu) {
-        this.uriCounterEmpty = uruCounterEmpyu;
+    public void setUriCounterEmpty(Integer uriCounterEmpty) {
+        this.uriCounterEmpty = uriCounterEmpty;
     }
 
     public Integer getTotalRecords() {

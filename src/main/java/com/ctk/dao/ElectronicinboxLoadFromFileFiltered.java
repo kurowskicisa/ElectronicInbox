@@ -3,12 +3,13 @@ package com.ctk.dao;
 import com.ctk.model.ElectronicInbox;
 import com.ctk.model.ElectronicInboxFilterFile;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
@@ -16,8 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@RequestScoped
-public class ElectronicinboxLoadFromFileFiltered {
+@SessionScoped
+public class ElectronicinboxLoadFromFileFiltered implements Serializable {
 
     @Inject
     private Settings settings = new Settings();

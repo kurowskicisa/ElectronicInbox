@@ -1,11 +1,9 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.ElectronicInboxDao;
-import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
+
 import com.ctk.dao.StatisticSourceFileESPReadFile;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-import com.ctk.model.ElectronicInboxFilterFile;
 import com.ctk.model.StatisticSourceFileESP;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -43,7 +41,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("|statistic | init() ");
+        APPLOGGER.info("|statistics: init() ");
     }
 
     @Override
@@ -54,9 +52,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
-
         statisticSourceFileESPReadFile.loadFileESP();
-
 
         modelGeneratorTemplate.setModel("nameLengthMin_",
                 statisticSourceFileESP.getNameLengthMin());
@@ -116,19 +112,19 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
                 statisticSourceFileESP.getTotalRecords());
 
         try {
-            Template template = templateProvider.getTemplate(getServletContext(), "indexTemplate");
+            Template template = templateProvider.getTemplate(getServletContext(), "statistics");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[WEB loaded] |");
+            APPLOGGER.info("[statistics: WEB loaded] |");
 
         } catch(TemplateException e) {
             e.printStackTrace();
-            APPLOGGER.info("[WEB NOT loaded] |");
+            APPLOGGER.info("[statistics: WEB NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[time of action (milliseconds)] | "
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 

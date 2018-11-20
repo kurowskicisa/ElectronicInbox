@@ -23,9 +23,130 @@
     </nav>
 
 
-  </div>
+</div>
 </div>
 
+<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+    <div class="row">
+        <div class="col-lg">
+            <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
+                <div class="card-header">nazwa</div>
+                <div class="card-body">
+                    <p class="card-text">maksymalna długość:</p>
+                    <h2 class="card-text">${nameLengthMax_}</h2>
+
+                    <p class="card-text">minimalna długość: </p>
+                    <h4 class="card-text">${nameLengthMin_}</h4>
+
+                    <p class="card-text">pusta nazwa:</p>
+                    <h5 class="card-text">${nameCounterEmpty_}</h5>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
+                <div class="card-header">Regon</div>
+                <div class="card-body">
+                    <p class="card-text">maksymalna długość:</p>
+                    <h2 class="card-text">${regonLengthMax_}</h2>
+
+                    <p class="card-text">minimalna długość: </p>
+                    <h4 class="card-text">${regonLengthMin_}</h4>
+
+                    <p class="card-text">pusty Regon:</p>
+                    <h5 class="card-text">${regonCounterEmpty_}</h5>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
+                <div class="card-header">adres</div>
+                <div class="card-body">
+                    <p class="card-text">maksymalna długość:</p>
+                    <h2 class="card-text">${addressLengthMax_}</h2>
+
+                    <p class="card-text">minimalna długość:</p>
+                    <h4 class="card-text">${addressLengthMin_}</h4>
+
+                    <p class="card-text">pusty adres:</p>
+                    <h5 class="card-text">${addressCounterEmpty_}</h5>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
+                <div class="card-header">kod pocztowy</div>
+                <div class="card-body">
+                    <p class="card-text">maksymalna długość:</p>
+                    <h2 class="card-text">${zipLengthMax_}</h2>
+
+                    <p class="card-text">minimalna długość:</p>
+                    <h4 class="card-text">${zipLengthMin_}</h4>
+
+                    <p class="card-text">pusty kod pocztowy:</p>
+                    <h5 class="card-text">${zipCounterEmpty_}</h5>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg">
+            <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
+                <div class="card-header">miejscowość</div>
+                <div class="card-body">
+                    <p class="card-text">maksymalna długość:</p>
+                    <h2 class="card-text">${placeLengthMax_}</h2>
+
+                    <p class="card-text">minimalna długość: </p>
+                    <h4 class="card-text">${placeLengthMin_}</h4>
+
+                    <p class="card-text">pusta miejscowość:</p>
+                    <h5 class="card-text">${placeCounterEmpty_}</h5>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg">
+            <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
+                <div class="card-header">adres ESP</div>
+                <div class="card-body">
+                    <p class="card-text">maksymalna długość:</p>
+                    <h2 class="card-text">${uriLengthMax_}</h2>
+
+                    <p class="card-text">minimalna długość: </p>
+                    <h4 class="card-text">${uriLengthMin_}</h4>
+
+                    <p class="card-text">pusty adres ESP:</p>
+                    <h5 class="card-text">${uriCounterEmpty_}</h5>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
+                <div class="card-header">Ilość rekordów</div>
+                <div class="card-body">
+                    <h1 class="card-text">${totalRecords_}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

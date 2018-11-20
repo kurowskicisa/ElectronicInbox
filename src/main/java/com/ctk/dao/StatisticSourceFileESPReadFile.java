@@ -1,24 +1,28 @@
 package com.ctk.dao;
 
 import com.ctk.model.StatisticSourceFileESP;
+import com.ctk.servlet.StatisticSourceFileESPServlet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-public class StatisticSourceFileESPReadFile {
-
+@SessionScoped
+public class StatisticSourceFileESPReadFile implements Serializable {
 
     @Inject
     private Settings settings = new Settings();
 
     @Inject
-    private StatisticSourceFileESP statisticSourceFileESP
-            = new StatisticSourceFileESP();
+    private StatisticSourceFileESP statisticSourceFileESP;
 
     private static final int FIELD_NAME = 0;
     private static final int FIELD_REGON = 1;
@@ -27,13 +31,15 @@ public class StatisticSourceFileESPReadFile {
     private static final int FIELD_PLACE = 4;
     private static final int FIELD_URI = 5;
 
+    private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPReadFile.class.getName());
+
     public void loadFileESP() {
         String line = null;
         BufferedReader reader = null;
 
         statisticSourceFileESP.setNameLengthMin(0);
         statisticSourceFileESP.setNameLengthMax(0);
-        statisticSourceFileESP.setAddressCounterEmpty(0);
+        statisticSourceFileESP.setNameCounterEmpty(0);
 
         statisticSourceFileESP.setRegonLengthMin(0);
         statisticSourceFileESP.setRegonLengthMax(0);
@@ -62,17 +68,17 @@ public class StatisticSourceFileESPReadFile {
 
             line = reader.readLine();
 
-        } catch(IOException e1) {
+        } catch (IOException e1) {
             e1.printStackTrace();
         }
 
-        if(line != null && !line.isEmpty()) {
+        if (line != null && !line.isEmpty()) {
 
             try {
                 readingLESPLinesFromFileAll(line, reader);
                 reader.close();
 
-            } catch(IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -90,26 +96,79 @@ public class StatisticSourceFileESPReadFile {
         Integer placeLength = 0;
         Integer uriLength = 0;
 
-        while(line != null) {
+        statisticSourceFileESP.setTotalRecords(0);
 
-            if(!line.equals("")) {
+        while (line != null) {
+
+            if (!line.equals("")) {
                 List<String> tempList = Arrays.asList(line.split(","));
 
                 statisticSourceFileESP.setTotalRecords(
                         statisticSourceFileESP.getTotalRecords() + 1);
 
-
                 nameLength = tempList.get(FIELD_NAME).trim().length();
                 statisticName(nameLength);
 
-                regonLength = tempList.get(FIELD_REGON).trim().length();
+                regonLength = tempList.get(FIELD_REGON).replace("\"", "").trim().length();
                 statisticRegon(regonLength);
+
+                if ((regonLength != 9) && regonLength != 14) {
+                    APPLOGGER.info(
+                            " |*Regon*|"
+                                    + tempList.get(FIELD_REGON).replace("\"", "").trim()
+                                    + "|*  "
+                                    + tempList.get(FIELD_NAME).trim()
+                                    + tempList.get(FIELD_REGON).trim()
+                                    + tempList.get(FIELD_ADDRESS).trim()
+                                    + tempList.get(FIELD_ZIP).trim()
+                                    + tempList.get(FIELD_PLACE).trim()
+                                    + tempList.get(FIELD_URI).trim()
+                    );
+
+                    System.out.println(
+                            " |*Regon*|"
+                                    + tempList.get(FIELD_REGON).replace("\"", "").trim()
+                                    + "|*  "
+                                    + tempList.get(FIELD_NAME).trim()
+                                    + tempList.get(FIELD_REGON).trim()
+                                    + tempList.get(FIELD_ADDRESS).trim()
+                                    + tempList.get(FIELD_ZIP).trim()
+                                    + tempList.get(FIELD_PLACE).trim()
+                                    + tempList.get(FIELD_URI).trim()
+                    );
+                }
 
                 addressLength = tempList.get(FIELD_ADDRESS).trim().length();
                 statisticAddress(addressLength);
 
-                zipLength = tempList.get(FIELD_ZIP).trim().length();
+                zipLength = tempList.get(FIELD_ZIP).replace("\"", "").trim().length();
                 statisticZip(zipLength);
+
+                if (zipLength != 6) {
+                    APPLOGGER.info(
+                                   " |*zip*|"
+                                    + tempList.get(FIELD_ZIP).replace("\"", "").trim()
+                                    + "|*"
+                                           + tempList.get(FIELD_NAME).trim()
+                                           + tempList.get(FIELD_REGON).trim()
+                                           + tempList.get(FIELD_ADDRESS).trim()
+                                           + tempList.get(FIELD_ZIP).trim()
+                                           + tempList.get(FIELD_PLACE).trim()
+                                           + tempList.get(FIELD_URI).trim()
+                    );
+
+                    System.out.println(
+                            " |*zip*|"
+                                    + tempList.get(FIELD_ZIP).replace("\"", "").trim()
+                                    + "|*"
+                                    + tempList.get(FIELD_NAME).trim()
+                                    + tempList.get(FIELD_REGON).trim()
+                                    + tempList.get(FIELD_ADDRESS).trim()
+                                    + tempList.get(FIELD_ZIP).trim()
+                                    + tempList.get(FIELD_PLACE).trim()
+                                    + tempList.get(FIELD_URI).trim()
+                    );
+                }
 
                 placeLength = tempList.get(FIELD_PLACE).trim().length();
                 statisticPlace(placeLength);
@@ -123,122 +182,110 @@ public class StatisticSourceFileESPReadFile {
     }
 
     private void statisticName(Integer nameLength) {
-        if(nameLength == 0) {
+        if (nameLength == 0) {
             statisticSourceFileESP.setNameCounterEmpty(
                     statisticSourceFileESP.getNameCounterEmpty() + 1);
         }
-        if(nameLength != 0) {
-            if(statisticSourceFileESP.getNameLengthMin() == 0) {
-                statisticSourceFileESP.setNameCounterEmpty(nameLength);
-            }
-            if(statisticSourceFileESP.getNameLengthMin() > nameLength) {
+        if (nameLength != 0) {
+            if (statisticSourceFileESP.getNameLengthMin() == 0) {
                 statisticSourceFileESP.setNameLengthMin(nameLength);
             }
-            if(statisticSourceFileESP.getNameLengthMax() < nameLength) {
+            if (statisticSourceFileESP.getNameLengthMin() > nameLength) {
+                statisticSourceFileESP.setNameLengthMin(nameLength);
+            }
+            if (statisticSourceFileESP.getNameLengthMax() < nameLength) {
                 statisticSourceFileESP.setNameLengthMax(nameLength);
             }
-
         }
     }
 
     private void statisticRegon(Integer regonLength) {
-        if(regonLength == 0) {
+        if (regonLength == 0) {
             statisticSourceFileESP.setRegonCounterEmpty(
                     statisticSourceFileESP.getRegonCounterEmpty() + 1);
         }
-        if(regonLength != 0) {
-            if(statisticSourceFileESP.getRegonLengthMin() == 0) {
-                statisticSourceFileESP.setRegonCounterEmpty(regonLength);
-            }
-            if(statisticSourceFileESP.getRegonLengthMin() > regonLength) {
+        if (regonLength != 0) {
+            if (statisticSourceFileESP.getRegonLengthMin() == 0) {
                 statisticSourceFileESP.setRegonLengthMin(regonLength);
             }
-            if(statisticSourceFileESP.getRegonLengthMax() < regonLength) {
+            if (statisticSourceFileESP.getRegonLengthMin() > regonLength) {
+                statisticSourceFileESP.setRegonLengthMin(regonLength);
+            }
+            if (statisticSourceFileESP.getRegonLengthMax() < regonLength) {
                 statisticSourceFileESP.setRegonLengthMax(regonLength);
             }
-
         }
     }
 
     private void statisticAddress(Integer addressLength) {
-        if(addressLength == 0) {
+        if (addressLength == 0) {
             statisticSourceFileESP.setAddressCounterEmpty(
                     statisticSourceFileESP.getAddressCounterEmpty() + 1);
         }
-        if(addressLength != 0) {
-            if(statisticSourceFileESP.getAddressLengthMin() == 0) {
-                statisticSourceFileESP.setAddressCounterEmpty(addressLength);
-            }
-            if(statisticSourceFileESP.getAddressLengthMin() > addressLength) {
+        if (addressLength != 0) {
+            if (statisticSourceFileESP.getAddressLengthMin() == 0) {
                 statisticSourceFileESP.setAddressLengthMin(addressLength);
             }
-            if(statisticSourceFileESP.getAddressLengthMax() < addressLength) {
+            if (statisticSourceFileESP.getAddressLengthMin() > addressLength) {
+                statisticSourceFileESP.setAddressLengthMin(addressLength);
+            }
+            if (statisticSourceFileESP.getAddressLengthMax() < addressLength) {
                 statisticSourceFileESP.setAddressLengthMax(addressLength);
             }
-
         }
     }
 
-
     private void statisticZip(Integer zipLength) {
-        if(zipLength == 0) {
+        if (zipLength == 0) {
             statisticSourceFileESP.setZipCounterEmpty(
                     statisticSourceFileESP.getZipCounterEmpty() + 1);
         }
-        if(zipLength != 0) {
-            if(statisticSourceFileESP.getZipLengthMin() == 0) {
-                statisticSourceFileESP.setZipCounterEmpty(zipLength);
-            }
-            if(statisticSourceFileESP.getZipLengthMin() > zipLength) {
+        if (zipLength != 0) {
+            if (statisticSourceFileESP.getZipLengthMin() == 0) {
                 statisticSourceFileESP.setZipLengthMin(zipLength);
             }
-            if(statisticSourceFileESP.getZipLengthMax() < zipLength) {
+            if (statisticSourceFileESP.getZipLengthMin() > zipLength) {
+                statisticSourceFileESP.setZipLengthMin(zipLength);
+            }
+            if (statisticSourceFileESP.getZipLengthMax() < zipLength) {
                 statisticSourceFileESP.setZipLengthMax(zipLength);
             }
-
         }
     }
 
-
     private void statisticPlace(Integer placeLength) {
-        if(placeLength == 0) {
+        if (placeLength == 0) {
             statisticSourceFileESP.setPlaceCounterEmpty(
                     statisticSourceFileESP.getPlaceCounterEmpty() + 1);
         }
-        if(placeLength != 0) {
-            if(statisticSourceFileESP.getPlaceLengthMin() == 0) {
-                statisticSourceFileESP.setPlaceCounterEmpty(placeLength);
-            }
-            if(statisticSourceFileESP.getPlaceLengthMin() > placeLength) {
+        if (placeLength != 0) {
+            if (statisticSourceFileESP.getPlaceLengthMin() == 0) {
                 statisticSourceFileESP.setPlaceLengthMin(placeLength);
             }
-            if(statisticSourceFileESP.getPlaceLengthMax() < placeLength) {
+            if (statisticSourceFileESP.getPlaceLengthMin() > placeLength) {
+                statisticSourceFileESP.setPlaceLengthMin(placeLength);
+            }
+            if (statisticSourceFileESP.getPlaceLengthMax() < placeLength) {
                 statisticSourceFileESP.setPlaceLengthMax(placeLength);
             }
-
         }
     }
 
-
     private void statisticUri(Integer uriLength) {
-        if(uriLength == 0) {
+        if (uriLength == 0) {
             statisticSourceFileESP.setUriCounterEmpty(
                     statisticSourceFileESP.getUriCounterEmpty() + 1);
         }
-        if(uriLength != 0) {
-            if(statisticSourceFileESP.getUriLengthMin() == 0) {
-                statisticSourceFileESP.setUriCounterEmpty(uriLength);
-            }
-            if(statisticSourceFileESP.getUriCounterEmpty() > uriLength) {
+        if (uriLength != 0) {
+            if (statisticSourceFileESP.getUriLengthMin() == 0) {
                 statisticSourceFileESP.setUriLengthMin(uriLength);
             }
-            if(statisticSourceFileESP.getUriLengthMax() < uriLength) {
+            if (statisticSourceFileESP.getUriCounterEmpty() > uriLength) {
+                statisticSourceFileESP.setUriLengthMin(uriLength);
+            }
+            if (statisticSourceFileESP.getUriLengthMax() < uriLength) {
                 statisticSourceFileESP.setUriLengthMax(uriLength);
             }
-
         }
     }
-
-
-
 }
