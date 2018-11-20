@@ -32,6 +32,9 @@ public class StatisticSourceFileESP implements Serializable {
 
     private Integer totalRecords = 0;
 
+    private Integer dataErrorRegonCounter = 0;
+    private Integer dataErrorZipCounter = 0;
+
     public Integer getNameLengthMin() {
         return nameLengthMin;
     }
@@ -182,5 +185,21 @@ public class StatisticSourceFileESP implements Serializable {
 
     public void setTotalRecords(Integer totalRecords) {
         this.totalRecords = totalRecords;
+    }
+
+    public Integer getDataErrorRegonCounter() {
+        return dataErrorRegonCounter;
+    }
+
+    public void setDataErrorRegonCounter(Integer dataErrorRegonCounter) {
+        this.dataErrorRegonCounter = dataErrorRegonCounter;
+    }
+
+    public Integer getDataErrorZipCounter() {
+        return dataErrorZipCounter;
+    }
+
+    public void setDataErrorZipCounter(Integer dataErrorZipCounter) {
+        this.dataErrorZipCounter = dataErrorZipCounter;
     }
 }

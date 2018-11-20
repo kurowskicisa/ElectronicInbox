@@ -61,6 +61,11 @@ public class StatisticSourceFileESPReadFile implements Serializable {
         statisticSourceFileESP.setUriLengthMax(0);
         statisticSourceFileESP.setUriCounterEmpty(0);
 
+        statisticSourceFileESP.setTotalRecords(0);
+
+        statisticSourceFileESP.setDataErrorRegonCounter(0);
+        statisticSourceFileESP.setDataErrorZipCounter(0);
+
         try {
 
             reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
@@ -96,7 +101,7 @@ public class StatisticSourceFileESPReadFile implements Serializable {
         Integer placeLength = 0;
         Integer uriLength = 0;
 
-        statisticSourceFileESP.setTotalRecords(0);
+    //    statisticSourceFileESP.setTotalRecords(0);
 
         while (line != null) {
 
@@ -113,6 +118,9 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                 statisticRegon(regonLength);
 
                 if ((regonLength != 9) && regonLength != 14) {
+                    statisticSourceFileESP.setDataErrorRegonCounter(
+                            statisticSourceFileESP.getDataErrorRegonCounter() + 1
+                    );
                     APPLOGGER.info(
                             " |*Regon*|"
                                     + tempList.get(FIELD_REGON).replace("\"", "").trim()
@@ -141,10 +149,17 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                 addressLength = tempList.get(FIELD_ADDRESS).trim().length();
                 statisticAddress(addressLength);
 
-                zipLength = tempList.get(FIELD_ZIP).replace("\"", "").trim().length();
+                zipLength = tempList.get(FIELD_ZIP)
+                        .replace("\"", "")
+                        .replace("-", "")
+                        .trim().length();
                 statisticZip(zipLength);
 
-                if (zipLength != 6) {
+                if (zipLength != 5) {
+                    statisticSourceFileESP.setDataErrorZipCounter(
+                            statisticSourceFileESP.getDataErrorZipCounter() +1
+                    );
+
                     APPLOGGER.info(
                                    " |*zip*|"
                                     + tempList.get(FIELD_ZIP).replace("\"", "").trim()

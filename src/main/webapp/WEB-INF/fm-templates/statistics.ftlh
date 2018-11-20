@@ -148,6 +148,32 @@
     </div>
 </div>
 
+<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card text-white bg-success text-center mb-2" style="max-width: 100%;">
+                <div class="card-header">Regon będy:</div>
+                <div class="card-body">
+                    <h1 class="card-text">${dataErrorRegonCounter_}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card text-white bg-success text-center mb-2" style="max-width: 100%;">
+                <div class="card-header">kod pocztowy będy:</div>
+                <div class="card-body">
+                    <h1 class="card-text">${dataErrorZipCounter_}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
