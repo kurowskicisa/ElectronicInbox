@@ -16,7 +16,6 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-
 @SessionScoped
 public class ElectronicinboxLoadFromFileFiltered implements Serializable {
 
@@ -74,7 +73,6 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         double dataTotalCounter = 0.00;
         Integer currentPageN = 0;
 
-        //   Integer currentPage = Integer.parseInt(electronicInboxFilterFile.getPage());
         String currentPage = electronicInboxFilterFile.getPage();
         String name = electronicInboxFilterFile.getName();
         String address = electronicInboxFilterFile.getAddress();

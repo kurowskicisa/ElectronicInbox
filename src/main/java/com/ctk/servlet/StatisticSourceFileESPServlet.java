@@ -123,7 +123,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
             APPLOGGER.info("[statistics: WEB loaded] |");
 
-        } catch(TemplateException e) {
+        } catch (TemplateException e) {
             e.printStackTrace();
             APPLOGGER.info("[statistics: WEB NOT loaded] |");
         }

@@ -116,8 +116,7 @@ public class IndexServlet extends HttpServlet {
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
                 electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
-                //    modelGeneratorTemplate.setModel("choicePrevPage_",
-                //           Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+
             } else {
                 electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
 
@@ -130,8 +129,6 @@ public class IndexServlet extends HttpServlet {
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
                 electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
 
-                //    modelGeneratorTemplate.setModel("choiceNextPage_",
-                //            Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
             } else {
                 electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
             }

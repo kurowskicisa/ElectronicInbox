@@ -1,7 +1,6 @@
 package com.ctk.dao;
 
 import com.ctk.model.StatisticSourceFileESP;
-import com.ctk.servlet.StatisticSourceFileESPServlet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -101,8 +100,6 @@ public class StatisticSourceFileESPReadFile implements Serializable {
         Integer placeLength = 0;
         Integer uriLength = 0;
 
-    //    statisticSourceFileESP.setTotalRecords(0);
-
         while (line != null) {
 
             if (!line.equals("")) {
@@ -111,10 +108,16 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                 statisticSourceFileESP.setTotalRecords(
                         statisticSourceFileESP.getTotalRecords() + 1);
 
-                nameLength = tempList.get(FIELD_NAME).trim().length();
+                nameLength = tempList.get(FIELD_NAME)
+                        .replace("\"", "")
+                        .trim()
+                        .length();
                 statisticName(nameLength);
 
-                regonLength = tempList.get(FIELD_REGON).replace("\"", "").trim().length();
+                regonLength = tempList.get(FIELD_REGON)
+                        .replace("\"", "")
+                        .trim()
+                        .length();
                 statisticRegon(regonLength);
 
                 if ((regonLength != 9) && regonLength != 14) {
@@ -124,29 +127,42 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                     APPLOGGER.info(
                             " |*Regon*|"
                                     + tempList.get(FIELD_REGON).replace("\"", "").trim()
-                                    + "|*  "
+                                    + "|*||"
                                     + tempList.get(FIELD_NAME).trim()
+                                    + "|"
                                     + tempList.get(FIELD_REGON).trim()
+                                    + "|"
                                     + tempList.get(FIELD_ADDRESS).trim()
+                                    + "|"
                                     + tempList.get(FIELD_ZIP).trim()
+                                    + "|"
                                     + tempList.get(FIELD_PLACE).trim()
+                                    + "|"
                                     + tempList.get(FIELD_URI).trim()
                     );
 
                     System.out.println(
                             " |*Regon*|"
                                     + tempList.get(FIELD_REGON).replace("\"", "").trim()
-                                    + "|*  "
+                                    + "|*||"
                                     + tempList.get(FIELD_NAME).trim()
+                                    + "|"
                                     + tempList.get(FIELD_REGON).trim()
+                                    + "|"
                                     + tempList.get(FIELD_ADDRESS).trim()
+                                    + "|"
                                     + tempList.get(FIELD_ZIP).trim()
+                                    + "|"
                                     + tempList.get(FIELD_PLACE).trim()
+                                    + "|"
                                     + tempList.get(FIELD_URI).trim()
                     );
                 }
 
-                addressLength = tempList.get(FIELD_ADDRESS).trim().length();
+                addressLength = tempList.get(FIELD_ADDRESS)
+                        .replace("\"", "")
+                        .trim()
+                        .length();
                 statisticAddress(addressLength);
 
                 zipLength = tempList.get(FIELD_ZIP)
@@ -157,38 +173,54 @@ public class StatisticSourceFileESPReadFile implements Serializable {
 
                 if (zipLength != 5) {
                     statisticSourceFileESP.setDataErrorZipCounter(
-                            statisticSourceFileESP.getDataErrorZipCounter() +1
+                            statisticSourceFileESP.getDataErrorZipCounter() + 1
                     );
 
                     APPLOGGER.info(
-                                   " |*zip*|"
+                            " |*zip*|"
                                     + tempList.get(FIELD_ZIP).replace("\"", "").trim()
-                                    + "|*"
-                                           + tempList.get(FIELD_NAME).trim()
-                                           + tempList.get(FIELD_REGON).trim()
-                                           + tempList.get(FIELD_ADDRESS).trim()
-                                           + tempList.get(FIELD_ZIP).trim()
-                                           + tempList.get(FIELD_PLACE).trim()
-                                           + tempList.get(FIELD_URI).trim()
+                                    + "|*||"
+                                    + tempList.get(FIELD_NAME).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_REGON).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_ADDRESS).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_ZIP).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_PLACE).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_URI).trim()
                     );
 
                     System.out.println(
                             " |*zip*|"
                                     + tempList.get(FIELD_ZIP).replace("\"", "").trim()
-                                    + "|*"
+                                    + "|*||"
                                     + tempList.get(FIELD_NAME).trim()
+                                    + "|"
                                     + tempList.get(FIELD_REGON).trim()
+                                    + "|"
                                     + tempList.get(FIELD_ADDRESS).trim()
+                                    + "|"
                                     + tempList.get(FIELD_ZIP).trim()
+                                    + "|"
                                     + tempList.get(FIELD_PLACE).trim()
+                                    + "|"
                                     + tempList.get(FIELD_URI).trim()
                     );
                 }
 
-                placeLength = tempList.get(FIELD_PLACE).trim().length();
+                placeLength = tempList.get(FIELD_PLACE)
+                        .replace("\"", "")
+                        .trim()
+                        .length();
                 statisticPlace(placeLength);
 
-                uriLength = tempList.get(FIELD_URI).trim().length();
+                uriLength = tempList.get(FIELD_URI)
+                        .replace("\"", "")
+                        .trim()
+                        .length();
                 statisticUri(uriLength);
             }
             line = reader.readLine();
