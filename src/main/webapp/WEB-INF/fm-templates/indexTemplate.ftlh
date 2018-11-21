@@ -32,66 +32,66 @@
                 <div class="form-group row" style="margin-bottom: 0;">
 
                     <div class="input-group col-lg-4">
-                        <input class="form-control"
-                               style="margin-bottom: 0;"
-                               id="inputName"
-                               name="nazwa"
-                               type="search"
-                               placeholder="Nazwa instytucji (fragment)"
-                               aria-label="Search"
-                               aria-describedby="btnName"
-                                value="<#if choiceName_??>${choiceName_}<#else >""</#if>"
+                    <input class="form-control"
+                           style="margin-bottom: 0;"
+                           id="inputName"
+                           name="nazwa"
+                           type="search"
+                           placeholder="Nazwa instytucji (fragment)"
+                           aria-label="Search"
+                           aria-describedby="btnName"
+                            value="<#if choiceName_??>${choiceName_}<#else >""</#if>"
                         >
-                            <div class="input-group-append" style="display: inline-block;">
-                                <button class="btn btn-outline-secondary"
-                                        style="margin-bottom: 0;"
-                                        id="btnName"
-                                        type="submit">
-                                    O
-                                </button>
-                            </div>
+                        <div class="input-group-append" style="display: inline-block;">
+                            <button class="btn btn-outline-secondary"
+                                    style="margin-bottom: 0;"
+                                    id="btnName"
+                                    type="submit">
+                                O
+                            </button>
+                        </div>
 
                     </div>
 
                     <div class="input-group col-lg-3">
-                        <input class="form-group form-control"
-                               style="margin-bottom: 0;"
-                               id="inputAddress"
-                               name="adres"
-                               type="search"
-                               placeholder="ulica (fragment)"
-                               aria-label="Search"
-                                value="<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>"
+                    <input class="form-group form-control"
+                           style="margin-bottom: 0;"
+                           id="inputAddress"
+                           name="adres"
+                           type="search"
+                           placeholder="ulica (fragment)"
+                           aria-label="Search"
+                            value="<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>"
                         >
-                            <div class="input-group-append" style="display: inline-block;">
-                                <button class="btn btn-outline-secondary"
-                                        style="margin-bottom: 0;"
-                                        id="btnAddress"
-                                        type="submit">
-                                    O
-                                </button>
-                            </div>
+                        <div class="input-group-append" style="display: inline-block;">
+                            <button class="btn btn-outline-secondary"
+                                    style="margin-bottom: 0;"
+                                    id="btnAddress"
+                                    type="submit">
+                                O
+                            </button>
+                        </div>
 
                     </div>
 
                     <div class="input-group col-lg-3">
-                        <input class="form-group form-control"
-                               style="margin-bottom: 0;"
-                               id="inputPlace"
-                               name="miejscowosc"
-                               type="search"
-                               placeholder="miejscowość (fragment)"
-                               aria-label="Search"
-                                value="<#if choicePlace_??>${choicePlace_}<#else >""</#if>"
+                    <input class="form-group form-control"
+                           style="margin-bottom: 0;"
+                           id="inputPlace"
+                           name="miejscowosc"
+                           type="search"
+                           placeholder="miejscowość (fragment)"
+                           aria-label="Search"
+                            value="<#if choicePlace_??>${choicePlace_}<#else >""</#if>"
                         >
-                            <div class="input-group-append" style="display: inline-block;">
-                                <button class="btn btn-outline-secondary"
-                                        style="margin-bottom: 0;"
-                                        id="btnPlace"
-                                        type="submit">
-                                    O
-                                </button>
-                            </div>
+                        <div class="input-group-append" style="display: inline-block;">
+                            <button class="btn btn-outline-secondary"
+                                    style="margin-bottom: 0;"
+                                    id="btnPlace"
+                                    type="submit">
+                                O
+                            </button>
+                        </div>
 
                     </div>
 

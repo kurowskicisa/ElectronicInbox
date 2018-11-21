@@ -2,12 +2,13 @@ package com.ctk.dao;
 
 import com.ctk.model.ElectronicInbox;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestScoped
-public class ElectronicInboxDao {
+@SessionScoped
+public class ElectronicInboxDao implements Serializable {
 
     private final List<ElectronicInbox> list = new ArrayList<>();
 
