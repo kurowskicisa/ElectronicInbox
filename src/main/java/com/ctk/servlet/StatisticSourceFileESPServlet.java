@@ -117,6 +117,12 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("dataErrorZipCounter_",
                 statisticSourceFileESP.getDataErrorZipCounter());
 
+        modelGeneratorTemplate.setModel("dataEmptyRegonCounter_",
+                statisticSourceFileESP.getDataEmptyRegonCounter());
+
+        modelGeneratorTemplate.setModel("dataEmptyZipCounter_",
+                statisticSourceFileESP.getDataEmptyZipCounter());
+
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "statistics");
 

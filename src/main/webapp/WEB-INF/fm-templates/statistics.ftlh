@@ -26,7 +26,7 @@
 </div>
 </div>
 
-<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
     <div class="row">
         <div class="col-lg">
             <div class="card text-white bg-primary text-center mb-2" style="max-width: 18rem;">
@@ -135,7 +135,7 @@
 </div>
 
 
-<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
     <div class="row">
         <div class="col-lg-12">
             <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
@@ -148,23 +148,44 @@
     </div>
 </div>
 
-<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
+    &nbsp;
 </div>
 
-<div class="container-fluid nopadding" style="padding-left: 20; padding-right: 20;">
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
+
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <div class="card text-white bg-danger text-center mb-2" style="max-width: 100%;">
-                <div class="card-header">Regon będy:</div>
+                <div class="card-header">Regon, brak danych:</div>
+                <div class="card-body">
+                    <h1 class="card-text">${dataEmptyRegonCounter_}</h1>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3">
+            <div class="card text-white bg-danger text-center mb-2" style="max-width: 100%;">
+                <div class="card-header">Regon, będy:</div>
                 <div class="card-body">
                     <h1 class="card-text">${dataErrorRegonCounter_}</h1>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <div class="card text-white bg-danger text-center mb-2" style="max-width: 100%;">
-                <div class="card-header">kod pocztowy będy:</div>
+                <div class="card-header">kod pocztowy, brak danych:</div>
+                <div class="card-body">
+                    <h1 class="card-text">${dataEmptyZipCounter_}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="card text-white bg-danger text-center mb-2" style="max-width: 100%;">
+                <div class="card-header">kod pocztowy, będy:</div>
                 <div class="card-body">
                     <h1 class="card-text">${dataErrorZipCounter_}</h1>
                 </div>

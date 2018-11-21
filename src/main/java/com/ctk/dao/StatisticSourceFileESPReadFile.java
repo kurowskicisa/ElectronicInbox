@@ -120,7 +120,45 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                         .length();
                 statisticRegon(regonLength);
 
-                if ((regonLength != 9) && regonLength != 14) {
+                if (regonLength == 0) {
+                    statisticSourceFileESP.setDataEmptyRegonCounter(
+                            statisticSourceFileESP.getDataEmptyRegonCounter() + 1
+                    );
+                    APPLOGGER.info(
+                            " |*Regon*|"
+                                    + tempList.get(FIELD_REGON).replace("\"", "").trim()
+                                    + "|*|EMPTY|"
+                                    + tempList.get(FIELD_NAME).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_REGON).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_ADDRESS).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_ZIP).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_PLACE).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_URI).trim()
+                    );
+                    System.out.println(
+                            " |*Regon*|"
+                                    + tempList.get(FIELD_REGON).replace("\"", "").trim()
+                                    + "|*|EMPTY|"
+                                    + tempList.get(FIELD_NAME).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_REGON).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_ADDRESS).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_ZIP).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_PLACE).trim()
+                                    + "|"
+                                    + tempList.get(FIELD_URI).trim()
+                    );
+                }
+
+                if ((regonLength != 9) && regonLength != 14 && regonLength != 0) {
                     statisticSourceFileESP.setDataErrorRegonCounter(
                             statisticSourceFileESP.getDataErrorRegonCounter() + 1
                     );
@@ -171,7 +209,13 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                         .trim().length();
                 statisticZip(zipLength);
 
-                if (zipLength != 5) {
+                if (zipLength == 0) {
+                    statisticSourceFileESP.setDataEmptyZipCounter(
+                            statisticSourceFileESP.getDataErrorZipCounter()
+                    );
+                }
+
+                if (zipLength != 5 && zipLength != 0) {
                     statisticSourceFileESP.setDataErrorZipCounter(
                             statisticSourceFileESP.getDataErrorZipCounter() + 1
                     );
