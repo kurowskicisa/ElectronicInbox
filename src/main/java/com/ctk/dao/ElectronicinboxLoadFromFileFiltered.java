@@ -1,6 +1,6 @@
 package com.ctk.dao;
 
-import com.ctk.model.ElectronicInbox;
+import com.ctk.model.ElectronicInboxImpl;
 import com.ctk.model.ElectronicInboxFilterFile;
 
 import javax.enterprise.context.SessionScoped;
@@ -111,7 +111,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
 
                     if (dataCounter >= 1 + (RECORDS_ON_PAGE * currentPageN) - RECORDS_ON_PAGE
                             && dataCounter <= (RECORDS_ON_PAGE * currentPageN)) {
-                        electronicInboxDao.setList(new ElectronicInbox(
+                        electronicInboxDao.setList(new ElectronicInboxImpl(
                                 tempList.get(FIELD_NAME).trim().replace("\"", ""),
                                 tempList.get(FIELD_REGON).trim().replace("\"", ""),
                                 tempList.get(FIELD_ADDRESS).trim().replace("\"", ""),

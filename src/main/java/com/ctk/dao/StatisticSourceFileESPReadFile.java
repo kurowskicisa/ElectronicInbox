@@ -65,6 +65,9 @@ public class StatisticSourceFileESPReadFile implements Serializable {
         statisticSourceFileESP.setDataErrorRegonCounter(0);
         statisticSourceFileESP.setDataErrorZipCounter(0);
 
+        statisticSourceFileESP.setDataEmptyRegonCounter(0);
+        statisticSourceFileESP.setDataEmptyZipCounter(0);
+
         try {
 
             reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
