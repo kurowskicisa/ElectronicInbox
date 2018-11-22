@@ -1,10 +1,13 @@
 package com.ctk.model;
 
+
+import com.ctk.services.ElectronicInbox;
+
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 @SessionScoped
-public class ElectronicInbox implements Serializable {
+public class ElectronicInboxImpl implements ElectronicInbox, Serializable {
 
     private String name;
     private String regon;
@@ -13,10 +16,10 @@ public class ElectronicInbox implements Serializable {
     private String place;
     private String uri;
 
-    public ElectronicInbox() {
+    public ElectronicInboxImpl() {
     }
 
-    public ElectronicInbox(String name, String regon, String address, String zip, String place, String uri) {
+    public ElectronicInboxImpl(String name, String regon, String address, String zip, String place, String uri) {
         this.name = name;
         this.regon = regon;
         this.address = address;
@@ -78,7 +81,7 @@ public class ElectronicInbox implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ElectronicInbox that = (ElectronicInbox) o;
+        ElectronicInboxImpl that = (ElectronicInboxImpl) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (regon != null ? !regon.equals(that.regon) : that.regon != null) return false;
