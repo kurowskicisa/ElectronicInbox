@@ -177,10 +177,9 @@
                         <div class="card-body mr-sm-3">
                             <h6 class="card-title"><#if d.name??>${d.name}</#if></h6>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                <#if d.regon??>Regon: ${d.regon}</#if>
-                                , adres:
-                                <#if d.address??>${d.address}</#if>
-                                <#if d.zip??>${d.zip}</#if>
+                                <#if d.regon??>Regon: ${d.regon},</#if>
+                                <#if d.address??>adres: ${d.address},</#if>
+                                <#if d.zip??>${d.zip},</#if>
                                 <#if d.place??>${d.place}</#if></h6>
                             <h6 class="card-text">
                                 <#if d.uri??>${d.uri}</#if>

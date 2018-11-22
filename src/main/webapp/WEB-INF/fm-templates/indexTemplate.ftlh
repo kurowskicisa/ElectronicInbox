@@ -6,11 +6,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv = "refresh" content ="0, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
-<script type="text/javascript">
-windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
-</script>
 
+    <meta http-equiv = "refresh" content ="5, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1">
+
+    <script type="text/javascript">
+    windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+    </script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -30,7 +31,6 @@ windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
     <div class="container-fluid nopadding" style="padding-left: 0; padding-right: 0;">
 
         <nav class="navbar navbar-light bg-light">
-
 
         </nav>
     </div>
@@ -98,66 +98,6 @@ windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
         crossorigin="anonymous">
 </script>
 
-
-<script>
-    $('#btnName').on('click', function () {
-        document.getElementById('inputName').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
-    });
-</script>
-
-<script>
-    $('#btnAddress').on('click', function () {
-        document.getElementById('inputAddress').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
-    });
-</script>
-
-<script>
-    $('#btnPlace').on('click', function () {
-        document.getElementById('inputPlace').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=&strona=1';
-    });
-</script>
-
-
-<script>
-    $('#btnSearch').on('click', function () {
-        document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
-    });
-</script>
-
-<script>
-    $('#btnFirstPage').on('click', function () {
-        document.getElementById('inputPage').value = 1;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
-    });
-</script>
-
-<script>
-    $('#btnPrevPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> ;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>';
-    });
-</script>
-
-<script>
-    $('#btnNextPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> ;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>';
-    });
-</script>
-
-<script>
-    $('#btnLastPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> ;
-        window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>';
-    });
-</script>
 
 </body>
 

@@ -34,7 +34,7 @@
             <display-name>ESP</display-name>
 
             <servlet-name>IndexServlet</servlet-name>
-            <servlet-class>com.ctk.servlet.ElectronicInboxServlet</servlet-class>
+            <servlet-class>com.ctk.servlet.IndexServlet</servlet-class>
 
         <!--
             <init-param>

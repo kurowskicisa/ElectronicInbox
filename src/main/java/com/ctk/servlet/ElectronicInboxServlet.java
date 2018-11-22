@@ -176,6 +176,9 @@ public class ElectronicInboxServlet extends HttpServlet {
     }
 
     private void resetWebDate() {
+
+        electronicInboxDao.clearList();
+
         electronicInboxFilterFile.setName("");
         electronicInboxFilterFile.setAddress("");
         electronicInboxFilterFile.setPlace("");

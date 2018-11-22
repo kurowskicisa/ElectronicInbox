@@ -1,11 +1,13 @@
 package com.ctk.model;
 
 
+import com.ctk.services.ElectronicInbox;
+
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 @SessionScoped
-public class ElectronicInboxImpl implements Serializable {
+public class ElectronicInboxImpl implements ElectronicInbox, Serializable {
 
     private String name;
     private String regon;

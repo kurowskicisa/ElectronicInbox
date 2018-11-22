@@ -32,7 +32,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("WEB index | init() | ");
+        APPLOGGER.info("[WEB index | init()] | ");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class IndexServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         try {
-            Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
+            Template template = templateProvider.getTemplate(getServletContext(), "indexTemplate");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
             APPLOGGER.info("[WEB index | loaded] |");
