@@ -159,7 +159,7 @@ public class ElectronicInboxServlet extends HttpServlet {
             electronicInboxFilterFile.setPlace("");
             electronicInboxFilterFile.setPage("1");
 
-            Template template = templateProvider.getTemplate(getServletContext(), "indexTemplate");
+            Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
             APPLOGGER.info("[WEB loaded] |");
