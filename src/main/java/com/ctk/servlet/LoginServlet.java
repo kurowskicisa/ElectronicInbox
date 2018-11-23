@@ -19,8 +19,8 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/")
-public class IndexServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/login")
+public class LoginServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -28,11 +28,11 @@ public class IndexServlet extends HttpServlet {
     @Inject
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.LoginServlet.class.getName());
 
     @Override
     public void init() {
-        APPLOGGER.info("[WEB login | init()] | ");
+        APPLOGGER.info("[WEB index | init()] | ");
     }
 
     @Override
@@ -47,16 +47,16 @@ public class IndexServlet extends HttpServlet {
             Template template = templateProvider.getTemplate(getServletContext(), "login");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[WEB login | loaded] |");
+            APPLOGGER.info("[WEB index | loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
-            APPLOGGER.info("[WEB login | NOT loaded] |");
+            APPLOGGER.info("[WEB index | NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[WEB login | time of action (milliseconds)] | "
+        APPLOGGER.info("[WEB index | time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 
