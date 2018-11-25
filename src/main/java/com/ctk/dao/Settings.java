@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Settings {
 
     private final Path pathLESPcsv = Paths.get(System.getProperty("jboss.server.data.dir"), "LESP.csv");
+    private final Path pathAdmin = Paths.get(System.getProperty("jboss.server.data.dir"), "admin.csv");
 
     public Path getPathLESPcsv() {
         return pathLESPcsv;

@@ -36,7 +36,24 @@
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-lg-6">
+        <div class="col-lg-8">
+            <div class="jumbotron">
+                <h1 class="display-4">Elektroniczne Skrzynki Podawcze</h1>
+                <p class="lead">Zapraszamy Państwa do przeglądania elektronicznych skrztnek podawczych.</p>
+                <hr class="my-4">
+                <h2>Udostępniona baza Elektronicznych Skrzynek Podawczych przez</h2>
+                <h2>epuap.gov.pl jest możliwa do pobrania w formatach: csv i xml.</h2>
+                <h2>&nbsp;</h2>
+                <h2>Teraz możesz również skorzystać z przeglądania i wyszukiwania</h2>
+                <h2>&nbsp;</h2>
+                <h2>&nbsp;</h2>
+
+                <a class="btn btn-primary btn-lg"
+                   style="width: 99%;"
+                   href="/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+                   role="button">Pzeglądaj
+                </a>
+            </div>
         </div>
 
         <div class="col-lg-4">
@@ -64,11 +81,7 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
 
             </form>
-            <div class="col-lg-2">
-                <div>
 
-                </div>
-            </div>
         </div>
     </div>
 </div>

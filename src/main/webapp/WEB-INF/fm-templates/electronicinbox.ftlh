@@ -19,7 +19,11 @@
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-3 h1">Elektroniczne Skrzynki Podawcze</span>
+        <span class="navbar-brand mb-3 h1">
+            <a href="http://localhost:8080/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;";>
+            Elektroniczne Skrzynki Podawcze
+            </a>
+        </span>
     </nav>
 
     <div class="container-fluid nopadding" style="padding-left: 0; padding-right: 0;">
@@ -121,7 +125,7 @@
                                 id="btnFirstPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            ||<<<<<
+                            ||<<  1  <<
                         </button>
                     </div>
 
@@ -130,7 +134,7 @@
                                 id="btnPrevPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            <<<<<
+                            <<  <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>  <<
                         </button>
                     </div>
 
@@ -139,7 +143,7 @@
                                 id="btnNextPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            >>>>>
+                            >>  <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>  >>
                         </button>
                     </div>
 
@@ -148,7 +152,7 @@
                                 id="btnLastPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            >>>>>||
+                            >>  <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>  >>||
                         </button>
                     </div>
                 </div>
@@ -509,21 +513,21 @@
 
 <script>
     $('#btnPrevPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> ;
+        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
         window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>';
     });
 </script>
 
 <script>
     $('#btnNextPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> ;
+        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
         window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>';
     });
 </script>
 
 <script>
     $('#btnLastPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> ;
+        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
         window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>';
     });
 </script>
