@@ -1,15 +1,23 @@
 package com.ctk.api;
 
+import com.ctk.freemarker.ModelGeneratorTemplate;
+import com.ctk.freemarker.TemplateAPI;
+import com.ctk.freemarker.TemplateProvider;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 
-@Path("/eib")
+@Path("/api")
 public class LoginAPI {
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.api.LoginAPI.class.getName());
@@ -18,16 +26,27 @@ public class LoginAPI {
     public LoginAPI(){
             }
 
+    @Inject
+    private TemplateAPI templateAPI;
+
+    @Inject
+    private ModelGeneratorTemplate modelGeneratorTemplate;
+
     @GET
     @Path("/login")
     public Response getLoginForm() {
-        String form = "<form method=\"post\" action=\"authenticate\">\n"
-                + "  Login: <input type=\"text\" name=\"login\"/><br/>\n"
-                + "  Password: <input type=\"password\" name=\"password\"/><br/>\n"
-                + "  <input type=\"submit\" value=\"Login\"/>\n"
-                + "</form>";
+        try {
 
-        return Response.ok(form).build();
+            Template template = templateAPI.getTemplateAPI("login");
+
+            return Response.ok(template).build();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return Response.status(Response.Status.SERVICE_UNAVAILABLE)
+                .build();
     }
 
     @POST
