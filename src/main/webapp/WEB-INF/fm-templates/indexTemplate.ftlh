@@ -4,7 +4,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta content-Type="text/html"; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta http-equiv = "refresh" content ="5, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1">
