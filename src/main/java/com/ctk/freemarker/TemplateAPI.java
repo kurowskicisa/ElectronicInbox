@@ -14,8 +14,10 @@ public class TemplateAPI {
 
     public Template getTemplateAPI(String templateName)
             throws IOException {
+
         final Configuration cfg = new Configuration(Configuration.VERSION_2_3_27);
-        cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_DIRECTORY_PATH));
+
+        cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_DIRECTORY_PATH+"/"+templateName + TEMPLATE_EXTENSION));
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(true);
