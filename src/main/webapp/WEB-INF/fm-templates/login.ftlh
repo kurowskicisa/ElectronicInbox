@@ -43,10 +43,11 @@
                 <hr class="my-4">
                 <h2>Udostępniona baza Elektronicznych Skrzynek Podawczych przez</h2>
                 <h2>epuap.gov.pl jest możliwa do pobrania w formatach: csv i xml.</h2>
-                <h2>&nbsp;</h2>
+                <h3>&nbsp;</h3>
                 <h2>Teraz możesz również skorzystać z przeglądania i wyszukiwania</h2>
-                <h2>&nbsp;</h2>
-                <h2>&nbsp;</h2>
+                <h3>&nbsp;</h3>
+                <h3>&nbsp;</h3>
+                <h3>&nbsp;</h3>
 
                 <a class="btn btn-primary btn-lg"
                    style="width: 99%;"
@@ -63,6 +64,7 @@
                 <label for="inputUser" class="sr-only">mail</label>
                 <input type="text"
                        id="inputUser"
+                       name="user"
                        class="form-control"
                        placeholder="użytkownik"
                        required autofocus>
@@ -72,6 +74,7 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password"
                        id="inputPassword"
+                       name="password"
                        class="form-control"
                        placeholder="hasło"
                        required>

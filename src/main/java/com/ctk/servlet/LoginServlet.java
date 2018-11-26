@@ -19,7 +19,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/login")
+@WebServlet(urlPatterns = "/login2")
 public class LoginServlet extends HttpServlet {
 
     @Inject
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8");
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "login");

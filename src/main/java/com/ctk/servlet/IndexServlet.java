@@ -13,13 +13,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/costam")
 public class IndexServlet extends HttpServlet {
 
     @Inject
@@ -44,6 +50,13 @@ public class IndexServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
 
         try {
+            final String choiceUser = req.getParameter("user").trim();
+            APPLOGGER.info("[choiceUser] | " + choiceUser);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        try {
             Template template = templateProvider.getTemplate(getServletContext(), "login");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
@@ -58,20 +71,5 @@ public class IndexServlet extends HttpServlet {
 
         APPLOGGER.info("[WEB login | time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
-
-        req.setCharacterEncoding("UTF-8");
-
-        
-
-        req.getParameter("user").trim();
-        req.getParameter("password").trim();
-
     }
 }
