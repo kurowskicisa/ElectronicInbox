@@ -10,14 +10,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.nio.file.Paths;
 
 @Path("/api")
+@Produces({"text/html"})
 public class LoginAPI {
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.api.LoginAPI.class.getName());
@@ -37,11 +37,21 @@ public class LoginAPI {
     public Response getLoginForm() {
         try {
 
+
             Template template = templateAPI.getTemplateAPI("login");
+
+            StringWriter writer = new StringWriter();
+
+            modelGeneratorTemplate.setModel("__",
+                    "__");
+
+            template.process(modelGeneratorTemplate.getModel(), writer);
+
+            System.out.println(writer);
 
             return Response.ok(template).build();
 
-        } catch (IOException e) {
+        } catch (IOException | TemplateException e) {
             e.printStackTrace();
         }
 
