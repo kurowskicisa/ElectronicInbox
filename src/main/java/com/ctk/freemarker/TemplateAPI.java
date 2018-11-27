@@ -1,30 +1,30 @@
 package com.ctk.freemarker;
 
+
+import freemarker.cache.WebappTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import freemarker.template.TemplateExceptionHandler;
 
-import java.io.File;
+
+import javax.enterprise.context.ApplicationScoped;
+
+import javax.xml.rpc.server.ServletEndpointContext;
+
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
+@ApplicationScoped
 public class TemplateAPI {
+
     private static final String TEMPLATE_DIRECTORY_PATH = "//WEB-INF//fm-templates";
     private static final String TEMPLATE_EXTENSION = ".ftlh";
+
 
     public Template getTemplateAPI(String templateName)
             throws IOException {
 
-        final Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
-        Path pathLogin = Paths.get(System.getProperty("jboss.server.data.dir"));
-        cfg.setDirectoryForTemplateLoading(new File(String.valueOf(pathLogin)));
-        // +"/"+templateName + TEMPLATE_EXTENSION));
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        cfg.setLogTemplateExceptions(true);
-        cfg.setWrapUncheckedExceptions(true);
+        final Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
+        configuration.setClassForTemplateLoading(TemplateAPI.class,TEMPLATE_DIRECTORY_PATH);
 
-        return cfg.getTemplate(pathLogin +"\\" +templateName +TEMPLATE_EXTENSION);
+        return configuration.getTemplate( templateName );
     }
 }
