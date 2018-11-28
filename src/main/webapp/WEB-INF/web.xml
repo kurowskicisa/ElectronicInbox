@@ -20,12 +20,30 @@
 
     <display-name>Electronic Inbox</display-name>
 
-        <servlet>
-            <display-name>ESP</display-name>
+    <servlet>
+        <display-name>ESP</display-name>
 
-            <servlet-name>IndexServlet</servlet-name>
-            <servlet-class>com.ctk.servlet.IndexServlet</servlet-class>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>com.ctk.servlet.IndexServlet</servlet-class>
 
-         </servlet>
+    </servlet>
 
 </web-app>
+
+
+<dependencies>
+<!-- Resteasy -->
+    <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-jackson-provider</artifactId>
+        <version>2.3.2.Final</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-client</artifactId>
+        <version>3.1.2.Final</version>
+        <scope>test</scope>
+    </dependency>
+
+</dependencies>

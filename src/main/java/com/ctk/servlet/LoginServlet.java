@@ -19,7 +19,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/login2")
+@WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
     @Inject
