@@ -2,6 +2,7 @@ package com.ctk.api;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateAPI;
+import com.ctk.freemarker.TemplateProvider;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
@@ -10,15 +11,13 @@ import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-
-
 
 @Path("/api")
 @Produces({"text/html"})
@@ -35,19 +34,21 @@ public class LoginAPI {
 
     @Inject
     private TemplateAPI templateAPI;
+    @Inject
+    private TemplateProvider templateProvider;
 
     @Inject
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @GET
     @Path("/login")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
     public Response getLoginForm() {
 
-        java.nio.file.Path pathLogin = Paths.get(System.getProperty("javax.servlet.context.orderedLibs"), "login.fthl");
+   //     java.nio.file.Path pathLogin = Paths.get(System.getProperty("javax.servlet.context.orderedLibs"), "login.fthl");
 
-            System.out.println(pathLogin);
+
 
         final Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
         cfg.setDefaultEncoding("UTF-8");
@@ -55,14 +56,23 @@ public class LoginAPI {
         cfg.setLogTemplateExceptions(true);
         cfg.setWrapUncheckedExceptions(true);
         cfg.setServletContextForTemplateLoading(servletContext, TEMPLATE_DIRECTORY_PATH);
-        Template pathLogin2 ;
+
+        Template pathLogin2 = null;
+
         try {
-            Template pathLogin2 = cfg.getTemplate("login" + TEMPLATE_EXTENSION);
+            pathLogin2 = cfg.getTemplate("login" + TEMPLATE_EXTENSION);
+            System.out.println(pathLogin2);           
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return Response.ok(pathLogin2).build();
+        Template template = null;
+
+        System.out.println(pathLogin2);
+
+        return Response.ok()
+                .entity(pathLogin2)
+                .build();
     }
 
     @POST
