@@ -33,7 +33,7 @@ public class UserReadFile implements Serializable {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-
+        System.out.println("Reader " + reader);
         if (line != null && !line.isEmpty()) {
 
             try {
