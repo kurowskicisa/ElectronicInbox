@@ -17,6 +17,10 @@ public class Settings {
         return pathLESPcsv;
     }
 
+    public Path getPathAdmin() {
+        return pathAdmin;
+    }
+
     private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public DateTimeFormatter getDateFormat() {

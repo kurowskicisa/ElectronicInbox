@@ -38,7 +38,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("[WEB login | init()] | ");
+        APPLOGGER.info("[WEB index | init()] | ");
     }
 
     @Override
@@ -60,16 +60,16 @@ public class IndexServlet extends HttpServlet {
             Template template = templateProvider.getTemplate(getServletContext(), "login");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[WEB login | loaded] |");
+            APPLOGGER.info("[WEB index | loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
-            APPLOGGER.info("[WEB login | NOT loaded] |");
+            APPLOGGER.info("[WEB index | NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[WEB login | time of action (milliseconds)] | "
+        APPLOGGER.info("[WEB index | time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 }
