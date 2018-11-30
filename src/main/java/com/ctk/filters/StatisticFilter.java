@@ -27,13 +27,25 @@ public class StatisticFilter extends HttpFilter {
 
         if (logged) {
             System.out.println("Filter (if): logged");
+            HttpServletResponse httpres = (HttpServletResponse) resp;
+            httpres.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            httpres.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+            httpres.setDateHeader("Expires", 0); // Proxies.
+            httpres.flushBuffer();
+            httpres.resetBuffer();
+
             chain.doFilter(req, resp);
+            
         } else {
             System.out.println("Filter (if): NOT logged");
             resp.sendRedirect("");
-            chain.doFilter(req, resp);
+         //   chain.doFilter(req, resp);
         }
-        
+        userRepository.getList().get(0).setAutenticate(false);
+        logged = userRepository.getList().get(0).isAutenticate();
+
+
+        System.out.println("Filter (end): logged: " + logged);
         System.out.println("End of filter");
     }
 }

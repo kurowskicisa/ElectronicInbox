@@ -1,5 +1,6 @@
 package com.ctk.api;
 
+import com.ctk.dao.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,9 @@ public class LoginAPI {
     @Inject
     private LoginWEB loginWEB;
 
+    @Inject
+    private UserRepository userRepository;
+
     public LoginAPI() {
     }
 
@@ -24,6 +28,9 @@ public class LoginAPI {
 
     public Response getLoginForm() {
         System.out.println("LoginAPI | GET | ");
+        if (userRepository.getList().size() > 0) {
+            userRepository.getList().get(0).setAutenticate(false);
+        }
         return Response.ok()
                 .entity(loginWEB.LoginWEB())
                 .build();

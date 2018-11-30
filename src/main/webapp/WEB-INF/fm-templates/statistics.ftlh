@@ -12,10 +12,16 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>Elektroniczne Skrzynki Podawcze</title>
+    <SCRIPT type="text/javascript">
+        window.history.forward();
+        function noBack() { window.history.forward(); }
+    </SCRIPT
 
 </head>
 
-<body style="background-color: white">
+<body onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload=""
+      style="background-color: white">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
