@@ -59,10 +59,6 @@ public class UserReadFile implements Serializable {
 
             if (!line.equals("")) {
                 List<String> tempList = Arrays.asList(line.split(";"));
-    //            List<String> tempList = Arrays.asList(line);
-
-                System.out.println("Dodaję user: "+tempList.get(0) );
-                System.out.println("Dodaję pass: "+tempList.get(1) );
 
                 userRepository.add(tempList.get(0), tempList.get(1));
             }

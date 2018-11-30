@@ -38,6 +38,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        System.out.println("Login servlet DOGET | ");
+
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
@@ -58,6 +60,12 @@ public class LoginServlet extends HttpServlet {
 
         APPLOGGER.info("[WEB login | time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println("Login servlet DOPOST | ");
     }
 
 }

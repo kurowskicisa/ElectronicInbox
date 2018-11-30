@@ -16,14 +16,23 @@ public class LoginAPI {
     @Inject
     private LoginWEB loginWEB;
 
-    public LoginAPI(){
-           }
+    public LoginAPI() {
+    }
 
     @GET
     @Path("/")
 
     public Response getLoginForm() {
+        System.out.println("LoginAPI | GET | ");
+        return Response.ok()
+                .entity(loginWEB.LoginWEB())
+                .build();
+    }
 
+    @POST
+    @Path("/")
+    public Response getLoginForm2() {
+        System.out.println("LoginAPI | POST | ");
         return Response.ok()
                 .entity(loginWEB.LoginWEB())
                 .build();

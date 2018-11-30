@@ -55,7 +55,7 @@ public class ElectronicInboxServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        System.out.println("ElectronicInboxServlet | DOGET | ");
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
@@ -195,4 +195,10 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choicePrevPage_", "");
         modelGeneratorTemplate.setModel("choiceNextPage_", "");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("ElectronicInboxServlet | DOPOST | ");
+    }
+
 }

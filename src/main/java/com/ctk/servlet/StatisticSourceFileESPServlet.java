@@ -46,6 +46,9 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+        Object logged = req.getSession().getAttribute("logged");
+
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");

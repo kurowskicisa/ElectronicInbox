@@ -27,14 +27,21 @@ public class UserRepository implements Serializable {
     }
 
     public boolean isAutenticated(String username, String password) {
-      return users.stream()
-              .filter(u -> u.getName().equals(username)
-                && u.getPassword().equals(password))
-              .anyMatch(u -> u.getName().equals(username)
-                     && u.getPassword().equals(password));
+        return users.stream()
+                .filter(u -> u.getName().equals(username)
+                        && u.getPassword().equals(password))
+                .anyMatch(u -> u.getName().equals(username)
+                        && u.getPassword().equals(password));
     }
 
-    public void add(String username, String password){
+    public void add(String username, String password) {
         users.add(new User(username, password));
+    }
+
+    public Optional<User> findBy(String username, String password) {
+        return users.stream()
+                .filter(u -> u.getName().equals(username)
+                        && u.getPassword().equals(password))
+                .findAny();
     }
 }
