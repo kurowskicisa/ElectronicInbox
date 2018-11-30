@@ -30,18 +30,21 @@ public class UserReadFile implements Serializable {
             reader = Files.newBufferedReader(settings.getPathAdmin(), StandardCharsets.UTF_8);
             line = reader.readLine();
 
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("Reader " + reader);
-        if (line != null && !line.isEmpty()) {
 
-            try {
-                readingAllUsers(line, reader);
-                reader.close();
+        if (reader!=null) {
 
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (line != null && !line.isEmpty()) {
+
+                try {
+                    readingAllUsers(line, reader);
+                    reader.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -55,8 +58,13 @@ public class UserReadFile implements Serializable {
         while (line != null) {
 
             if (!line.equals("")) {
-                List<String> tempList = Arrays.asList(line.split("|"));
-                userRepository.add(tempList.get(0).trim(), tempList.get(1).trim());
+                List<String> tempList = Arrays.asList(line.split(";"));
+    //            List<String> tempList = Arrays.asList(line);
+
+                System.out.println("Dodaję user: "+tempList.get(0) );
+                System.out.println("Dodaję pass: "+tempList.get(1) );
+
+                userRepository.add(tempList.get(0), tempList.get(1));
             }
             line = reader.readLine();
         }
