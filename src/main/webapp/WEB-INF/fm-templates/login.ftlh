@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="pl">
+<#setting number_format="##0">
 
 <head>
     <!-- Required meta tags -->
     <meta content-Type="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta http-equiv = "refresh" content ="5, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1">
 
     <script type="text/javascript">
         windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
@@ -16,11 +15,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <script type="text/javascript">
+        window.history.forward();
+
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+
     <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
-<body style="background-color: white">
+<body onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload=""
+      style="background-color: white">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
@@ -34,7 +43,61 @@
         </nav>
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
 
+        <div class="col-lg-8">
+            <div class="jumbotron">
+                <h1 class="display-4">Elektroniczne Skrzynki Podawcze</h1>
+                <p class="lead">Zapraszamy Państwa do przeglądania elektronicznych skrzynek podawczych</p>
+                <hr class="my-4">
+                <h2>Udostępniona baza Elektronicznych Skrzynek Podawczych przez</h2>
+                <h2>epuap.gov.pl jest możliwa do pobrania w formatach: csv i xml</h2>
+                <h3>&nbsp;</h3>
+                <h2>Teraz możesz również skorzystać z przeglądania i wyszukiwania</h2>
+                <h3>&nbsp;</h3>
+                <h3>&nbsp;</h3>
+                <h3>&nbsp;</h3>
+
+                <a class="btn btn-primary btn-lg"
+                   style="width: 99%;"
+                   href="/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+                   role="button">Pzeglądaj
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <form class="form-signin">
+
+                <h1 class="h3 mb-3 font-weight-normal"></h1>
+                <label for="inputUser" class="sr-only">mail</label>
+                <input type="text"
+                       id="inputUser"
+                       name="user"
+                       class="form-control"
+                       placeholder="użytkownik"
+                       required autofocus>
+
+                &nbsp;
+
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password"
+                       id="inputPassword"
+                       name="password"
+                       class="form-control"
+                       placeholder="hasło"
+                       required>
+
+                &nbsp;
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -48,7 +111,8 @@
         <div class="col-lg-12">
             <a class="btn btn-primary btn-lg btn-block"
                style="padding: 0;"
-               href="https://epuap.gov.pl/wps/portal/strefa-urzednika/pomoc_urzednik/" role="button" target="_new">
+               href="https://epuap.gov.pl/wps/portal/strefa-urzednika/pomoc_urzednik/" role="button"
+               target="_new">
                 <button type="button" class="btn btn-info col-12">
                     Źródło:
                     epuap.gov.pl

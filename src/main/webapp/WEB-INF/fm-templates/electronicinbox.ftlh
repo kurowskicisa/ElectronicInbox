@@ -1,25 +1,40 @@
 <!doctype html>
 <html lang="pl">
 <#setting number_format="##0">
-
+<!-- 4 --->\
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta content-Type="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <script type="text/javascript">
+        window.history.forward();
+
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+
     <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
-<body style="background-color: white">
+<body onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload=""
+      style="background-color: white">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-3 h1">Elektroniczne Skrzynki Podawcze</span>
+        <span class="navbar-brand mb-3 h1">
+            <a href="http://localhost:8080/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
+               ;>
+            Elektroniczne Skrzynki Podawcze
+            </a>
+        </span>
     </nav>
 
     <div class="container-fluid nopadding" style="padding-left: 0; padding-right: 0;">
@@ -121,7 +136,7 @@
                                 id="btnFirstPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            ||<<<<<
+                            ||<< 1 <<
                         </button>
                     </div>
 
@@ -130,7 +145,7 @@
                                 id="btnPrevPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            <<<<<
+                            <<  <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> <<
                         </button>
                     </div>
 
@@ -139,7 +154,7 @@
                                 id="btnNextPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            >>>>>
+                            >>  <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> >>
                         </button>
                     </div>
 
@@ -148,7 +163,7 @@
                                 id="btnLastPage"
                                 style="margin-bottom: 0;"
                                 type="submit">
-                            >>>>>||
+                            >>  <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> >>||
                         </button>
                     </div>
                 </div>
@@ -450,7 +465,7 @@
 
 </div>
 
-<!-- Optional JavaScript -->
+<!-- Optional Javascript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -509,21 +524,21 @@
 
 <script>
     $('#btnPrevPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> ;
+        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
         window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>';
     });
 </script>
 
 <script>
     $('#btnNextPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> ;
+        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
         window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>';
     });
 </script>
 
 <script>
     $('#btnLastPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> ;
+        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
         window.location = 'http://localhost:8080/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>';
     });
 </script>

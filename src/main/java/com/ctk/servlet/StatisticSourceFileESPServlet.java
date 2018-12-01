@@ -1,6 +1,7 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.StatisticSourceFileESPReadFile;
+import com.ctk.dao.UserRepository;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import com.ctk.model.StatisticSourceFileESP;
@@ -36,6 +37,9 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Inject
     private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
 
+    @Inject
+    private UserRepository userRepository;
+
     private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPServlet.class.getName());
 
     @Override
@@ -46,10 +50,13 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+        Object logged = req.getSession().getAttribute("logged");
+
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8");
+        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
         statisticSourceFileESPReadFile.loadFileESP();
 
@@ -134,7 +141,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
         }
 
         LocalTime stopDoGet = now();
-
+        userRepository.getList().get(0).setAutenticate(false);
         APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
