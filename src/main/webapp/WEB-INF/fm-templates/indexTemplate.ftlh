@@ -4,24 +4,34 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content-Type="text/html"; charset="utf-8">
+    <meta content-Type="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta http-equiv = "refresh" content ="5, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1">
+    <meta http-equiv="refresh" content="5, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1">
 
     <script type="text/javascript">
-    windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+        windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
     </script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <script type="text/javascript">
+        window.history.forward();
+
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+
     <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
-<body style="background-color: white">
+<body onload="noBack();"
+      onpageshow="if (event.persisted) noBack();" onunload=""
+      style="background-color: white">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
@@ -81,7 +91,7 @@
 
 </div>
 
-<!-- Optional JavaScript -->
+<!-- Optional Javascript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

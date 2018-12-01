@@ -27,7 +27,7 @@ public class LoginAPI {
     @Path("/")
 
     public Response getLoginForm() {
-        System.out.println("LoginAPI | GET | ");
+
         if (userRepository.getList().size() > 0) {
             userRepository.getList().get(0).setAutenticate(false);
         }
@@ -39,7 +39,7 @@ public class LoginAPI {
     @POST
     @Path("/")
     public Response getLoginForm2() {
-        System.out.println("LoginAPI | POST | ");
+
         return Response.ok()
                 .entity(loginWEB.LoginWEB())
                 .build();

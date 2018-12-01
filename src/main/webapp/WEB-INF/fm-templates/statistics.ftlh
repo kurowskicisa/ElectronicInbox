@@ -1,21 +1,25 @@
 <!doctype html>
 <html lang="pl">
 <#setting number_format="##0">
-
+<!-- 8 --->
 <head>
     <!-- Required meta tags -->
-    <meta content-Type="text/html"; charset="utf-8">
+    <meta content-Type="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Elektroniczne Skrzynki Podawcze</title>
-    <SCRIPT type="text/javascript">
+    <script type="text/javascript">
         window.history.forward();
-        function noBack() { window.history.forward(); }
-    </SCRIPT
+
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+
+    <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
@@ -26,7 +30,8 @@
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-3 h1">
-            <a href="http://localhost:8080/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;";>
+            <a href="http://localhost:8080/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
+               ;>
             Elektroniczne Skrzynki Podawcze
             </a>
         </span>
@@ -204,7 +209,7 @@
     </div>
 </div>
 
-<!-- Optional JavaScript -->
+<!-- Optional Javascript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

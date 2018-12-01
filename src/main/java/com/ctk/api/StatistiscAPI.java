@@ -4,7 +4,6 @@ import com.ctk.dao.UserReadFile;
 import com.ctk.dao.UserRepository;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,7 +19,7 @@ public class StatistiscAPI {
     private UserReadFile userReadFile;
 
     @Inject
-    StatisticWeb statisticWeb;
+    StatisticWEB statisticWEB;
 
     @POST
     @Path("/statistics")
@@ -28,23 +27,20 @@ public class StatistiscAPI {
             @FormParam("user") String user,
             @FormParam("password") String password) {
 
-        System.out.println("Statistics | API POST");
-
         userReadFile.loadUserFile();
         boolean authenticated = userRepository.isAutenticated(user, password);
-    //    userRepository.clearList();
 
         if (authenticated) {
 
             userRepository.getList().get(0).setAutenticate(true);
 
             return Response.ok()
-                    .entity(statisticWeb.getWeb())
+                    .entity(statisticWEB.getWeb())
                     .build();
         }
 
         return Response.ok()
-                .entity(statisticWeb.getWebstart())
+                .entity(statisticWEB.getWebstart())
                 .build();
     }
 }
