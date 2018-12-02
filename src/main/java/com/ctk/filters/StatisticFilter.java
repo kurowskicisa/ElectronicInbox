@@ -1,6 +1,5 @@
 package com.ctk.filters;
 
-
 import com.ctk.dao.UserRepository;
 
 import javax.inject.Inject;
@@ -21,7 +20,7 @@ public class StatisticFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        boolean logged = false;
+        boolean logged; // = false;
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");

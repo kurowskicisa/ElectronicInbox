@@ -4,7 +4,6 @@ public class LoginWEB {
 
     private String loginWEB = "<!doctype html>\n" +
             "<html lang=\"pl\">\n" +
-            "<!-- 7 --->\n" +
             "\n" +
             "<head>\n" +
             "    <!-- Required meta tags -->\n" +

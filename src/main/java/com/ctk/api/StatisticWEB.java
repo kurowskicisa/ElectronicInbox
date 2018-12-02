@@ -4,7 +4,6 @@ public class StatisticWEB {
 
     private String web = "<!doctype html>\n" +
             "<html lang=\"pl\">\n" +
-            "<!-- 1 --->\n" +
             "\n" +
             "<head>\n" +
             "    <!-- Required meta tags -->\n" +
@@ -33,7 +32,6 @@ public class StatisticWEB {
 
     private String webstart = "<!doctype html>\n" +
             "<html lang=\"pl\">\n" +
-            "<!-- 3 --->\n" +
             "\n" +
             "<head>\n" +
             "    <!-- Required meta tags -->\n" +

@@ -8,7 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.ServletContext;
 import java.io.IOException;
 
-
 @ApplicationScoped
 public class TemplateProvider {
 

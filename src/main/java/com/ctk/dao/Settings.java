@@ -12,6 +12,7 @@ public class Settings {
 
     private final Path pathLESPcsv = Paths.get(System.getProperty("jboss.server.data.dir"), "LESP.csv");
     private final Path pathAdmin = Paths.get(System.getProperty("jboss.server.data.dir"), "admin.csv");
+    private final Path pathDatabaseInfo = Paths.get(System.getProperty("jboss.server.data.dir"), "databaseinfo.csv");
 
     public Path getPathLESPcsv() {
         return pathLESPcsv;
@@ -19,6 +20,10 @@ public class Settings {
 
     public Path getPathAdmin() {
         return pathAdmin;
+    }
+
+    public Path getPathDatabaseInfo() {
+        return pathDatabaseInfo;
     }
 
     private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");

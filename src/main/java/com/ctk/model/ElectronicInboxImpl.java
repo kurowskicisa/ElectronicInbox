@@ -1,6 +1,5 @@
 package com.ctk.model;
 
-
 import com.ctk.services.ElectronicInbox;
 
 import javax.enterprise.context.SessionScoped;

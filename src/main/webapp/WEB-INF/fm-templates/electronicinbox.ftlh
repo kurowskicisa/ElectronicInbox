@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pl">
 <#setting number_format="##0">
-<!-- 4 --->\
+
 <head>
     <!-- Required meta tags -->
     <meta content-Type="text/html" ; charset="utf-8">
