@@ -32,7 +32,7 @@ public class UserReadFile implements Serializable {
             e.printStackTrace();
         }
 
-        if (reader!=null) {
+        if (reader != null) {
 
             if (line != null && !line.isEmpty()) {
 

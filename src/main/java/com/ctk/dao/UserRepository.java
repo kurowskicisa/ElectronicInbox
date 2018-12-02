@@ -6,7 +6,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SessionScoped
 public class UserRepository implements Serializable {
@@ -15,14 +14,6 @@ public class UserRepository implements Serializable {
 
     public List<User> getList() {
         return users;
-    }
-
-    public void setList(User user) {
-        this.users.add(user);
-    }
-
-    public void clearList() {
-        this.users.clear();
     }
 
     public boolean isAutenticated(String username, String password) {

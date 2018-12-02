@@ -306,30 +306,6 @@
 
 <#else >
 
-    <nav class="navbar navbar-light bg-light">
-
-        <div class="form-group row" style="margin-bottom: 0;">
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-        </div>
-    </nav>
-
-
     <div class="container-fluid">
 
         <div class="row">

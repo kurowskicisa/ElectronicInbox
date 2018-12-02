@@ -20,28 +20,33 @@ public class StatisticFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        boolean logged; // = false;
+        boolean logged;
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        logged = userRepository.getList().get(0).isAutenticate();
+        if (userRepository.getList().size() > 0) {
 
-        if (logged) {
-            HttpServletResponse httpres = (HttpServletResponse) resp;
-            httpres.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-            httpres.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-            httpres.setDateHeader("Expires", 0); // Proxies.
-            httpres.flushBuffer();
-            httpres.resetBuffer();
-            httpres.setHeader("Content-Type", "text/html; charset=UTF-8");
-            httpres.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+            logged = userRepository.getList().get(0).isAutenticate();
 
-            chain.doFilter(req, resp);
+            if (logged) {
+                HttpServletResponse httpres = resp; // (HttpServletResponse) resp;
+                httpres.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+                httpres.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+                httpres.setDateHeader("Expires", 0); // Proxies.
+                httpres.flushBuffer();
+                httpres.resetBuffer();
+                httpres.setHeader("Content-Type", "text/html; charset=UTF-8");
+                httpres.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
+                chain.doFilter(req, resp);
+
+            } else {
+                resp.sendRedirect("");
+            }
+            userRepository.getList().get(0).setAutenticate(false);
         } else {
             resp.sendRedirect("");
         }
-        userRepository.getList().get(0).setAutenticate(false);
     }
 }

@@ -63,7 +63,7 @@ public class LoginWEB {
             "                <a class=\"btn btn-primary btn-lg\"\n" +
             "    style=\"width: 99%;\"\n" +
             "    href=\"/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1\"\n" +
-            "    role=\"button\">Pzeglądaj\n" +
+            "    role=\"button\">Przeglądaj\n" +
             "            </a>\n" +
             "            </div>\n" +
             "        </div>\n" +
