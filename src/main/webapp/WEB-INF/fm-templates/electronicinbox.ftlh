@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pl">
 <#setting number_format="##0">
-<!-- 4 --->\
+
 <head>
     <!-- Required meta tags -->
     <meta content-Type="text/html" ; charset="utf-8">
@@ -305,30 +305,6 @@
     </div>
 
 <#else >
-
-    <nav class="navbar navbar-light bg-light">
-
-        <div class="form-group row" style="margin-bottom: 0;">
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-            <div class="col-lg-3">
-                &nbsp;
-            </div>
-
-        </div>
-    </nav>
-
 
     <div class="container-fluid">
 

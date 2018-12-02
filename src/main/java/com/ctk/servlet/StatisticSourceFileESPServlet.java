@@ -50,9 +50,6 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        Object logged = req.getSession().getAttribute("logged");
-
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
@@ -141,7 +138,9 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
         }
 
         LocalTime stopDoGet = now();
+
         userRepository.getList().get(0).setAutenticate(false);
+
         APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }

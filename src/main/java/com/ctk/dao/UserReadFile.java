@@ -1,7 +1,5 @@
 package com.ctk.dao;
 
-import com.ctk.model.User;
-
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
@@ -16,7 +14,7 @@ import java.util.List;
 public class UserReadFile implements Serializable {
 
     @Inject
-    private Settings settings; // = new Settings();
+    private Settings settings;
 
     @Inject
     private UserRepository userRepository;
@@ -34,7 +32,7 @@ public class UserReadFile implements Serializable {
             e.printStackTrace();
         }
 
-        if (reader!=null) {
+        if (reader != null) {
 
             if (line != null && !line.isEmpty()) {
 

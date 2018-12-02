@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/api")
-public class StatistiscAPI {
+public class StatisticAPI {
 
     @Inject
     private UserRepository userRepository;

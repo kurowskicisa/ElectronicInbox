@@ -62,7 +62,7 @@
                 <a class="btn btn-primary btn-lg"
                    style="width: 99%;"
                    href="/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
-                   role="button">Pzeglądaj
+                   role="button">Przeglądaj
                 </a>
             </div>
         </div>
