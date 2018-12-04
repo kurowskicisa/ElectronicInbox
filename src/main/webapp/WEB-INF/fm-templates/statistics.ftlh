@@ -30,7 +30,7 @@
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-3 h1">
-            <a href="http://localhost:8080/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
+            <a href="/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
                ;>
             Elektroniczne Skrzynki Podawcze
             </a>
