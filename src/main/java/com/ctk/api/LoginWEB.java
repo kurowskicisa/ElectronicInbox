@@ -69,7 +69,7 @@ public class LoginWEB {
             "        </div>\n" +
             "\n" +
             "        <div class=\"col-lg-4\">\n" +
-            "            <form  method=\"post\" action=\"http://localhost:8080/api/statistics\" class=\"form-signin\">\n" +
+            "            <form  method=\"post\" action=\"/api/statistics\" class=\"form-signin\">\n" +
             "\n" +
             "                <h1 class=\"h3 mb-3 font-weight-normal\"></h1>\n" +
             "                <label for=\"inputUser\" class=\"sr-only\">mail</label>\n" +
