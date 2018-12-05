@@ -10,6 +10,7 @@ import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
+@SessionScoped
 @WebServlet(urlPatterns = "/statistics")
 public class StatisticSourceFileESPServlet extends HttpServlet {
 

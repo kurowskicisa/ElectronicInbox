@@ -2,10 +2,10 @@ package com.ctk.model;
 
 import com.ctk.services.ElectronicInbox;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 
-@SessionScoped
+@RequestScoped
 public class ElectronicInboxImpl implements ElectronicInbox, Serializable {
 
     private String name;

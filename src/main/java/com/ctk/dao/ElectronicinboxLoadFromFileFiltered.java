@@ -3,7 +3,7 @@ package com.ctk.dao;
 import com.ctk.model.ElectronicInboxImpl;
 import com.ctk.model.ElectronicInboxFilterFile;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import java.io.BufferedReader;
@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-@SessionScoped
+@RequestScoped
 public class ElectronicinboxLoadFromFileFiltered implements Serializable {
 
     @Inject
