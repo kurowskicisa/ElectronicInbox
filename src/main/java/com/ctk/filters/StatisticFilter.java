@@ -38,15 +38,23 @@ public class StatisticFilter extends HttpFilter {
                 httpres.resetBuffer();
                 httpres.setHeader("Content-Type", "text/html; charset=UTF-8");
                 httpres.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+                System.out.println("start /statistics");
+                if (!resp.isCommitted()) {
 
+                    resp.sendRedirect("/statistics");
+                }
                 chain.doFilter(req, resp);
 
             } else {
-                resp.sendRedirect("");
+                if (!resp.isCommitted()) {
+                    resp.sendRedirect("");
+                }
             }
             userRepository.getList().get(0).setAutenticate(false);
         } else {
-            resp.sendRedirect("");
+            if (!resp.isCommitted()) {
+                resp.sendRedirect("");
+            }
         }
     }
 }

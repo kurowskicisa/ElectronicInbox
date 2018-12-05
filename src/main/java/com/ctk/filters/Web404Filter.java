@@ -20,15 +20,24 @@ public class Web404Filter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+        final Integer status;
 
-        if (resp.getStatus() == 404) {
-      //      chain.doFilter(req, resp);
-      //      userRepository.getList().get(0).setAutenticate(false);
-            resp.sendRedirect("");
-        } else {
-            chain.doFilter(req, resp);
+        chain.doFilter(req, resp);
+
+        status = resp.getStatus();
+
+        if (status.equals(404)) {
+
+            if (userRepository.getList().size() > 0) {
+         //       userRepository.getList().get(0).setAutenticate(false);
+            }
+
+            resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+            resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+
+            if (!resp.isCommitted()) {
+                resp.sendRedirect("");
+            }
         }
     }
 }
