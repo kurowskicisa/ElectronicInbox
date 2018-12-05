@@ -1,8 +1,5 @@
 package com.ctk.filters;
 
-import com.ctk.dao.UserRepository;
-
-import javax.inject.Inject;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -27,11 +24,7 @@ public class electronicinbox4parametersFilter extends HttpFilter {
 
         while (en.hasMoreElements()) {
             counterParams++;
-
-            Object objOri = en.nextElement();
-//            String param = (String) objOri;
-//            String value = req.getParameter(param);
-
+            en.nextElement();
         }
 
         if (counterParams != 4) {
@@ -39,6 +32,8 @@ public class electronicinbox4parametersFilter extends HttpFilter {
                 resp.sendRedirect("");
             }
         }
+
         chain.doFilter(req, resp);
+
     }
 }

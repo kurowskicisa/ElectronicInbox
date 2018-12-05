@@ -28,10 +28,6 @@ public class Web404Filter extends HttpFilter {
 
         if (status.equals(404)) {
 
-            if (userRepository.getList().size() > 0) {
-         //       userRepository.getList().get(0).setAutenticate(false);
-            }
-
             resp.setHeader("Content-Type", "text/html; charset=UTF-8");
             resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
