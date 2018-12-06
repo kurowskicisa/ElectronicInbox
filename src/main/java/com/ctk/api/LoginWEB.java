@@ -107,7 +107,7 @@ public class LoginWEB {
             "                        <div class=\"card-body mr-sm-3\">\n" +
             "                            <h6 class=\"card-title\">liczba rekordów</h6>\n" +
             "                            <h2 class=\"card-text\">\n" +
-            "                                111004\n" +
+            "                                113110\n" +
             "                            </h2>\n" +
             "                        </div>\n" +
             "                    </div>\n" +
@@ -125,7 +125,7 @@ public class LoginWEB {
             "                        <div class=\"card-body mr-sm-3\">\n" +
             "                            <h6 class=\"card-title\">ostatnia aktualizacja bazy</h6>\n" +
             "                            <h2 class=\"card-text\">\n" +
-            "                                20 października 2018\n" +
+            "                                06 grudnia 2018\n" +
             "                            </h2>\n" +
             "                        </div>\n" +
             "                    </div>\n" +

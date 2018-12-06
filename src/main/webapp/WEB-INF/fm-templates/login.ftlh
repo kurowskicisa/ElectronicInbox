@@ -106,7 +106,7 @@
                         <div class="card-body mr-sm-3">
                             <h6 class="card-title">liczba rekordów</h6>
                             <h2 class="card-text">
-                                111004
+                                113110
                             </h2>
                         </div>
                     </div>
@@ -121,9 +121,9 @@
                         <div class="col-lg">
                             <div class="card text-white bg-primary text-center\">
                                 <div class="card-body mr-sm-3\">
-                                    <h6 class="card-title">ostatnia aktualizacja bazy</h6>
+                                    <h6 class="card-title">ostatnia 1004aktualizacja bazy</h6>
                                     <h2 class="card-text">
-                                        20 października 2018
+                                        06 grudnia 2018
                                     </h2>
                                 </div>
                             </div>
