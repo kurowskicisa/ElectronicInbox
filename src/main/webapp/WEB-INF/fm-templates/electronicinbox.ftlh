@@ -115,7 +115,7 @@
                                 style="margin-bottom: 0;"
                                 id="btnSearch"
                                 type="submit">
-                            Szukaj
+                            Znajdź
                         </button>
                     </div>
                 </div>
