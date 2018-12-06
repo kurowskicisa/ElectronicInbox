@@ -95,6 +95,42 @@ public class LoginWEB {
             "                <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Zaloguj</button>\n" +
             "\n" +
             "            </form>\n" +
+            "\n"+
+            "            <div class=\"container-fluid\">\n" +
+            "                <div class=\"row\">\n" +
+            "                    &nbsp;\n" +
+            "                </div>\n" +
+            "            </div>  "+
+            "            <div class=\"row\">\n" +
+            "                <div class=\"col-lg\">\n" +
+            "                    <div class=\"card text-white bg-success text-center\">\n" +
+            "                        <div class=\"card-body mr-sm-3\">\n" +
+            "                            <h6 class=\"card-title\">liczba rekordów</h6>\n" +
+            "                            <h2 class=\"card-text\">\n" +
+            "                                111004\n" +
+            "                            </h2>\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </div>"+
+            "\n" +
+            "            <div class=\"container-fluid\">\n" +
+            "                <div class=\"row\">\n" +
+            "                    &nbsp;\n" +
+            "                </div>\n" +
+            "            </div>  "+
+            "            <div class=\"row\">\n" +
+            "                <div class=\"col-lg\">\n" +
+            "                    <div class=\"card text-white bg-primary text-center\">\n" +
+            "                        <div class=\"card-body mr-sm-3\">\n" +
+            "                            <h6 class=\"card-title\">ostatnia aktualizacja bazy</h6>\n" +
+            "                            <h2 class=\"card-text\">\n" +
+            "                                20 października 2018\n" +
+            "                            </h2>\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>\n" +
+            "            </div>"+
             "\n" +
             "        </div>\n" +
             "    </div>\n" +
@@ -106,6 +142,7 @@ public class LoginWEB {
             "    </div>\n" +
             "</div>\n" +
             "\n" +
+
             "\n" +
             "<div class=\"container-fluid\" style=\"background-color: #007bff; padding: 5px; width:95%;\">\n" +
             "    <div class=\"row\">\n" +
