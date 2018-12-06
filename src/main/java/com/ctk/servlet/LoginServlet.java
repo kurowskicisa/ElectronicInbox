@@ -19,8 +19,8 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/costam")
-public class IndexServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/login")
+public class LoginServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -28,11 +28,11 @@ public class IndexServlet extends HttpServlet {
     @Inject
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.LoginServlet.class.getName());
 
     @Override
     public void init() {
-        APPLOGGER.info("[WEB index | init()] | ");
+        APPLOGGER.info("[WEB login | init()] | ");
     }
 
     @Override
@@ -41,29 +41,22 @@ public class IndexServlet extends HttpServlet {
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
-
-        try {
-            final String choiceUser = req.getParameter("user").trim();
-            APPLOGGER.info("[choiceUser] | " + choiceUser);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "login");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[WEB index | loaded] |");
+            APPLOGGER.info("[WEB login | loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
-            APPLOGGER.info("[WEB index | NOT loaded] |");
+            APPLOGGER.info("[WEB login | NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();
 
-        APPLOGGER.info("[WEB index | time of action (milliseconds)] | "
+        APPLOGGER.info("[WEB login | time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 }
