@@ -81,9 +81,10 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         if (currentPage.isEmpty()) {
             currentPageN = 1;
         } else {
-            try {
+            if (currentPage.matches("[0-9]*")) {
                 currentPageN = Integer.parseInt(currentPage);
-            } catch (NumberFormatException e) {
+            } else {
+                currentPageN = 1;
             }
         }
 

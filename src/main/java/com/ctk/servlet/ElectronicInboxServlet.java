@@ -112,6 +112,10 @@ public class ElectronicInboxServlet extends HttpServlet {
                 electronicInboxFilterFile.setPage("1");
             }
 
+            if (!electronicInboxFilterFile.getPage().matches("[0-9]*")) {
+                electronicInboxFilterFile.setPage("1");
+            }
+
             APPLOGGER.info("[getPage()   ] | " + electronicInboxFilterFile.getPage());
 
             if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
