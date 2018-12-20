@@ -20,20 +20,24 @@ public class Web404Filter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
+        System.out.println("Web404Filter: start");
+
         final Integer status;
 
         chain.doFilter(req, resp);
 
         status = resp.getStatus();
 
-        if (status.equals(404)) {
-
-            resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-            resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
-
-            if (!resp.isCommitted()) {
-                resp.sendRedirect("");
-            }
-        }
+//        if (status.equals(404)) {
+//
+//            System.out.println("Web404Filter: 404");
+//
+//            resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+//            resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+//
+//            if (!resp.isCommitted()) {
+//                resp.sendRedirect("/electronicinbox");
+//            }
+//        }
     }
 }

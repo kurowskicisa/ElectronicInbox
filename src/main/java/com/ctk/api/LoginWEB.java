@@ -11,7 +11,7 @@ public class LoginWEB {
             "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">" +
             "\n" +
             "    <script type=\"text/javascript\">\n" +
-            "    windows.location.href = \"/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1\"\n" +
+            "    windows.location.href = \"/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1\"\n" +
             "    </script>\n" +
             "\n" +
             "    <!-- Bootstrap CSS -->\n" +
@@ -62,14 +62,14 @@ public class LoginWEB {
             "\n" +
             "                <a class=\"btn btn-primary btn-lg\"\n" +
             "    style=\"width: 99%;\"\n" +
-            "    href=\"/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1\"\n" +
+            "    href=\"/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1\"\n" +
             "    role=\"button\">Przeglądaj i wyszukaj\n" +
             "            </a>\n" +
             "            </div>\n" +
             "        </div>\n" +
             "\n" +
             "        <div class=\"col-lg-4\">\n" +
-            "            <form  method=\"post\" action=\"/api/statistics\" class=\"form-signin\">\n" +
+            "            <form  method=\"post\" action=\"/electronicinbox/api/statistics\" class=\"form-signin\">\n" +
             "\n" +
             "                <h1 class=\"h3 mb-3 font-weight-normal\"></h1>\n" +
             "                <label for=\"inputUser\" class=\"sr-only\">mail</label>\n" +

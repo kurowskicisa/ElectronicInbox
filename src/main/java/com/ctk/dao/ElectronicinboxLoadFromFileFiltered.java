@@ -81,7 +81,10 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         if (currentPage.isEmpty()) {
             currentPageN = 1;
         } else {
-            currentPageN = Integer.parseInt(currentPage);
+            try {
+                currentPageN = Integer.parseInt(currentPage);
+            } catch (NumberFormatException e) {
+            }
         }
 
         String nameToCompare;

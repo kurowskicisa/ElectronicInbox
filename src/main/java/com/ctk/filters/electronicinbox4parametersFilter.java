@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
 
-@WebFilter(urlPatterns = "/electronicinbox")
+@WebFilter(urlPatterns = "/eib")
 public class electronicinbox4parametersFilter extends HttpFilter {
 
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)

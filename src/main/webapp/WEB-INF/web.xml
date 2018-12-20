@@ -20,7 +20,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/</location>
+        <location>/electronicinbox404</location>
     </error-page>
 
 </web-app>

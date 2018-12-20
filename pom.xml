@@ -69,18 +69,22 @@
         </dependency>
 
         <!-- Resteasy -->
+        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jackson-provider -->
+<!--
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson-provider</artifactId>
-            <version>2.3.2.Final</version>
+            <version>3.6.2.Final</version>
         </dependency>
-
+-->
+        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
+<!--
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
-            <version>3.1.2.Final</version>
-            <scope>test</scope>
+            <version>3.6.2.Final</version>
         </dependency>
+-->
 
     </dependencies>
 
