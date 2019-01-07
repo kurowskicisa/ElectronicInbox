@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -23,12 +22,28 @@ public class electronicinbox4parametersFilter extends HttpFilter {
 
         Integer counterParams = 0;
 
-        Enumeration en = req.getParameterNames();
-        List<String> paramNames = Arrays.asList();
-        paramNames.clear();
+        List<String> parametersName = new ArrayList<>();
+        parametersName.clear();
+        Enumeration<String> en = req.getParameterNames();
 
         while (en.hasMoreElements()) {
-            en.nextElement();
+            String paramName = en.nextElement();
+            parametersName.add(String.valueOf(paramName));
+        }
+
+        if (parametersName.contains("strona")){
+            counterParams++;
+        }
+
+        if (parametersName.contains("miejscowosc")){
+            counterParams++;
+        }
+
+        if (parametersName.contains("adres")){
+            counterParams++;
+        }
+
+        if (parametersName.contains("nazwa")){
             counterParams++;
         }
 
