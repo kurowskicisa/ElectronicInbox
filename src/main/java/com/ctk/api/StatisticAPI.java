@@ -27,8 +27,6 @@ public class StatisticAPI {
             @FormParam("user") String user,
             @FormParam("password") String password) {
 
-        System.out.println("/api/statistics");
-
         userReadFile.loadUserFile();
         boolean authenticated = userRepository.isAutenticated(user, password);
 
