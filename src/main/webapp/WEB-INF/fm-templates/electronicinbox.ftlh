@@ -30,7 +30,7 @@
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-3 h1">
-            <a href="/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
+            <a href="/electronicinbox" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
                ;>
             Elektroniczne Skrzynki Podawcze
             </a>
@@ -41,7 +41,7 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <form action="/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePage_??>${choicePage_}</#if>"
+            <form action="/electronicinbox/eib?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePage_??>${choicePage_}</#if>"
                   method="get" style="width: 100%;">
 
                 <div class="form-group row" style="margin-bottom: 0;">

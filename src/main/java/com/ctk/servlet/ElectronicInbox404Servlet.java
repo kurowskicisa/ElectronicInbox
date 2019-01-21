@@ -2,34 +2,28 @@ package com.ctk.servlet;
 
 import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
-
-import com.ctk.model.ElectronicInboxFilterFile;
-
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-
+import com.ctk.model.ElectronicInboxFilterFile;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/eib")
-public class ElectronicInboxServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/electronicinbox404")
+public class ElectronicInbox404Servlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -46,7 +40,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
 
-    private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(ElectronicInbox404Servlet.class.getName());
 
     @Override
     public void init() {
@@ -109,10 +103,6 @@ public class ElectronicInboxServlet extends HttpServlet {
                     electronicInboxFilterFile.getTotalPages());
 
             if (electronicInboxFilterFile.getPage().isEmpty()) {
-                electronicInboxFilterFile.setPage("1");
-            }
-
-            if (!electronicInboxFilterFile.getPage().matches("[0-9]*")) {
                 electronicInboxFilterFile.setPage("1");
             }
 

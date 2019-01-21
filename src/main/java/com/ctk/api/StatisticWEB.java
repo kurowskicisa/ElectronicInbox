@@ -10,10 +10,10 @@ public class StatisticWEB {
             "    <meta content-Type=\"text/html\" ; charset=\"utf-8\">\n" +
             "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">" +
             "\n" +
-            "    <meta http-equiv = \"refresh\" content =\"0, /statistics\">\n" +
+            "    <meta http-equiv = \"refresh\" content =\"0, /electronicinbox/statistics\">\n" +
             "\n" +
             "    <script type=\"text/javascript\">\n" +
-            "    windows.location.href = \"/statistics\"\n" +
+            "    windows.location.href = \"/electronicinbox/statistics\"\n" +
             "    </script>\n" +
             "\n" +
             "    <!-- Bootstrap CSS -->\n" +
@@ -41,7 +41,7 @@ public class StatisticWEB {
             "    <meta http-equiv = \"refresh\" content =\"0, /\">\n" +
             "\n" +
             "    <script type=\"text/javascript\">\n" +
-            "    windows.location.href = \"/\"\n" +
+            "    windows.location.href = \"/electronicinbox/\"\n" +
             "    </script>\n" +
             "\n" +
             "    <!-- Bootstrap CSS -->\n" +

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/statistics")
+@WebFilter(urlPatterns = "/electronicinbox/statistics")
 public class StatisticFilter extends HttpFilter {
 
     @Inject
@@ -55,7 +55,7 @@ public class StatisticFilter extends HttpFilter {
 
         } else {
             if (!resp.isCommitted()) {
-                resp.sendRedirect("");
+                resp.sendRedirect("/electronicinbox");
             }
         }
     }
