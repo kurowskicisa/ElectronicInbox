@@ -61,7 +61,7 @@
 
                 <a class="btn btn-primary btn-lg"
                    style="width: 99%;"
-                   href="/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+                   href="/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1"
                    role="button">Przeglądaj
                 </a>
             </div>
@@ -121,7 +121,7 @@
                         <div class="col-lg">
                             <div class="card text-white bg-primary text-center\">
                                 <div class="card-body mr-sm-3\">
-                                    <h6 class="card-title">ostatnia 1004aktualizacja bazy</h6>
+                                    <h6 class="card-title">ostatnia aktualizacja bazy</h6>
                                     <h2 class="card-text">
                                         06 grudnia 2018
                                     </h2>
@@ -199,7 +199,6 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous">
     </script>
-
 
 </body>
 
