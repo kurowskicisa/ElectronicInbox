@@ -125,7 +125,7 @@ public class LoginWEB {
             "                        <div class=\"card-body mr-sm-3\">\n" +
             "                            <h6 class=\"card-title\">ostatnia aktualizacja bazy</h6>\n" +
             "                            <h2 class=\"card-text\">\n" +
-            "                                22 stycznia 2018\n" +
+            "                                22 stycznia 2019\n" +
             "                            </h2>\n" +
             "                        </div>\n" +
             "                    </div>\n" +
