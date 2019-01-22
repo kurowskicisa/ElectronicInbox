@@ -62,16 +62,16 @@ public class LoginWEB {
             "\n" +
             "        <div class=\"col-lg-8\">\n" +
             "            <div class=\"jumbotron\">\n" +
-            "                <h1 class=\"display-4\">Elektroniczne Skrzynki Podawcze</h1>\n" +
-            "                <p class=\"lead\">Zapraszamy Państwa do przeglądania elektronicznych skrzynek podawczych</p>\n" +
-            "                <hr class=\"my-4\">\n" +
-            "    <h2>Udostępniona baza Elektronicznych Skrzynek Podawczych przez</h2>\n" +
-            "    <h2>epuap.gov.pl jest możliwa do pobrania w formatach: csv i xml</h2>\n" +
-            "                <h3>&nbsp;</h3>\n" +
-            "    <h2>Teraz możesz również skorzystać z przeglądania i wyszukiwania</h2>\n" +
-            "                <h3>&nbsp;</h3>\n" +
-            "                <h3>&nbsp;</h3>\n" +
-            "                <h3>&nbsp;</h3>\n" +
+            "                <h1 class=\"display-4\" style=\"font-size:2.9vw\">Elektroniczne Skrzynki Podawcze</h1>\n" +
+            "                <p class=\"lead\" style=\"font-size:1.2vw\">Zapraszamy Państwa do przeglądania elektronicznych skrzynek podawczych</p>\n" +
+            "                <hr class=\"my-4\" style=\"font-size:2vw\">\n" +
+            "    <h2 style=\"font-size:2vw\">Udostępniona baza Elektronicznych Skrzynek Podawczych przez</h2>\n" +
+            "    <h2 style=\"font-size:2vw\">epuap.gov.pl jest możliwa do pobrania w formatach: csv i xml</h2>\n" +
+            "                <h3 style=\"font-size:0.2vw\">&nbsp;</h3>\n" +
+            "    <h2 style=\"font-size:2vw\">Teraz możesz również skorzystać z przeglądania i wyszukiwania</h2>\n" +
+            "                <h3 style=\"font-size:0.2vw\">&nbsp;</h3>\n" +
+            "                <h3 style=\"font-size:0.2vw\">&nbsp;</h3>\n" +
+            "                <h3 style=\"font-size:0.2vw\">&nbsp;</h3>\n" +
             "\n" +
             "                <a class=\"btn btn-primary btn-lg\"\n" +
             "    style=\"width: 99%;\"\n" +
