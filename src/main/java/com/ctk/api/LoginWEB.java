@@ -14,6 +14,18 @@ public class LoginWEB {
             "    windows.location.href = \"/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1\"\n" +
             "    </script>\n" +
             "\n" +
+            "<style>" +
+            "\n" +
+            ".graypage {" +
+            "-webkit-filter: grayscale(100%);" +
+            "-moz-filter: grayscale(100%);" +
+            "-o-filter: grayscale(100%);" +
+            "-ms-filter: grayscale(100%);" +
+            "filter: grayscale(100%);" +
+            "}" +
+            "\n" +
+            "</style>" +
+            "\n" +
             "    <!-- Bootstrap CSS -->\n" +
             "    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\"\n" +
             "    integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">\n" +
@@ -29,6 +41,7 @@ public class LoginWEB {
             "\n" +
             "<body onload=\"noBack();\"\n" +
             "      onpageshow=\"if (event.persisted) noBack();\" onunload=\"\"\n" +
+            "class =\"graypage\"" +
             "      style=\"background-color: white\">\n" +
             "\n" +
             "\n" +
