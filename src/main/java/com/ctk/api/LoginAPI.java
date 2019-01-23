@@ -36,12 +36,12 @@ public class LoginAPI {
                 .build();
     }
 
-    @POST
-    @Path("/")
-    public Response getLoginForm2() {
-
-        return Response.ok()
-                .entity(loginWEB.LoginWEB())
-                .build();
-    }
+//    @POST
+//    @Path("/")
+//    public Response postLoginForm() {
+//
+//        return Response.ok()
+//                .entity(loginWEB.LoginWEB())
+//                .build();
+//    }
 }
