@@ -40,17 +40,8 @@ public class StatisticFilter extends HttpFilter {
                 httpres.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
                 chain.doFilter(req, resp);
-
-//            } else {
-//                resp.sendRedirect("/electronicinbox/");
-//                chain.doFilter(req, resp);
             }
-
-//        } else {
-//            resp.sendRedirect("/electronicinbox/");
-//            chain.doFilter(req, resp);
         }
-
         resp.sendRedirect("/electronicinbox/");
         chain.doFilter(req, resp);
     }
