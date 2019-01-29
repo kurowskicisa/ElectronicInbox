@@ -42,7 +42,9 @@ public class StatisticFilter extends HttpFilter {
                 chain.doFilter(req, resp);
             }
         }
-        resp.sendRedirect("/electronicinbox/");
+        if (!resp.isCommitted()) {
+            resp.sendRedirect("/electronicinbox/");
+        }
         chain.doFilter(req, resp);
     }
 }
