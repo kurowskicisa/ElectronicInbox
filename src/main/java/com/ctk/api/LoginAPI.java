@@ -1,6 +1,7 @@
 package com.ctk.api;
 
 import com.ctk.dao.UserRepository;
+import com.ctk.model.GrayScale;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +20,9 @@ public class LoginAPI {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    GrayScale grayScale;
 
     public LoginAPI() {
     }

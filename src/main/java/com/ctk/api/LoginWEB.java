@@ -1,5 +1,7 @@
 package com.ctk.api;
 
+import javax.inject.Inject;
+
 public class LoginWEB {
 
     private String loginWEB = "<!doctype html>\n" +
@@ -21,7 +23,10 @@ public class LoginWEB {
             "-moz-filter: grayscale(100%);" +
             "-o-filter: grayscale(100%);" +
             "-ms-filter: grayscale(100%);" +
-            "filter: grayscale(100%);" +
+            "filter: grayscale("+
+            "100"
+            +
+            "%);" +
             "}" +
             "\n" +
             "</style>" +
