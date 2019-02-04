@@ -18,32 +18,32 @@ public class LoginWEB {
             "\n" +
             "    <style>" +
             "\n" +
-            "    .graypage {" +
+            "      .graypage {" +
             "\n" +
-            "    -webkit-filter: grayscale(" +
+            "        -webkit-filter: grayscale(" +
             "100"
             +"%);" +
             "\n" +
-            "    -moz-filter: grayscale(" +
+            "        -moz-filter: grayscale(" +
             "100"
             +"%);" +
             "\n" +
-            "    -o-filter: grayscale(" +
+            "        -o-filter: grayscale(" +
             "100"
             +
             "%);" +
             "\n" +
-            "    -ms-filter: grayscale(" +
+            "        -ms-filter: grayscale(" +
             "100"
             +
             "%);" +
             "\n" +
-            "    filter: grayscale(" +
+            "        filter: grayscale(" +
             "100"
             +
             "%);" +
             "\n" +
-            "    }" +
+            "        }" +
             "\n" +
             "    </style>" +
             "\n" +
