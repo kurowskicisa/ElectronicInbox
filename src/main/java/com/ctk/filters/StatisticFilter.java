@@ -44,7 +44,8 @@ public class StatisticFilter extends HttpFilter {
         }
         if (!resp.isCommitted()) {
             resp.sendRedirect("/electronicinbox/");
+            chain.doFilter(req, resp);
         }
-        chain.doFilter(req, resp);
+//        chain.doFilter(req, resp);
     }
 }

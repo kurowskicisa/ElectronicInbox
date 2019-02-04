@@ -21,8 +21,8 @@ public class LoginAPI {
     @Inject
     private UserRepository userRepository;
 
-    @Inject
-    GrayScale grayScale;
+//    @Inject
+//    GrayScale grayScale;
 
     public LoginAPI() {
     }
