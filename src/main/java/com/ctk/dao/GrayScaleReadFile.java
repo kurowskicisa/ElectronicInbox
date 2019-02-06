@@ -17,14 +17,14 @@ public class GrayScaleReadFile implements Serializable {
     @Inject
     private Settings settings;
 
-//    @Inject
-//    private GrayScale grayScale;
+    @Inject
+    private GrayScale grayScale;
 
     public void loadGrayScaleFile() {
         String line = null;
         BufferedReader reader = null;
 
-    //    grayScale.setGrayScale("000");
+        grayScale.setGrayScale("000");
 
         try {
 
@@ -36,7 +36,7 @@ public class GrayScaleReadFile implements Serializable {
                 if (line.matches("[0-9]{0,3}")) {
                     int testValue = Integer.parseInt(line);
                     if (testValue >= 0 && testValue <= 100) {
-          //              grayScale.setGrayScale(line);
+                        grayScale.setGrayScale(line);
                     }
                 }
             }

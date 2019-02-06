@@ -8,15 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-    <style>
-        .graypage {
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            filter: grayscale(100%);
-        }
-    </style>
+    <#include "include/grayscale.ftlh">
 
     <style>
         @media screen and (min-width:1000px){

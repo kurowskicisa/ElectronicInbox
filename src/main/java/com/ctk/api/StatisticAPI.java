@@ -37,7 +37,7 @@ public class StatisticAPI {
         }
 
         return Response.ok()
-                .entity(statisticWEB.getWeb())
+                .entity(statisticWEB.StatisticWeb())
                 .build();
     }
 }
