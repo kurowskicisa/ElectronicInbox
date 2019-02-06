@@ -31,16 +31,13 @@ public class StatisticAPI {
         boolean authenticated = userRepository.isAutenticated(user, password);
 
         if (authenticated) {
-
             userRepository.getList().get(0).setAutenticate(true);
-
-            return Response.ok()
-                    .entity(statisticWEB.getWeb())
-                    .build();
+        } else {
+            userRepository.getList().get(0).setAutenticate(false);
         }
 
         return Response.ok()
-                .entity(statisticWEB.getWebstart())
+                .entity(statisticWEB.StatisticWeb())
                 .build();
     }
 }

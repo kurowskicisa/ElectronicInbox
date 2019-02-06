@@ -7,9 +7,11 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
-@WebFilter(urlPatterns = "/electronicinbox")
+@WebFilter(urlPatterns = "/eib")
 public class electronicinbox4parametersFilter extends HttpFilter {
 
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
@@ -20,16 +22,34 @@ public class electronicinbox4parametersFilter extends HttpFilter {
 
         Integer counterParams = 0;
 
-        Enumeration en = req.getParameterNames();
+        List<String> parametersName = new ArrayList<>();
+        parametersName.clear();
+        Enumeration<String> en = req.getParameterNames();
 
         while (en.hasMoreElements()) {
+            String paramName = en.nextElement();
+            parametersName.add(String.valueOf(paramName));
+        }
+
+        if (parametersName.contains("strona")){
             counterParams++;
-            en.nextElement();
+        }
+
+        if (parametersName.contains("miejscowosc")){
+            counterParams++;
+        }
+
+        if (parametersName.contains("adres")){
+            counterParams++;
+        }
+
+        if (parametersName.contains("nazwa")){
+            counterParams++;
         }
 
         if (counterParams != 4) {
             if (!resp.isCommitted()) {
-                resp.sendRedirect("");
+                resp.sendRedirect("/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1");
             }
         }
 

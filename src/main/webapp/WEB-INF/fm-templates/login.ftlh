@@ -11,6 +11,16 @@
         windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
     </script>
 
+    <style>
+        .graypage {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            filter: grayscale(${err_}100%);
+        }
+    </style>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -29,7 +39,8 @@
 
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
-      style="background-color: white">
+      style="background-color: white"
+      class ="graypage">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
@@ -61,7 +72,7 @@
 
                 <a class="btn btn-primary btn-lg"
                    style="width: 99%;"
-                   href="/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+                   href="/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1"
                    role="button">Przeglądaj
                 </a>
             </div>
@@ -121,7 +132,7 @@
                         <div class="col-lg">
                             <div class="card text-white bg-primary text-center\">
                                 <div class="card-body mr-sm-3\">
-                                    <h6 class="card-title">ostatnia 1004aktualizacja bazy</h6>
+                                    <h6 class="card-title">ostatnia aktualizacja bazy</h6>
                                     <h2 class="card-text">
                                         06 grudnia 2018
                                     </h2>
@@ -199,7 +210,6 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous">
     </script>
-
 
 </body>
 
