@@ -1,6 +1,8 @@
 package com.ctk.api;
 
+import com.ctk.dao.DataBaseInfo;
 import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.model.DataBase;
 import com.ctk.model.GrayScale;
 
 import javax.inject.Inject;
@@ -13,16 +15,27 @@ public class LoginWEB {
     @Inject
     GrayScaleReadFile grayScaleReadFile;
 
+    @Inject
+    DataBase dataBase;
+
+    @Inject
+    DataBaseInfo dataBaseInfo;
+
     public String LoginWEB() {
         String loginWEB = "";
-
         String grayScale_ = "000";
+        String dataBaseDateUpdate_ = "";
+        String dataBaseRecordsCounter_ = "";
 
         grayScaleReadFile.loadGrayScaleFile();
 
         if (!(grayScale.getGrayScale() == null)) {
             grayScale_ = grayScale.getGrayScale();
         }
+
+        dataBaseInfo.loadDataBaseInfo();
+        dataBaseDateUpdate_ = dataBase.getDataBaseDateUpdate();
+        dataBaseRecordsCounter_ = dataBase.getDataBaseRecordsCounter();
 
         loginWEB = "<!doctype html>\n" +
                 "<html lang=\"pl\">\n" +
@@ -159,7 +172,8 @@ public class LoginWEB {
                 "                        <div class=\"card-body mr-sm-3\">\n" +
                 "                            <h6 class=\"card-title\">liczba rekordów</h6>\n" +
                 "                            <h2 class=\"card-text\">\n" +
-                "                                118910\n" +
+                dataBaseRecordsCounter_ +
+                "\n" +
                 "                            </h2>\n" +
                 "                        </div>\n" +
                 "                    </div>\n" +
@@ -177,7 +191,8 @@ public class LoginWEB {
                 "                        <div class=\"card-body mr-sm-3\">\n" +
                 "                            <h6 class=\"card-title\">ostatnia aktualizacja bazy</h6>\n" +
                 "                            <h2 class=\"card-text\">\n" +
-                "                                22 stycznia 2019\n" +
+                dataBaseDateUpdate_ +
+                "\n" +
                 "                            </h2>\n" +
                 "                        </div>\n" +
                 "                    </div>\n" +
