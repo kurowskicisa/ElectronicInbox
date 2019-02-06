@@ -3,11 +3,13 @@ package com.ctk.servlet;
 import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
 
+import com.ctk.dao.GrayScaleReadFile;
 import com.ctk.model.ElectronicInboxFilterFile;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 
+import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -45,6 +47,12 @@ public class ElectronicInboxServlet extends HttpServlet {
 
     @Inject
     private ElectronicInboxFilterFile electronicInboxFilterFile;
+
+    @Inject
+    GrayScale grayScale;
+
+    @Inject
+    GrayScaleReadFile grayScaleReadFile;
 
     private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
 
@@ -92,6 +100,10 @@ public class ElectronicInboxServlet extends HttpServlet {
             }
 
             electronicinboxLoadFromFileFiltered.loadData();
+
+            grayScaleReadFile.loadGrayScaleFile();
+            modelGeneratorTemplate.setModel("grayScale_",
+                    grayScale.getGrayScale());
 
             modelGeneratorTemplate.setModel("choiceName_",
                     electronicInboxFilterFile.getName());

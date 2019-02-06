@@ -11,6 +11,16 @@
         windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
     </script>
 
+    <style>
+        .graypage {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            filter: grayscale(${err_}100%);
+        }
+    </style>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -29,7 +39,8 @@
 
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
-      style="background-color: white">
+      style="background-color: white"
+      class ="graypage">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">

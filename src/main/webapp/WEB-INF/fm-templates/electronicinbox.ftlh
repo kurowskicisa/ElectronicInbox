@@ -7,6 +7,22 @@
     <meta content-Type="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+    <#include "include/grayscale.ftlh">
+
+    <style>
+        @media screen and (min-width:1000px){
+           .card-title, .card-subtitle, .card-text, .btn, .form-group {
+             font-size:1vw;
+           }
+        }
+        @media screen and (max-width:1000px){
+            .card-title, .card-subtitle, .card-text {
+                font-size:10px;
+            }
+        }
+    </style>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -25,13 +41,15 @@
 
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
+      class ="graypage"
       style="background-color: white">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-3 h1">
-            <a href="/electronicinbox" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
-               ;>
+            <a href="/electronicinbox"
+               style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
+            >
             Elektroniczne Skrzynki Podawcze
             </a>
         </span>
@@ -44,7 +62,7 @@
             <form action="/electronicinbox/eib?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePage_??>${choicePage_}</#if>"
                   method="get" style="width: 100%;">
 
-                <div class="form-group row" style="margin-bottom: 0;">
+                <div class="form-group row" style="margin-bottom: 0; font-size:1vw;">
 
                     <div class="input-group col-lg-4">
                     <input class="form-control"
@@ -101,7 +119,7 @@
                         >
                         <div class="input-group-append" style="display: inline-block;">
                             <button class="btn btn-outline-secondary"
-                                    style="margin-bottom: 0;"
+                                    style="margin-bottom: 0"
                                     id="btnPlace"
                                     type="submit">
                                 O
@@ -194,7 +212,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <#if d.regon??>Regon: ${d.regon},</#if>
                                 <#if d.address??>adres: ${d.address},</#if>
-                                <#if d.zip??>${d.zip},</#if>
+                                <#if d.zip??>${d.zip}</#if>
                                 <#if d.place??>${d.place}</#if></h6>
                             <h6 class="card-text">
                                 <#if d.uri??>${d.uri}</#if>

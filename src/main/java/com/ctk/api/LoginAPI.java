@@ -1,6 +1,9 @@
 package com.ctk.api;
 
 import com.ctk.dao.UserRepository;
+import com.ctk.freemarker.ModelGeneratorTemplate;
+import com.ctk.freemarker.TemplateProvider;
+import freemarker.template.Template;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,28 +23,61 @@ public class LoginAPI {
     @Inject
     private UserRepository userRepository;
 
-    public LoginAPI() {
-    }
+
+    @Inject
+    private TemplateProvider templateProvider;
+
+    @Inject
+    private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @GET
     @Path("/")
 
     public Response getLoginForm() {
 
+        System.out.println("test 2");
+
+        Template template = null;
+
         if (userRepository.getList().size() > 0) {
             userRepository.getList().get(0).setAutenticate(false);
         }
+
+//        try {
+//            template = templateProvider.getTemplate1("login");
+//            modelGeneratorTemplate.setModel("err_",
+//                    "1");
+//            StringWriter stringWriter = new StringWriter();
+//
+//            try {
+//                template.process(modelGeneratorTemplate.getModel(), stringWriter);
+//            } catch (TemplateException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+//        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+//        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
+//
+//        try {
+//            template = templateProvider.getTemplate(getServletContext(), "login");
+//
+//            template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
+//            APPLOGGER.info("[WEB login | loaded] |");
+//
+//        } catch (TemplateException e) {
+//            e.printStackTrace();
+//  //          APPLOGGER.info("[WEB login | NOT loaded] |");
+//        }
+
+
         return Response.ok()
+//                .entity(template.toString())
                 .entity(loginWEB.LoginWEB())
                 .build();
     }
 
-    @POST
-    @Path("/")
-    public Response getLoginForm2() {
-
-        return Response.ok()
-                .entity(loginWEB.LoginWEB())
-                .build();
-    }
 }

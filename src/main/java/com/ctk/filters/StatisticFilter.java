@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/electronicinbox/statistics")
+@WebFilter(urlPatterns = "/statistics")
 public class StatisticFilter extends HttpFilter {
 
     @Inject
@@ -39,24 +39,13 @@ public class StatisticFilter extends HttpFilter {
                 httpres.setHeader("Content-Type", "text/html; charset=UTF-8");
                 httpres.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-                if (!resp.isCommitted()) {
-
-                    resp.sendRedirect("/statistics");
-                }
                 chain.doFilter(req, resp);
-
-            } else {
-                if (!resp.isCommitted()) {
-                    resp.sendRedirect("");
-                }
-            }
-
-            userRepository.getList().get(0).setAutenticate(false);
-
-        } else {
-            if (!resp.isCommitted()) {
-                resp.sendRedirect("/electronicinbox");
             }
         }
+        if (!resp.isCommitted()) {
+            resp.sendRedirect("/electronicinbox/");
+            chain.doFilter(req, resp);
+        }
+//        chain.doFilter(req, resp);
     }
 }
