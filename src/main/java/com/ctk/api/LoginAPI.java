@@ -23,7 +23,6 @@ public class LoginAPI {
     @Inject
     private UserRepository userRepository;
 
-
     @Inject
     private TemplateProvider templateProvider;
 
@@ -34,8 +33,6 @@ public class LoginAPI {
     @Path("/")
 
     public Response getLoginForm() {
-
-        System.out.println("test 2");
 
         Template template = null;
 

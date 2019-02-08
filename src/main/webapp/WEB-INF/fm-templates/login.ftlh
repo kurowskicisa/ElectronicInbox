@@ -11,15 +11,7 @@
         windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
     </script>
 
-    <style>
-        .graypage {
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            filter: grayscale(${err_}100%);
-        }
-    </style>
+    <#include "include/grayscale.ftlh">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
