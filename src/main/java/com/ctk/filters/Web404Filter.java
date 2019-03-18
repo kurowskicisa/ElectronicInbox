@@ -14,9 +14,6 @@ import java.io.IOException;
 @WebFilter(urlPatterns = "/*")
 public class Web404Filter extends HttpFilter {
 
-    @Inject
-    UserRepository userRepository;
-
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
@@ -27,7 +24,6 @@ public class Web404Filter extends HttpFilter {
         status = resp.getStatus();
 
         if (status.equals(404)) {
-
             resp.setHeader("Content-Type", "text/html; charset=UTF-8");
             resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
