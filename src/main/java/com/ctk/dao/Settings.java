@@ -1,7 +1,8 @@
 package com.ctk.dao;
 
-import javax.enterprise.context.ApplicationScoped;
+// import javax.enterprise.context.ApplicationScoped;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

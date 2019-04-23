@@ -1,9 +1,12 @@
 package com.ctk.api;
 
+import com.ctk.dao.GrayScaleReadFile;
 import com.ctk.dao.UserRepository;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
+import com.ctk.model.GrayScale;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,6 +14,9 @@ import javax.inject.Inject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Arrays;
 
 @Path("/")
 public class LoginAPI {
@@ -29,10 +35,16 @@ public class LoginAPI {
     @Inject
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
+    @Inject
+    GrayScale grayScale;
+
+    @Inject
+    GrayScaleReadFile grayScaleReadFile;
+
     @GET
     @Path("/")
 
-    public Response getLoginForm() {
+    public Response getLoginApi() {
 
         Template template = null;
 
@@ -40,10 +52,15 @@ public class LoginAPI {
             userRepository.getList().get(0).setAutenticate(false);
         }
 
+        grayScaleReadFile.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
+
+        modelGeneratorTemplate.setModel("err_",
+                "1");
+
 //        try {
 //            template = templateProvider.getTemplate1("login");
-//            modelGeneratorTemplate.setModel("err_",
-//                    "1");
 //            StringWriter stringWriter = new StringWriter();
 //
 //            try {
@@ -54,8 +71,6 @@ public class LoginAPI {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
-
 //        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
 //        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 //
@@ -63,13 +78,11 @@ public class LoginAPI {
 //            template = templateProvider.getTemplate(getServletContext(), "login");
 //
 //            template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-//            APPLOGGER.info("[WEB login | loaded] |");
 //
 //        } catch (TemplateException e) {
 //            e.printStackTrace();
 //  //          APPLOGGER.info("[WEB login | NOT loaded] |");
 //        }
-
 
         return Response.ok()
 //                .entity(template.toString())
