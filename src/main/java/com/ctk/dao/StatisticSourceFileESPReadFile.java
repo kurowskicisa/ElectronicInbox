@@ -6,9 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
