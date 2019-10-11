@@ -1,9 +1,11 @@
 package com.ctk.servlet;
 
+import com.ctk.dao.GrayScaleReadFile;
 import com.ctk.dao.StatisticSourceFileESPReadFile;
 import com.ctk.dao.UserRepository;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
+import com.ctk.model.GrayScale;
 import com.ctk.model.StatisticSourceFileESP;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -40,6 +42,12 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
 
     @Inject
+    private GrayScale grayScale;
+
+    @Inject
+    private GrayScaleReadFile grayScaleReadFile;
+
+    @Inject
     private UserRepository userRepository;
 
     private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPServlet.class.getName());
@@ -47,6 +55,10 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Override
     public void init() {
         APPLOGGER.info("|statistics: init() ");
+
+        grayScaleReadFile.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
     }
 
     @Override
