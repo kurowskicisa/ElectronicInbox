@@ -27,4 +27,8 @@ public class UserRepository implements Serializable {
     public void add(String username, String password) {
         users.add(new User(username, password));
     }
+
+    public void empty() {
+        users.clear();
+    }
 }

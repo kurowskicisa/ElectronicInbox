@@ -1,7 +1,9 @@
 package com.ctk.servlet;
 
+import com.ctk.dao.GrayScaleReadFile;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
+import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +30,12 @@ public class LoginServlet extends HttpServlet {
     @Inject
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
+    @Inject
+    GrayScale grayScale;
+
+    @Inject
+    GrayScaleReadFile grayScaleReadFile;
+
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.LoginServlet.class.getName());
 
     @Override
@@ -42,6 +50,10 @@ public class LoginServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
+
+        grayScaleReadFile.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "login");

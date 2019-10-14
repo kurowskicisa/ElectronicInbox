@@ -52,7 +52,6 @@ public class UserReadFile implements Serializable {
             BufferedReader reader)
             throws IOException {
 
-
         while (line != null) {
 
             if (!line.equals("")) {

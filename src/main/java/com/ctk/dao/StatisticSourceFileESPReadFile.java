@@ -6,9 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -96,12 +94,12 @@ public class StatisticSourceFileESPReadFile implements Serializable {
             BufferedReader reader)
             throws IOException {
 
-        Integer nameLength = 0;
-        Integer regonLength = 0;
-        Integer addressLength = 0;
-        Integer zipLength = 0;
-        Integer placeLength = 0;
-        Integer uriLength = 0;
+        Integer nameLength;
+        Integer regonLength;
+        Integer addressLength;
+        Integer zipLength;
+        Integer placeLength;
+        Integer uriLength;
 
         while (line != null) {
 
