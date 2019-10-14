@@ -10,22 +10,22 @@ import javax.inject.Inject;
 public class LoginWEB {
 
     @Inject
-    GrayScale grayScale;
+    private GrayScale grayScale;
 
     @Inject
-    GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleReadFile grayScaleReadFile;
 
     @Inject
-    DataBase dataBase;
+    private DataBase dataBase;
 
     @Inject
-    DataBaseInfo dataBaseInfo;
+    private DataBaseInfo dataBaseInfo;
 
     public String LoginWEB() {
-        String loginWEB = "";
+        String loginWEB;
         String grayScale_ = "000";
-        String dataBaseDateUpdate_ = "";
-        String dataBaseRecordsCounter_ = "";
+        String dataBaseDateUpdate_;
+        String dataBaseRecordsCounter_;
 
         grayScaleReadFile.loadGrayScaleFile();
 

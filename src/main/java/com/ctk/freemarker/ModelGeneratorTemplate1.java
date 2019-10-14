@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ApplicationScoped
-public class ModelGeneratorTemplate {
+public class ModelGeneratorTemplate1 {
 
     private Map<String, Object> model = new HashMap<>();
 

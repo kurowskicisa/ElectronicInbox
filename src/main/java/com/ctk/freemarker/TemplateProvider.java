@@ -37,10 +37,8 @@ public class TemplateProvider {
         cfg.setLogTemplateExceptions(true);
         cfg.setWrapUncheckedExceptions(true);
 
-        //       cfg.setServletContextForTemplateLoading(TEMPLATE_DIRECTORY_PATH);
-        cfg.setDirectoryForTemplateLoading(new File("C:\\wildfly\\standalone\\"));
-        //    cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_DIRECTORY_PATH));
+        cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_DIRECTORY_PATH));
+
         return cfg.getTemplate(templateName + TEMPLATE_EXTENSION);
     }
-
 }

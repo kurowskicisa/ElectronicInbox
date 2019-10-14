@@ -1,7 +1,9 @@
 package com.ctk.servlet;
 
+import com.ctk.dao.GrayScaleReadFile;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
+import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +21,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
-@WebServlet(urlPatterns = "/costam")
+@WebServlet(urlPatterns = "/electronicinbox2")
 public class IndexServlet extends HttpServlet {
 
     @Inject
@@ -27,6 +29,12 @@ public class IndexServlet extends HttpServlet {
 
     @Inject
     private ModelGeneratorTemplate modelGeneratorTemplate;
+
+    @Inject
+    GrayScale grayScale;
+
+    @Inject
+    GrayScaleReadFile grayScaleReadFile;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
 
@@ -49,6 +57,9 @@ public class IndexServlet extends HttpServlet {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        grayScaleReadFile.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "login");
