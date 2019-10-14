@@ -43,10 +43,10 @@ public class LoginAPI {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    GrayScale grayScale;
+    private GrayScale grayScale;
 
     @Inject
-    GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleReadFile grayScaleReadFile;
 
     @GET
     @Path("/")
@@ -57,12 +57,8 @@ public class LoginAPI {
             userRepository.getList().get(0).setAutenticate(false);
         }
 
-      //  Template test234 = loadLoginAPI();
-
-
 
         return Response.ok()
-//                .entity(test234.toString())
                 .entity(loginWEB.LoginWEB())
                 .build();
     }

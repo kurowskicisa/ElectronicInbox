@@ -8,13 +8,13 @@ import javax.inject.Inject;
 public class StatisticWEB {
 
     @Inject
-    GrayScale grayScale;
+    private GrayScale grayScale;
 
     @Inject
-    GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleReadFile grayScaleReadFile;
 
     public String StatisticWeb() {
-        String statisticWeb = "";
+        String statisticWeb;
 
         String grayScale_ = "000";
 

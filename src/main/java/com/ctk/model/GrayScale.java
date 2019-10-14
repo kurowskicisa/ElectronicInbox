@@ -1,7 +1,6 @@
 package com.ctk.model;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 @RequestScoped

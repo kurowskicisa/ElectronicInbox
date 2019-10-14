@@ -21,7 +21,7 @@ public class StatisticAPI {
     private UserReadFile userReadFile;
 
     @Inject
-    StatisticWEB statisticWEB;
+    private StatisticWEB statisticWEB;
 
     @POST
     @Path("/statistics")
