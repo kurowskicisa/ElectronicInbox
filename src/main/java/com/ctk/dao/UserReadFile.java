@@ -1,5 +1,8 @@
 package com.ctk.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
@@ -13,6 +16,8 @@ import java.util.List;
 @SessionScoped
 public class UserReadFile implements Serializable {
 
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.UserReadFile.class.getName());
+
     @Inject
     private Settings settings;
 
@@ -22,6 +27,8 @@ public class UserReadFile implements Serializable {
     public void loadUserFile() {
         String line = null;
         BufferedReader reader = null;
+
+        APPLOGGER.info("UserReadFile | loadUserFile | *");
 
         try {
 
@@ -51,6 +58,8 @@ public class UserReadFile implements Serializable {
             String line,
             BufferedReader reader)
             throws IOException {
+
+        APPLOGGER.info("UserReadFile | readingAllUsers | *");
 
         while (line != null) {
 

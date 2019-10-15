@@ -2,6 +2,8 @@ package com.ctk.dao;
 
 import com.ctk.model.ElectronicInboxImpl;
 import com.ctk.model.ElectronicInboxFilterFile;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -18,6 +20,8 @@ import java.util.List;
 
 @RequestScoped
 public class ElectronicinboxLoadFromFileFiltered implements Serializable {
+
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.ElectronicinboxLoadFromFileFiltered.class.getName());
 
     @Inject
     private Settings settings = new Settings();
@@ -39,6 +43,8 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
     public void loadData() {
         String line = null;
         BufferedReader reader = null;
+
+        APPLOGGER.info("ElectronicinboxLoadFromFileFiltered | loadData | *");
 
         try {
 
@@ -68,10 +74,12 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
             BufferedReader reader)
             throws IOException {
 
+        APPLOGGER.info("ElectronicinboxLoadFromFileFiltered | readingLESPLinesFromFileFiltered | *");
+
         double pagesCounter = 0.00;
         double dataCounter = 0.00;
         double dataTotalCounter = 0.00;
-        Integer currentPageN = 0;
+        double currentPageN = 0.00;
 
         String currentPage = electronicInboxFilterFile.getPage();
         String name = electronicInboxFilterFile.getName();

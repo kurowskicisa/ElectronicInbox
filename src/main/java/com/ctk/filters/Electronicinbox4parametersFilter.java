@@ -1,5 +1,8 @@
 package com.ctk.filters;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -12,18 +15,22 @@ import java.util.Enumeration;
 import java.util.List;
 
 @WebFilter(urlPatterns = "/eib")
-public class electronicinbox4parametersFilter extends HttpFilter {
+public class Electronicinbox4parametersFilter extends HttpFilter {
+
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.filters.Electronicinbox4parametersFilter.class.getName());
 
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
+        APPLOGGER.info("Electronicinbox4parametersFilter | doFilter");
+
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        Integer counterParams = 0;
+        int counterParams = 0;
 
         List<String> parametersName = new ArrayList<>();
-        parametersName.clear();
+//        parametersName.clear();
         Enumeration<String> en = req.getParameterNames();
 
         while (en.hasMoreElements()) {

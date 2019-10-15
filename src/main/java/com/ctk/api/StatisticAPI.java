@@ -2,6 +2,8 @@ package com.ctk.api;
 
 import com.ctk.dao.UserReadFile;
 import com.ctk.dao.UserRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
@@ -13,6 +15,8 @@ import javax.ws.rs.core.Response;
 @Path("/api")
 @Produces("text/html")
 public class StatisticAPI {
+
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.api.StatisticAPI.class.getName());
 
     @Inject
     private UserRepository userRepository;
@@ -28,6 +32,8 @@ public class StatisticAPI {
     public Response authenticateForm(
             @FormParam("user") String user,
             @FormParam("password") String password) {
+
+        APPLOGGER.info("StatisticAPI | POST | *");
 
         userRepository.empty();
         userReadFile.loadUserFile();

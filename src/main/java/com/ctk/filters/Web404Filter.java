@@ -1,8 +1,5 @@
 package com.ctk.filters;
 
-import com.ctk.dao.UserRepository;
-
-import javax.inject.Inject;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -28,7 +25,7 @@ public class Web404Filter extends HttpFilter {
             resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
             if (!resp.isCommitted()) {
-                resp.sendRedirect("/electronicinbox");
+                resp.sendRedirect("/electronicinbox/");
             }
         }
     }

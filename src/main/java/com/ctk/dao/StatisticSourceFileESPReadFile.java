@@ -15,6 +15,8 @@ import java.util.List;
 @SessionScoped
 public class StatisticSourceFileESPReadFile implements Serializable {
 
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.StatisticSourceFileESPReadFile.class.getName());
+
     @Inject
     private Settings settings = new Settings();
 
@@ -28,11 +30,11 @@ public class StatisticSourceFileESPReadFile implements Serializable {
     private static final int FIELD_PLACE = 4;
     private static final int FIELD_URI = 5;
 
-    private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPReadFile.class.getName());
-
     public void loadFileESP() {
         String line = null;
         BufferedReader reader = null;
+
+        APPLOGGER.info("StatisticSourceFileESPReadFile | loadFileESP | *");
 
         statisticSourceFileESP.setNameLengthMin(0);
         statisticSourceFileESP.setNameLengthMax(0);
@@ -93,6 +95,8 @@ public class StatisticSourceFileESPReadFile implements Serializable {
             String line,
             BufferedReader reader)
             throws IOException {
+
+        APPLOGGER.info("StatisticSourceFileESPReadFile | readingLESPLinesFromFileAll | *");
 
         Integer nameLength;
         Integer regonLength;

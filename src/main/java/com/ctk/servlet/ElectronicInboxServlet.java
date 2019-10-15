@@ -58,11 +58,14 @@ public class ElectronicInboxServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info(" | ");
+
+        APPLOGGER.info("init() | ");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        APPLOGGER.info("doGet() | ");
 
         LocalTime startDoGet = now();
 
@@ -178,11 +181,11 @@ public class ElectronicInboxServlet extends HttpServlet {
             Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[WEB loaded] |");
+            APPLOGGER.info("[\"electronicinbox\" loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
-            APPLOGGER.info("[WEB NOT loaded] |");
+            APPLOGGER.info("[\"electronicinbox\" NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();
