@@ -1,13 +1,11 @@
 package com.ctk.freemarker;
 
-import com.ctk.App;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.ServletContext;
-import java.io.File;
 import java.io.IOException;
 
 @ApplicationScoped

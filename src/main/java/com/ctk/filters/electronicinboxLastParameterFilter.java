@@ -18,8 +18,7 @@ public class electronicinboxLastParameterFilter extends HttpFilter {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
-        String page = "";
-        Optional<String> pageOptional = Optional.of(page);
+        String page = Optional.ofNullable(req.getParameter("strona")).orElse("");
 
         if (!page.matches("[0-9]*")) {
             if (!resp.isCommitted()) {
