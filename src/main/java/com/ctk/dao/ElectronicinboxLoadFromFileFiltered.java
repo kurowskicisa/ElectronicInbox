@@ -71,7 +71,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         double pagesCounter = 0.00;
         double dataCounter = 0.00;
         double dataTotalCounter = 0.00;
-        Integer currentPageN = 0;
+        double currentPageN = 0.00;
 
         String currentPage = electronicInboxFilterFile.getPage();
         String name = electronicInboxFilterFile.getName();

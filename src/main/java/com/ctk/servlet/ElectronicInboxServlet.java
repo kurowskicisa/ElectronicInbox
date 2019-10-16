@@ -58,16 +58,19 @@ public class ElectronicInboxServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info(" | ");
+
+        APPLOGGER.info("init() | ");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        APPLOGGER.info("doGet() | ");
+
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
         resetWebDate();
 
@@ -164,7 +167,6 @@ public class ElectronicInboxServlet extends HttpServlet {
                     electronicInboxDao.getList());
 
         } catch (NullPointerException e) {
-            APPLOGGER.warn("[No web parameters] | ");
             APPLOGGER.info("[No web parameters] | ");
         }
 
@@ -178,11 +180,11 @@ public class ElectronicInboxServlet extends HttpServlet {
             Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
 
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[WEB loaded] |");
+            APPLOGGER.info("[\"electronicinbox\" loaded] |");
 
         } catch (TemplateException e) {
             e.printStackTrace();
-            APPLOGGER.info("[WEB NOT loaded] |");
+            APPLOGGER.info("[\"electronicinbox\" NOT loaded] |");
         }
 
         LocalTime stopDoGet = now();

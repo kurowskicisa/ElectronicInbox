@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-
 @SessionScoped
 public class GrayScaleReadFile implements Serializable {
 
@@ -21,8 +20,8 @@ public class GrayScaleReadFile implements Serializable {
     private GrayScale grayScale;
 
     public void loadGrayScaleFile() {
-        String line = null;
-        BufferedReader reader = null;
+        String line;
+        BufferedReader reader;
 
         grayScale.setGrayScale("000");
 
@@ -43,7 +42,5 @@ public class GrayScaleReadFile implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }

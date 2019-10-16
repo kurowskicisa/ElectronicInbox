@@ -27,18 +27,4 @@ public class TemplateProvider {
 
         return cfg.getTemplate(templateName + TEMPLATE_EXTENSION);
     }
-
-    public Template getTemplate1(String templateName)
-            throws IOException {
-        final Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
-        cfg.setClassForTemplateLoading(App.class, TEMPLATE_DIRECTORY_PATH);
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        cfg.setLogTemplateExceptions(true);
-        cfg.setWrapUncheckedExceptions(true);
-
-        cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_DIRECTORY_PATH));
-
-        return cfg.getTemplate(templateName + TEMPLATE_EXTENSION);
-    }
 }

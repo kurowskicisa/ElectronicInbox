@@ -54,7 +54,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("|statistics: init() ");
+        APPLOGGER.info("init() ");
 
         grayScaleReadFile.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
@@ -64,6 +64,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        APPLOGGER.info("doGet() ");
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");

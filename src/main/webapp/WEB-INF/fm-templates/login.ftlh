@@ -65,13 +65,13 @@
                 <a class="btn btn-primary btn-lg"
                    style="width: 99%;"
                    href="/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1"
-                   role="button">Przeglądaj
+                   role="button">Przeglądaj i szukaj
                 </a>
             </div>
         </div>
 
         <div class="col-lg-4">
-            <form class="form-signin">
+            <form method="post" action="/electronicinbox/api/statistics" class="form-signin">
 
                 <h1 class="h3 mb-3 font-weight-normal"></h1>
                 <label for="inputUser" class="sr-only">mail</label>
@@ -81,9 +81,7 @@
                        class="form-control"
                        placeholder="użytkownik"
                        required autofocus>
-
                 &nbsp;
-
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password"
                        id="inputPassword"
@@ -91,9 +89,7 @@
                        class="form-control"
                        placeholder="hasło"
                        required>
-
                 &nbsp;
-
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
 
             </form>
@@ -103,36 +99,32 @@
                     &nbsp;
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg">
                     <div class="card text-white bg-success text-center">
                         <div class="card-body mr-sm-3">
                             <h6 class="card-title">liczba rekordów</h6>
                             <h2 class="card-text">
-                                113110
+                                ${dataBaseRecordsCounter_}
                             </h2>
                         </div>
                     </div>
-
 
                     <div class="container-fluid">
                         <div class="row">
                             &nbsp;
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="card text-white bg-primary text-center\">
-                                <div class="card-body mr-sm-3\">
-                                    <h6 class="card-title">ostatnia aktualizacja bazy</h6>
-                                    <h2 class="card-text">
-                                        06 grudnia 2018
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
+                    <div class="card text-white bg-primary text-center">
+                        <div class="card-body mr-sm-3">
+                             <h6 class="card-title">ostatnia aktualizacja bazy</h6>
+                             <h2 class="card-text">
+                                 ${dataBaseDateUpdate_}
+                             </h2>
+                         </div>
+                     </div>
 
                     <div class="container-fluid">
                         <div class="row">

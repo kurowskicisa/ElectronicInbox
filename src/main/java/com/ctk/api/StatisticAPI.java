@@ -2,6 +2,8 @@ package com.ctk.api;
 
 import com.ctk.dao.UserReadFile;
 import com.ctk.dao.UserRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;

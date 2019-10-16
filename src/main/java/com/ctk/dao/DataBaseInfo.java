@@ -26,10 +26,10 @@ public class DataBaseInfo implements Serializable {
     private static final int FIELD_DATABASE_RECORDS_COUNTER = 1;
 
     public void loadDataBaseInfo() {
-        String line = null;
-        BufferedReader reader = null;
+        String line;
+        BufferedReader reader;
 
-        dataBase.setDataBaseDateUpdate("2019-02-01");
+        dataBase.setDataBaseDateUpdate("2019-01-01");
         dataBase.setDataBaseRecordsCounter("0");
 
         try {
