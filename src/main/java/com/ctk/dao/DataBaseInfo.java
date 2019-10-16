@@ -1,8 +1,6 @@
 package com.ctk.dao;
 
 import com.ctk.model.DataBase;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -18,8 +16,6 @@ import java.util.List;
 @SessionScoped
 public class DataBaseInfo implements Serializable {
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.DataBaseInfo.class.getName());
-
     @Inject
     private Settings settings;
 
@@ -32,8 +28,6 @@ public class DataBaseInfo implements Serializable {
     public void loadDataBaseInfo() {
         String line;
         BufferedReader reader;
-
-        APPLOGGER.info("DataBaseInfo | loadDataBaseInfo | *");
 
         dataBase.setDataBaseDateUpdate("2019-01-01");
         dataBase.setDataBaseRecordsCounter("0");

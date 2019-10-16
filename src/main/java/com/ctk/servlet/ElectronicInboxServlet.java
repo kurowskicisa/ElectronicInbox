@@ -70,7 +70,7 @@ public class ElectronicInboxServlet extends HttpServlet {
         LocalTime startDoGet = now();
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
         resetWebDate();
 
@@ -167,7 +167,6 @@ public class ElectronicInboxServlet extends HttpServlet {
                     electronicInboxDao.getList());
 
         } catch (NullPointerException e) {
-            APPLOGGER.warn("[No web parameters] | ");
             APPLOGGER.info("[No web parameters] | ");
         }
 

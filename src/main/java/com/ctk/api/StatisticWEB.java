@@ -2,15 +2,10 @@ package com.ctk.api;
 
 import com.ctk.dao.GrayScaleReadFile;
 import com.ctk.model.GrayScale;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
 public class StatisticWEB {
-
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.api.StatisticWEB.class.getName());
-
 
     @Inject
     private GrayScale grayScale;
@@ -20,9 +15,6 @@ public class StatisticWEB {
 
     public String StatisticWeb() {
         String statisticWeb;
-
-        APPLOGGER.info("StatisticWEB | POST | *");
-
 
         String grayScale_ = "000";
 

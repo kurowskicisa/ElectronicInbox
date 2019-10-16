@@ -25,12 +25,11 @@ public class Electronicinbox4parametersFilter extends HttpFilter {
         APPLOGGER.info("Electronicinbox4parametersFilter | doFilter");
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
         int counterParams = 0;
 
         List<String> parametersName = new ArrayList<>();
-//        parametersName.clear();
         Enumeration<String> en = req.getParameterNames();
 
         while (en.hasMoreElements()) {

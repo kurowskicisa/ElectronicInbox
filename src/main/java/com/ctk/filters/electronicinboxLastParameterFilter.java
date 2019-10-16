@@ -15,7 +15,7 @@ public class electronicinboxLastParameterFilter extends HttpFilter {
             throws IOException, ServletException {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
         String page = req.getParameter("strona");
 

@@ -1,8 +1,6 @@
 package com.ctk.dao;
 
 import com.ctk.model.GrayScale;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -12,11 +10,8 @@ import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-
 @SessionScoped
 public class GrayScaleReadFile implements Serializable {
-
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.GrayScaleReadFile.class.getName());
 
     @Inject
     private Settings settings;
@@ -27,8 +22,6 @@ public class GrayScaleReadFile implements Serializable {
     public void loadGrayScaleFile() {
         String line;
         BufferedReader reader;
-
-        APPLOGGER.info("GrayScaleReadFile | loadGrayScaleFile | *");
 
         grayScale.setGrayScale("000");
 
@@ -49,7 +42,5 @@ public class GrayScaleReadFile implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }

@@ -1,7 +1,5 @@
 package com.ctk.dao;
 
-// import javax.enterprise.context.ApplicationScoped;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

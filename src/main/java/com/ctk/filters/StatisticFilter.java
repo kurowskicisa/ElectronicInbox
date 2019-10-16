@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/electronicinbox/statistics")
+@WebFilter(urlPatterns = {"/statistics"})
 public class StatisticFilter extends HttpFilter {
 
     @Inject
@@ -30,22 +30,20 @@ public class StatisticFilter extends HttpFilter {
             logged = userRepository.getList().get(0).isAutenticate();
 
             if (logged) {
-                HttpServletResponse httpres = resp; // (HttpServletResponse) resp;
-                httpres.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-                httpres.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-                httpres.setDateHeader("Expires", 0); // Proxies.
-                httpres.flushBuffer();
-                httpres.resetBuffer();
-                httpres.setHeader("Content-Type", "text/html; charset=UTF-8");
-                httpres.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+                resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+                resp.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+                resp.setDateHeader("Expires", 0); // Proxies.
+                resp.flushBuffer();
+                resp.resetBuffer();
+                resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+                resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
                 chain.doFilter(req, resp);
             }
         }
         if (!resp.isCommitted()) {
-            resp.sendRedirect("/");   // /electronicinbox/
+            resp.sendRedirect("/electronicinbox/");
             chain.doFilter(req, resp);
         }
-//        chain.doFilter(req, resp);
     }
 }

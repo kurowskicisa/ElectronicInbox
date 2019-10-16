@@ -16,8 +16,6 @@ import javax.ws.rs.core.Response;
 @Produces("text/html")
 public class StatisticAPI {
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.api.StatisticAPI.class.getName());
-
     @Inject
     private UserRepository userRepository;
 
@@ -32,8 +30,6 @@ public class StatisticAPI {
     public Response authenticateForm(
             @FormParam("user") String user,
             @FormParam("password") String password) {
-
-        APPLOGGER.info("StatisticAPI | POST | *");
 
         userRepository.empty();
         userReadFile.loadUserFile();
