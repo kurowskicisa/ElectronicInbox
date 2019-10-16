@@ -7,6 +7,7 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebFilter(urlPatterns = "/eib")
 public class electronicinboxLastParameterFilter extends HttpFilter {
@@ -17,7 +18,8 @@ public class electronicinboxLastParameterFilter extends HttpFilter {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
-        String page = req.getParameter("strona");
+        String page = "";
+        Optional<String> pageOptional = Optional.of(page);
 
         if (!page.matches("[0-9]*")) {
             if (!resp.isCommitted()) {
