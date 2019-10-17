@@ -7,7 +7,7 @@
     <groupId>com.ctk</groupId>
     <artifactId>ElectronicInbox</artifactId>
     <packaging>war</packaging>
-    <version>0.00.006-ALFA</version>
+    <version>0.00.008-ALFA</version>
     <name>ElectronicInbox</name>
 
     <url>http://maven.apache.org</url>
@@ -43,15 +43,6 @@
             <version>2.11.1</version>
         </dependency>
 
-        <!-- Jackson -->
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
-<!--
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.9.8</version>
-        </dependency>
--->
         <!-- JUnit -->
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
@@ -69,53 +60,11 @@
             <version>2.3.28</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-<!--
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.26</version>
-        </dependency>
--->
-        <!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.ws.rs/jboss-jaxrs-api_2.1_spec -->
-        <!--
-        <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
-            <version>1.0.2.Final</version>
-        </dependency>
-        -->
-
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>8.0</version>
-        </dependency>
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.12</version>
         </dependency>
-
-
-        <!-- Resteasy -->
-        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jackson-provider -->
-<!--
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson-provider</artifactId>
-            <version>3.7.0.Final</version>
-        </dependency>
--->
-        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
-<!--
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-            <version>3.7.0.Final</version>
-        </dependency>
--->
 
     </dependencies>
 
@@ -132,25 +81,6 @@
                 </configuration>
             </plugin>
 
-            <!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
-<!--
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>2.0.1.Final</version>
-                <configuration>
-                    <name>electronicinbox.war</name>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
--->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
