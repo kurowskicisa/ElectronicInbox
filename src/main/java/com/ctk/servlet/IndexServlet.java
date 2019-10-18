@@ -33,10 +33,10 @@ public class IndexServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    GrayScale grayScale;
+    private GrayScale grayScale;
 
     @Inject
-    GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleReadFile grayScaleReadFile;
 
     @Inject
     private DataBase dataBase;

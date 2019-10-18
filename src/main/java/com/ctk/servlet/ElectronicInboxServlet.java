@@ -49,10 +49,10 @@ public class ElectronicInboxServlet extends HttpServlet {
     private ElectronicInboxFilterFile electronicInboxFilterFile;
 
     @Inject
-    GrayScale grayScale;
+    private GrayScale grayScale;
 
     @Inject
-    GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleReadFile grayScaleReadFile;
 
     private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
 
