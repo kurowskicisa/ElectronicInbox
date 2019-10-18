@@ -28,9 +28,6 @@ public class DataBaseInfo implements Serializable {
         String line;
         BufferedReader reader;
 
-        dataBase.setDataBaseDateUpdate("2019-01-01");
-        dataBase.setDataBaseRecordsCounter("0");
-
         try {
 
             reader = Files.newBufferedReader(settings.getPathDatabaseInfo(), StandardCharsets.UTF_8);
@@ -47,7 +44,6 @@ public class DataBaseInfo implements Serializable {
             e.printStackTrace();
         }
     }
-
 
     private String monthToPolish(String dateToConvert) {
 
