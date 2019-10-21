@@ -34,50 +34,6 @@ public class StatisticWEB {
                         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">" +
                         "\n" +
                         "    <meta http-equiv = \"refresh\" content =\"0, /electronicinbox/statistics\">\n" +
-                        "\n" +
-                        "    <script type=\"text/javascript\">\n" +
-                        "    windows.location.href = \"/electronicinbox/statistics\"\n" +
-                        "    </script>\n" +
-                        "\n" +
-                        "    <style>" +
-                        "\n" +
-                        "      .graypage {" +
-                        "\n" +
-                        "        -webkit-filter: grayscale(" +
-                        grayScale_ +
-                        "%);" +
-                        "\n" +
-                        "        -moz-filter: grayscale(" +
-                        grayScale_ +
-                        "%);" +
-                        "\n" +
-                        "        -o-filter: grayscale(" +
-                        grayScale_ +
-                        "%);" +
-                        "\n" +
-                        "        -ms-filter: grayscale(" +
-                        grayScale_ +
-                        "%);" +
-                        "\n" +
-                        "        filter: grayscale(" +
-                        grayScale_ +
-                        "%);" +
-                        "\n" +
-                        "        }" +
-                        "\n" +
-                        "    </style>" +
-                        "\n" +
-                        "    <!-- Bootstrap CSS -->\n" +
-                        "    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\"\n" +
-                        "          integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">\n" +
-                        "\n" +
-                        "   <script type=\"text/javascript\">\n" +
-                        "        window.history.forward();\n" +
-                        "        function noBack() { window.history.forward(); }\n" +
-                        "    </script>\n" +
-                        "\n" +
-                        "    <title>Elektroniczne Skrzynki Podawcze</title>\n" +
-                        "\n" +
                         "</head>" +
                         "</html>";
 

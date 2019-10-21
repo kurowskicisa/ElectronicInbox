@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebFilter(urlPatterns = "/eib")
+@WebFilter(urlPatterns = "/eib_new")
 public class electronicinboxLastParameterFilter extends HttpFilter {
 
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
@@ -22,7 +22,7 @@ public class electronicinboxLastParameterFilter extends HttpFilter {
 
         if (!page.matches("[0-9]*")) {
             if (!resp.isCommitted()) {
-                resp.sendRedirect("/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1");
+                resp.sendRedirect("/electronicinbox");
             }
         }
 

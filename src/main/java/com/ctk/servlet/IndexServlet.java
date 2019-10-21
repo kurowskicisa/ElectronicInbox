@@ -11,6 +11,7 @@ import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
+@RequestScoped
 @WebServlet(urlPatterns = { "", "/", "/login"})
 public class IndexServlet extends HttpServlet {
 

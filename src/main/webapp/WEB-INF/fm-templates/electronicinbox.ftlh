@@ -10,14 +10,15 @@
     <#include "include/grayscale.ftlh">
 
     <style>
-        @media screen and (min-width:1000px){
-           .card-title, .card-subtitle, .card-text, .btn, .form-group {
-             font-size:1vw;
-           }
+        @media screen and (min-width: 1000px) {
+            .card-title, .card-subtitle, .card-text, .btn, .form-group {
+                font-size: 1vw;
+            }
         }
-        @media screen and (max-width:1000px){
+
+        @media screen and (max-width: 1000px) {
             .card-title, .card-subtitle, .card-text {
-                font-size:10px;
+                font-size: 10px;
             }
         }
     </style>
@@ -40,7 +41,7 @@
 
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
-      class ="graypage"
+      class="graypage"
       style="background-color: white">
 
 <div class="position-sticky sticky-top">
@@ -58,21 +59,25 @@
 
         <nav class="navbar navbar-light bg-light">
 
+            <!--
             <form action="/electronicinbox/eib?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePage_??>${choicePage_}</#if>"
                   method="get" style="width: 100%;">
+-->
+
+            <form action="/electronicinbox/eib" method="get" style="width: 100%;">
 
                 <div class="form-group row" style="margin-bottom: 0; font-size:1vw;">
 
                     <div class="input-group col-lg-4">
-                    <input class="form-control"
-                           style="margin-bottom: 0;"
-                           id="inputName"
-                           name="nazwa"
-                           type="search"
-                           placeholder="Nazwa instytucji (fragment)"
-                           aria-label="Search"
-                           aria-describedby="btnName"
-                            value="<#if choiceName_??>${choiceName_}<#else >""</#if>"
+                        <input class="form-control"
+                               style="margin-bottom: 0;"
+                               id="inputName"
+                               name="nazwa"
+                               type="search"
+                               placeholder="Nazwa instytucji (fragment)"
+                               aria-label="Search"
+                               aria-describedby="btnName"
+                               value="<#if choiceName_??>${choiceName_}<#else > </#if>"
                         >
                         <div class="input-group-append" style="display: inline-block;">
                             <button class="btn btn-outline-secondary"
@@ -86,14 +91,14 @@
                     </div>
 
                     <div class="input-group col-lg-3">
-                    <input class="form-group form-control"
-                           style="margin-bottom: 0;"
-                           id="inputAddress"
-                           name="adres"
-                           type="search"
-                           placeholder="ulica (fragment)"
-                           aria-label="Search"
-                            value="<#if choiceAddress_??>${choiceAddress_}<#else >""</#if>"
+                        <input class="form-group form-control"
+                               style="margin-bottom: 0;"
+                               id="inputAddress"
+                               name="adres"
+                               type="search"
+                               placeholder="ulica (fragment)"
+                               aria-label="Search"
+                               value="<#if choiceAddress_??>${choiceAddress_}<#else > </#if>"
                         >
                         <div class="input-group-append" style="display: inline-block;">
                             <button class="btn btn-outline-secondary"
@@ -107,14 +112,14 @@
                     </div>
 
                     <div class="input-group col-lg-3">
-                    <input class="form-group form-control"
-                           style="margin-bottom: 0;"
-                           id="inputPlace"
-                           name="miejscowosc"
-                           type="search"
-                           placeholder="miejscowość (fragment)"
-                           aria-label="Search"
-                            value="<#if choicePlace_??>${choicePlace_}<#else >""</#if>"
+                        <input class="form-group form-control"
+                               style="margin-bottom: 0;"
+                               id="inputPlace"
+                               name="miejscowosc"
+                               type="search"
+                               placeholder="miejscowość (fragment)"
+                               aria-label="Search"
+                               value="<#if choicePlace_??>${choicePlace_}<#else > </#if>"
                         >
                         <div class="input-group-append" style="display: inline-block;">
                             <button class="btn btn-outline-secondary"
@@ -136,67 +141,83 @@
                         </button>
                     </div>
                 </div>
+            </form>
+            <#if choiceTotalPages_??>
 
-<#if choiceTotalPages_??>
+            <input
+                    id="inputPage"
+                    name="strona"
+                    type="hidden"
+                    value=<#if choicePage_??>${choicePage_}<#else >1</#if>
+            >
+            <div class="form-group row" style="margin-bottom: 0;">
+                <form action="/electronicinbox/eib/first" method="post" style="width: 100%;">
 
-                <input
-                        id="inputPage"
-                        name="strona"
-                        type="hidden"
-                        value=<#if choicePage_??>${choicePage_}<#else >1</#if>
-                >
-
-                <div class="form-group row" style="margin-bottom: 0;">
 
                     <div class="col-lg-3">
                         <button class="btn btn-outline-success btn-block"
                                 id="btnFirstPage"
+                                name="firstPage"
                                 style="margin-bottom: 0;"
-                                type="submit">
-                            ||<< 1 <<
+                                type="submit"
+                                value="<#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if>">
+                            << <#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if> <<
                         </button>
                     </div>
+                </form>
 
+                <form action="/electronicinbox/eib/prev" method="post" style="width: 100%;">
                     <div class="col-lg-3">
                         <button class="btn btn-outline-success btn-block"
                                 id="btnPrevPage"
+                                name="prevPage"
                                 style="margin-bottom: 0;"
-                                type="submit">
-                            <<  <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> <<
+                                type="submit"
+                                value="<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>">
+                            << <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> <<
                         </button>
                     </div>
+                </form>
 
+
+                <form action="/electronicinbox/eib/next" method="post" style="width: 100%;">
                     <div class="col-lg-3">
                         <button class="btn btn-outline-success btn-block"
                                 id="btnNextPage"
+                                name="nextPage"
                                 style="margin-bottom: 0;"
-                                type="submit">
-                            >>  <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> >>
+                                type="submit"
+                                value="<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>">
+                            >> <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> >>
                         </button>
                     </div>
+                </form>
 
+                <form action="/electronicinbox/eib/last" method="post" style="width: 100%;">
                     <div class="col-lg-3">
                         <button class="btn btn-outline-success btn-block"
                                 id="btnLastPage"
+                                name="lastPage"
                                 style="margin-bottom: 0;"
-                                type="submit">
-                            >>  <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> >>||
+                                type="submit"
+                                value="<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>">
+                            >> <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> >>||
                         </button>
                     </div>
-                </div>
-<#else >
-                <input
-                        id="inputPage"
-                        name="strona"
-                        type="hidden"
-                        value=1
-                >
-</#if>
+            </div>
 
-            </form>
+    <#else >
+        <input
+                id="inputPage"
+                name="strona"
+                type="hidden"
+                value=1
+        >
+    </#if>
 
-        </nav>
-    </div>
+
+    </nav>
+
 </div>
 
 <#if database??>
@@ -480,7 +501,7 @@
     $('#btnName').on('click', function () {
         document.getElementById('inputName').value = "";
         document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox?nazwa=&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
@@ -488,7 +509,7 @@
     $('#btnAddress').on('click', function () {
         document.getElementById('inputAddress').value = "";
         document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=1';
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
@@ -496,7 +517,7 @@
     $('#btnPlace').on('click', function () {
         document.getElementById('inputPlace').value = "";
         document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=&strona=1';
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
@@ -504,35 +525,35 @@
 <script>
     $('#btnSearch').on('click', function () {
         document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
 <script>
     $('#btnFirstPage').on('click', function () {
         document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}<#else >1</#if>&strona=1';
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
 <script>
     $('#btnPrevPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>';
+        document.getElementById('inputPage').value = <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
 <script>
     $('#btnNextPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>';
+        document.getElementById('inputPage').value = <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
 <script>
     $('#btnLastPage').on('click', function () {
-        document.getElementById('inputPage').value=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
-        window.location = '/electronicinbox?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>';
+        document.getElementById('inputPage').value = <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
+        window.location = '/electronicinbox/eib';
     });
 </script>
 
