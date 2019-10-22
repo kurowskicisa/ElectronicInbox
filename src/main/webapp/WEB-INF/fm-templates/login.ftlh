@@ -4,7 +4,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content-Type="text/html" ; charset="utf-8">
+    <meta content-Type="text/html" ; charset="utf-8" ;>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script type="text/javascript">
@@ -32,7 +32,7 @@
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
       style="background-color: white"
-      class ="graypage">
+      class="graypage">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
@@ -64,7 +64,7 @@
 
                 <form method="get" action="/electronicinbox/eib" class="form-signin">
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Przeglądaj i szukaj</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Przeglądaj i szukaj</button>
                 </form>
 
 
@@ -120,12 +120,12 @@
 
                     <div class="card text-white bg-primary text-center">
                         <div class="card-body mr-sm-3">
-                             <h6 class="card-title">ostatnia aktualizacja bazy</h6>
-                             <h2 class="card-text">
-                                 ${dataBaseDateUpdate_}
-                             </h2>
-                         </div>
-                     </div>
+                            <h6 class="card-title">ostatnia aktualizacja bazy</h6>
+                            <h2 class="card-text">
+                                ${dataBaseDateUpdate_}
+                            </h2>
+                        </div>
+                    </div>
 
                     <div class="container-fluid">
                         <div class="row">

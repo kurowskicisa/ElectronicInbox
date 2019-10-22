@@ -62,7 +62,8 @@ public class ElectronicInboxServlet extends HttpServlet {
     public void init() {
 
         APPLOGGER.info("init() | ");
-        System.out.println(electronicInboxFilterFile.getPage());
+
+//        System.out.println(electronicInboxFilterFile.getPage());
         resetFormFields();
 
     }
@@ -76,10 +77,40 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
+        resp.setCharacterEncoding("UTF-8");
+        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
+        req.setCharacterEncoding("UTF-8");
+        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
+/*
+        String choiceName_ = electronicInboxFilterFile.getName();
+        String choiceAddress_ = electronicInboxFilterFile.getAddress();
+        String choicePlace_ = electronicInboxFilterFile.getPlace();
+*/
 
-        System.out.println(electronicInboxFilterFile.getPage());
+if (!(req.getParameter("miejscowosc") ==null)) {
+    String input = new String(req.getParameter("miejscowosc").getBytes("iso-8859-1"), "utf-8");
+    System.out.println("input:" +input);
+}
+
+
+        modelGeneratorTemplate.setModel("choiceName_",
+                electronicInboxFilterFile.getName());
+
+        modelGeneratorTemplate.setModel("choiceAddress_",
+                electronicInboxFilterFile.getAddress());
+
+        modelGeneratorTemplate.setModel("choicePlace_",
+                electronicInboxFilterFile.getPlace());
+
 
         electronicinboxLoadFromFileFiltered.loadData();
+
+        grayScaleReadFile.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
+
+
+        APPLOGGER.info("[getPage()       ] | " + electronicInboxFilterFile.getPage());
 
 
         if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
@@ -107,9 +138,13 @@ public class ElectronicInboxServlet extends HttpServlet {
         APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
 
 
-
         modelGeneratorTemplate.setModel("choiceTotalPages_",
                 electronicInboxFilterFile.getTotalPages());
+        APPLOGGER.info("[getTotalPages()   ] | " + electronicInboxFilterFile.getTotalPages());
+
+
+        modelGeneratorTemplate.setModel("database",
+                electronicInboxDao.getList());
 
 /*
         try {
@@ -238,6 +273,9 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
+        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
+        req.setCharacterEncoding("UTF-8");
+        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
 
         System.out.println(electronicInboxFilterFile.getPage());
         try {

@@ -4,8 +4,9 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content-Type="text/html" ; charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content-Type="text/html" ; charset="utf-8" ;>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" ;>
 
     <#include "include/grayscale.ftlh">
 
@@ -59,7 +60,11 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <form action="/electronicinbox/eib" method="get" style="width: 100%;">
+            <form
+                    action="/electronicinbox/eib/find"
+                    method="post"
+                    accept-charset="UTF-8"
+                    style="width: 100%;">
 
                 <div class="form-group row" style="margin-bottom: 0; font-size:1vw;">
 
@@ -157,6 +162,28 @@
                             value="<#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if>">
                         ||<< <#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if> <<
                     </button>
+
+                    <input
+                            id="inputName"
+                            name="nazwa"
+                            type="hidden"
+                            value="<#if choiceName_??>${choiceName_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputAddress"
+                            name="adres"
+                            type="hidden"
+                            value="<#if choiceAddress_??>${choiceAddress_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputPlace"
+                            name="miejscowosc"
+                            type="hidden"
+                            value="<#if choicePlace_??>${choicePlace_}<#else > </#if>"
+                    >
+
                 </form>
 
                 <form class="col-lg-3" action="/electronicinbox/eib/prev" method="post">
@@ -168,6 +195,28 @@
                             value="<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>">
                         << <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> <<
                     </button>
+
+                    <input
+                            id="inputName"
+                            name="nazwa"
+                            type="hidden"
+                            value="<#if choiceName_??>${choiceName_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputAddress"
+                            name="adres"
+                            type="hidden"
+                            value="<#if choiceAddress_??>${choiceAddress_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputPlace"
+                            name="miejscowosc"
+                            type="hidden"
+                            value="<#if choicePlace_??>${choicePlace_}<#else > </#if>"
+                    >
+
                 </form>
 
                 <form class="col-lg-3" action="/electronicinbox/eib/next" method="post">
@@ -179,6 +228,28 @@
                             value="<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>">
                         >> <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> >>
                     </button>
+
+                    <input
+                            id="inputName"
+                            name="nazwa"
+                            type="hidden"
+                            value="<#if choiceName_??>${choiceName_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputAddress"
+                            name="adres"
+                            type="hidden"
+                            value="<#if choiceAddress_??>${choiceAddress_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputPlace"
+                            name="miejscowosc"
+                            type="hidden"
+                            value="<#if choicePlace_??>${choicePlace_}<#else > </#if>"
+                    >
+
                 </form>
 
                 <form class="col-lg-3" action="/electronicinbox/eib/last" method="post">
@@ -190,14 +261,38 @@
                             value="<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>">
                         >> <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> >>||
                     </button>
-                    <#else >
-                        <input
-                                id="inputPage"
-                                name="strona"
-                                type="hidden"
-                                value=1
-                        >
-                    </#if>
+
+                    <input
+                            id="inputName"
+                            name="nazwa"
+                            type="hidden"
+                            value="<#if choiceName_??>${choiceName_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputAddress"
+                            name="adres"
+                            type="hidden"
+                            value="<#if choiceAddress_??>${choiceAddress_}<#else > </#if>"
+                    >
+
+                    <input
+                            id="inputPlace"
+                            name="miejscowosc"
+                            type="hidden"
+                            value="<#if choicePlace_??>${choicePlace_}<#else > </#if>"
+                    >
+
+                </form>
+
+                <#else >
+                    <input
+                            id="inputPage"
+                            name="strona"
+                            type="hidden"
+                            value=1
+                    >
+                </#if>
 
             </div>
 
@@ -463,7 +558,7 @@
         </div>
 
     </div>
-
+</div>
     <!-- Optional Javascript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
