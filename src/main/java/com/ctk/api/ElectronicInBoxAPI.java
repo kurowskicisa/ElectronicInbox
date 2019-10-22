@@ -28,11 +28,12 @@ public class ElectronicInBoxAPI {
             @FormParam("nazwa") String choiceName,
             @FormParam("adres") String choiceAddress,
             @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage,
             @FormParam("firstPage") String firstPage) {
 
         APPLOGGER.info("POST | first ");
 
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(firstPage)))
@@ -50,11 +51,12 @@ public class ElectronicInBoxAPI {
             @FormParam("nazwa") String choiceName,
             @FormParam("adres") String choiceAddress,
             @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage,
             @FormParam("prevPage") String prevPage) {
 
         APPLOGGER.info("POST | prev ");
 
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(prevPage)))
@@ -72,11 +74,12 @@ public class ElectronicInBoxAPI {
             @FormParam("nazwa") String choiceName,
             @FormParam("adres") String choiceAddress,
             @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage,
             @FormParam("nextPage") String nextPage) {
 
         APPLOGGER.info("POST | next ");
 
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(nextPage)))
@@ -97,11 +100,12 @@ public class ElectronicInBoxAPI {
             @FormParam("nazwa") String choiceName,
             @FormParam("adres") String choiceAddress,
             @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage,
             @FormParam("lastPage") String lastPage) {
 
         APPLOGGER.info("POST | last ");
 
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(lastPage)))
@@ -118,11 +122,12 @@ public class ElectronicInBoxAPI {
     public Response eibGetFind(
             @FormParam("nazwa") String choiceName,
             @FormParam("adres") String choiceAddress,
-            @FormParam("miejscowosc") String choicePlace) {
+            @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage) {
 
         APPLOGGER.info("GET | find ");
 
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         return Response.ok()
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
@@ -134,23 +139,30 @@ public class ElectronicInBoxAPI {
     public Response eibPostFind(
             @FormParam("nazwa") String choiceName,
             @FormParam("adres") String choiceAddress,
-            @FormParam("miejscowosc") String choicePlace) {
+            @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage) {
 
         APPLOGGER.info("POST | find ");
 
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         return Response.ok()
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
                 .build();
     }
 
-    private void SetElextronicInBoxAPI(@FormParam("nazwa") String choiceName, @FormParam("adres") String choiceAddress, @FormParam("miejscowosc") String choicePlace) {
+    private void SetElextronicInBoxAPI(
+            @FormParam("nazwa") String choiceName,
+            @FormParam("adres") String choiceAddress,
+            @FormParam("miejscowosc") String choicePlace,
+            @FormParam("strona") String choicePage) {
+
         APPLOGGER.info("POST | find ");
 
         String _choiceName = null;
         String _choiceAddress = null;
         String _choicePlace = null;
+        String _choicePage = null;
 
         try {
             _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
@@ -170,9 +182,15 @@ public class ElectronicInBoxAPI {
             e.printStackTrace();
         }
 
-        APPLOGGER.info("choiceName: " + _choiceName);
+        try {
+            _choicePage = Optional.ofNullable(new String(choicePage.getBytes("iso-8859-1"), "utf-8")).orElse("");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        APPLOGGER.info("choiceName   : " + _choiceName);
         APPLOGGER.info("choiceAddress: " + _choiceAddress);
-        APPLOGGER.info("choicePlace: " + _choicePlace);
+        APPLOGGER.info("choicePlace  : " + _choicePlace);
+        APPLOGGER.info("choicePage   : " + _choicePage);
 
         electronicInboxFilterFile.setName(_choiceName);
         electronicInboxFilterFile.setAddress(_choiceAddress);

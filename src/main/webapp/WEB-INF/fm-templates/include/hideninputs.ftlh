@@ -24,5 +24,5 @@
         id="inputPage"
         name="strona"
         type="hidden"
-        value=<#if choicePage_??>${choicePage_}<#else >1</#if>
+        value="<#if choicePage_??>${choicePage_}<#else >1</#if>"
 >

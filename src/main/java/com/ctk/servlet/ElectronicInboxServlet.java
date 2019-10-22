@@ -88,6 +88,9 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choicePlace_",
                 electronicInboxFilterFile.getPlace());
 
+        modelGeneratorTemplate.setModel("choicePage_",
+                electronicInboxFilterFile.getPage());
+
         electronicinboxLoadFromFileFiltered.loadData();
 
         grayScaleReadFile.loadGrayScaleFile();

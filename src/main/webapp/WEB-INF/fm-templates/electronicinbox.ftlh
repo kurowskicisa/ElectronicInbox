@@ -141,6 +141,14 @@
                         </button>
                     </div>
                 </div>
+
+                <input
+                        id="inputPage"
+                        name="strona"
+                        type="hidden"
+                        value="<#if choicePage_??>${choicePage_}<#else >1</#if>"
+                >
+
             </form>
 
             <#if choiceTotalPages_??>
@@ -208,7 +216,7 @@
                             id="inputPage"
                             name="strona"
                             type="hidden"
-                            value=1
+                            value="1"
                     >
                 </#if>
 
@@ -477,6 +485,7 @@
 
     </div>
 </div>
+
 <!-- Optional Javascript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -492,67 +501,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous">
-</script>
-
-
-<script>
-    $('#btnName').on('click', function () {
-        document.getElementById('inputName').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-<script>
-    $('#btnAddress').on('click', function () {
-        document.getElementById('inputAddress').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-<script>
-    $('#btnPlace').on('click', function () {
-        document.getElementById('inputPlace').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-
-<script>
-    $('#btnSearch').on('click', function () {
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-<script>
-    $('#btnFirstPage').on('click', function () {
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-<script>
-    $('#btnPrevPage').on('click', function () {
-        document.getElementById('inputPage').value = <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-<script>
-    $('#btnNextPage').on('click', function () {
-        document.getElementById('inputPage').value = <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
-
-<script>
-    $('#btnLastPage').on('click', function () {
-        document.getElementById('inputPage').value = <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
-        window.location = '/electronicinbox/eib';
-    });
 </script>
 
 </body>
