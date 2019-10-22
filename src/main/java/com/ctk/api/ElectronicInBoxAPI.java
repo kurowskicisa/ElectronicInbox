@@ -8,8 +8,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Optional;
 
 @Path("/eib")
@@ -32,36 +30,9 @@ public class ElectronicInBoxAPI {
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("firstPage") String firstPage) {
 
-        String _choiceName = null;
-        String _choiceAddress = null;
-        String _choicePlace = null;
+        APPLOGGER.info("POST | first ");
 
-        try {
-            _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        APPLOGGER.info("choiceName: " + _choiceName);
-        APPLOGGER.info("choiceAddress: " + _choiceAddress);
-        APPLOGGER.info("choicePlace: " + _choicePlace);
-
-        electronicInboxFilterFile.setName(_choiceName);
-        electronicInboxFilterFile.setAddress(_choiceAddress);
-        electronicInboxFilterFile.setPlace(_choicePlace);
-
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(firstPage)))
@@ -81,36 +52,9 @@ public class ElectronicInBoxAPI {
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("prevPage") String prevPage) {
 
-        String _choiceName = null;
-        String _choiceAddress = null;
-        String _choicePlace = null;
+        APPLOGGER.info("POST | prev ");
 
-        try {
-            _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        APPLOGGER.info("choiceName: " + _choiceName);
-        APPLOGGER.info("choiceAddress: " + _choiceAddress);
-        APPLOGGER.info("choicePlace: " + _choicePlace);
-
-        electronicInboxFilterFile.setName(_choiceName);
-        electronicInboxFilterFile.setAddress(_choiceAddress);
-        electronicInboxFilterFile.setPlace(_choicePlace);
-
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(prevPage)))
@@ -130,36 +74,9 @@ public class ElectronicInBoxAPI {
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("nextPage") String nextPage) {
 
-        String _choiceName = null;
-        String _choiceAddress = null;
-        String _choicePlace = null;
+        APPLOGGER.info("POST | next ");
 
-        try {
-            _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        APPLOGGER.info("choiceName: " + _choiceName);
-        APPLOGGER.info("choiceAddress: " + _choiceAddress);
-        APPLOGGER.info("choicePlace: " + _choicePlace);
-
-        electronicInboxFilterFile.setName(_choiceName);
-        electronicInboxFilterFile.setAddress(_choiceAddress);
-        electronicInboxFilterFile.setPlace(_choicePlace);
-
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(nextPage)))
@@ -182,36 +99,9 @@ public class ElectronicInBoxAPI {
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("lastPage") String lastPage) {
 
-        String _choiceName = null;
-        String _choiceAddress = null;
-        String _choicePlace = null;
+        APPLOGGER.info("POST | last ");
 
-        try {
-            _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        APPLOGGER.info("choiceName: " + _choiceName);
-        APPLOGGER.info("choiceAddress: " + _choiceAddress);
-        APPLOGGER.info("choicePlace: " + _choicePlace);
-
-        electronicInboxFilterFile.setName(_choiceName);
-        electronicInboxFilterFile.setAddress(_choiceAddress);
-        electronicInboxFilterFile.setPlace(_choicePlace);
-
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
 
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(lastPage)))
@@ -232,35 +122,7 @@ public class ElectronicInBoxAPI {
 
         APPLOGGER.info("GET | find ");
 
-        String _choiceName = null;
-        String _choiceAddress = null;
-        String _choicePlace = null;
-
-        try {
-            _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        APPLOGGER.info("choiceName: " + _choiceName);
-        APPLOGGER.info("choiceAddress: " + _choiceAddress);
-        APPLOGGER.info("choicePlace: " + _choicePlace);
-
-        electronicInboxFilterFile.setName(_choiceName);
-        electronicInboxFilterFile.setAddress(_choiceAddress);
-        electronicInboxFilterFile.setPlace(_choicePlace);
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
 
         return Response.ok()
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
@@ -274,6 +136,16 @@ public class ElectronicInBoxAPI {
             @FormParam("adres") String choiceAddress,
             @FormParam("miejscowosc") String choicePlace) {
 
+        APPLOGGER.info("POST | find ");
+
+        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace);
+
+        return Response.ok()
+                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
+                .build();
+    }
+
+    private void SetElextronicInBoxAPI(@FormParam("nazwa") String choiceName, @FormParam("adres") String choiceAddress, @FormParam("miejscowosc") String choicePlace) {
         APPLOGGER.info("POST | find ");
 
         String _choiceName = null;
@@ -305,10 +177,6 @@ public class ElectronicInBoxAPI {
         electronicInboxFilterFile.setName(_choiceName);
         electronicInboxFilterFile.setAddress(_choiceAddress);
         electronicInboxFilterFile.setPlace(_choicePlace);
-
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
     }
 
 }

@@ -63,7 +63,6 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         APPLOGGER.info("init() | ");
 
-//        System.out.println(electronicInboxFilterFile.getPage());
         resetFormFields();
 
     }
@@ -78,20 +77,7 @@ public class ElectronicInboxServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
         resp.setCharacterEncoding("UTF-8");
-        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
         req.setCharacterEncoding("UTF-8");
-        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
-/*
-        String choiceName_ = electronicInboxFilterFile.getName();
-        String choiceAddress_ = electronicInboxFilterFile.getAddress();
-        String choicePlace_ = electronicInboxFilterFile.getPlace();
-*/
-
-if (!(req.getParameter("miejscowosc") ==null)) {
-    String input = new String(req.getParameter("miejscowosc").getBytes("iso-8859-1"), "utf-8");
-    System.out.println("input:" +input);
-}
-
 
         modelGeneratorTemplate.setModel("choiceName_",
                 electronicInboxFilterFile.getName());
@@ -102,16 +88,13 @@ if (!(req.getParameter("miejscowosc") ==null)) {
         modelGeneratorTemplate.setModel("choicePlace_",
                 electronicInboxFilterFile.getPlace());
 
-
         electronicinboxLoadFromFileFiltered.loadData();
 
         grayScaleReadFile.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
                 grayScale.getGrayScale());
 
-
         APPLOGGER.info("[getPage()       ] | " + electronicInboxFilterFile.getPage());
-
 
         if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
             electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
@@ -146,103 +129,6 @@ if (!(req.getParameter("miejscowosc") ==null)) {
         modelGeneratorTemplate.setModel("database",
                 electronicInboxDao.getList());
 
-/*
-        try {
-            final String choiceName = req.getParameter("nazwa").trim();
-
-            APPLOGGER.info("[choiceName   ] | " + choiceName);
-
-            final String choiceAddress = req.getParameter("adres").trim();
-            APPLOGGER.info("[choiceAddress] | " + choiceAddress);
-
-            final String choicePlace = req.getParameter("miejscowosc").trim();
-            APPLOGGER.info("[choicePlace  ] | " + choicePlace);
-
-            final String choicePage = req.getParameter("strona").trim();
-            APPLOGGER.info("[choicePage   ] | " + choicePage);
-
-            electronicInboxFilterFile.setName(choiceName);
-            electronicInboxFilterFile.setAddress(choiceAddress);
-            electronicInboxFilterFile.setPlace(choicePlace);
-
-            if (choicePage == null) {
-                electronicInboxFilterFile.setPage("1");
-                APPLOGGER.info("[getPage()   ] | null ");
-
-            } else {
-                electronicInboxFilterFile.setPage(choicePage);
-                APPLOGGER.info("[getPage()   ] | NOT null ");
-
-            }
-
-            electronicinboxLoadFromFileFiltered.loadData();
-
-            grayScaleReadFile.loadGrayScaleFile();
-            modelGeneratorTemplate.setModel("grayScale_",
-                    grayScale.getGrayScale());
-
-            modelGeneratorTemplate.setModel("choiceName_",
-                    electronicInboxFilterFile.getName());
-
-            modelGeneratorTemplate.setModel("choiceAddress_",
-                    electronicInboxFilterFile.getAddress());
-
-            modelGeneratorTemplate.setModel("choicePlace_",
-                    electronicInboxFilterFile.getPlace());
-
-            modelGeneratorTemplate.setModel("choicePage_",
-                    electronicInboxFilterFile.getPage());
-
-            modelGeneratorTemplate.setModel("choiceTotalPages_",
-                    electronicInboxFilterFile.getTotalPages());
-
-            if (electronicInboxFilterFile.getPage().isEmpty()) {
-                electronicInboxFilterFile.setPage("1");
-            }
-
-            if (!electronicInboxFilterFile.getPage().matches("[0-9]*")) {
-                electronicInboxFilterFile.setPage("1");
-            }
-
-            APPLOGGER.info("[getPage()   ] | " + electronicInboxFilterFile.getPage());
-
-            if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
-                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
-
-            } else {
-                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
-
-            }
-
-            modelGeneratorTemplate.setModel("choicePrevPage_",
-                    electronicInboxFilterFile.getPrevPage());
-            APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilterFile.getPrevPage());
-
-            if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
-                electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
-
-            } else {
-                electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
-            }
-
-            modelGeneratorTemplate.setModel("choiceNextPage_",
-                    electronicInboxFilterFile.getNextPage());
-            APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
-
-
-            APPLOGGER.info("[counter: onPage] | " + electronicInboxDao.getList().size());
-            APPLOGGER.info("[counter: Total filtered records] | "
-                    + electronicInboxFilterFile.getTotalFilteredRecords());
-            APPLOGGER.info("[counter: Total records         ] | "
-                    + electronicInboxFilterFile.getTotalRecords());
-
-            modelGeneratorTemplate.setModel("database",
-                    electronicInboxDao.getList());
-
-        } catch (NullPointerException e) {
-            APPLOGGER.info("[No web parameters] | ");
-        }
-*/
         try {
 
             electronicInboxFilterFile.setName("");
@@ -273,11 +159,9 @@ if (!(req.getParameter("miejscowosc") ==null)) {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
-        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
+        resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
-        System.out.println("CharacterEncoding = " + req.getCharacterEncoding());
 
-        System.out.println(electronicInboxFilterFile.getPage());
         try {
 
             electronicInboxFilterFile.setName("");
