@@ -59,11 +59,6 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <!--
-            <form action="/electronicinbox/eib?nazwa=<#if choiceName_??>${choiceName_}</#if>&adres=<#if choiceAddress_??>${choiceAddress_}</#if>&miejscowosc=<#if choicePlace_??>${choicePlace_}</#if>&strona=<#if choicePage_??>${choicePage_}</#if>"
-                  method="get" style="width: 100%;">
--->
-
             <form action="/electronicinbox/eib" method="get" style="width: 100%;">
 
                 <div class="form-group row" style="margin-bottom: 0; font-size:1vw;">
@@ -150,412 +145,402 @@
                     type="hidden"
                     value=<#if choicePage_??>${choicePage_}<#else >1</#if>
             >
-            <div class="form-group row" style="margin-bottom: 0;">
-                <form action="/electronicinbox/eib/first" method="post" style="width: 100%;">
 
+            <div class="container-fluid form-inline" style="margin-bottom: 0; font-size:1vw;">
 
-                    <div class="col-lg-3">
-                        <button class="btn btn-outline-success btn-block"
-                                id="btnFirstPage"
-                                name="firstPage"
-                                style="margin-bottom: 0;"
-                                type="submit"
-                                value="<#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if>">
-                            << <#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if> <<
-                        </button>
-                    </div>
+                <form class="col-lg-3" action="/electronicinbox/eib/first" method="post">
+                    <button class="btn btn-outline-success btn-block"
+                            id="btnFirstPage"
+                            name="firstPage"
+                            style="margin-bottom: 0;"
+                            type="submit"
+                            value="<#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if>">
+                        ||<< <#if choiceFirstPage_??>${choiceFirstPage_}<#else >1</#if> <<
+                    </button>
                 </form>
 
-                <form action="/electronicinbox/eib/prev" method="post" style="width: 100%;">
-                    <div class="col-lg-3">
-                        <button class="btn btn-outline-success btn-block"
-                                id="btnPrevPage"
-                                name="prevPage"
-                                style="margin-bottom: 0;"
-                                type="submit"
-                                value="<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>">
-                            << <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> <<
-                        </button>
-                    </div>
+                <form class="col-lg-3" action="/electronicinbox/eib/prev" method="post">
+                    <button class="btn btn-outline-success btn-block"
+                            id="btnPrevPage"
+                            name="prevPage"
+                            style="margin-bottom: 0;"
+                            type="submit"
+                            value="<#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>">
+                        << <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if> <<
+                    </button>
                 </form>
 
-
-                <form action="/electronicinbox/eib/next" method="post" style="width: 100%;">
-                    <div class="col-lg-3">
-                        <button class="btn btn-outline-success btn-block"
-                                id="btnNextPage"
-                                name="nextPage"
-                                style="margin-bottom: 0;"
-                                type="submit"
-                                value="<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>">
-                            >> <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> >>
-                        </button>
-                    </div>
+                <form class="col-lg-3" action="/electronicinbox/eib/next" method="post">
+                    <button class="btn btn-outline-success btn-block"
+                            id="btnNextPage"
+                            name="nextPage"
+                            style="margin-bottom: 0;"
+                            type="submit"
+                            value="<#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>">
+                        >> <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if> >>
+                    </button>
                 </form>
 
-                <form action="/electronicinbox/eib/last" method="post" style="width: 100%;">
-                    <div class="col-lg-3">
-                        <button class="btn btn-outline-success btn-block"
-                                id="btnLastPage"
-                                name="lastPage"
-                                style="margin-bottom: 0;"
-                                type="submit"
-                                value="<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>">
-                            >> <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> >>||
-                        </button>
-                    </div>
+                <form class="col-lg-3" action="/electronicinbox/eib/last" method="post">
+                    <button class="btn btn-outline-success btn-block col-lg-12"
+                            id="btnLastPage"
+                            name="lastPage"
+                            style="margin-bottom: 0;"
+                            type="submit"
+                            value="<#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>">
+                        >> <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if> >>||
+                    </button>
+                    <#else >
+                        <input
+                                id="inputPage"
+                                name="strona"
+                                type="hidden"
+                                value=1
+                        >
+                    </#if>
+
             </div>
 
-    <#else >
-        <input
-                id="inputPage"
-                name="strona"
-                type="hidden"
-                value=1
-        >
+        </nav>
+
+    </div>
+
+    <#if database??>
+        <#list database as d>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"><#if d.name??>${d.name}</#if></h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <#if d.regon??>Regon: ${d.regon},</#if>
+                                    <#if d.address??>adres: ${d.address},</#if>
+                                    <#if d.zip??>${d.zip}</#if>
+                                    <#if d.place??>${d.place}</#if></h6>
+                                <h6 class="card-text">
+                                    <#if d.uri??>${d.uri}</#if>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </#list>
     </#if>
 
-
-    </nav>
-
-</div>
-
-<#if database??>
-    <#list database as d>
+    <#if database??>
 
         <div class="container-fluid">
+
+            <#if database?size < 5>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 4>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 3>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 2>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+
+            <#if database?size < 1>
+                <div class="row">
+                    <div class="col-lg">
+
+                        <div class="card">
+                            <div class="card-body mr-sm-3">
+                                <h6 class="card-title"> &nbsp;</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    &nbsp;
+                                </h6>
+                                <h6 class="card-text">
+                                    &nbsp;
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+        </div>
+
+    <#else >
+
+        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-lg">
+
                     <div class="card">
                         <div class="card-body mr-sm-3">
-                            <h6 class="card-title"><#if d.name??>${d.name}</#if></h6>
+                            <h6 class="card-title"> &nbsp;</h6>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                <#if d.regon??>Regon: ${d.regon},</#if>
-                                <#if d.address??>adres: ${d.address},</#if>
-                                <#if d.zip??>${d.zip}</#if>
-                                <#if d.place??>${d.place}</#if></h6>
+                                &nbsp;
+                            </h6>
                             <h6 class="card-text">
-                                <#if d.uri??>${d.uri}</#if>
+                                &nbsp;
                             </h6>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg">
+
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg">
+
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg">
+
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg">
+
+                    <div class="card">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title"> &nbsp;</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                &nbsp;
+                            </h6>
+                            <h6 class="card-text">
+                                &nbsp;
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </#list>
-</#if>
-
-<#if database??>
+    </#if>
 
     <div class="container-fluid">
-
-        <#if database?size < 5>
-            <div class="row">
-                <div class="col-lg">
-                    <div class="card">
-                        <div class="card-body mr-sm-3">
-                            <h6 class="card-title"> &nbsp;</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                &nbsp;
-                            </h6>
-                            <h6 class="card-text">
-                                &nbsp;
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </#if>
-
-        <#if database?size < 4>
-            <div class="row">
-                <div class="col-lg">
-                    <div class="card">
-                        <div class="card-body mr-sm-3">
-                            <h6 class="card-title"> &nbsp;</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                &nbsp;
-                            </h6>
-                            <h6 class="card-text">
-                                &nbsp;
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </#if>
-
-        <#if database?size < 3>
-            <div class="row">
-                <div class="col-lg">
-                    <div class="card">
-                        <div class="card-body mr-sm-3">
-                            <h6 class="card-title"> &nbsp;</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                &nbsp;
-                            </h6>
-                            <h6 class="card-text">
-                                &nbsp;
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </#if>
-
-        <#if database?size < 2>
-            <div class="row">
-                <div class="col-lg">
-                    <div class="card">
-                        <div class="card-body mr-sm-3">
-                            <h6 class="card-title"> &nbsp;</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                &nbsp;
-                            </h6>
-                            <h6 class="card-text">
-                                &nbsp;
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </#if>
-
-        <#if database?size < 1>
-            <div class="row">
-                <div class="col-lg">
-
-                    <div class="card">
-                        <div class="card-body mr-sm-3">
-                            <h6 class="card-title"> &nbsp;</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                &nbsp;
-                            </h6>
-                            <h6 class="card-text">
-                                &nbsp;
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </#if>
+        <div class="row">
+            &nbsp;
+        </div>
     </div>
 
-<#else >
 
-    <div class="container-fluid">
-
+    <div class="container-fluid" style="background-color: #007bff; padding: 5px; width:95%;">
         <div class="row">
-            <div class="col-lg">
-
-                <div class="card">
-                    <div class="card-body mr-sm-3">
-                        <h6 class="card-title"> &nbsp;</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            &nbsp;
-                        </h6>
-                        <h6 class="card-text">
-                            &nbsp;
-                        </h6>
-                    </div>
-                </div>
+            <div class="col-lg-12">
+                <a class="btn btn-primary btn-lg btn-block"
+                   style="padding: 0;"
+                   href="https://epuap.gov.pl/wps/portal/strefa-urzednika/pomoc_urzednik/" role="button" target="_new">
+                    <button type="button" class="btn btn-info col-12">
+                        Źródło:
+                        epuap.gov.pl
+                    </button>
+                </a>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg">
 
-                <div class="card">
-                    <div class="card-body mr-sm-3">
-                        <h6 class="card-title"> &nbsp;</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            &nbsp;
-                        </h6>
-                        <h6 class="card-text">
-                            &nbsp;
-                        </h6>
-                    </div>
-                </div>
+            <div class="col-lg-6">
+                <a class="btn btn-primary btn-lg btn-block"
+                   style="padding: 0;"
+                   href="https://epuap.gov.pl/LESP/LESP.csv" role="button" target="_new">
+                    <button type="button" class="btn btn-info col-12">Pobierz plik w formacie csv
+                    </button>
+                </a>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-lg">
-
-                <div class="card">
-                    <div class="card-body mr-sm-3">
-                        <h6 class="card-title"> &nbsp;</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            &nbsp;
-                        </h6>
-                        <h6 class="card-text">
-                            &nbsp;
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg">
-
-                <div class="card">
-                    <div class="card-body mr-sm-3">
-                        <h6 class="card-title"> &nbsp;</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            &nbsp;
-                        </h6>
-                        <h6 class="card-text">
-                            &nbsp;
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg">
-
-                <div class="card">
-                    <div class="card-body mr-sm-3">
-                        <h6 class="card-title"> &nbsp;</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            &nbsp;
-                        </h6>
-                        <h6 class="card-text">
-                            &nbsp;
-                        </h6>
-                    </div>
-                </div>
+            <div class="col-lg-6">
+                <a class="btn btn-primary btn-lg btn-block"
+                   style="padding: 0;"
+                   href="https://epuap.gov.pl/LESP/LESP.xml" role="button" target="_new">
+                    <button type="button" class="btn btn-info col-12">Pobierz plik w formacie xml
+                    </button>
+                </a>
             </div>
         </div>
 
     </div>
 
-</#if>
+    <!-- Optional Javascript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
+    </script>
 
-<div class="container-fluid">
-    <div class="row">
-        &nbsp;
-    </div>
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous">
+    </script>
 
-
-<div class="container-fluid" style="background-color: #007bff; padding: 5px; width:95%;">
-    <div class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-primary btn-lg btn-block"
-               style="padding: 0;"
-               href="https://epuap.gov.pl/wps/portal/strefa-urzednika/pomoc_urzednik/" role="button" target="_new">
-                <button type="button" class="btn btn-info col-12">
-                    Źródło:
-                    epuap.gov.pl
-                </button>
-            </a>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-lg-6">
-            <a class="btn btn-primary btn-lg btn-block"
-               style="padding: 0;"
-               href="https://epuap.gov.pl/LESP/LESP.csv" role="button" target="_new">
-                <button type="button" class="btn btn-info col-12">Pobierz plik w formacie csv
-                </button>
-            </a>
-        </div>
-
-        <div class="col-lg-6">
-            <a class="btn btn-primary btn-lg btn-block"
-               style="padding: 0;"
-               href="https://epuap.gov.pl/LESP/LESP.xml" role="button" target="_new">
-                <button type="button" class="btn btn-info col-12">Pobierz plik w formacie xml
-                </button>
-            </a>
-        </div>
-    </div>
-
-</div>
-
-<!-- Optional Javascript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous">
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous">
-</script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous">
-</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
 
 
-<script>
-    $('#btnName').on('click', function () {
-        document.getElementById('inputName').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnName').on('click', function () {
+            document.getElementById('inputName').value = "";
+            document.getElementById('inputPage').value = 1;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
-<script>
-    $('#btnAddress').on('click', function () {
-        document.getElementById('inputAddress').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnAddress').on('click', function () {
+            document.getElementById('inputAddress').value = "";
+            document.getElementById('inputPage').value = 1;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
-<script>
-    $('#btnPlace').on('click', function () {
-        document.getElementById('inputPlace').value = "";
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnPlace').on('click', function () {
+            document.getElementById('inputPlace').value = "";
+            document.getElementById('inputPage').value = 1;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
 
-<script>
-    $('#btnSearch').on('click', function () {
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnSearch').on('click', function () {
+            document.getElementById('inputPage').value = 1;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
-<script>
-    $('#btnFirstPage').on('click', function () {
-        document.getElementById('inputPage').value = 1;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnFirstPage').on('click', function () {
+            document.getElementById('inputPage').value = 1;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
-<script>
-    $('#btnPrevPage').on('click', function () {
-        document.getElementById('inputPage').value = <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnPrevPage').on('click', function () {
+            document.getElementById('inputPage').value = <#if choicePrevPage_??>${choicePrevPage_}<#else >1</#if>;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
-<script>
-    $('#btnNextPage').on('click', function () {
-        document.getElementById('inputPage').value = <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnNextPage').on('click', function () {
+            document.getElementById('inputPage').value = <#if choiceNextPage_??>${choiceNextPage_}<#else >1</#if>;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
-<script>
-    $('#btnLastPage').on('click', function () {
-        document.getElementById('inputPage').value = <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
-        window.location = '/electronicinbox/eib';
-    });
-</script>
+    <script>
+        $('#btnLastPage').on('click', function () {
+            document.getElementById('inputPage').value = <#if choiceTotalPages_??>${choiceTotalPages_}<#else >1</#if>;
+            window.location = '/electronicinbox/eib';
+        });
+    </script>
 
 </body>
 
