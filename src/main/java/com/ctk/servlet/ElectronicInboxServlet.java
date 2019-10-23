@@ -16,6 +16,7 @@ import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.LocalTime.now;
 
+@RequestScoped
 @WebServlet(urlPatterns = "/eib")
 public class ElectronicInboxServlet extends HttpServlet {
 
@@ -60,6 +62,9 @@ public class ElectronicInboxServlet extends HttpServlet {
     public void init() {
 
         APPLOGGER.info("init() | ");
+
+        resetFormFields();
+
     }
 
     @Override
@@ -71,104 +76,61 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
 
-        resetWebDate();
+        modelGeneratorTemplate.setModel("choiceName_",
+                electronicInboxFilterFile.getName());
 
-        try {
-            final String choiceName = req.getParameter("nazwa").trim();
+        modelGeneratorTemplate.setModel("choiceAddress_",
+                electronicInboxFilterFile.getAddress());
 
-            APPLOGGER.info("[choiceName   ] | " + choiceName);
+        modelGeneratorTemplate.setModel("choicePlace_",
+                electronicInboxFilterFile.getPlace());
 
-            final String choiceAddress = req.getParameter("adres").trim();
-            APPLOGGER.info("[choiceAddress] | " + choiceAddress);
+        modelGeneratorTemplate.setModel("choicePage_",
+                electronicInboxFilterFile.getPage());
 
-            final String choicePlace = req.getParameter("miejscowosc").trim();
-            APPLOGGER.info("[choicePlace  ] | " + choicePlace);
+        electronicinboxLoadFromFileFiltered.loadData();
 
-            final String choicePage = req.getParameter("strona").trim();
-            APPLOGGER.info("[choicePage   ] | " + choicePage);
+        grayScaleReadFile.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
 
-            electronicInboxFilterFile.setName(choiceName);
-            electronicInboxFilterFile.setAddress(choiceAddress);
-            electronicInboxFilterFile.setPlace(choicePlace);
+        APPLOGGER.info("[getPage()       ] | " + electronicInboxFilterFile.getPage());
 
-            if (choicePage == null) {
-                electronicInboxFilterFile.setPage("1");
-                APPLOGGER.info("[getPage()   ] | null ");
+        if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
+            electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
 
-            } else {
-                electronicInboxFilterFile.setPage(choicePage);
-                APPLOGGER.info("[getPage()   ] | NOT null ");
+        } else {
+            electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
 
-            }
-
-            electronicinboxLoadFromFileFiltered.loadData();
-
-            grayScaleReadFile.loadGrayScaleFile();
-            modelGeneratorTemplate.setModel("grayScale_",
-                    grayScale.getGrayScale());
-
-            modelGeneratorTemplate.setModel("choiceName_",
-                    electronicInboxFilterFile.getName());
-
-            modelGeneratorTemplate.setModel("choiceAddress_",
-                    electronicInboxFilterFile.getAddress());
-
-            modelGeneratorTemplate.setModel("choicePlace_",
-                    electronicInboxFilterFile.getPlace());
-
-            modelGeneratorTemplate.setModel("choicePage_",
-                    electronicInboxFilterFile.getPage());
-
-            modelGeneratorTemplate.setModel("choiceTotalPages_",
-                    electronicInboxFilterFile.getTotalPages());
-
-            if (electronicInboxFilterFile.getPage().isEmpty()) {
-                electronicInboxFilterFile.setPage("1");
-            }
-
-            if (!electronicInboxFilterFile.getPage().matches("[0-9]*")) {
-                electronicInboxFilterFile.setPage("1");
-            }
-
-            APPLOGGER.info("[getPage()   ] | " + electronicInboxFilterFile.getPage());
-
-            if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
-                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
-
-            } else {
-                electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
-
-            }
-
-            modelGeneratorTemplate.setModel("choicePrevPage_",
-                    electronicInboxFilterFile.getPrevPage());
-            APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilterFile.getPrevPage());
-
-            if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
-                electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
-
-            } else {
-                electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
-            }
-
-            modelGeneratorTemplate.setModel("choiceNextPage_",
-                    electronicInboxFilterFile.getNextPage());
-            APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
-
-
-            APPLOGGER.info("[counter: onPage] | " + electronicInboxDao.getList().size());
-            APPLOGGER.info("[counter: Total filtered records] | "
-                    + electronicInboxFilterFile.getTotalFilteredRecords());
-            APPLOGGER.info("[counter: Total records         ] | "
-                    + electronicInboxFilterFile.getTotalRecords());
-
-            modelGeneratorTemplate.setModel("database",
-                    electronicInboxDao.getList());
-
-        } catch (NullPointerException e) {
-            APPLOGGER.info("[No web parameters] | ");
         }
+
+        modelGeneratorTemplate.setModel("choicePrevPage_",
+                electronicInboxFilterFile.getPrevPage());
+        APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilterFile.getPrevPage());
+
+
+        if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
+            electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+
+        } else {
+            electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
+        }
+
+        modelGeneratorTemplate.setModel("choiceNextPage_",
+                electronicInboxFilterFile.getNextPage());
+        APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
+
+
+        modelGeneratorTemplate.setModel("choiceTotalPages_",
+                electronicInboxFilterFile.getTotalPages());
+        APPLOGGER.info("[getTotalPages()   ] | " + electronicInboxFilterFile.getTotalPages());
+
+
+        modelGeneratorTemplate.setModel("database",
+                electronicInboxDao.getList());
 
         try {
 
@@ -193,14 +155,49 @@ public class ElectronicInboxServlet extends HttpServlet {
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 
-    private void resetWebDate() {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        APPLOGGER.info("doPost() | ");
+        LocalTime startDoGet = now();
+
+        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
+
+        try {
+
+            electronicInboxFilterFile.setName("");
+            electronicInboxFilterFile.setAddress("");
+            electronicInboxFilterFile.setPlace("");
+            electronicInboxFilterFile.setPage("1");
+
+            Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
+
+            template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
+            APPLOGGER.info("[\"electronicinbox\" loaded] |");
+
+        } catch (TemplateException e) {
+            e.printStackTrace();
+            APPLOGGER.info("[\"electronicinbox\" NOT loaded] |");
+        }
+
+        LocalTime stopDoGet = now();
+
+        APPLOGGER.info("[time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+
+
+    }
+
+    private void resetFormFields() {
 
         electronicInboxDao.clearList();
 
         electronicInboxFilterFile.setName("");
         electronicInboxFilterFile.setAddress("");
         electronicInboxFilterFile.setPlace("");
-        electronicInboxFilterFile.setPage("");
+        electronicInboxFilterFile.setPage("1");
 
         modelGeneratorTemplate.setModel("database", null);
 

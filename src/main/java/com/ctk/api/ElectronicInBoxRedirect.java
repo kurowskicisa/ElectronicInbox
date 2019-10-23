@@ -5,7 +5,7 @@ import com.ctk.model.GrayScale;
 
 import javax.inject.Inject;
 
-public class StatisticWEB {
+public class ElectronicInBoxRedirect {
 
     @Inject
     private GrayScale grayScale;
@@ -13,8 +13,8 @@ public class StatisticWEB {
     @Inject
     private GrayScaleReadFile grayScaleReadFile;
 
-    public String StatisticWeb() {
-        String statisticWeb;
+    public String ElectronicInBoxRedirect() {
+        String electronicInBoxRedirect;
 
         String grayScale_ = "000";
 
@@ -24,7 +24,7 @@ public class StatisticWEB {
             grayScale_ = grayScale.getGrayScale();
         }
 
-        statisticWeb =
+        electronicInBoxRedirect=
                 "<!doctype html>\n" +
                         "<html lang=\"pl\">\n" +
                         "\n" +
@@ -33,10 +33,10 @@ public class StatisticWEB {
                         "    <meta content-Type=\"text/html\" ; charset=\"utf-8\">\n" +
                         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">" +
                         "\n" +
-                        "    <meta http-equiv = \"refresh\" content =\"0 /electronicinbox/statistics\">\n" +
+                        "    <meta http-equiv = \"refresh\" content =\"0, /electronicinbox/eib\">\n" +
                         "\n" +
                         "    <script type=\"text/javascript\">\n" +
-                        "    windows.location.href = \"/electronicinbox/statistics\"\n" +
+                        "    windows.location.href = \"/electronicinbox/eib\"\n" +
                         "    </script>\n" +
                         "\n" +
                         "    <style>" +
@@ -80,8 +80,6 @@ public class StatisticWEB {
                         "\n" +
                         "</head>" +
                         "</html>";
-
-        return statisticWeb;
+        return electronicInBoxRedirect;
     }
-
 }

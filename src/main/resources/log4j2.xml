@@ -59,6 +59,12 @@
             <AppenderRef ref="FileWinDataError" level="INFO"/>
         </logger>
 
+        <logger name="com.ctk.api.ElectronicInBoxAPI" level="INFO">
+            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="FileLinDataError" level="INFO"/>
+            <AppenderRef ref="FileWinDataError" level="INFO"/>
+        </logger>
+
         <Root level="ERROR">
         </Root>
 

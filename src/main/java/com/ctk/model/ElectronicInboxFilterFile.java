@@ -1,9 +1,9 @@
 package com.ctk.model;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 
-@SessionScoped
+@ApplicationScoped
 public class ElectronicInboxFilterFile implements Serializable {
 
     private String name;

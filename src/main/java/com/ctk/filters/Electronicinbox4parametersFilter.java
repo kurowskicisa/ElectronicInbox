@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-@WebFilter(urlPatterns = "/eib")
+@WebFilter(urlPatterns = "/eib_new")
 public class Electronicinbox4parametersFilter extends HttpFilter {
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.filters.Electronicinbox4parametersFilter.class.getName());
@@ -53,9 +53,9 @@ public class Electronicinbox4parametersFilter extends HttpFilter {
             counterParams++;
         }
 
-        if (counterParams != 4) {
+        if (counterParams != 5) {
             if (!resp.isCommitted()) {
-                resp.sendRedirect("/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1");
+                resp.sendRedirect("/electronicinbox");
             }
         }
 
