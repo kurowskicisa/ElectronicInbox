@@ -19,7 +19,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.stream.Stream;
 
 @RequestScoped
 @WebServlet(urlPatterns = {"/upload"})
@@ -39,9 +38,16 @@ public class UploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         APPLOGGER.info("[doGet()] | ");
+        downAndUpdateDataBase();
 
+    }
+
+    private void downAndUpdateDataBase() {
         Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
+
+        // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+
+        DateFormat dateFormat = new SimpleDateFormat("YYYYMMdd");
         String strDate = dateFormat.format(date);
 
         String patch;
@@ -57,19 +63,19 @@ public class UploadServlet extends HttpServlet {
 
 
         if (!fileSource.isFile()) {
-//            downloadfileLESP(fileSource);
+            downloadfileLESP(fileSource);
             uploadDatabaseInfo();
         }
 
-        System.out.println("upload finished");
+        APPLOGGER.info("upload finished");
     }
 
-    private void uploadDatabaseInfo(){
+    private void uploadDatabaseInfo() {
 
         Path databasePatch;
 
         databasePatch = settings.getPathDatabaseInfo();
-        System.out.println(databasePatch);
+        APPLOGGER.info(databasePatch);
 
     }
 
@@ -119,24 +125,5 @@ public class UploadServlet extends HttpServlet {
         }
 
     }
-/*
-    private void CopyFileStream() {
 
-            File source = new File("src/resources/bugs.txt");
-            File dest = new File("src/resources/bugs2.txt");
-
-            try (FileOutputStream fis = new FileInputStream(source);
-                 File fos = new FileOutputStream(dest)) {
-
-                byte[] buffer = new byte[1024];
-                int length;
-
-                while ((length = fis.read(buffer)) > 0) {
-
-                    fos.write(buffer, 0, length);
-                }
-            }
-        }
-
- */
 }

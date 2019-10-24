@@ -37,19 +37,19 @@ public class Electronicinbox4parametersFilter extends HttpFilter {
             parametersName.add(String.valueOf(paramName));
         }
 
-        if (parametersName.contains("strona")){
+        if (parametersName.contains("strona")) {
             counterParams++;
         }
 
-        if (parametersName.contains("miejscowosc")){
+        if (parametersName.contains("miejscowosc")) {
             counterParams++;
         }
 
-        if (parametersName.contains("adres")){
+        if (parametersName.contains("adres")) {
             counterParams++;
         }
 
-        if (parametersName.contains("nazwa")){
+        if (parametersName.contains("nazwa")) {
             counterParams++;
         }
 
