@@ -1,6 +1,8 @@
 package com.ctk.servlet;
 
+import com.ctk.dao.DataBaseInfo;
 import com.ctk.dao.Settings;
+import com.ctk.model.DataBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @RequestScoped
 @WebServlet(urlPatterns = {"/upload"})
@@ -26,6 +29,12 @@ public class UploadServlet extends HttpServlet {
 
     @Inject
     private Settings settings;
+
+    @Inject
+    private DataBase dataBase;
+
+    @Inject
+    private DataBaseInfo dataBaseInfo;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.UploadServlet.class.getName());
 
@@ -64,8 +73,10 @@ public class UploadServlet extends HttpServlet {
 
         if (!fileSource.isFile()) {
             downloadfileLESP(fileSource);
-            uploadDatabaseInfo();
+//            uploadDatabaseInfo();
         }
+
+        uploadDatabaseInfo();
 
         APPLOGGER.info("upload finished");
     }
@@ -76,6 +87,12 @@ public class UploadServlet extends HttpServlet {
 
         databasePatch = settings.getPathDatabaseInfo();
         APPLOGGER.info(databasePatch);
+        dataBaseInfo.loadDataBaseInfo();
+        APPLOGGER.info("Data: "+Optional.ofNullable(dataBase.getDataBaseDateUpdate()).orElse("brak danych"));
+        System.out.println("Data: "+Optional.ofNullable(dataBase.getDataBaseDateUpdate()).orElse("brak danych"));
+        APPLOGGER.info("Rekordów: "+Optional.ofNullable(dataBase.getDataBaseRecordsCounter()).orElse("brak danych"));
+        System.out.println("Rekordów: "+Optional.ofNullable(dataBase.getDataBaseRecordsCounter()).orElse("brak danych"));
+
 
     }
 
