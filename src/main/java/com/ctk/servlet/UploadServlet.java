@@ -47,7 +47,13 @@ public class UploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         APPLOGGER.info("[doGet()] | ");
+
+        if (settings.isDataBaseInfoFile()){
+
+        };
+
         downAndUpdateDataBase();
+
 
     }
 

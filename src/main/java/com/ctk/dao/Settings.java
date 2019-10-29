@@ -1,6 +1,7 @@
 package com.ctk.dao;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -34,5 +35,24 @@ public class Settings {
 
     public DateTimeFormatter getDateFormat() {
         return dateFormat;
+    }
+
+    public boolean isDataBaseInfoFile() {
+        String patch;
+
+        patch = String.valueOf(getPathLESPcsv());
+
+        File fileDataBaseInfo = new File(patch);
+
+        return fileDataBaseInfo.isFile();
+
+    }
+
+    public String getDateDataBaseInfo() {
+        String dateDatabaseInfo;
+
+        dateDatabaseInfo = "";
+        
+        return dateDatabaseInfo;
     }
 }
