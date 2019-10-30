@@ -1,6 +1,5 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.DataBaseInfo;
 import com.ctk.dao.Settings;
 import com.ctk.model.DataBase;
 import org.apache.logging.log4j.LogManager;
@@ -16,12 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Optional;
 
 @RequestScoped
 @WebServlet(urlPatterns = {"/upload"})
@@ -32,9 +29,6 @@ public class UploadServlet extends HttpServlet {
 
     @Inject
     private DataBase dataBase;
-
-    @Inject
-    private DataBaseInfo dataBaseInfo;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.UploadServlet.class.getName());
 
@@ -48,58 +42,52 @@ public class UploadServlet extends HttpServlet {
 
         APPLOGGER.info("[doGet()] | ");
 
-        if (settings.isDataBaseInfoFile()){
-
-        };
-
-        downAndUpdateDataBase();
-
-
-    }
-
-    private void downAndUpdateDataBase() {
-        Date date = Calendar.getInstance().getTime();
+        Date dateToday = Calendar.getInstance().getTime();
 
         // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
 
         DateFormat dateFormat = new SimpleDateFormat("YYYYMMdd");
-        String strDate = dateFormat.format(date);
+        String strDate = dateFormat.format(dateToday);
 
+        APPLOGGER.info(settings.getPathDatabaseInfo());
+
+        if (settings.isDataBaseInfoFile()) {
+
+            String patch;
+            patch = String.valueOf(settings.getPathLESPcsv());
+            File fileSource = new File(patch);
+
+            if (settings.getDateDataBaseInfoDate().equals(strDate)) {
+                APPLOGGER.info("Update not necessary");
+            } else {
+                APPLOGGER.info("Update is necessary");
+                renameFileLESP();
+
+                downloadfileLESP(fileSource);
+
+                dataBase.setDataBaseDateUpdate(strDate);
+                dataBase.setDataBaseRecordsCounter(settings.countTotalRercords().toString());
+
+                settings.updateDateDataBaseInfo();
+
+                APPLOGGER.info("Database is updated");
+            }
+        } else {
+            APPLOGGER.info("No file: databaseinfo");
+        }
+    }
+
+    private void renameFileLESP() {
         String patch;
 
         patch = String.valueOf(settings.getPathLESPcsv());
 
         File fileSource = new File(patch);
-        File fileTarget = new File(patch.replace(".csv", "_" + strDate + ".csv"));
+        File fileTarget = new File(patch.replace(".csv", "_" + settings.getDateDataBaseInfoDate() + ".csv"));
 
         if (!fileTarget.isFile()) {
             fileSource.renameTo(fileTarget);
         }
-
-
-        if (!fileSource.isFile()) {
-            downloadfileLESP(fileSource);
-//            uploadDatabaseInfo();
-        }
-
-        uploadDatabaseInfo();
-
-        APPLOGGER.info("upload finished");
-    }
-
-    private void uploadDatabaseInfo() {
-
-        Path databasePatch;
-
-        databasePatch = settings.getPathDatabaseInfo();
-        APPLOGGER.info(databasePatch);
-        dataBaseInfo.loadDataBaseInfo();
-        APPLOGGER.info("Data: "+Optional.ofNullable(dataBase.getDataBaseDateUpdate()).orElse("brak danych"));
-        System.out.println("Data: "+Optional.ofNullable(dataBase.getDataBaseDateUpdate()).orElse("brak danych"));
-        APPLOGGER.info("Rekordów: "+Optional.ofNullable(dataBase.getDataBaseRecordsCounter()).orElse("brak danych"));
-        System.out.println("Rekordów: "+Optional.ofNullable(dataBase.getDataBaseRecordsCounter()).orElse("brak danych"));
-
-
     }
 
     private void downloadfileLESP(File fileSource) {
