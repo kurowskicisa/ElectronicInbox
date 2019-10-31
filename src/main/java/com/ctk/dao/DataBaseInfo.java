@@ -49,7 +49,7 @@ public class DataBaseInfo implements Serializable {
 
         String datePolish = "";
 
-        switch (dateToConvert.substring(5, 7)) {
+        switch (dateToConvert.substring(4, 6).trim()) {
             case "01":
                 datePolish = " stycznia ";
                 break;
@@ -87,7 +87,8 @@ public class DataBaseInfo implements Serializable {
                 datePolish = " grudnia ";
                 break;
         }
-        return dateToConvert.substring(8, 10).concat(datePolish).concat(dateToConvert.substring(0, 4));
+
+        return dateToConvert.substring(6, 8).concat(datePolish).concat(dateToConvert.substring(0, 4));
     }
 
 }
