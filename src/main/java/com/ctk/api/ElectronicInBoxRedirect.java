@@ -67,6 +67,17 @@ public class ElectronicInBoxRedirect {
                         "\n" +
                         "    </style>" +
                         "\n" +
+                        "<div class=\"position-sticky sticky-top\">" +
+                        "<nav class=\"navbar navbar-light bg-light\">" +
+                        "<span class=\"navbar-brand mb-3 h1\">" +
+                        "<a href=\"/electronicinbox/\"" +
+                        "style=\"color: rgb(000, 000, 000); text-decoration: none; display: block;\"" +
+                        ">" +
+                        "Elektroniczne Skrzynki Podawcze" +
+                        "</a>" +
+                        "</span>"+
+                        "</nav>" +
+                        "</div>" +
                         "    <!-- Bootstrap CSS -->\n" +
                         "    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\"\n" +
                         "          integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">\n" +
