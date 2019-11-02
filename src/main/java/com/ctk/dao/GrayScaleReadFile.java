@@ -5,10 +5,13 @@ import com.ctk.model.GrayScale;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+
+import static java.lang.String.*;
 
 @SessionScoped
 public class GrayScaleReadFile implements Serializable {
@@ -25,22 +28,25 @@ public class GrayScaleReadFile implements Serializable {
 
         grayScale.setGrayScale("000");
 
-        try {
+        if (new File(valueOf(settings.getPathGrayScaleInfo())).isFile()) {
 
-            reader = Files.newBufferedReader(settings.getPathGrayScaleInfo(), StandardCharsets.UTF_8);
+            try {
 
-            line = reader.readLine();
+                reader = Files.newBufferedReader(settings.getPathGrayScaleInfo(), StandardCharsets.UTF_8);
 
-            if (!line.isEmpty()) {
-                if (line.matches("[0-9]{0,3}")) {
-                    int testValue = Integer.parseInt(line);
-                    if (testValue >= 0 && testValue <= 100) {
-                        grayScale.setGrayScale(line);
+                line = reader.readLine();
+
+                if (!line.isEmpty()) {
+                    if (line.matches("[0-9]{0,3}")) {
+                        int testValue = Integer.parseInt(line);
+                        if (testValue >= 0 && testValue <= 100) {
+                            grayScale.setGrayScale(line);
+                        }
                     }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

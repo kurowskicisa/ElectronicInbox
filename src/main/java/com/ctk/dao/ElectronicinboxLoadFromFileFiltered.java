@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 
 import java.io.Serializable;
@@ -15,6 +16,8 @@ import java.nio.file.Files;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static java.lang.String.valueOf;
 
 @RequestScoped
 public class ElectronicinboxLoadFromFileFiltered implements Serializable {
@@ -40,25 +43,28 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         String line = null;
         BufferedReader reader = null;
 
-        try {
-
-            reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
-            line = reader.readLine();
-
-            line = reader.readLine();
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-
-        if (line != null && !line.isEmpty()) {
+        if (new File(valueOf(settings.getPathLESPcsv())).isFile()) {
 
             try {
-                readingLESPLinesFromFileFiltered(line, reader);
-                reader.close();
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
+                line = reader.readLine();
+
+                line = reader.readLine();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            if (line != null && !line.isEmpty()) {
+
+                try {
+                    readingLESPLinesFromFileFiltered(line, reader);
+                    reader.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

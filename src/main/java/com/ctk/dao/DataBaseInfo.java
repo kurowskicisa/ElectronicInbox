@@ -5,12 +5,15 @@ import com.ctk.model.DataBase;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
+
+import static java.lang.String.valueOf;
 
 @SessionScoped
 public class DataBaseInfo implements Serializable {
@@ -26,22 +29,30 @@ public class DataBaseInfo implements Serializable {
 
     public void loadDataBaseInfo() {
         String line;
+
         BufferedReader reader;
 
-        try {
+        if (new File(valueOf(settings.getPathDatabaseInfo())).isFile()) {
 
-            reader = Files.newBufferedReader(settings.getPathDatabaseInfo(), StandardCharsets.UTF_8);
+            try {
 
-            line = reader.readLine();
+                reader = Files.newBufferedReader(settings.getPathDatabaseInfo(), StandardCharsets.UTF_8);
 
-            if (!line.isEmpty()) {
-                List<String> tempList = Arrays.asList(line.split(";"));
+                line = reader.readLine();
 
-                dataBase.setDataBaseDateUpdate(monthToPolish(tempList.get(FIELD_DATABASE_DATE_UPDATE)));
-                dataBase.setDataBaseRecordsCounter(tempList.get(FIELD_DATABASE_RECORDS_COUNTER));
+                if (!line.isEmpty()) {
+                    List<String> tempList = Arrays.asList(line.split(";"));
+
+                    dataBase.setDataBaseDateUpdate(monthToPolish(tempList.get(FIELD_DATABASE_DATE_UPDATE)));
+                    dataBase.setDataBaseRecordsCounter(tempList.get(FIELD_DATABASE_RECORDS_COUNTER));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            dataBase.setDataBaseDateUpdate("-");
+            dataBase.setDataBaseRecordsCounter("-");
+
         }
     }
 
