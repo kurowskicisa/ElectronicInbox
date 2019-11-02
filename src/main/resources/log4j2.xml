@@ -53,6 +53,12 @@
             <AppenderRef ref="FileWin" level="INFO"/>
         </logger>
 
+        <logger name="com.ctk.dao.Settings" level="INFO">
+            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="FileLin" level="INFO"/>
+            <AppenderRef ref="FileWin" level="INFO"/>
+        </logger>
+
         <logger name="com.ctk.dao.StatisticSourceFileESPReadFile" level="INFO">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="FileLin" level="INFO"/>

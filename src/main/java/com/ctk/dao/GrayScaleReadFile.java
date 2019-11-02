@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Optional;
 
 import static java.lang.String.*;
 
@@ -34,7 +35,7 @@ public class GrayScaleReadFile implements Serializable {
 
                 reader = Files.newBufferedReader(settings.getPathGrayScaleInfo(), StandardCharsets.UTF_8);
 
-                line = reader.readLine();
+                line = Optional.ofNullable(reader.readLine()).orElse("000");
 
                 if (!line.isEmpty()) {
                     if (line.matches("[0-9]{0,3}")) {

@@ -1,7 +1,7 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.DataBaseInfo;
 import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.Settings;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import com.ctk.model.DataBase;
@@ -29,6 +29,9 @@ import static java.time.LocalTime.now;
 public class IndexServlet extends HttpServlet {
 
     @Inject
+    private Settings settings;
+
+    @Inject
     private TemplateProvider templateProvider;
 
     @Inject
@@ -43,14 +46,29 @@ public class IndexServlet extends HttpServlet {
     @Inject
     private DataBase dataBase;
 
-    @Inject
-    private DataBaseInfo dataBaseInfo;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
 
     @Override
     public void init() {
         APPLOGGER.info("init()] | ");
+
+        if (!settings.isAdminFile()){
+            APPLOGGER.info("No file: " + settings.getPathAdmin());
+        }
+
+        if (!settings.isLESPcsvFile()){
+            APPLOGGER.info("No file: "+ settings.getPathLESPcsv());
+        }
+
+        if (!settings.isDataBaseInfoFile()){
+            APPLOGGER.info("No file: " + settings.getPathDatabaseInfo());
+        }
+
+        if (!settings.isGrayScaleFile()) {
+            APPLOGGER.info("No file: " + settings.getPathGrayScaleInfo());
+        }
+
     }
 
     @Override
@@ -67,7 +85,7 @@ public class IndexServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("grayScale_",
                 grayScale.getGrayScale());
 
-        dataBaseInfo.loadDataBaseInfo();
+        settings.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate() );
         modelGeneratorTemplate.setModel("dataBaseRecordsCounter_",

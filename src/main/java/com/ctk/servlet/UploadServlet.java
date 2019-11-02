@@ -46,7 +46,7 @@ public class UploadServlet extends HttpServlet {
 
         // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
 
-        DateFormat dateFormat = new SimpleDateFormat("YYYYMMdd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(dateToday);
 
         APPLOGGER.info(settings.getPathDatabaseInfo());
@@ -69,7 +69,7 @@ public class UploadServlet extends HttpServlet {
                 dataBase.setDataBaseRecordsCounter(settings.countTotalRercords().toString());
 
                 settings.updateDateDataBaseInfo();
-
+                settings.loadDataBaseInfo();
                 APPLOGGER.info("Database is updated");
             }
         } else {
@@ -101,7 +101,9 @@ public class UploadServlet extends HttpServlet {
 
         BufferedInputStream bufferedInputStream = null;
         try {
-            bufferedInputStream = new BufferedInputStream(url.openStream());
+            if (url != null) {
+                bufferedInputStream = new BufferedInputStream(url.openStream());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
