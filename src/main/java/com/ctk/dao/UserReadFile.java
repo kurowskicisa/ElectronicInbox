@@ -3,12 +3,15 @@ package com.ctk.dao;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
+
+import static java.lang.String.valueOf;
 
 @SessionScoped
 public class UserReadFile implements Serializable {
@@ -23,25 +26,28 @@ public class UserReadFile implements Serializable {
         String line = null;
         BufferedReader reader = null;
 
-        try {
+        if (new File(valueOf(settings.getPathAdmin())).isFile()) {
 
-            reader = Files.newBufferedReader(settings.getPathAdmin(), StandardCharsets.UTF_8);
-            line = reader.readLine();
+            try {
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                reader = Files.newBufferedReader(settings.getPathAdmin(), StandardCharsets.UTF_8);
+                line = reader.readLine();
 
-        if (reader != null) {
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            if (line != null && !line.isEmpty()) {
+            if (reader != null) {
 
-                try {
-                    readingAllUsers(line, reader);
-                    reader.close();
+                if (line != null && !line.isEmpty()) {
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+                        readingAllUsers(line, reader);
+                        reader.close();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

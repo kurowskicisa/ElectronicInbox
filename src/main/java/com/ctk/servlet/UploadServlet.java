@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,7 +47,7 @@ public class UploadServlet extends HttpServlet {
 
         // https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
 
-        DateFormat dateFormat = new SimpleDateFormat("YYYYMMdd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(dateToday);
 
         APPLOGGER.info(settings.getPathDatabaseInfo());
@@ -61,16 +62,21 @@ public class UploadServlet extends HttpServlet {
                 APPLOGGER.info("Update not necessary");
             } else {
                 APPLOGGER.info("Update is necessary");
-                renameFileLESP();
 
-                downloadfileLESP(fileSource);
+                if (isEPUAPAvailable()) {
+                    renameFileLESP();
 
-                dataBase.setDataBaseDateUpdate(strDate);
-                dataBase.setDataBaseRecordsCounter(settings.countTotalRercords().toString());
+                    downloadfileLESP(fileSource);
 
-                settings.updateDateDataBaseInfo();
+                    dataBase.setDataBaseDateUpdate(strDate);
+                    dataBase.setDataBaseRecordsCounter(settings.countTotalRercords().toString());
 
-                APPLOGGER.info("Database is updated");
+                    settings.updateDateDataBaseInfo();
+                    settings.loadDataBaseInfo();
+                    APPLOGGER.info("Database is updated");
+                } else {
+                    APPLOGGER.info("No connection to EPUAP");
+                }
             }
         } else {
             APPLOGGER.info("No file: databaseinfo");
@@ -101,7 +107,9 @@ public class UploadServlet extends HttpServlet {
 
         BufferedInputStream bufferedInputStream = null;
         try {
-            bufferedInputStream = new BufferedInputStream(url.openStream());
+            if (url != null) {
+                bufferedInputStream = new BufferedInputStream(url.openStream());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,6 +143,20 @@ public class UploadServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+    }
+
+    private static boolean isEPUAPAvailable() {
+        try {
+            final URL url = new URL("https://epuap.gov.pl");
+            final URLConnection conn = url.openConnection();
+            conn.connect();
+            conn.getInputStream().close();
+            return true;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            return false;
+        }
     }
 
 }

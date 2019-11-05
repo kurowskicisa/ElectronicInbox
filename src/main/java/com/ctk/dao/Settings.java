@@ -1,6 +1,8 @@
 package com.ctk.dao;
 
 import com.ctk.model.DataBase;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,12 +15,17 @@ import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
+import static java.lang.String.valueOf;
 
 @ApplicationScoped
 public class Settings {
 
     @Inject
     private DataBase dataBase;
+
+    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.Settings.class.getName());
 
     private final Path pathLESPcsv = Paths.get(System.getProperty("jboss.server.data.dir"), "LESP.csv");
     private final Path pathAdmin = Paths.get(System.getProperty("jboss.server.data.dir"), "admin.csv");
@@ -41,7 +48,6 @@ public class Settings {
         return pathDatabaseInfo;
     }
 
-
     public Path getPathGrayScaleInfo() {
         return pathGrayScaleInfo;
     }
@@ -53,6 +59,26 @@ public class Settings {
         return dateFormat;
     }
 
+    public boolean isLESPcsvFile() {
+        String patch;
+
+        patch = String.valueOf(getPathLESPcsv());
+
+        File fileLESPcsv = new File(patch);
+
+        return fileLESPcsv.isFile();
+    }
+
+    public boolean isAdminFile() {
+        String patch;
+
+        patch = String.valueOf(getPathAdmin());
+
+        File fileAdmin = new File(patch);
+
+        return fileAdmin.isFile();
+    }
+
     public boolean isDataBaseInfoFile() {
         String patch;
 
@@ -61,7 +87,36 @@ public class Settings {
         File fileDataBaseInfo = new File(patch);
 
         return fileDataBaseInfo.isFile();
+    }
 
+    public boolean isGrayScaleFile() {
+        String patch;
+
+        patch = String.valueOf(getPathGrayScaleInfo());
+
+        File fileGrayScaleInfo = new File(patch);
+
+        return fileGrayScaleInfo.isFile();
+    }
+
+    private boolean isDataBaseInfoFileEmpty() {
+        BufferedReader reader;
+        String line;
+
+        if (isDataBaseInfoFile()) {
+
+            try {
+                reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
+
+                line = Optional.ofNullable(reader.readLine()).orElse("");
+
+                return line.isEmpty();
+
+            } catch (NullPointerException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
     }
 
     public String getDateDataBaseInfoDate() {
@@ -76,7 +131,7 @@ public class Settings {
 
             reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
 
-            line = reader.readLine();
+            line = Optional.ofNullable(reader.readLine()).orElse("");
 
             if (!line.isEmpty()) {
                 List<String> tempList = Arrays.asList(line.split(";"));
@@ -156,4 +211,104 @@ public class Settings {
         }
 
     }
+
+    public void loadDataBaseInfo() {
+        String line;
+
+        BufferedReader reader;
+
+        if (new File(valueOf(getPathDatabaseInfo())).isFile()) {
+
+            APPLOGGER.info("File " + getPathDatabaseInfo().toString() + " exist");
+
+            try {
+
+                reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
+
+                APPLOGGER.info("File: try read...");
+
+                if (!isDataBaseInfoFileEmpty()) {
+
+                    APPLOGGER.info("File is not empty");
+
+                    line = reader.readLine();
+
+                    APPLOGGER.info(line);
+
+                    if (!line.isEmpty()) {
+                        List<String> tempList = Arrays.asList(line.split(";"));
+
+                        if (tempList.get(FIELD_DATABASE_DATE_UPDATE)
+                                .matches("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
+                            dataBase.setDataBaseDateUpdate(monthToPolish(tempList.get(FIELD_DATABASE_DATE_UPDATE)));
+                            dataBase.setDataBaseRecordsCounter(tempList.get(FIELD_DATABASE_RECORDS_COUNTER));
+                            APPLOGGER.info("File structure is OK");
+                        }
+                    } else {
+                        dataBase.setDataBaseDateUpdate("-");
+                        dataBase.setDataBaseRecordsCounter("-");
+                        APPLOGGER.info("File structure is NOT OK");
+                    }
+                } else {
+                    dataBase.setDataBaseDateUpdate("-");
+                    dataBase.setDataBaseRecordsCounter("-");
+                    APPLOGGER.info("File is empty");
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            dataBase.setDataBaseDateUpdate("-");
+            dataBase.setDataBaseRecordsCounter("-");
+            APPLOGGER.info("File " + getPathDatabaseInfo().toString() + " do not exist");
+        }
+    }
+
+    private String monthToPolish(String dateToConvert) {
+
+        String datePolish = "";
+
+        switch (dateToConvert.substring(5, 7).trim()) {
+            case "01":
+                datePolish = " stycznia ";
+                break;
+            case "02":
+                datePolish = " lutego ";
+                break;
+            case "03":
+                datePolish = " marca ";
+                break;
+            case "04":
+                datePolish = " kwoetnia ";
+                break;
+            case "05":
+                datePolish = " maja ";
+                break;
+            case "06":
+                datePolish = " czerwca ";
+                break;
+            case "07":
+                datePolish = " lipca ";
+                break;
+            case "08":
+                datePolish = " sierpnia ";
+                break;
+            case "09":
+                datePolish = " września ";
+                break;
+            case "10":
+                datePolish = " października ";
+                break;
+            case "11":
+                datePolish = " listopada ";
+                break;
+            case "12":
+                datePolish = " grudnia ";
+                break;
+        }
+
+        return dateToConvert.substring(8, 10).concat(datePolish).concat(dateToConvert.substring(0, 4));
+    }
+
 }

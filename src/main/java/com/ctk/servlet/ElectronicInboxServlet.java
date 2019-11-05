@@ -79,6 +79,10 @@ public class ElectronicInboxServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
+        if (electronicInboxFilterFile.getTotalRecords()==0.00) {
+            resetPages();
+        }
+
         modelGeneratorTemplate.setModel("choiceName_",
                 electronicInboxFilterFile.getName());
 
@@ -209,5 +213,16 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choiceTotalPages_", "");
         modelGeneratorTemplate.setModel("choicePrevPage_", "");
         modelGeneratorTemplate.setModel("choiceNextPage_", "");
+
+
+    }
+
+    private void resetPages(){
+
+        electronicInboxFilterFile.setPrevPage(1);
+        electronicInboxFilterFile.setNextPage(1);
+        electronicInboxFilterFile.setPage("1");
+        electronicInboxFilterFile.setTotalPages(1);
+
     }
 }

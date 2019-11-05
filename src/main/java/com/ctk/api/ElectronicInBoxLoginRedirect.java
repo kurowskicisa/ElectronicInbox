@@ -5,7 +5,7 @@ import com.ctk.model.GrayScale;
 
 import javax.inject.Inject;
 
-public class ElectronicInBoxRedirect {
+public class ElectronicInBoxLoginRedirect {
 
     @Inject
     private GrayScale grayScale;
@@ -13,8 +13,8 @@ public class ElectronicInBoxRedirect {
     @Inject
     private GrayScaleReadFile grayScaleReadFile;
 
-    public String ElectronicInBoxRedirect() {
-        String electronicInBoxRedirect;
+    public String ElectronicInBoxLoghinRedirect() {
+        String electronicInBoxLoginRedirect;
 
         String grayScale_ = "000";
 
@@ -24,7 +24,7 @@ public class ElectronicInBoxRedirect {
             grayScale_ = grayScale.getGrayScale();
         }
 
-        electronicInBoxRedirect=
+        electronicInBoxLoginRedirect=
                 "<!doctype html>\n" +
                         "<html lang=\"pl\">\n" +
                         "\n" +
@@ -33,10 +33,10 @@ public class ElectronicInBoxRedirect {
                         "    <meta content-Type=\"text/html\" ; charset=\"utf-8\">\n" +
                         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">" +
                         "\n" +
-                        "    <meta http-equiv = \"refresh\" content =\"0, /electronicinbox/eib\">\n" +
+                        "    <meta http-equiv = \"refresh\" content =\"0, /electronicinbox/\">\n" +
                         "\n" +
                         "    <script type=\"text/javascript\">\n" +
-                        "    windows.location.href = \"/electronicinbox/eib\"\n" +
+                        "    windows.location.href = \"/electronicinbox/\"\n" +
                         "    </script>\n" +
                         "\n" +
                         "    <style>" +
@@ -67,17 +67,6 @@ public class ElectronicInBoxRedirect {
                         "\n" +
                         "    </style>" +
                         "\n" +
-                        "<div class=\"position-sticky sticky-top\">" +
-                        "<nav class=\"navbar navbar-light bg-light\">" +
-                        "<span class=\"navbar-brand mb-3 h1\">" +
-                        "<a href=\"/electronicinbox/\"" +
-                        "style=\"color: rgb(000, 000, 000); text-decoration: none; display: block;\"" +
-                        ">" +
-                        "Elektroniczne Skrzynki Podawcze" +
-                        "</a>" +
-                        "</span>"+
-                        "</nav>" +
-                        "</div>" +
                         "    <!-- Bootstrap CSS -->\n" +
                         "    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\"\n" +
                         "          integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">\n" +
@@ -91,6 +80,6 @@ public class ElectronicInBoxRedirect {
                         "\n" +
                         "</head>" +
                         "</html>";
-        return electronicInBoxRedirect;
+        return electronicInBoxLoginRedirect;
     }
 }

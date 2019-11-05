@@ -24,7 +24,7 @@ public class StatisticFilter extends HttpFilter {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
-        System.out.println("test: "+userRepository.getList().get(0).isAutenticate());
+
         if (userRepository.getList().size() > 0) {
 
             logged = userRepository.getList().get(0).isAutenticate();
