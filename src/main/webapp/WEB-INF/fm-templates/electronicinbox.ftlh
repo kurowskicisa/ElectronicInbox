@@ -132,7 +132,7 @@
                     <div class="input-group col-lg-4">
                         <input class="form-control"
                                onkeyup="blockNavigator();"
-                               style="margin-bottom: 0;"
+                               oninput="blockNavigator();"
                                id="inputName"
                                name="nazwa"
                                type="search"
@@ -156,6 +156,7 @@
                     <div class="input-group col-lg-3">
                         <input class="form-group form-control"
                                onkeyup="blockNavigator();"
+                               oninput="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputAddress"
                                name="adres"
@@ -179,6 +180,7 @@
                     <div class="input-group col-lg-3">
                         <input class="form-group form-control"
                                onkeyup="blockNavigator();"
+                               oninput="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputPlace"
                                name="miejscowosc"
