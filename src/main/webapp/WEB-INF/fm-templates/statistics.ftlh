@@ -5,7 +5,7 @@
 <head>
     <!-- Required meta tags -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta content-Type="text/html" ; charset="utf-8">
+    <meta content-Type="text/html" ; charset="utf-8" ;>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <#include "include/grayscale.ftlh">
@@ -44,9 +44,6 @@
             </a>
         </span>
     </nav>
-
-
-</div>
 </div>
 
 <div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
