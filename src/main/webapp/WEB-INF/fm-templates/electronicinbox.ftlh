@@ -44,23 +44,17 @@
 
     <script type="text/javascript">
         function unblockNavigator() {
-            aaa = document.getElementById("inputName").value;
-            bbb = document.getElementById("inputAddress").value;
-            ccc = document.getElementById("inputPlace").value;
-
-            document.getElementById("demo1").innerHTML = "##" + aa + "@" + aaa + "##";
-            document.getElementById("demo2").innerHTML = "##" + bb + "@" + bbb + "##";
-            document.getElementById("demo3").innerHTML = "##" + cc + "@" + ccc + "##";
+            changedInputName = document.getElementById("inputName").value;
+            changedInputAddress = document.getElementById("inputAddress").value;
+            changedInputPlace = document.getElementById("inputPlace").value;
 
             document.getElementById('btnFirstPage').disabled = false;
             document.getElementById('btnPrevPage').disabled = false;
             document.getElementById('btnNextPage').disabled = false;
             document.getElementById('btnLastPage').disabled = false;
 
-            document.getElementById("demo0").innerHTML = document.getElementById("btnFirstPage").value
-
-            if ((aaa != aa) ||
-                (bbb != bb) || (ccc != cc)
+            if ((changedInputName != entryInputName) ||
+                (changedInputAddress != entryInputAddress) || (changedInputPlace != entryInputPlace)
                 || (document.getElementById("btnFirstPage").value == document.getElementById("btnLastPage").value)
             ) {
                 blockAll();
@@ -113,14 +107,6 @@
       class="graypage"
       style="background-color: white">
 
-<p id="demo0">demo0</p>
-<br>
-<p id="demo1">demo1</p>
-<br>
-<p id="demo2">demo2</p>
-<br>
-<p id="demo3">demo3</p>
-
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-3 h1">
@@ -169,7 +155,7 @@
 
                     <div class="input-group col-lg-3">
                         <input class="form-group form-control"
-                               onchange="blockNavigator();"
+                               onkeyup="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputAddress"
                                name="adres"
@@ -192,7 +178,7 @@
 
                     <div class="input-group col-lg-3">
                         <input class="form-group form-control"
-                               onchange="blockNavigator();"
+                               onkeyup="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputPlace"
                                name="miejscowosc"
@@ -569,25 +555,13 @@
 <script type="text/javascript">
     function initEIB() {
 
-        document.getElementById("demo0").innerHTML = "START"
-
-        document.getElementById("demo1").innerHTML = "##";
-        document.getElementById("demo2").innerHTML = "##";
-        document.getElementById("demo3").innerHTML = "##";
-
-
-        aa = document.getElementById("inputName").value;
-        bb = document.getElementById("inputAddress").value;
-        cc = document.getElementById("inputPlace").value;
-
-        document.getElementById("demo1").innerHTML = "##" + aa + "@";
-        document.getElementById("demo2").innerHTML = "##" + bb + "@";
-        document.getElementById("demo3").innerHTML = "##" + cc + "@";
+        entryInputName = document.getElementById("inputName").value;
+        entryInputAddress = document.getElementById("inputAddress").value;
+        entryInputPlace = document.getElementById("inputPlace").value;
 
         if (document.getElementById("btnFirstPage").value == document.getElementById("btnLastPage").value) {
             blockAll();
         }
-
     }
 </script>
 
