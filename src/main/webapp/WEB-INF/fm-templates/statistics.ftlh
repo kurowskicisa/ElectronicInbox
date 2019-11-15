@@ -20,6 +20,10 @@
         function noBack() {
             window.history.forward();
         }
+
+        function updateBase() {
+            window.location.href = "/electronicinbox/statistics/update";
+        }
     </script>
 
     <title>Elektroniczne Skrzynki Podawcze</title>
@@ -28,7 +32,7 @@
 
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
-      class ="graypage"
+      class="graypage"
       style="background-color: white">
 
 <div class="position-sticky sticky-top">
@@ -43,6 +47,50 @@
 
 
 </div>
+</div>
+
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
+                <div class="card-header">ostatnia aktualizacja bazy</div>
+                <div class="card-body">
+                    <h1 class="card-text">${dataBaseDateUpdate_}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
+                <div class="card-header">liczba rekordów</div>
+                <div class="card-body">
+                    <h1 class="card-text">${totalRecords_}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card text-white bg-success text-center mb-12"
+                 style="max-width: 100%; height: 100%; alignment: center;">
+                <div class="card-body">
+                    <h1 class="card-text">
+                        <form method="get" action="/electronicinbox/statistics/upload" class="form-signin">
+                            <button
+                                    class="btn btn-lg btn-primary btn-block"
+                                    type="submit"
+                            >
+                                Aktualizacja bazy
+                            </button>
+                        </form>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
+    &nbsp;
 </div>
 
 <div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
@@ -150,20 +198,6 @@
             </div>
         </div>
 
-    </div>
-</div>
-
-
-<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
-                <div class="card-header">Ilość rekordów</div>
-                <div class="card-body">
-                    <h1 class="card-text">${totalRecords_}</h1>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

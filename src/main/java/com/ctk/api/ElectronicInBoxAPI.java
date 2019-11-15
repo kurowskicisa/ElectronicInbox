@@ -44,7 +44,6 @@ public class ElectronicInBoxAPI {
                 .build();
     }
 
-
     @POST
     @Path("/prev")
     public Response eibPrevPage(
@@ -66,7 +65,6 @@ public class ElectronicInBoxAPI {
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
                 .build();
     }
-
 
     @POST
     @Path("/next")
@@ -90,10 +88,6 @@ public class ElectronicInBoxAPI {
                 .build();
     }
 
-    private ElectronicInBoxAPI getEncoder(String choiceName) {
-        return this;
-    }
-
     @POST
     @Path("/last")
     public Response eibLastPage(
@@ -115,7 +109,6 @@ public class ElectronicInBoxAPI {
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
                 .build();
     }
-
 
     @GET
     @Path("/find")

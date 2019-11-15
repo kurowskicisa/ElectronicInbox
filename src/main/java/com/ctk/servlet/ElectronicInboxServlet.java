@@ -79,7 +79,7 @@ public class ElectronicInboxServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
-        if (electronicInboxFilterFile.getTotalRecords()==0.00) {
+        if (electronicInboxFilterFile.getTotalRecords() == 0.00) {
             resetPages();
         }
 
@@ -110,6 +110,14 @@ public class ElectronicInboxServlet extends HttpServlet {
             electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
 
         }
+
+        if (electronicInboxFilterFile.getTotalPages() == 0){
+            electronicInboxFilterFile.setPage("0");
+            electronicInboxFilterFile.setPrevPage(0);
+        }
+
+        modelGeneratorTemplate.setModel("choiceFirstPage_",
+                electronicInboxFilterFile.getPage());
 
         modelGeneratorTemplate.setModel("choicePrevPage_",
                 electronicInboxFilterFile.getPrevPage());
@@ -157,6 +165,7 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+
     }
 
     @Override
@@ -191,7 +200,6 @@ public class ElectronicInboxServlet extends HttpServlet {
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
 
-
     }
 
     private void resetFormFields() {
@@ -214,10 +222,9 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choicePrevPage_", "");
         modelGeneratorTemplate.setModel("choiceNextPage_", "");
 
-
     }
 
-    private void resetPages(){
+    private void resetPages() {
 
         electronicInboxFilterFile.setPrevPage(1);
         electronicInboxFilterFile.setNextPage(1);

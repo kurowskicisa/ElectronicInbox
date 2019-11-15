@@ -24,7 +24,7 @@ public class ElectronicInBoxLoginRedirect {
             grayScale_ = grayScale.getGrayScale();
         }
 
-        electronicInBoxLoginRedirect=
+        electronicInBoxLoginRedirect =
                 "<!doctype html>\n" +
                         "<html lang=\"pl\">\n" +
                         "\n" +

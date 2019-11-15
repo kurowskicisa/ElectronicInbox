@@ -25,7 +25,7 @@ import java.time.temporal.ChronoUnit;
 import static java.time.LocalTime.now;
 
 @RequestScoped
-@WebServlet(urlPatterns = { "", "/", "/login"})
+@WebServlet(urlPatterns = { "", "/", "/index"})
 public class IndexServlet extends HttpServlet {
 
     @Inject
@@ -68,7 +68,6 @@ public class IndexServlet extends HttpServlet {
         if (!settings.isGrayScaleFile()) {
             APPLOGGER.info("No file: " + settings.getPathGrayScaleInfo());
         }
-
     }
 
     @Override
@@ -87,7 +86,7 @@ public class IndexServlet extends HttpServlet {
 
         settings.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
-                dataBase.getDataBaseDateUpdate() );
+                dataBase.getDataBaseDateUpdate());
         modelGeneratorTemplate.setModel("dataBaseRecordsCounter_",
                 dataBase.getDataBaseRecordsCounter() );
 

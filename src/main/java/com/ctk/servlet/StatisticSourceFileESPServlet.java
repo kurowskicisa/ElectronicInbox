@@ -1,10 +1,12 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.Settings;
 import com.ctk.dao.StatisticSourceFileESPReadFile;
 import com.ctk.dao.UserRepository;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
+import com.ctk.model.DataBase;
 import com.ctk.model.GrayScale;
 import com.ctk.model.StatisticSourceFileESP;
 import freemarker.template.Template;
@@ -50,6 +52,12 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private Settings settings;
+
+    @Inject
+    private DataBase dataBase;
+
     private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPServlet.class.getName());
 
     @Override
@@ -71,6 +79,10 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
 
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+
+        settings.loadDataBaseInfo();
+        modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
+                dataBase.getDataBaseDateUpdate() );
 
         statisticSourceFileESPReadFile.loadFileESP();
 
@@ -161,5 +173,4 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
         APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
-
 }

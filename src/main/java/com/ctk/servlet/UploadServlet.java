@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @RequestScoped
-@WebServlet(urlPatterns = {"/upload"})
+@WebServlet(urlPatterns = {"/statistics/upload"})
 public class UploadServlet extends HttpServlet {
 
     @Inject
@@ -58,7 +58,15 @@ public class UploadServlet extends HttpServlet {
             patch = String.valueOf(settings.getPathLESPcsv());
             File fileSource = new File(patch);
 
-            if (settings.getDateDataBaseInfoDate().equals(strDate)) {
+            String stringDate = settings.getDateDataBaseInfoDate();
+
+            stringDate = stringDate.substring(0, 4)
+                    .concat("-")
+                    .concat(stringDate.substring(4, 6))
+                    .concat("-")
+                    .concat(stringDate.substring(6, 8));
+
+            if (stringDate.equals(strDate)) {
                 APPLOGGER.info("Update not necessary");
             } else {
                 APPLOGGER.info("Update is necessary");
@@ -69,6 +77,7 @@ public class UploadServlet extends HttpServlet {
                     downloadfileLESP(fileSource);
 
                     dataBase.setDataBaseDateUpdate(strDate);
+
                     dataBase.setDataBaseRecordsCounter(settings.countTotalRercords().toString());
 
                     settings.updateDateDataBaseInfo();
@@ -81,6 +90,7 @@ public class UploadServlet extends HttpServlet {
         } else {
             APPLOGGER.info("No file: databaseinfo");
         }
+        resp.sendRedirect("/electronicinbox/statistics");
     }
 
     private void renameFileLESP() {
@@ -142,7 +152,6 @@ public class UploadServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private static boolean isEPUAPAvailable() {
@@ -158,5 +167,4 @@ public class UploadServlet extends HttpServlet {
             return false;
         }
     }
-
 }

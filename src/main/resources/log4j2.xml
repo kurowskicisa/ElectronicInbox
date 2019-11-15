@@ -71,12 +71,6 @@
             <AppenderRef ref="FileWin" level="INFO"/>
         </logger>
 
-        <logger name="com.ctk.api.UploadAPI" level="INFO">
-            <AppenderRef ref="Console" level="INFO"/>
-            <AppenderRef ref="FileLin" level="INFO"/>
-            <AppenderRef ref="FileWin" level="INFO"/>
-        </logger>
-
         <logger name="com.ctk.servlet.UploadServlet" level="INFO">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="FileLin" level="INFO"/>

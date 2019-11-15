@@ -36,14 +36,90 @@
         }
     </script>
 
+    <script type="text/javascript">
+        function blockNavigator() {
+            unblockNavigator();
+        }
+    </script>
+
+    <script type="text/javascript">
+        function unblockNavigator() {
+            aaa = document.getElementById("inputName").value;
+            bbb = document.getElementById("inputAddress").value;
+            ccc = document.getElementById("inputPlace").value;
+
+            document.getElementById("demo1").innerHTML = "##" + aa + "@" + aaa + "##";
+            document.getElementById("demo2").innerHTML = "##" + bb + "@" + bbb + "##";
+            document.getElementById("demo3").innerHTML = "##" + cc + "@" + ccc + "##";
+
+            document.getElementById('btnFirstPage').disabled = false;
+            document.getElementById('btnPrevPage').disabled = false;
+            document.getElementById('btnNextPage').disabled = false;
+            document.getElementById('btnLastPage').disabled = false;
+
+            document.getElementById("demo0").innerHTML = document.getElementById("btnFirstPage").value
+
+            if ((aaa != aa) ||
+                (bbb != bb) || (ccc != cc)
+                || (document.getElementById("btnFirstPage").value == document.getElementById("btnLastPage").value)
+            ) {
+                blockAll();
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function blockAll() {
+            document.getElementById('btnFirstPage').disabled = true;
+            document.getElementById('btnPrevPage').disabled = true;
+            document.getElementById('btnNextPage').disabled = true;
+            document.getElementById('btnLastPage').disabled = true;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function clearInputName() {
+            document.getElementById("inputName").value = "";
+            document.getElementById("inputName").innerHTML = "";
+
+            unblockNavigator();
+        }
+    </script>
+
+    <script type="text/javascript">
+        function clearInputAddress() {
+            document.getElementById("inputAddress").value = "";
+            document.getElementById("inputAddress").innerHTML = "";
+
+            unblockNavigator();
+        }
+    </script>
+
+    <script type="text/javascript">
+        function clearInputPlace() {
+            document.getElementById("inputPlace").value = "";
+            document.getElementById("inputPlace").innerHTML = "";
+
+            unblockNavigator();
+        }
+    </script>
+
     <title>Elektroniczne Skrzynki Podawcze</title>
 
 </head>
 
-<body onload="noBack();"
+<body onload="initEIB();"
       onpageshow="if (event.persisted) noBack();" onunload=""
       class="graypage"
       style="background-color: white">
+
+<p id="demo0">demo0</p>
+<br>
+<p id="demo1">demo1</p>
+<br>
+<p id="demo2">demo2</p>
+<br>
+<p id="demo3">demo3</p>
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
@@ -60,16 +136,16 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <form
-                    action="/electronicinbox/eib/find"
-                    method="post"
-                    accept-charset="UTF-8"
-                    style="width: 100%;">
+            <form action="/electronicinbox/eib/find"
+                  method="post"
+                  accept-charset="UTF-8"
+                  style="width: 100%;">
 
                 <div class="form-group row" style="margin-bottom: 0; font-size:1vw;">
 
                     <div class="input-group col-lg-4">
                         <input class="form-control"
+                               onkeyup="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputName"
                                name="nazwa"
@@ -80,10 +156,11 @@
                                value="<#if choiceName_??>${choiceName_}<#else > </#if>"
                         >
                         <div class="input-group-append" style="display: inline-block;">
-                            <button class="btn btn-outline-secondary"
+                            <button onclick="clearInputName();"
+                                    class="btn btn-outline-secondary"
                                     style="margin-bottom: 0;"
                                     id="btnName"
-                                    type="submit">
+                                    type="button">
                                 O
                             </button>
                         </div>
@@ -92,6 +169,7 @@
 
                     <div class="input-group col-lg-3">
                         <input class="form-group form-control"
+                               onchange="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputAddress"
                                name="adres"
@@ -101,10 +179,11 @@
                                value="<#if choiceAddress_??>${choiceAddress_}<#else > </#if>"
                         >
                         <div class="input-group-append" style="display: inline-block;">
-                            <button class="btn btn-outline-secondary"
+                            <button onclick="clearInputAddress();"
+                                    class="btn btn-outline-secondary"
                                     style="margin-bottom: 0;"
                                     id="btnAddress"
-                                    type="submit">
+                                    type="button">
                                 O
                             </button>
                         </div>
@@ -113,6 +192,7 @@
 
                     <div class="input-group col-lg-3">
                         <input class="form-group form-control"
+                               onchange="blockNavigator();"
                                style="margin-bottom: 0;"
                                id="inputPlace"
                                name="miejscowosc"
@@ -122,10 +202,11 @@
                                value="<#if choicePlace_??>${choicePlace_}<#else > </#if>"
                         >
                         <div class="input-group-append" style="display: inline-block;">
-                            <button class="btn btn-outline-secondary"
+                            <button onclick="clearInputPlace();"
+                                    class="btn btn-outline-secondary"
                                     style="margin-bottom: 0"
                                     id="btnPlace"
-                                    type="submit">
+                                    type="button">
                                 O
                             </button>
                         </div>
@@ -142,11 +223,10 @@
                     </div>
                 </div>
 
-                <input
-                        id="inputPage"
-                        name="strona"
-                        type="hidden"
-                        value="<#if choicePage_??>${choicePage_}<#else >1</#if>"
+                <input id="inputPage"
+                       name="strona"
+                       type="hidden"
+                       value="<#if choicePage_??>${choicePage_}<#else >1</#if>"
                 >
 
             </form>
@@ -485,6 +565,32 @@
 
     </div>
 </div>
+
+<script type="text/javascript">
+    function initEIB() {
+
+        document.getElementById("demo0").innerHTML = "START"
+
+        document.getElementById("demo1").innerHTML = "##";
+        document.getElementById("demo2").innerHTML = "##";
+        document.getElementById("demo3").innerHTML = "##";
+
+
+        aa = document.getElementById("inputName").value;
+        bb = document.getElementById("inputAddress").value;
+        cc = document.getElementById("inputPlace").value;
+
+        document.getElementById("demo1").innerHTML = "##" + aa + "@";
+        document.getElementById("demo2").innerHTML = "##" + bb + "@";
+        document.getElementById("demo3").innerHTML = "##" + cc + "@";
+
+        if (document.getElementById("btnFirstPage").value == document.getElementById("btnLastPage").value) {
+            blockAll();
+        }
+
+    }
+</script>
+
 
 <!-- Optional Javascript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
