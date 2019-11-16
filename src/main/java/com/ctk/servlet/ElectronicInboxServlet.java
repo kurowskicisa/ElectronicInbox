@@ -115,7 +115,6 @@ public class ElectronicInboxServlet extends HttpServlet {
             electronicInboxFilterFile.setPage("0");
             electronicInboxFilterFile.setPrevPage(0);
             electronicInboxFilterFile.setNextPage(0);
-
             modelGeneratorTemplate.setModel("choiceFirstPage_",
                     "0");
         } else {

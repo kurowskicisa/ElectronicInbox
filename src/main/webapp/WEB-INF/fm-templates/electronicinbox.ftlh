@@ -59,6 +59,13 @@
             ) {
                 blockAll();
             }
+
+            if (document.getElementById("btnFirstPage").value == document.getElementById("inputPage").value){
+                blockFirst()
+            }
+            if (document.getElementById("inputPage").value == document.getElementById("btnLastPage").value){
+                blockLast()
+            }
         }
     </script>
 
@@ -66,6 +73,20 @@
         function blockAll() {
             document.getElementById('btnFirstPage').disabled = true;
             document.getElementById('btnPrevPage').disabled = true;
+            document.getElementById('btnNextPage').disabled = true;
+            document.getElementById('btnLastPage').disabled = true;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function blockFirst() {
+            document.getElementById('btnFirstPage').disabled = true;
+            document.getElementById('btnPrevPage').disabled = true;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function blockLast() {
             document.getElementById('btnNextPage').disabled = true;
             document.getElementById('btnLastPage').disabled = true;
         }
@@ -564,6 +585,13 @@
         if (document.getElementById("btnFirstPage").value == document.getElementById("btnLastPage").value) {
             blockAll();
         }
+        if (document.getElementById("btnFirstPage").value == document.getElementById("inputPage").value){
+            blockFirst()
+        }
+        if (document.getElementById("inputPage").value == document.getElementById("btnLastPage").value){
+            blockLast()
+        }
+
     }
 </script>
 
