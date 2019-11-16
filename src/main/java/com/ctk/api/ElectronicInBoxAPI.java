@@ -110,23 +110,6 @@ public class ElectronicInBoxAPI {
                 .build();
     }
 
-    @GET
-    @Path("/find")
-    public Response eibGetFind(
-            @FormParam("nazwa") String choiceName,
-            @FormParam("adres") String choiceAddress,
-            @FormParam("miejscowosc") String choicePlace,
-            @FormParam("strona") String choicePage) {
-
-        APPLOGGER.info("GET | find ");
-
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
-
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
-    }
-
     @POST
     @Path("/find")
     public Response eibPostFind(

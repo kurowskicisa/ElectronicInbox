@@ -1,6 +1,0 @@
-.gitignore
-target/
-*.iml
-.idea/
-*.zip
-Setup_EIB.xml
