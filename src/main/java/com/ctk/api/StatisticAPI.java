@@ -29,7 +29,7 @@ public class StatisticAPI {
     @POST
     @Path("/statistics")
     public Response authenticateForm(
-            @FormParam("nextPage") String user,
+            @FormParam("user") String user,
             @FormParam("password") String password) {
 
         userRepository.empty();
