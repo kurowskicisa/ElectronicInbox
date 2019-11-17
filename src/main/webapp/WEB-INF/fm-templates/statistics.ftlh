@@ -22,7 +22,7 @@
         }
 
         function updateBase() {
-            window.location.href = "/electronicinbox/statistics/update";
+            window.location.href = "/electronicinbox/upload-test";
         }
     </script>
 
@@ -71,7 +71,7 @@
                  style="max-width: 100%; height: 100%; alignment: center;">
                 <div class="card-body">
                     <h1 class="card-text">
-                        <form method="get" action="/electronicinbox/statistics/upload" class="form-signin">
+                        <form method="get" action="/electronicinbox/upload" class="form-signin">
                             <button
                                     class="btn btn-lg btn-primary btn-block"
                                     type="submit"
