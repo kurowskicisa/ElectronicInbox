@@ -64,7 +64,6 @@
                 <h3>&nbsp;</h3>
 
                 <form method="get" action="/electronicinbox/eib" class="form-signin">
-
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Przeglądaj i szukaj</button>
                 </form>
 

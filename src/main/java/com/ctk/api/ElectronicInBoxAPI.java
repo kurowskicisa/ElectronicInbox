@@ -44,7 +44,6 @@ public class ElectronicInBoxAPI {
                 .build();
     }
 
-
     @POST
     @Path("/prev")
     public Response eibPrevPage(
@@ -66,7 +65,6 @@ public class ElectronicInBoxAPI {
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
                 .build();
     }
-
 
     @POST
     @Path("/next")
@@ -90,10 +88,6 @@ public class ElectronicInBoxAPI {
                 .build();
     }
 
-    private ElectronicInBoxAPI getEncoder(String choiceName) {
-        return this;
-    }
-
     @POST
     @Path("/last")
     public Response eibLastPage(
@@ -110,24 +104,6 @@ public class ElectronicInBoxAPI {
         electronicInboxFilterFile.setPage(
                 String.valueOf((Integer.valueOf(lastPage)))
         );
-
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
-    }
-
-
-    @GET
-    @Path("/find")
-    public Response eibGetFind(
-            @FormParam("nazwa") String choiceName,
-            @FormParam("adres") String choiceAddress,
-            @FormParam("miejscowosc") String choicePlace,
-            @FormParam("strona") String choicePage) {
-
-        APPLOGGER.info("GET | find ");
-
-        SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
         return Response.ok()
                 .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())

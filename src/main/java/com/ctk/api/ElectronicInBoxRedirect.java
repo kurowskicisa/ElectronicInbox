@@ -24,7 +24,7 @@ public class ElectronicInBoxRedirect {
             grayScale_ = grayScale.getGrayScale();
         }
 
-        electronicInBoxRedirect=
+        electronicInBoxRedirect =
                 "<!doctype html>\n" +
                         "<html lang=\"pl\">\n" +
                         "\n" +
@@ -75,7 +75,7 @@ public class ElectronicInBoxRedirect {
                         ">" +
                         "Elektroniczne Skrzynki Podawcze" +
                         "</a>" +
-                        "</span>"+
+                        "</span>" +
                         "</nav>" +
                         "</div>" +
                         "    <!-- Bootstrap CSS -->\n" +
