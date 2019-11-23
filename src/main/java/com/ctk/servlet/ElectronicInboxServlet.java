@@ -4,7 +4,7 @@ import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
 
 import com.ctk.dao.GrayScaleReadFile;
-import com.ctk.model.ElectronicInboxFilterFile;
+import com.ctk.model.ElectronicInboxFilter;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
@@ -48,7 +48,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     private ElectronicInboxDao electronicInboxDao;
 
     @Inject
-    private ElectronicInboxFilterFile electronicInboxFilterFile;
+    private ElectronicInboxFilter electronicInboxFilter;
 
     @Inject
     private GrayScale grayScale;
@@ -79,21 +79,21 @@ public class ElectronicInboxServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
-        if (electronicInboxFilterFile.getTotalRecords() == 0.00) {
+        if (electronicInboxFilter.getTotalRecords() == 0.00) {
             resetPages();
         }
 
         modelGeneratorTemplate.setModel("choiceName_",
-                electronicInboxFilterFile.getName());
+                electronicInboxFilter.getName());
 
         modelGeneratorTemplate.setModel("choiceAddress_",
-                electronicInboxFilterFile.getAddress());
+                electronicInboxFilter.getAddress());
 
         modelGeneratorTemplate.setModel("choicePlace_",
-                electronicInboxFilterFile.getPlace());
+                electronicInboxFilter.getPlace());
 
         modelGeneratorTemplate.setModel("choicePage_",
-                electronicInboxFilterFile.getPage());
+                electronicInboxFilter.getPage());
 
         electronicinboxLoadFromFileFiltered.loadData();
 
@@ -101,20 +101,20 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("grayScale_",
                 grayScale.getGrayScale());
 
-        APPLOGGER.info("[getPage()       ] | " + electronicInboxFilterFile.getPage());
+        APPLOGGER.info("[getPage()       ] | " + electronicInboxFilter.getPage());
 
-        if (Integer.parseInt(electronicInboxFilterFile.getPage()) > 1) {
-            electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()) - 1);
+        if (Integer.parseInt(electronicInboxFilter.getPage()) > 1) {
+            electronicInboxFilter.setPrevPage(Integer.parseInt(electronicInboxFilter.getPage()) - 1);
 
         } else {
-            electronicInboxFilterFile.setPrevPage(Integer.parseInt(electronicInboxFilterFile.getPage()));
+            electronicInboxFilter.setPrevPage(Integer.parseInt(electronicInboxFilter.getPage()));
 
         }
 
-        if (electronicInboxFilterFile.getTotalPages() == 0) {
-            electronicInboxFilterFile.setPage("0");
-            electronicInboxFilterFile.setPrevPage(0);
-            electronicInboxFilterFile.setNextPage(0);
+        if (electronicInboxFilter.getTotalPages() == 0) {
+            electronicInboxFilter.setPage("0");
+            electronicInboxFilter.setPrevPage(0);
+            electronicInboxFilter.setNextPage(0);
             modelGeneratorTemplate.setModel("choiceFirstPage_",
                     "0");
         } else {
@@ -123,25 +123,25 @@ public class ElectronicInboxServlet extends HttpServlet {
         }
 
         modelGeneratorTemplate.setModel("choicePrevPage_",
-                electronicInboxFilterFile.getPrevPage());
-        APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilterFile.getPrevPage());
+                electronicInboxFilter.getPrevPage());
+        APPLOGGER.info("[getPrevPage()   ] | " + electronicInboxFilter.getPrevPage());
 
 
-        if (Integer.parseInt(electronicInboxFilterFile.getPage()) < electronicInboxFilterFile.getTotalPages()) {
-            electronicInboxFilterFile.setNextPage(Integer.parseInt(electronicInboxFilterFile.getPage()) + 1);
+        if (Integer.parseInt(electronicInboxFilter.getPage()) < electronicInboxFilter.getTotalPages()) {
+            electronicInboxFilter.setNextPage(Integer.parseInt(electronicInboxFilter.getPage()) + 1);
 
         } else {
-            electronicInboxFilterFile.setNextPage(electronicInboxFilterFile.getTotalPages());
+            electronicInboxFilter.setNextPage(electronicInboxFilter.getTotalPages());
         }
 
         modelGeneratorTemplate.setModel("choiceNextPage_",
-                electronicInboxFilterFile.getNextPage());
-        APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilterFile.getNextPage());
+                electronicInboxFilter.getNextPage());
+        APPLOGGER.info("[getNextPage()   ] | " + electronicInboxFilter.getNextPage());
 
 
         modelGeneratorTemplate.setModel("choiceTotalPages_",
-                electronicInboxFilterFile.getTotalPages());
-        APPLOGGER.info("[getTotalPages()   ] | " + electronicInboxFilterFile.getTotalPages());
+                electronicInboxFilter.getTotalPages());
+        APPLOGGER.info("[getTotalPages()   ] | " + electronicInboxFilter.getTotalPages());
 
 
         modelGeneratorTemplate.setModel("database",
@@ -149,10 +149,10 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         try {
 
-            electronicInboxFilterFile.setName("");
-            electronicInboxFilterFile.setAddress("");
-            electronicInboxFilterFile.setPlace("");
-            electronicInboxFilterFile.setPage("1");
+            electronicInboxFilter.setName("");
+            electronicInboxFilter.setAddress("");
+            electronicInboxFilter.setPlace("");
+            electronicInboxFilter.setPage("1");
 
             Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
 
@@ -183,10 +183,10 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         try {
 
-            electronicInboxFilterFile.setName("");
-            electronicInboxFilterFile.setAddress("");
-            electronicInboxFilterFile.setPlace("");
-            electronicInboxFilterFile.setPage("1");
+            electronicInboxFilter.setName("");
+            electronicInboxFilter.setAddress("");
+            electronicInboxFilter.setPlace("");
+            electronicInboxFilter.setPage("1");
 
             Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
 
@@ -209,10 +209,10 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         electronicInboxDao.clearList();
 
-        electronicInboxFilterFile.setName("");
-        electronicInboxFilterFile.setAddress("");
-        electronicInboxFilterFile.setPlace("");
-        electronicInboxFilterFile.setPage("1");
+        electronicInboxFilter.setName("");
+        electronicInboxFilter.setAddress("");
+        electronicInboxFilter.setPlace("");
+        electronicInboxFilter.setPage("1");
 
         modelGeneratorTemplate.setModel("database", null);
 
@@ -229,10 +229,10 @@ public class ElectronicInboxServlet extends HttpServlet {
 
     private void resetPages() {
 
-        electronicInboxFilterFile.setPrevPage(1);
-        electronicInboxFilterFile.setNextPage(1);
-        electronicInboxFilterFile.setPage("1");
-        electronicInboxFilterFile.setTotalPages(1);
+        electronicInboxFilter.setPrevPage(1);
+        electronicInboxFilter.setNextPage(1);
+        electronicInboxFilter.setPage("1");
+        electronicInboxFilter.setTotalPages(1);
 
     }
 }
