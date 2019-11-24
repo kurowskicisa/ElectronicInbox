@@ -311,4 +311,20 @@ public class Settings {
         return dateToConvert.substring(8, 10).concat(datePolish).concat(dateToConvert.substring(0, 4));
     }
 
+    public void CreateGrayScaleFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathGrayScaleInfo())))) {
+            writer.append("000");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void CreateDatabaseInfoFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathDatabaseInfo())))) {
+            writer.append("2000-01-01;0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

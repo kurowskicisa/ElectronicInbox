@@ -11,11 +11,6 @@ public class DataBase implements Serializable {
     public DataBase() {
     }
 
-    public DataBase(String dataBaseDateUpdate, String dataBaseRecordsCounter) {
-        this.dataBaseDateUpdate = dataBaseDateUpdate;
-        this.dataBaseRecordsCounter = dataBaseRecordsCounter;
-    }
-
     public String getDataBaseDateUpdate() {
         return dataBaseDateUpdate;
     }
@@ -31,4 +26,5 @@ public class DataBase implements Serializable {
     public void setDataBaseRecordsCounter(String dataBaseRecordsCounter) {
         this.dataBaseRecordsCounter = dataBaseRecordsCounter;
     }
+
 }
