@@ -65,9 +65,13 @@ public class IndexServlet extends HttpServlet {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(dateToday);
 
+        if (settings.isGrayScaleFile()) {
+            settings.checkValue();
+        }
+
         if (!settings.isGrayScaleFile()) {
             APPLOGGER.info("No file: " + settings.getPathGrayScaleInfo());
-            settings.CreateGrayScaleFile();
+            settings.createGrayScaleFile();
             if (settings.isGrayScaleFile()) {
                 APPLOGGER.info("File: " + settings.getPathGrayScaleInfo() + " is created with default value");
             }
@@ -75,7 +79,7 @@ public class IndexServlet extends HttpServlet {
 
         if (!settings.isDataBaseInfoFile()) {
             APPLOGGER.info("No file: " + settings.getPathDatabaseInfo());
-            settings.CreateDatabaseInfoFile();
+            settings.createDatabaseInfoFile();
             if (settings.isDataBaseInfoFile()) {
                 APPLOGGER.info("File: " + settings.getPathDatabaseInfo() + " is created with default values");
             }
@@ -106,9 +110,8 @@ public class IndexServlet extends HttpServlet {
 
         if (!settings.isAdminFile()) {
             APPLOGGER.info("No file: " + settings.getPathAdmin());
-            APPLOGGER.info("Wse: eib_setup_to mamage administrator");
+            APPLOGGER.info("Use: eib_setup_to manage administrator");
         }
-
 
     }
 

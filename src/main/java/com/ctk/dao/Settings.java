@@ -311,7 +311,7 @@ public class Settings {
         return dateToConvert.substring(8, 10).concat(datePolish).concat(dateToConvert.substring(0, 4));
     }
 
-    public void CreateGrayScaleFile() {
+    public void createGrayScaleFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathGrayScaleInfo())))) {
             writer.append("000");
         } catch (IOException e) {
@@ -319,12 +319,48 @@ public class Settings {
         }
     }
 
-    public void CreateDatabaseInfoFile() {
+    public void createDatabaseInfoFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathDatabaseInfo())))) {
             writer.append("2000-01-01;0");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void checkValue() {
+
+        String line;
+        BufferedReader reader;
+
+
+        try {
+
+            reader = Files.newBufferedReader(getPathGrayScaleInfo(), StandardCharsets.UTF_8);
+
+            line = Optional.ofNullable(reader.readLine()).orElse("");
+
+            if (line.isEmpty()) {
+                reader.close();
+                createGrayScaleFile();
+            }
+
+            if (!line.matches("[0-9]{0,3}")) {
+                reader.close();
+                createGrayScaleFile();
+            }
+
+            int testValue = Integer.parseInt(line);
+            if (!(testValue >= 0 && testValue <= 100)) {
+                reader.close();
+                createGrayScaleFile();
+            }
+            
+            reader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
