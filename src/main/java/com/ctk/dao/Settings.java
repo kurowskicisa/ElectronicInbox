@@ -311,9 +311,9 @@ public class Settings {
         return dateToConvert.substring(8, 10).concat(datePolish).concat(dateToConvert.substring(0, 4));
     }
 
-    public void createGrayScaleFile() {
+    public void createGrayScaleFile(String digit) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathGrayScaleInfo())))) {
-            writer.append("000");
+            writer.append(digit);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -327,11 +327,10 @@ public class Settings {
         }
     }
 
-    public void checkValue() {
+    public void checkGrayScaleValue() {
 
         String line;
         BufferedReader reader;
-
 
         try {
 
@@ -339,28 +338,27 @@ public class Settings {
 
             line = Optional.ofNullable(reader.readLine()).orElse("");
 
-            if (line.isEmpty()) {
-                reader.close();
-                createGrayScaleFile();
-            }
-
-            if (!line.matches("[0-9]{0,3}")) {
-                reader.close();
-                createGrayScaleFile();
-            }
-
-            int testValue = Integer.parseInt(line);
-            if (!(testValue >= 0 && testValue <= 100)) {
-                reader.close();
-                createGrayScaleFile();
-            }
-            
             reader.close();
 
+            if (line.isEmpty()) {
+                createGrayScaleFile("000");
+            }
+
+            if (line.matches("[0-9]{0,3}")) {
+                int testValue = Integer.parseInt(line);
+                if (!(testValue >= 0 && testValue <= 100)) {
+                    createGrayScaleFile("000");
+                } else {
+                    if (line.length() != 3) {
+                        createGrayScaleFile(String.format("%03d", testValue));
+                    }
+                }
+            } else {
+                createGrayScaleFile("000");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

@@ -66,12 +66,12 @@ public class IndexServlet extends HttpServlet {
         String strDate = dateFormat.format(dateToday);
 
         if (settings.isGrayScaleFile()) {
-            settings.checkValue();
+            settings.checkGrayScaleValue();
         }
 
         if (!settings.isGrayScaleFile()) {
             APPLOGGER.info("No file: " + settings.getPathGrayScaleInfo());
-            settings.createGrayScaleFile();
+            settings.createGrayScaleFile("000");
             if (settings.isGrayScaleFile()) {
                 APPLOGGER.info("File: " + settings.getPathGrayScaleInfo() + " is created with default value");
             }
