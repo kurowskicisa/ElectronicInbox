@@ -77,6 +77,10 @@ public class IndexServlet extends HttpServlet {
             }
         }
 
+        if (settings.isGrayScaleFile()) {
+            settings.checkDatabaseInfo();
+        }
+
         if (!settings.isDataBaseInfoFile()) {
             APPLOGGER.info("No file: " + settings.getPathDatabaseInfo());
             settings.createDatabaseInfoFile();

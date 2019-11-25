@@ -361,4 +361,46 @@ public class Settings {
         }
     }
 
+    public void checkDatabaseInfo() {
+
+        String line;
+        BufferedReader reader;
+
+        try {
+
+            reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
+
+            line = Optional.ofNullable(reader.readLine()).orElse("");
+
+            reader.close();
+
+            if (line.isEmpty()) {
+                createDatabaseInfoFile();
+            }
+
+            if (!line.isEmpty()) {
+                List<String> tempList = Arrays.asList(line.split(";"));
+                if (tempList.size() == 2) {
+                    if (tempList.get(FIELD_DATABASE_DATE_UPDATE).isEmpty()
+                            || tempList.get(FIELD_DATABASE_RECORDS_COUNTER).isEmpty()) {
+                        createDatabaseInfoFile();
+                    } else {
+                        if (!tempList.get(FIELD_DATABASE_RECORDS_COUNTER).matches("D*")) {
+                            createDatabaseInfoFile();
+                        }
+
+                        if (!tempList.get(FIELD_DATABASE_DATE_UPDATE)
+                                .matches("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
+                            createDatabaseInfoFile();
+                        }
+                    }
+                } else {
+                    createDatabaseInfoFile();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
