@@ -7,7 +7,7 @@
     <groupId>com.ctk</groupId>
     <artifactId>ElectronicInbox</artifactId>
     <packaging>war</packaging>
-    <version>0.00.016-ALFA</version>
+    <version>0.00.019-ALFA</version>
     <name>ElectronicInbox</name>
 
     <url>http://maven.apache.org</url>
