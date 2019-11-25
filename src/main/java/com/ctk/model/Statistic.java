@@ -4,7 +4,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 @SessionScoped
-public class StatisticSourceFileESP implements Serializable {
+public class Statistic implements com.ctk.services.Statistic, Serializable {
 
     private Integer nameLengthMin = 0;
     private Integer nameLengthMax = 0;
@@ -221,4 +221,5 @@ public class StatisticSourceFileESP implements Serializable {
     public void setDataEmptyZipCounter(Integer dataEmptyZipCounter) {
         this.dataEmptyZipCounter = dataEmptyZipCounter;
     }
+
 }

@@ -1,6 +1,6 @@
 package com.ctk.api;
 
-import com.ctk.model.ElectronicInboxFilterFile;
+import com.ctk.model.ElectronicInboxFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class ElectronicInBoxAPI {
 
     @Inject
-    ElectronicInboxFilterFile electronicInboxFilterFile;
+    ElectronicInboxFilter electronicInboxFilter;
 
     @Inject
     ElectronicInBoxRedirect electronicInBoxRedirect;
@@ -35,7 +35,7 @@ public class ElectronicInBoxAPI {
 
         SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
-        electronicInboxFilterFile.setPage(
+        electronicInboxFilter.setPage(
                 String.valueOf((Integer.valueOf(firstPage)))
         );
 
@@ -57,7 +57,7 @@ public class ElectronicInBoxAPI {
 
         SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
-        electronicInboxFilterFile.setPage(
+        electronicInboxFilter.setPage(
                 String.valueOf((Integer.valueOf(prevPage)))
         );
 
@@ -79,7 +79,7 @@ public class ElectronicInBoxAPI {
 
         SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
-        electronicInboxFilterFile.setPage(
+        electronicInboxFilter.setPage(
                 String.valueOf((Integer.valueOf(nextPage)))
         );
 
@@ -101,7 +101,7 @@ public class ElectronicInBoxAPI {
 
         SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
-        electronicInboxFilterFile.setPage(
+        electronicInboxFilter.setPage(
                 String.valueOf((Integer.valueOf(lastPage)))
         );
 
@@ -168,9 +168,9 @@ public class ElectronicInBoxAPI {
         APPLOGGER.info("choicePlace  : " + _choicePlace);
         APPLOGGER.info("choicePage   : " + _choicePage);
 
-        electronicInboxFilterFile.setName(_choiceName);
-        electronicInboxFilterFile.setAddress(_choiceAddress);
-        electronicInboxFilterFile.setPlace(_choicePlace);
+        electronicInboxFilter.setName(_choiceName);
+        electronicInboxFilter.setAddress(_choiceAddress);
+        electronicInboxFilter.setPlace(_choicePlace);
     }
 
 }

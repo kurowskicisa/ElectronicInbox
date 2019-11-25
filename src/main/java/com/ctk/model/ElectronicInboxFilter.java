@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 
 @ApplicationScoped
-public class ElectronicInboxFilterFile implements Serializable {
+public class ElectronicInboxFilter implements com.ctk.services.ElectronicInboxFilter, Serializable {
 
     private String name;
     private String address;
@@ -16,7 +16,7 @@ public class ElectronicInboxFilterFile implements Serializable {
     private double totalFilteredRecords;
     private double totalRecords;
 
-    public ElectronicInboxFilterFile() {
+    public ElectronicInboxFilter() {
     }
 
     public String getName() {
@@ -90,4 +90,5 @@ public class ElectronicInboxFilterFile implements Serializable {
     public void setTotalRecords(double totalRecords) {
         this.totalRecords = totalRecords;
     }
+
 }

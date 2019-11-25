@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 
 @RequestScoped
-public class DataBase implements Serializable {
+public class DataBase implements com.ctk.services.DataBase, Serializable {
     private String dataBaseDateUpdate;
     private String dataBaseRecordsCounter;
 

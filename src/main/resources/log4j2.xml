@@ -47,7 +47,7 @@
             <AppenderRef ref="FileWin" level="INFO"/>
         </logger>
 
-        <logger name="com.ctk.servlet.StatisticSourceFileESPServlet" level="INFO">
+        <logger name="com.ctk.servlet.Statistic" level="INFO">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="FileLin" level="INFO"/>
             <AppenderRef ref="FileWin" level="INFO"/>

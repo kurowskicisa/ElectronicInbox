@@ -8,7 +8,6 @@ import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import com.ctk.model.DataBase;
 import com.ctk.model.GrayScale;
-import com.ctk.model.StatisticSourceFileESP;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +28,7 @@ import static java.time.LocalTime.now;
 
 @SessionScoped
 @WebServlet(urlPatterns = "/statistics")
-public class StatisticSourceFileESPServlet extends HttpServlet {
+public class Statistic extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -38,7 +37,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private StatisticSourceFileESP statisticSourceFileESP;
+    private com.ctk.model.Statistic statistic;
 
     @Inject
     private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
@@ -58,7 +57,7 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     @Inject
     private DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPServlet.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(Statistic.class.getName());
 
     @Override
     public void init() {
@@ -87,73 +86,73 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
         statisticSourceFileESPReadFile.loadFileESP();
 
         modelGeneratorTemplate.setModel("nameLengthMin_",
-                statisticSourceFileESP.getNameLengthMin());
+                statistic.getNameLengthMin());
 
         modelGeneratorTemplate.setModel("nameLengthMax_",
-                statisticSourceFileESP.getNameLengthMax());
+                statistic.getNameLengthMax());
 
         modelGeneratorTemplate.setModel("nameCounterEmpty_",
-                statisticSourceFileESP.getNameCounterEmpty());
+                statistic.getNameCounterEmpty());
 
         modelGeneratorTemplate.setModel("regonLengthMin_",
-                statisticSourceFileESP.getRegonLengthMin());
+                statistic.getRegonLengthMin());
 
         modelGeneratorTemplate.setModel("regonCounterEmpty_",
-                statisticSourceFileESP.getRegonCounterEmpty());
+                statistic.getRegonCounterEmpty());
 
         modelGeneratorTemplate.setModel("regonLengthMax_",
-                statisticSourceFileESP.getRegonLengthMax());
+                statistic.getRegonLengthMax());
 
         modelGeneratorTemplate.setModel("addressLengthMin_",
-                statisticSourceFileESP.getAddressLengthMin());
+                statistic.getAddressLengthMin());
 
         modelGeneratorTemplate.setModel("addressCounterEmpty_",
-                statisticSourceFileESP.getAddressCounterEmpty());
+                statistic.getAddressCounterEmpty());
 
         modelGeneratorTemplate.setModel("addressLengthMax_",
-                statisticSourceFileESP.getAddressLengthMax());
+                statistic.getAddressLengthMax());
 
         modelGeneratorTemplate.setModel("zipLengthMin_",
-                statisticSourceFileESP.getZipLengthMin());
+                statistic.getZipLengthMin());
 
         modelGeneratorTemplate.setModel("zipCounterEmpty_",
-                statisticSourceFileESP.getZipCounterEmpty());
+                statistic.getZipCounterEmpty());
 
         modelGeneratorTemplate.setModel("zipLengthMax_",
-                statisticSourceFileESP.getZipLengthMax());
+                statistic.getZipLengthMax());
 
         modelGeneratorTemplate.setModel("placeLengthMin_",
-                statisticSourceFileESP.getPlaceLengthMin());
+                statistic.getPlaceLengthMin());
 
         modelGeneratorTemplate.setModel("placeCounterEmpty_",
-                statisticSourceFileESP.getPlaceCounterEmpty());
+                statistic.getPlaceCounterEmpty());
 
         modelGeneratorTemplate.setModel("placeLengthMax_",
-                statisticSourceFileESP.getPlaceLengthMax());
+                statistic.getPlaceLengthMax());
 
         modelGeneratorTemplate.setModel("uriLengthMin_",
-                statisticSourceFileESP.getUriLengthMin());
+                statistic.getUriLengthMin());
 
         modelGeneratorTemplate.setModel("uriCounterEmpty_",
-                statisticSourceFileESP.getUriCounterEmpty());
+                statistic.getUriCounterEmpty());
 
         modelGeneratorTemplate.setModel("uriLengthMax_",
-                statisticSourceFileESP.getUriLengthMax());
+                statistic.getUriLengthMax());
 
         modelGeneratorTemplate.setModel("totalRecords_",
-                statisticSourceFileESP.getTotalRecords());
+                statistic.getTotalRecords());
 
         modelGeneratorTemplate.setModel("dataErrorRegonCounter_",
-                statisticSourceFileESP.getDataErrorRegonCounter());
+                statistic.getDataErrorRegonCounter());
 
         modelGeneratorTemplate.setModel("dataErrorZipCounter_",
-                statisticSourceFileESP.getDataErrorZipCounter());
+                statistic.getDataErrorZipCounter());
 
         modelGeneratorTemplate.setModel("dataEmptyRegonCounter_",
-                statisticSourceFileESP.getDataEmptyRegonCounter());
+                statistic.getDataEmptyRegonCounter());
 
         modelGeneratorTemplate.setModel("dataEmptyZipCounter_",
-                statisticSourceFileESP.getDataEmptyZipCounter());
+                statistic.getDataEmptyZipCounter());
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "statistics");
