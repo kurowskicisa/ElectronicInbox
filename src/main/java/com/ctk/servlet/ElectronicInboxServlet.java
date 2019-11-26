@@ -1,7 +1,7 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.ElectronicInboxDao;
-import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
+import com.ctk.dao.ElectronicinboxFilter;
 
 import com.ctk.dao.GrayScale;
 import com.ctk.model.ElectronicInboxFilter;
@@ -41,7 +41,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private ElectronicinboxLoadFromFileFiltered electronicinboxLoadFromFileFiltered;
+    private ElectronicinboxFilter electronicinboxFilter;
 
     @Inject
     private ElectronicInboxDao electronicInboxDao;
@@ -91,7 +91,7 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choicePage_",
                 electronicInboxFilter.getPage());
 
-        electronicinboxLoadFromFileFiltered.loadData();
+        electronicinboxFilter.loadData();
 
         grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
