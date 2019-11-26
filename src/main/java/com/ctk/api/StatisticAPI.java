@@ -1,6 +1,5 @@
 package com.ctk.api;
 
-import com.ctk.dao.UserReadFile;
 import com.ctk.dao.UserRepository;
 
 import javax.inject.Inject;
@@ -18,9 +17,6 @@ public class StatisticAPI {
     private UserRepository userRepository;
 
     @Inject
-    private UserReadFile userReadFile;
-
-    @Inject
     private StatisticWEB statisticWEB;
 
     @Inject
@@ -33,7 +29,7 @@ public class StatisticAPI {
             @FormParam("password") String password) {
 
         userRepository.empty();
-        userReadFile.loadUserFile();
+        userRepository.loadUserFile();
 
         if (!userRepository.getList().isEmpty()) {
 
