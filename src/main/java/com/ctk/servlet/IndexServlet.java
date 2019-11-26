@@ -1,7 +1,7 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.DataBaseDao;
-import com.ctk.dao.GrayScaleDao;
+import com.ctk.dao.GrayScale;
 import com.ctk.dao.Settings;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
@@ -43,7 +43,7 @@ public class IndexServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private GrayScaleDao grayScaleDao;
+    private GrayScale grayScale;
 
     @Inject
     private DataBase dataBase;
@@ -125,9 +125,9 @@ public class IndexServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
-        grayScaleDao.loadGrayScaleFile();
+        grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
-                grayScaleDao.getGrayScale());
+                grayScale.getGrayScale());
 
         settings.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",

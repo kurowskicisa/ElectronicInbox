@@ -20,38 +20,15 @@ import java.util.Optional;
 import static java.lang.String.valueOf;
 
 @ApplicationScoped
-public class Settings {
+public class Settings extends com.ctk.model.Settings implements Serializable{
 
     @Inject
     private DataBase dataBase;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.Settings.class.getName());
 
-    private final Path pathLESPcsv = Paths.get(System.getProperty("jboss.server.data.dir"), "LESP.csv");
-    private final Path pathAdmin = Paths.get(System.getProperty("jboss.server.data.dir"), "admin.csv");
-    private final Path pathDatabaseInfo = Paths.get(System.getProperty("jboss.server.data.dir"), "databaseinfo.csv");
-    private final Path pathGrayScaleInfo = Paths.get(System.getProperty("jboss.server.data.dir"), "grayscale.csv");
-
     private static final int FIELD_DATABASE_DATE_UPDATE = 0;
     private static final int FIELD_DATABASE_RECORDS_COUNTER = 1;
-
-
-    public Path getPathLESPcsv() {
-        return pathLESPcsv;
-    }
-
-    public Path getPathAdmin() {
-        return pathAdmin;
-    }
-
-    public Path getPathDatabaseInfo() {
-        return pathDatabaseInfo;
-    }
-
-    public Path getPathGrayScaleInfo() {
-        return pathGrayScaleInfo;
-    }
-
 
     private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 

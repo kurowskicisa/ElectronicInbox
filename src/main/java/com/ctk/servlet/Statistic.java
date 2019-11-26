@@ -1,6 +1,6 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.GrayScaleDao;
+import com.ctk.dao.GrayScale;
 import com.ctk.dao.Settings;
 import com.ctk.dao.StatisticSourceFileESPReadFile;
 import com.ctk.dao.UserRepository;
@@ -42,7 +42,7 @@ public class Statistic extends HttpServlet {
     private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
 
     @Inject
-    private GrayScaleDao grayScaleDao;
+    private GrayScale grayScale;
 
     @Inject
     private UserRepository userRepository;
@@ -59,9 +59,9 @@ public class Statistic extends HttpServlet {
     public void init() {
 
         APPLOGGER.info("init() ");
-        grayScaleDao.loadGrayScaleFile();
+        grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
-                grayScaleDao.getGrayScale());
+                grayScale.getGrayScale());
     }
 
     @Override

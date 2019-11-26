@@ -3,7 +3,7 @@ package com.ctk.servlet;
 import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
 
-import com.ctk.dao.GrayScaleDao;
+import com.ctk.dao.GrayScale;
 import com.ctk.model.ElectronicInboxFilter;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
@@ -50,7 +50,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     private ElectronicInboxFilter electronicInboxFilter;
 
     @Inject
-    private GrayScaleDao grayScaleDao;
+    private GrayScale grayScale;
 
     private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
 
@@ -93,9 +93,9 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         electronicinboxLoadFromFileFiltered.loadData();
 
-        grayScaleDao.loadGrayScaleFile();
+        grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
-                grayScaleDao.getGrayScale());
+                grayScale.getGrayScale());
 
         APPLOGGER.info("[getPage()       ] | " + electronicInboxFilter.getPage());
 
