@@ -3,7 +3,6 @@ package com.ctk.servlet;
 import com.ctk.dao.GrayScale;
 import com.ctk.dao.DataBase;
 import com.ctk.dao.Statistic;
-import com.ctk.dao.UserDao;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -26,7 +25,7 @@ import static java.time.LocalTime.now;
 
 @SessionScoped
 @WebServlet(urlPatterns = "/statistics")
-public class Statistics extends HttpServlet {
+public class StatisticsServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -43,7 +42,7 @@ public class Statistics extends HttpServlet {
     @Inject
     private DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(Statistics.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
 
     @Override
     public void init() {
