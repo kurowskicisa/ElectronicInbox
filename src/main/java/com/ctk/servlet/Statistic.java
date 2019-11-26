@@ -3,7 +3,7 @@ package com.ctk.servlet;
 import com.ctk.dao.GrayScale;
 import com.ctk.dao.DataBase;
 import com.ctk.dao.StatisticSourceFileESPReadFile;
-import com.ctk.dao.UserRepository;
+import com.ctk.dao.UserDao;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import freemarker.template.Template;
@@ -44,7 +44,7 @@ public class Statistic extends HttpServlet {
     private GrayScale grayScale;
 
     @Inject
-    private UserRepository userRepository;
+    private UserDao userDao;
     /*
         @Inject
         private Settings settings;
@@ -161,7 +161,7 @@ public class Statistic extends HttpServlet {
 
         LocalTime stopDoGet = now();
 
-        userRepository.getList().get(0).setAutenticate(false);
+//        userDao.getList().get(0).setAutenticate(false);
 
         APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);

@@ -15,13 +15,21 @@ import java.util.Arrays;
 import java.util.List;
 
 @SessionScoped
-public class UserRepository implements Serializable {
+public class UserDao extends com.ctk.model.User implements Serializable {
 
     @Inject
     private Settings settings;
 
     private List<User> users = new ArrayList<>();
-
+/*
+    public User(String name, String password) {
+        super(name, password);
+    }
+    */
+/*
+ @Inject
+ User user;
+*/
     public List<User> getList() {
         return users;
     }
