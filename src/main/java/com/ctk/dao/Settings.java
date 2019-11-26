@@ -1,30 +1,21 @@
 package com.ctk.dao;
 
-import com.ctk.model.DataBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static java.lang.String.valueOf;
-
 @ApplicationScoped
 public class Settings extends com.ctk.model.Settings implements Serializable{
-/*
-    @Inject
-    private DataBase dataBase;
-*/
+
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.Settings.class.getName());
 
     private static final int FIELD_DATABASE_DATE_UPDATE = 0;
