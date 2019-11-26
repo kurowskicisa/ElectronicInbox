@@ -2,7 +2,7 @@ package com.ctk.servlet;
 
 import com.ctk.dao.GrayScale;
 import com.ctk.dao.DataBase;
-import com.ctk.dao.StatisticSourceFileESPReadFile;
+import com.ctk.dao.Statistic;
 import com.ctk.dao.UserDao;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
@@ -26,7 +26,7 @@ import static java.time.LocalTime.now;
 
 @SessionScoped
 @WebServlet(urlPatterns = "/statistics")
-public class Statistic extends HttpServlet {
+public class Statistics extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -35,24 +35,15 @@ public class Statistic extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private com.ctk.model.Statistic statistic;
-
-    @Inject
-    private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
+    private Statistic statistic;
 
     @Inject
     private GrayScale grayScale;
 
     @Inject
-    private UserDao userDao;
-    /*
-        @Inject
-        private Settings settings;
-    */
-    @Inject
     private DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(Statistic.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(Statistics.class.getName());
 
     @Override
     public void init() {
@@ -77,7 +68,7 @@ public class Statistic extends HttpServlet {
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate());
 
-        statisticSourceFileESPReadFile.loadFileESP();
+        statistic.loadFileESP();
 
         modelGeneratorTemplate.setModel("nameLengthMin_",
                 statistic.getNameLengthMin());
