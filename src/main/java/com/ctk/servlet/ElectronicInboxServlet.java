@@ -3,13 +3,12 @@ package com.ctk.servlet;
 import com.ctk.dao.ElectronicInboxDao;
 import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
 
-import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.GrayScaleDao;
 import com.ctk.model.ElectronicInboxFilter;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 
-import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -51,10 +50,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     private ElectronicInboxFilter electronicInboxFilter;
 
     @Inject
-    private GrayScale grayScale;
-
-    @Inject
-    private GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleDao grayScaleDao;
 
     private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
 
@@ -97,9 +93,9 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         electronicinboxLoadFromFileFiltered.loadData();
 
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScaleDao.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
-                grayScale.getGrayScale());
+                grayScaleDao.getGrayScale());
 
         APPLOGGER.info("[getPage()       ] | " + electronicInboxFilter.getPage());
 
@@ -224,15 +220,12 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choiceTotalPages_", "");
         modelGeneratorTemplate.setModel("choicePrevPage_", "");
         modelGeneratorTemplate.setModel("choiceNextPage_", "");
-
     }
 
     private void resetPages() {
-
         electronicInboxFilter.setPrevPage(1);
         electronicInboxFilter.setNextPage(1);
         electronicInboxFilter.setPage("1");
         electronicInboxFilter.setTotalPages(1);
-
     }
 }

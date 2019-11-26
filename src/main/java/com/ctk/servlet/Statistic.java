@@ -1,13 +1,12 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.GrayScaleDao;
 import com.ctk.dao.Settings;
 import com.ctk.dao.StatisticSourceFileESPReadFile;
 import com.ctk.dao.UserRepository;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import com.ctk.model.DataBase;
-import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -43,10 +42,7 @@ public class Statistic extends HttpServlet {
     private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
 
     @Inject
-    private GrayScale grayScale;
-
-    @Inject
-    private GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleDao grayScaleDao;
 
     @Inject
     private UserRepository userRepository;
@@ -63,10 +59,9 @@ public class Statistic extends HttpServlet {
     public void init() {
 
         APPLOGGER.info("init() ");
-
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScaleDao.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
-                grayScale.getGrayScale());
+                grayScaleDao.getGrayScale());
     }
 
     @Override
@@ -81,7 +76,7 @@ public class Statistic extends HttpServlet {
 
         settings.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
-                dataBase.getDataBaseDateUpdate() );
+                dataBase.getDataBaseDateUpdate());
 
         statisticSourceFileESPReadFile.loadFileESP();
 

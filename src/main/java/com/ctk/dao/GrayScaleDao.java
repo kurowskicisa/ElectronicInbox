@@ -1,9 +1,5 @@
 package com.ctk.dao;
 
-import com.ctk.model.GrayScale;
-
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,20 +10,15 @@ import java.util.Optional;
 
 import static java.lang.String.*;
 
-@SessionScoped
-public class GrayScaleReadFile implements Serializable {
-
-    @Inject
-    private Settings settings;
-
-    @Inject
-    private GrayScale grayScale;
+public class GrayScaleDao extends com.ctk.model.GrayScale implements Serializable {
 
     public void loadGrayScaleFile() {
         String line;
         BufferedReader reader;
 
-        grayScale.setGrayScale("000");
+        setGrayScale("000");
+
+        Settings settings = new Settings();
 
         if (new File(valueOf(settings.getPathGrayScaleInfo())).isFile()) {
 
@@ -41,7 +32,7 @@ public class GrayScaleReadFile implements Serializable {
                     if (line.matches("[0-9]{0,3}")) {
                         int testValue = Integer.parseInt(line);
                         if (testValue >= 0 && testValue <= 100) {
-                            grayScale.setGrayScale(line);
+                            setGrayScale(line);
                         }
                     }
                 }

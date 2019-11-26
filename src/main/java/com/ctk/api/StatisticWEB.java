@@ -1,27 +1,23 @@
 package com.ctk.api;
 
-import com.ctk.dao.GrayScaleReadFile;
-import com.ctk.model.GrayScale;
+import com.ctk.dao.GrayScaleDao;
 
 import javax.inject.Inject;
 
 public class StatisticWEB {
 
     @Inject
-    private GrayScale grayScale;
-
-    @Inject
-    private GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleDao grayScaleDao;
 
     public String StatisticWeb() {
         String statisticWeb;
 
         String grayScale_ = "000";
 
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScaleDao.loadGrayScaleFile();
 
-        if (!(grayScale.getGrayScale() == null)) {
-            grayScale_ = grayScale.getGrayScale();
+        if (!(grayScaleDao.getGrayScale() == null)) {
+            grayScale_ = grayScaleDao.getGrayScale();
         }
 
         statisticWeb =

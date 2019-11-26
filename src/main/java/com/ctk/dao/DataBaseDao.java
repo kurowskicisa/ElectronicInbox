@@ -8,15 +8,15 @@ import java.net.URLConnection;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-@RequestScoped
+// @RequestScoped
 public class DataBaseDao {
-
+/*
     @Inject
     private Settings settings;
-
+*/
     public void renameFileLESP() {
         String patch;
-
+        Settings settings = new Settings();
         patch = String.valueOf(settings.getPathLESPcsv());
 
         File fileSource = new File(patch);

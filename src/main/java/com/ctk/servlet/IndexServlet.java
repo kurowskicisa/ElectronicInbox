@@ -1,12 +1,11 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.DataBaseDao;
-import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.GrayScaleDao;
 import com.ctk.dao.Settings;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 import com.ctk.model.DataBase;
-import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -44,10 +43,7 @@ public class IndexServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private GrayScale grayScale;
-
-    @Inject
-    private GrayScaleReadFile grayScaleReadFile;
+    private GrayScaleDao grayScaleDao;
 
     @Inject
     private DataBase dataBase;
@@ -129,9 +125,9 @@ public class IndexServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScaleDao.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
-                grayScale.getGrayScale());
+                grayScaleDao.getGrayScale());
 
         settings.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
