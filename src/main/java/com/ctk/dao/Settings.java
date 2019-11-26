@@ -21,10 +21,10 @@ import static java.lang.String.valueOf;
 
 @ApplicationScoped
 public class Settings extends com.ctk.model.Settings implements Serializable{
-
+/*
     @Inject
     private DataBase dataBase;
-
+*/
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.Settings.class.getName());
 
     private static final int FIELD_DATABASE_DATE_UPDATE = 0;
@@ -76,25 +76,7 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
         return fileGrayScaleInfo.isFile();
     }
 
-    private boolean isDataBaseInfoFileEmpty() {
-        BufferedReader reader;
-        String line;
 
-        if (isDataBaseInfoFile()) {
-
-            try {
-                reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
-
-                line = Optional.ofNullable(reader.readLine()).orElse("");
-
-                return line.isEmpty();
-
-            } catch (NullPointerException | IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return true;
-    }
 
     public String getDateDataBaseInfoDate() {
 
@@ -179,70 +161,7 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
         return numberLines;
     }
 
-    public void updateDateDataBaseInfo() throws IOException {
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathDatabaseInfo())))) {
-            writer.append(dataBase.getDataBaseDateUpdate());
-            writer.append(";");
-            writer.append(dataBase.getDataBaseRecordsCounter());
-        }
-
-    }
-
-    public void loadDataBaseInfo() {
-        String line;
-
-        BufferedReader reader;
-
-        if (new File(valueOf(getPathDatabaseInfo())).isFile()) {
-
-            APPLOGGER.info("File " + getPathDatabaseInfo().toString() + " exist");
-
-            try {
-
-                reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
-
-                APPLOGGER.info("File: try read...");
-
-                if (!isDataBaseInfoFileEmpty()) {
-
-                    APPLOGGER.info("File is not empty");
-
-                    line = reader.readLine();
-
-                    APPLOGGER.info(line);
-
-                    if (!line.isEmpty()) {
-                        List<String> tempList = Arrays.asList(line.split(";"));
-
-                        if (tempList.get(FIELD_DATABASE_DATE_UPDATE)
-                                .matches("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
-                            dataBase.setDataBaseDateUpdate(monthToPolish(tempList.get(FIELD_DATABASE_DATE_UPDATE)));
-                            dataBase.setDataBaseRecordsCounter(tempList.get(FIELD_DATABASE_RECORDS_COUNTER));
-                            APPLOGGER.info("File structure is OK");
-                        }
-                    } else {
-                        dataBase.setDataBaseDateUpdate("-");
-                        dataBase.setDataBaseRecordsCounter("-");
-                        APPLOGGER.info("File structure is NOT OK");
-                    }
-                } else {
-                    dataBase.setDataBaseDateUpdate("-");
-                    dataBase.setDataBaseRecordsCounter("-");
-                    APPLOGGER.info("File is empty");
-
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            dataBase.setDataBaseDateUpdate("-");
-            dataBase.setDataBaseRecordsCounter("-");
-            APPLOGGER.info("File " + getPathDatabaseInfo().toString() + " do not exist");
-        }
-    }
-
-    private String monthToPolish(String dateToConvert) {
+    public String monthToPolish(String dateToConvert) {
 
         String datePolish = "";
 

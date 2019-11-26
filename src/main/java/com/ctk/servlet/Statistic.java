@@ -1,12 +1,11 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.GrayScale;
-import com.ctk.dao.Settings;
+import com.ctk.dao.DataBase;
 import com.ctk.dao.StatisticSourceFileESPReadFile;
 import com.ctk.dao.UserRepository;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-import com.ctk.model.DataBase;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -46,10 +45,10 @@ public class Statistic extends HttpServlet {
 
     @Inject
     private UserRepository userRepository;
-
-    @Inject
-    private Settings settings;
-
+    /*
+        @Inject
+        private Settings settings;
+    */
     @Inject
     private DataBase dataBase;
 
@@ -74,7 +73,7 @@ public class Statistic extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        settings.loadDataBaseInfo();
+        dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate());
 

@@ -1,8 +1,7 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.DataBaseDao;
+import com.ctk.dao.DataBase;
 import com.ctk.dao.Settings;
-import com.ctk.model.DataBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,9 +27,6 @@ public class UploadServlet extends HttpServlet {
 
     @Inject
     private DataBase dataBase;
-
-    @Inject
-    private DataBaseDao dataBaseDao;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.UploadServlet.class.getName());
 
@@ -72,17 +68,17 @@ public class UploadServlet extends HttpServlet {
             } else {
                 APPLOGGER.info("Update is necessary");
 
-                if (dataBaseDao.isEPUAPAvailable()) {
-                    dataBaseDao.renameFileLESP();
+                if (dataBase.isEPUAPAvailable()) {
+                    dataBase.renameFileLESP();
 
-                    dataBaseDao.downloadfileLESP(fileSource);
+                    dataBase.downloadfileLESP(fileSource);
 
                     dataBase.setDataBaseDateUpdate(strDate);
 
                     dataBase.setDataBaseRecordsCounter(settings.countTotalRercords().toString());
 
-                    settings.updateDateDataBaseInfo();
-                    settings.loadDataBaseInfo();
+                    dataBase.updateDateDataBaseInfo();
+                    dataBase.loadDataBaseInfo();
                     APPLOGGER.info("Database is updated");
                 } else {
                     APPLOGGER.info("No connection to EPUAP");

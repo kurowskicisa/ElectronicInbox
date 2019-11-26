@@ -1,6 +1,5 @@
 package com.ctk.dao;
 
-import javax.enterprise.context.SessionScoped;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import java.util.Optional;
 
 import static java.lang.String.*;
 
-@SessionScoped
 public class GrayScale extends com.ctk.model.GrayScale implements Serializable {
 
     public void loadGrayScaleFile() {
