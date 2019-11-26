@@ -12,11 +12,8 @@ import java.util.List;
 public class Statistic extends com.ctk.model.Statistic implements Serializable {
 
     @Inject
-    private Settings settings = new Settings();
-    /*
-        @Inject
-        private Statistic statistic;
-    */
+    private Settings settings;
+
     private static final int FIELD_NAME = 0;
     private static final int FIELD_REGON = 1;
     private static final int FIELD_ADDRESS = 2;

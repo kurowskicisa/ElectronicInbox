@@ -21,15 +21,7 @@ public class UserDao extends com.ctk.model.User implements Serializable {
     private Settings settings;
 
     private List<User> users = new ArrayList<>();
-/*
-    public User(String name, String password) {
-        super(name, password);
-    }
-    */
-/*
- @Inject
- User user;
-*/
+
     public List<User> getList() {
         return users;
     }

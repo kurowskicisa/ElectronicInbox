@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequestScoped
-public class ElectronicInboxDao extends com.ctk.model.ElectronicInbox implements Serializable {
+public class ElectronicInboxDao implements Serializable {
 
     private final List<ElectronicInbox> list = new ArrayList<>();
 

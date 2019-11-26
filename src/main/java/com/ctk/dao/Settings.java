@@ -67,8 +67,6 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
         return fileGrayScaleInfo.isFile();
     }
 
-
-
     public String getDateDataBaseInfoDate() {
 
         String dateDatabaseInfoDate;
