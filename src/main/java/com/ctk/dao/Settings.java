@@ -1,8 +1,5 @@
 package com.ctk.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import javax.enterprise.context.ApplicationScoped;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -15,8 +12,6 @@ import java.util.Optional;
 
 @ApplicationScoped
 public class Settings extends com.ctk.model.Settings implements Serializable{
-
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.Settings.class.getName());
 
     private static final int FIELD_DATABASE_DATE_UPDATE = 0;
     private static final int FIELD_DATABASE_RECORDS_COUNTER = 1;
@@ -92,32 +87,6 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
         }
 
         return dateDatabaseInfoDate;
-    }
-
-    public String getDateDataBaseInfoRecordCounter() {
-
-        String dateDatabaseInfoRecordCounter;
-
-        dateDatabaseInfoRecordCounter = "";
-        String line;
-        BufferedReader reader;
-
-        try {
-
-            reader = Files.newBufferedReader(getPathDatabaseInfo(), StandardCharsets.UTF_8);
-
-            line = reader.readLine();
-
-            if (!line.isEmpty()) {
-                List<String> tempList = Arrays.asList(line.split(";"));
-
-                dateDatabaseInfoRecordCounter = tempList.get(FIELD_DATABASE_RECORDS_COUNTER);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return dateDatabaseInfoRecordCounter;
     }
 
     public Integer countTotalRercords() throws IOException {
