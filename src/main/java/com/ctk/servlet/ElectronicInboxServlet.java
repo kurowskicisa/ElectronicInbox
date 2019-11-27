@@ -66,6 +66,11 @@ public class ElectronicInboxServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        doAction(req, resp);
+
+    }
+
+    private void doAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         APPLOGGER.info("doGet() | ");
 
         LocalTime startDoGet = now();
@@ -164,41 +169,11 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        APPLOGGER.info("doPost() | ");
-        LocalTime startDoGet = now();
-
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-
-        try {
-
-            electronicInboxFilter.setName("");
-            electronicInboxFilter.setAddress("");
-            electronicInboxFilter.setPlace("");
-            electronicInboxFilter.setPage("1");
-
-            Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
-
-            template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[\"electronicinbox\" loaded] |");
-
-        } catch (TemplateException e) {
-            e.printStackTrace();
-            APPLOGGER.info("[\"electronicinbox\" NOT loaded] |");
-        }
-
-        LocalTime stopDoGet = now();
-
-        APPLOGGER.info("[time of action (milliseconds)] | "
-                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
-
+        doAction(req, resp);
     }
 
     private void resetFormFields() {
