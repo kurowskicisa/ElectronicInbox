@@ -8,7 +8,10 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.util.Optional;
+
+import static javax.ws.rs.core.Response.temporaryRedirect;
 
 @Path("/eib")
 @Produces("text/html")
@@ -16,9 +19,6 @@ public class ElectronicInBoxAPI {
 
     @Inject
     ElectronicInboxFilter electronicInboxFilter;
-
-    @Inject
-    ElectronicInBoxRedirect electronicInBoxRedirect;
 
     private static Logger APPLOGGER = LogManager.getLogger(ElectronicInBoxAPI.class.getName());
 
@@ -39,9 +39,7 @@ public class ElectronicInBoxAPI {
                 String.valueOf((Integer.valueOf(firstPage)))
         );
 
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
+        return temporaryRedirect(URI.create("/eib")).build();
     }
 
     @POST
@@ -61,9 +59,7 @@ public class ElectronicInBoxAPI {
                 String.valueOf((Integer.valueOf(prevPage)))
         );
 
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
+        return temporaryRedirect(URI.create("/eib")).build();
     }
 
     @POST
@@ -83,9 +79,7 @@ public class ElectronicInBoxAPI {
                 String.valueOf((Integer.valueOf(nextPage)))
         );
 
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
+        return temporaryRedirect(URI.create("/eib")).build();
     }
 
     @POST
@@ -105,9 +99,7 @@ public class ElectronicInBoxAPI {
                 String.valueOf((Integer.valueOf(lastPage)))
         );
 
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
+        return temporaryRedirect(URI.create("/eib")).build();
     }
 
     @POST
@@ -122,9 +114,7 @@ public class ElectronicInBoxAPI {
 
         SetElextronicInBoxAPI(choiceName, choiceAddress, choicePlace, choicePage);
 
-        return Response.ok()
-                .entity(electronicInBoxRedirect.ElectronicInBoxRedirect())
-                .build();
+        return temporaryRedirect(URI.create("/eib")).build();
     }
 
     private void SetElextronicInBoxAPI(
@@ -132,8 +122,6 @@ public class ElectronicInBoxAPI {
             @FormParam("adres") String choiceAddress,
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("strona") String choicePage) {
-
-        APPLOGGER.info("POST | find ");
 
         String _choiceName = null;
         String _choiceAddress = null;

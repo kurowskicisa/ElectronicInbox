@@ -1,22 +1,17 @@
 package com.ctk.dao;
 
+import javax.enterprise.context.SessionScoped;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-
-@RequestScoped
-public class DataBaseDao {
-
-    @Inject
-    private Settings settings;
+@SessionScoped
+public class DataBase extends com.ctk.model.DataBase implements Serializable {
 
     public void renameFileLESP() {
         String patch;
-
+        Settings settings = new Settings();
         patch = String.valueOf(settings.getPathLESPcsv());
 
         File fileSource = new File(patch);

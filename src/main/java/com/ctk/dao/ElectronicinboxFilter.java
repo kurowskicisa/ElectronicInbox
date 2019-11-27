@@ -17,10 +17,8 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.String.valueOf;
-
 @RequestScoped
-public class ElectronicinboxLoadFromFileFiltered implements Serializable {
+public class ElectronicinboxFilter implements Serializable {
 
     @Inject
     private Settings settings = new Settings();
@@ -43,7 +41,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         String line = null;
         BufferedReader reader = null;
 
-        if (new File(valueOf(settings.getPathLESPcsv())).isFile()) {
+        if (new File(String.valueOf(settings.getPathLESPcsv())).isFile()) {
 
             try {
 
@@ -59,7 +57,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
             if (line != null && !line.isEmpty()) {
 
                 try {
-                    readingLESPLinesFromFileFiltered(line, reader);
+                    readFileFiltered(line, reader);
                     reader.close();
 
                 } catch (IOException e) {
@@ -69,7 +67,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         }
     }
 
-    private void readingLESPLinesFromFileFiltered(
+    private void readFileFiltered(
             String line,
             BufferedReader reader)
             throws IOException {

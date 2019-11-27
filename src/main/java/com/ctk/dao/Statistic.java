@@ -1,7 +1,5 @@
 package com.ctk.dao;
 
-import com.ctk.model.Statistic;
-
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.*;
@@ -11,13 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @SessionScoped
-public class StatisticSourceFileESPReadFile implements Serializable {
+public class Statistic extends com.ctk.model.Statistic implements Serializable {
 
     @Inject
-    private Settings settings = new Settings();
-
-    @Inject
-    private Statistic statistic;
+    private Settings settings;
 
     private static final int FIELD_NAME = 0;
     private static final int FIELD_REGON = 1;
@@ -29,6 +24,8 @@ public class StatisticSourceFileESPReadFile implements Serializable {
     public void loadFileESP() {
         String line = null;
         BufferedReader reader = null;
+
+        Statistic statistic = new Statistic();
 
         statistic.setNameLengthMin(0);
         statistic.setNameLengthMax(0);
@@ -102,8 +99,7 @@ public class StatisticSourceFileESPReadFile implements Serializable {
             if (!line.equals("")) {
                 List<String> tempList = Arrays.asList(line.split(","));
 
-                statistic.setTotalRecords(
-                        statistic.getTotalRecords() + 1);
+                setTotalRecords(getTotalRecords() + 1);
 
                 nameLength = tempList.get(FIELD_NAME)
                         .replace("\"", "")
@@ -118,14 +114,14 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                 statisticRegon(regonLength);
 
                 if (regonLength == 0) {
-                    statistic.setDataEmptyRegonCounter(
-                            statistic.getDataEmptyRegonCounter() + 1
+                    setDataEmptyRegonCounter(
+                            getDataEmptyRegonCounter() + 1
                     );
                 }
 
                 if ((regonLength != 9) && regonLength != 14 && regonLength != 0) {
-                    statistic.setDataErrorRegonCounter(
-                            statistic.getDataErrorRegonCounter() + 1
+                    setDataErrorRegonCounter(
+                            getDataErrorRegonCounter() + 1
                     );
                 }
 
@@ -142,14 +138,14 @@ public class StatisticSourceFileESPReadFile implements Serializable {
                 statisticZip(zipLength);
 
                 if (zipLength == 0) {
-                    statistic.setDataEmptyZipCounter(
-                            statistic.getDataErrorZipCounter()
+                    setDataEmptyZipCounter(
+                            getDataErrorZipCounter()
                     );
                 }
 
                 if (zipLength != 5 && zipLength != 0) {
-                    statistic.setDataErrorZipCounter(
-                            statistic.getDataErrorZipCounter() + 1
+                    setDataErrorZipCounter(
+                            getDataErrorZipCounter() + 1
                     );
                 }
 
@@ -172,108 +168,108 @@ public class StatisticSourceFileESPReadFile implements Serializable {
 
     private void statisticName(Integer nameLength) {
         if (nameLength == 0) {
-            statistic.setNameCounterEmpty(
-                    statistic.getNameCounterEmpty() + 1);
+            setNameCounterEmpty(
+                    getNameCounterEmpty() + 1);
         }
         if (nameLength != 0) {
-            if (statistic.getNameLengthMin() == 0) {
-                statistic.setNameLengthMin(nameLength);
+            if (getNameLengthMin() == 0) {
+                setNameLengthMin(nameLength);
             }
-            if (statistic.getNameLengthMin() > nameLength) {
-                statistic.setNameLengthMin(nameLength);
+            if (getNameLengthMin() > nameLength) {
+                setNameLengthMin(nameLength);
             }
-            if (statistic.getNameLengthMax() < nameLength) {
-                statistic.setNameLengthMax(nameLength);
+            if (getNameLengthMax() < nameLength) {
+                setNameLengthMax(nameLength);
             }
         }
     }
 
     private void statisticRegon(Integer regonLength) {
         if (regonLength == 0) {
-            statistic.setRegonCounterEmpty(
-                    statistic.getRegonCounterEmpty() + 1);
+            setRegonCounterEmpty(
+                    getRegonCounterEmpty() + 1);
         }
         if (regonLength != 0) {
-            if (statistic.getRegonLengthMin() == 0) {
-                statistic.setRegonLengthMin(regonLength);
+            if (getRegonLengthMin() == 0) {
+                setRegonLengthMin(regonLength);
             }
-            if (statistic.getRegonLengthMin() > regonLength) {
-                statistic.setRegonLengthMin(regonLength);
+            if (getRegonLengthMin() > regonLength) {
+                setRegonLengthMin(regonLength);
             }
-            if (statistic.getRegonLengthMax() < regonLength) {
-                statistic.setRegonLengthMax(regonLength);
+            if (getRegonLengthMax() < regonLength) {
+                setRegonLengthMax(regonLength);
             }
         }
     }
 
     private void statisticAddress(Integer addressLength) {
         if (addressLength == 0) {
-            statistic.setAddressCounterEmpty(
-                    statistic.getAddressCounterEmpty() + 1);
+            setAddressCounterEmpty(
+                    getAddressCounterEmpty() + 1);
         }
         if (addressLength != 0) {
-            if (statistic.getAddressLengthMin() == 0) {
-                statistic.setAddressLengthMin(addressLength);
+            if (getAddressLengthMin() == 0) {
+                setAddressLengthMin(addressLength);
             }
-            if (statistic.getAddressLengthMin() > addressLength) {
-                statistic.setAddressLengthMin(addressLength);
+            if (getAddressLengthMin() > addressLength) {
+                setAddressLengthMin(addressLength);
             }
-            if (statistic.getAddressLengthMax() < addressLength) {
-                statistic.setAddressLengthMax(addressLength);
+            if (getAddressLengthMax() < addressLength) {
+                setAddressLengthMax(addressLength);
             }
         }
     }
 
     private void statisticZip(Integer zipLength) {
         if (zipLength == 0) {
-            statistic.setZipCounterEmpty(
-                    statistic.getZipCounterEmpty() + 1);
+            setZipCounterEmpty(
+                    getZipCounterEmpty() + 1);
         }
         if (zipLength != 0) {
-            if (statistic.getZipLengthMin() == 0) {
-                statistic.setZipLengthMin(zipLength);
+            if (getZipLengthMin() == 0) {
+                setZipLengthMin(zipLength);
             }
-            if (statistic.getZipLengthMin() > zipLength) {
-                statistic.setZipLengthMin(zipLength);
+            if (getZipLengthMin() > zipLength) {
+                setZipLengthMin(zipLength);
             }
-            if (statistic.getZipLengthMax() < zipLength) {
-                statistic.setZipLengthMax(zipLength);
+            if (getZipLengthMax() < zipLength) {
+                setZipLengthMax(zipLength);
             }
         }
     }
 
     private void statisticPlace(Integer placeLength) {
         if (placeLength == 0) {
-            statistic.setPlaceCounterEmpty(
-                    statistic.getPlaceCounterEmpty() + 1);
+            setPlaceCounterEmpty(
+                    getPlaceCounterEmpty() + 1);
         }
         if (placeLength != 0) {
-            if (statistic.getPlaceLengthMin() == 0) {
-                statistic.setPlaceLengthMin(placeLength);
+            if (getPlaceLengthMin() == 0) {
+                setPlaceLengthMin(placeLength);
             }
-            if (statistic.getPlaceLengthMin() > placeLength) {
-                statistic.setPlaceLengthMin(placeLength);
+            if (getPlaceLengthMin() > placeLength) {
+                setPlaceLengthMin(placeLength);
             }
-            if (statistic.getPlaceLengthMax() < placeLength) {
-                statistic.setPlaceLengthMax(placeLength);
+            if (getPlaceLengthMax() < placeLength) {
+                setPlaceLengthMax(placeLength);
             }
         }
     }
 
     private void statisticUri(Integer uriLength) {
         if (uriLength == 0) {
-            statistic.setUriCounterEmpty(
-                    statistic.getUriCounterEmpty() + 1);
+            setUriCounterEmpty(
+                    getUriCounterEmpty() + 1);
         }
         if (uriLength != 0) {
-            if (statistic.getUriLengthMin() == 0) {
-                statistic.setUriLengthMin(uriLength);
+            if (getUriLengthMin() == 0) {
+                setUriLengthMin(uriLength);
             }
-            if (statistic.getUriCounterEmpty() > uriLength) {
-                statistic.setUriLengthMin(uriLength);
+            if (getUriCounterEmpty() > uriLength) {
+                setUriLengthMin(uriLength);
             }
-            if (statistic.getUriLengthMax() < uriLength) {
-                statistic.setUriLengthMax(uriLength);
+            if (getUriLengthMax() < uriLength) {
+                setUriLengthMax(uriLength);
             }
         }
     }

@@ -1,15 +1,14 @@
 package com.ctk.servlet;
 
 import com.ctk.dao.ElectronicInboxDao;
-import com.ctk.dao.ElectronicinboxLoadFromFileFiltered;
+import com.ctk.dao.ElectronicinboxFilter;
 
-import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.GrayScale;
 import com.ctk.model.ElectronicInboxFilter;
 
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
 
-import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -42,7 +41,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private ElectronicinboxLoadFromFileFiltered electronicinboxLoadFromFileFiltered;
+    private ElectronicinboxFilter electronicinboxFilter;
 
     @Inject
     private ElectronicInboxDao electronicInboxDao;
@@ -52,9 +51,6 @@ public class ElectronicInboxServlet extends HttpServlet {
 
     @Inject
     private GrayScale grayScale;
-
-    @Inject
-    private GrayScaleReadFile grayScaleReadFile;
 
     private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
 
@@ -70,6 +66,11 @@ public class ElectronicInboxServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        doAction(req, resp);
+
+    }
+
+    private void doAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         APPLOGGER.info("doGet() | ");
 
         LocalTime startDoGet = now();
@@ -95,9 +96,9 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choicePage_",
                 electronicInboxFilter.getPage());
 
-        electronicinboxLoadFromFileFiltered.loadData();
+        electronicinboxFilter.loadData();
 
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
                 grayScale.getGrayScale());
 
@@ -168,41 +169,11 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        APPLOGGER.info("doPost() | ");
-        LocalTime startDoGet = now();
-
-        resp.setHeader("Content-Type", "text/html; charset=UTF-8");
-        resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
-        resp.setCharacterEncoding("UTF-8");
-        req.setCharacterEncoding("UTF-8");
-
-        try {
-
-            electronicInboxFilter.setName("");
-            electronicInboxFilter.setAddress("");
-            electronicInboxFilter.setPlace("");
-            electronicInboxFilter.setPage("1");
-
-            Template template = templateProvider.getTemplate(getServletContext(), "electronicinbox");
-
-            template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
-            APPLOGGER.info("[\"electronicinbox\" loaded] |");
-
-        } catch (TemplateException e) {
-            e.printStackTrace();
-            APPLOGGER.info("[\"electronicinbox\" NOT loaded] |");
-        }
-
-        LocalTime stopDoGet = now();
-
-        APPLOGGER.info("[time of action (milliseconds)] | "
-                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
-
+        doAction(req, resp);
     }
 
     private void resetFormFields() {
@@ -224,15 +195,12 @@ public class ElectronicInboxServlet extends HttpServlet {
         modelGeneratorTemplate.setModel("choiceTotalPages_", "");
         modelGeneratorTemplate.setModel("choicePrevPage_", "");
         modelGeneratorTemplate.setModel("choiceNextPage_", "");
-
     }
 
     private void resetPages() {
-
         electronicInboxFilter.setPrevPage(1);
         electronicInboxFilter.setNextPage(1);
         electronicInboxFilter.setPage("1");
         electronicInboxFilter.setTotalPages(1);
-
     }
 }

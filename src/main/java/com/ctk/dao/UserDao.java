@@ -1,5 +1,7 @@
 package com.ctk.dao;
 
+import com.ctk.model.User;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.BufferedReader;
@@ -8,25 +10,43 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.String.valueOf;
-
 @SessionScoped
-public class UserReadFile implements Serializable {
+public class UserDao extends com.ctk.model.User implements Serializable {
 
     @Inject
     private Settings settings;
 
-    @Inject
-    private UserRepository userRepository;
+    private List<User> users = new ArrayList<>();
+
+    public List<User> getList() {
+        return users;
+    }
+
+    public boolean isAutenticated(String username, String password) {
+        return users.stream()
+                .filter(u -> u.getName().equals(username)
+                        && u.getPassword().equals(password))
+                .anyMatch(u -> u.getName().equals(username)
+                        && u.getPassword().equals(password));
+    }
+
+    public void add(String username, String password) {
+        users.add(new User(username, password));
+    }
+
+    public void empty() {
+        users.clear();
+    }
 
     public void loadUserFile() {
         String line = null;
         BufferedReader reader = null;
 
-        if (new File(valueOf(settings.getPathAdmin())).isFile()) {
+        if (new File(String.valueOf(settings.getPathAdmin())).isFile()) {
 
             try {
 
@@ -63,11 +83,10 @@ public class UserReadFile implements Serializable {
             if (!line.equals("")) {
                 List<String> tempList = Arrays.asList(line.split(";"));
 
-                userRepository.add(tempList.get(0), tempList.get(1));
+                add(tempList.get(0), tempList.get(1));
             }
             line = reader.readLine();
         }
 
     }
-
 }

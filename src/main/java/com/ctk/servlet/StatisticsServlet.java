@@ -1,13 +1,10 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.GrayScaleReadFile;
-import com.ctk.dao.Settings;
-import com.ctk.dao.StatisticSourceFileESPReadFile;
-import com.ctk.dao.UserRepository;
+import com.ctk.dao.GrayScale;
+import com.ctk.dao.DataBase;
+import com.ctk.dao.Statistic;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-import com.ctk.model.DataBase;
-import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -28,7 +25,7 @@ import static java.time.LocalTime.now;
 
 @SessionScoped
 @WebServlet(urlPatterns = "/statistics")
-public class Statistic extends HttpServlet {
+public class StatisticsServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -37,40 +34,27 @@ public class Statistic extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private com.ctk.model.Statistic statistic;
-
-    @Inject
-    private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
+    private Statistic statistic;
 
     @Inject
     private GrayScale grayScale;
 
     @Inject
-    private GrayScaleReadFile grayScaleReadFile;
-
-    @Inject
-    private UserRepository userRepository;
-
-    @Inject
-    private Settings settings;
-
-    @Inject
     private DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(Statistic.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
 
     @Override
     public void init() {
 
         APPLOGGER.info("init() ");
-
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
                 grayScale.getGrayScale());
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         APPLOGGER.info("doGet() ");
 
@@ -79,11 +63,11 @@ public class Statistic extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        settings.loadDataBaseInfo();
+        dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
-                dataBase.getDataBaseDateUpdate() );
+                dataBase.getDataBaseDateUpdate());
 
-        statisticSourceFileESPReadFile.loadFileESP();
+        statistic.loadFileESP();
 
         modelGeneratorTemplate.setModel("nameLengthMin_",
                 statistic.getNameLengthMin());
@@ -166,8 +150,6 @@ public class Statistic extends HttpServlet {
         }
 
         LocalTime stopDoGet = now();
-
-        userRepository.getList().get(0).setAutenticate(false);
 
         APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);

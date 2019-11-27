@@ -1,7 +1,6 @@
 package com.ctk.api;
 
-import com.ctk.dao.UserReadFile;
-import com.ctk.dao.UserRepository;
+import com.ctk.dao.UserDao;
 
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
@@ -9,49 +8,37 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+
+import static javax.ws.rs.core.Response.temporaryRedirect;
 
 @Path("/api")
 @Produces("text/html")
 public class StatisticAPI {
 
     @Inject
-    private UserRepository userRepository;
-
-    @Inject
-    private UserReadFile userReadFile;
-
-    @Inject
-    private StatisticWEB statisticWEB;
-
-    @Inject
-    private ElectronicInBoxLoginRedirect electronicInBoxLoginRedirect;
+    private UserDao userDao;
 
     @POST
     @Path("/statistics")
     public Response authenticateForm(
-            @FormParam("user") String user,
+            @FormParam("user") String loguser,
             @FormParam("password") String password) {
 
-        userRepository.empty();
-        userReadFile.loadUserFile();
+        userDao.empty();
+        userDao.loadUserFile();
 
-        if (!userRepository.getList().isEmpty()) {
+        if (!userDao.getList().isEmpty()) {
 
-            boolean authenticated = userRepository.isAutenticated(user, password);
+            boolean authenticated = userDao.isAutenticated(loguser, password);
 
             if (authenticated) {
-                userRepository.getList().get(0).setAutenticate(true);
+                userDao.getList().get(0).setAutenticate(true);
+
+                return temporaryRedirect(URI.create("/statistics")).build();
             }
-
-            return Response.ok()
-                    .entity(statisticWEB.StatisticWeb())
-                    .build();
-        } else {
-
         }
-        return Response.ok()
-                .entity(electronicInBoxLoginRedirect.ElectronicInBoxLoghinRedirect())
-                .build();
 
+        return temporaryRedirect(URI.create("/electronicinbox/")).build();
     }
 }

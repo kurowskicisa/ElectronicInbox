@@ -1,12 +1,10 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.DataBaseDao;
-import com.ctk.dao.GrayScaleReadFile;
+import com.ctk.dao.DataBase;
+import com.ctk.dao.GrayScale;
 import com.ctk.dao.Settings;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-import com.ctk.model.DataBase;
-import com.ctk.model.GrayScale;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -47,13 +45,7 @@ public class IndexServlet extends HttpServlet {
     private GrayScale grayScale;
 
     @Inject
-    private GrayScaleReadFile grayScaleReadFile;
-
-    @Inject
     private DataBase dataBase;
-
-    @Inject
-    private DataBaseDao dataBaseDao;
 
     private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
 
@@ -91,8 +83,8 @@ public class IndexServlet extends HttpServlet {
 
         if (!settings.isLESPcsvFile()) {
             APPLOGGER.info("No file: " + settings.getPathLESPcsv());
-            if (dataBaseDao.isEPUAPAvailable()) {
-                dataBaseDao.downloadfileLESP(new File(String.valueOf(settings.getPathLESPcsv())));
+            if (dataBase.isEPUAPAvailable()) {
+                dataBase.downloadfileLESP(new File(String.valueOf(settings.getPathLESPcsv())));
                 if (settings.isLESPcsvFile()) {
                     APPLOGGER.info("File: " + settings.getPathLESPcsv() + " is created with downloaded values");
                 }
@@ -105,7 +97,7 @@ public class IndexServlet extends HttpServlet {
                 }
 
                 try {
-                    settings.updateDateDataBaseInfo();
+                    dataBase.updateDateDataBaseInfo();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -129,11 +121,11 @@ public class IndexServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
-        grayScaleReadFile.loadGrayScaleFile();
+        grayScale.loadGrayScaleFile();
         modelGeneratorTemplate.setModel("grayScale_",
                 grayScale.getGrayScale());
 
-        settings.loadDataBaseInfo();
+        dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate());
         modelGeneratorTemplate.setModel("dataBaseRecordsCounter_",

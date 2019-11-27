@@ -5,6 +5,9 @@ public class User implements com.ctk.services.User {
     private String password;
     private boolean autenticate;
 
+    public User() {
+    }
+
     public User(String name, String password) {
         this.name = name;
         this.password = password;

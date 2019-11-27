@@ -1,6 +1,6 @@
 package com.ctk.filters;
 
-import com.ctk.dao.UserRepository;
+import com.ctk.dao.UserDao;
 
 import javax.inject.Inject;
 import javax.servlet.FilterChain;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class StatisticFilter extends HttpFilter {
 
     @Inject
-    UserRepository userRepository;
+    UserDao userDao;
 
     protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
@@ -25,9 +25,9 @@ public class StatisticFilter extends HttpFilter {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8; pageEncoding=\"UTF-8\"");
 
-        if (userRepository.getList().size() > 0) {
+        if (userDao.getList().size() > 0) {
 
-            logged = userRepository.getList().get(0).isAutenticate();
+            logged = userDao.getList().get(0).isAutenticate();
 
             if (logged) {
                 resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
