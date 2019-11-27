@@ -54,7 +54,7 @@ public class StatisticsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         APPLOGGER.info("doGet() ");
 
@@ -150,8 +150,6 @@ public class StatisticsServlet extends HttpServlet {
         }
 
         LocalTime stopDoGet = now();
-
-//        userDao.getList().get(0).setAutenticate(false);
 
         APPLOGGER.info("[statistics: time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);

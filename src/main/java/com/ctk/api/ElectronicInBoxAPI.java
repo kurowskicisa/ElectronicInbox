@@ -123,8 +123,6 @@ public class ElectronicInBoxAPI {
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("strona") String choicePage) {
 
-        APPLOGGER.info("POST | find ");
-
         String _choiceName = null;
         String _choiceAddress = null;
         String _choicePlace = null;
