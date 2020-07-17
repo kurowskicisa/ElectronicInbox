@@ -7,8 +7,8 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import static javax.ws.rs.core.Response.temporaryRedirect;
@@ -20,7 +20,7 @@ public class ElectronicInBoxAPI {
     @Inject
     ElectronicInboxFilter electronicInboxFilter;
 
-    private static Logger APPLOGGER = LogManager.getLogger(ElectronicInBoxAPI.class.getName());
+    private static final Logger APPLOGGER = LogManager.getLogger(ElectronicInBoxAPI.class.getName());
 
     @POST
     @Path("/first")
@@ -128,29 +128,11 @@ public class ElectronicInBoxAPI {
         String _choicePlace = null;
         String _choicePage = null;
 
-        try {
-            _choiceName = Optional.ofNullable(new String(choiceName.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        _choiceName = Optional.ofNullable(new String(choiceName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        _choicePage = Optional.ofNullable(new String(choicePage.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
 
-        try {
-            _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            _choicePage = Optional.ofNullable(new String(choicePage.getBytes("iso-8859-1"), "utf-8")).orElse("");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
         APPLOGGER.info("choiceName   : " + _choiceName);
         APPLOGGER.info("choiceAddress: " + _choiceAddress);
         APPLOGGER.info("choicePlace  : " + _choicePlace);
