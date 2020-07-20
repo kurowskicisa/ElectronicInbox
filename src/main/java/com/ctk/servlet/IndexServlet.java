@@ -51,7 +51,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("init()] | ");
+        APPLOGGER.info("init()] | IndexServlet ");
         Date dateToday = Calendar.getInstance().getTime();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -75,7 +75,7 @@ public class IndexServlet extends HttpServlet {
 
         if (!settings.isDataBaseInfoFile()) {
             APPLOGGER.info("No file: " + settings.getPathDatabaseInfo());
-            settings.createDatabaseInfoFile();
+            settings.createDefaultDatabaseInfoFile();
             if (settings.isDataBaseInfoFile()) {
                 APPLOGGER.info("File: " + settings.getPathDatabaseInfo() + " is created with default values");
             }
