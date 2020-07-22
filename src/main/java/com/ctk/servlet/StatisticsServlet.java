@@ -55,7 +55,7 @@ public class StatisticsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("\"/statistics | doGet()" );
+        APPLOGGER.info("doGet()" );
 
         LocalTime startDoGet = now();
 
@@ -71,7 +71,7 @@ public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        APPLOGGER.info("doPost() ");
+        APPLOGGER.info("doPost()");
 
         LocalTime startDoPost = now();
 
@@ -88,16 +88,11 @@ public class StatisticsServlet extends HttpServlet {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        System.out.println("\"/statistics | doGet()" );
-        System.out.println(dataBase.getDataBaseRecordsCounter());
+        APPLOGGER.info("\"/statistics | doGet()" );
 
         dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate());
-/*
-        modelGeneratorTemplate.setModel("totalRecords_",
-                dataBase.getDataBaseRecordsCounter());
-*/
 
         statistic.loadFileESP();
 

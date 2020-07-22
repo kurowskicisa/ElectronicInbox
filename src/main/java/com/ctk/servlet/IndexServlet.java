@@ -51,7 +51,9 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("init()] | IndexServlet ");
+
+        APPLOGGER.info("init()");
+
         Date dateToday = Calendar.getInstance().getTime();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -114,7 +116,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        APPLOGGER.info("[doGet()] | ");
+        APPLOGGER.info("doGet()");
 
         LocalTime startDoGet = now();
 
