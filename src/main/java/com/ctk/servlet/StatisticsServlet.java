@@ -54,18 +54,50 @@ public class StatisticsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        APPLOGGER.info("doGet() ");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("\"/statistics | doGet()" );
 
         LocalTime startDoGet = now();
 
+        doServlet(req, resp);
+
+        LocalTime stopDoGet = now();
+
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        APPLOGGER.info("doPost() ");
+
+        LocalTime startDoPost = now();
+
+        doServlet(req, resp);
+
+        LocalTime stopDoPost = now();
+
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoPost, stopDoPost)) / 1000000);
+    }
+
+
+    private void doServlet(HttpServletRequest req, HttpServletResponse resp){
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+
+        System.out.println("\"/statistics | doGet()" );
+        System.out.println(dataBase.getDataBaseRecordsCounter());
 
         dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate());
+
+        modelGeneratorTemplate.setModel("totalRecords_",
+                dataBase.getDataBaseRecordsCounter());
+
 
         statistic.loadFileESP();
 
@@ -122,10 +154,10 @@ public class StatisticsServlet extends HttpServlet {
 
         modelGeneratorTemplate.setModel("uriLengthMax_",
                 statistic.getUriLengthMax());
-
+/*
         modelGeneratorTemplate.setModel("totalRecords_",
                 statistic.getTotalRecords());
-
+*/
         modelGeneratorTemplate.setModel("dataErrorRegonCounter_",
                 statistic.getDataErrorRegonCounter());
 
@@ -144,14 +176,9 @@ public class StatisticsServlet extends HttpServlet {
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
             APPLOGGER.info("[statistics: WEB loaded] |");
 
-        } catch (TemplateException e) {
+        } catch (TemplateException | IOException e) {
             e.printStackTrace();
             APPLOGGER.info("[statistics: WEB NOT loaded] |");
         }
-
-        LocalTime stopDoGet = now();
-
-        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
-                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 }
