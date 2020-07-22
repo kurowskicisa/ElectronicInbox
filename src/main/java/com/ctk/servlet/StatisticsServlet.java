@@ -94,10 +94,10 @@ public class StatisticsServlet extends HttpServlet {
         dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
                 dataBase.getDataBaseDateUpdate());
-
+/*
         modelGeneratorTemplate.setModel("totalRecords_",
                 dataBase.getDataBaseRecordsCounter());
-
+*/
 
         statistic.loadFileESP();
 
@@ -154,10 +154,10 @@ public class StatisticsServlet extends HttpServlet {
 
         modelGeneratorTemplate.setModel("uriLengthMax_",
                 statistic.getUriLengthMax());
-/*
+
         modelGeneratorTemplate.setModel("totalRecords_",
                 statistic.getTotalRecords());
-*/
+
         modelGeneratorTemplate.setModel("dataErrorRegonCounter_",
                 statistic.getDataErrorRegonCounter());
 

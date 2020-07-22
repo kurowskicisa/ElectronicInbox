@@ -143,7 +143,7 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <form action="/electronicinbox/eib/find"
+            <form action="/electronicinbox/api/find"
                   method="post"
                   accept-charset="UTF-8"
                   style="width: 100%;">
@@ -244,7 +244,7 @@
 
             <div class="container-fluid form-inline" style="margin-bottom: 0; font-size:1vw;">
 
-                <form class="col-lg-3" action="/electronicinbox/eib/first" method="post">
+                <form class="col-lg-3" action="/electronicinbox/api/first" method="post">
                     <button class="btn btn-outline-success btn-block"
                             id="btnFirstPage"
                             name="firstPage"
@@ -258,7 +258,7 @@
 
                 </form>
 
-                <form class="col-lg-3" action="/electronicinbox/eib/prev" method="post">
+                <form class="col-lg-3" action="/electronicinbox/api/prev" method="post">
                     <button class="btn btn-outline-success btn-block"
                             id="btnPrevPage"
                             name="prevPage"
@@ -272,7 +272,7 @@
 
                 </form>
 
-                <form class="col-lg-3" action="/electronicinbox/eib/next" method="post">
+                <form class="col-lg-3" action="/electronicinbox/api/next" method="post">
                     <button class="btn btn-outline-success btn-block"
                             id="btnNextPage"
                             name="nextPage"
@@ -286,7 +286,7 @@
 
                 </form>
 
-                <form class="col-lg-3" action="/electronicinbox/eib/last" method="post">
+                <form class="col-lg-3" action="/electronicinbox/api/last" method="post">
                     <button class="btn btn-outline-success btn-block col-lg-12"
                             id="btnLastPage"
                             name="lastPage"

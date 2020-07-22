@@ -103,13 +103,17 @@ public class Statistic extends com.ctk.model.Statistic implements Serializable {
         setNameLengthMax(0);
         setNameCounterEmpty(0);
 
+        setRegonLengthMin(0);
+        setRegonLengthMax(0);
+        setRegonCounterEmpty(0);
+
         setAddressLengthMin(0);
         setAddressLengthMax(0);
         setAddressCounterEmpty(0);
 
         setZipLengthMin(0);
         setZipLengthMax(0);
-        setDataEmptyZipCounter(0);
+        setZipCounterEmpty(0);
 
         setPlaceLengthMin(0);
         setPlaceLengthMax(0);

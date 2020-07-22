@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import static javax.ws.rs.core.Response.temporaryRedirect;
 
-@Path("/eib")
+@Path("/api")
 @Produces("text/html")
 public class ElectronicInBoxAPI {
 

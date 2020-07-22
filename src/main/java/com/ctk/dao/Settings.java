@@ -181,14 +181,6 @@ public class Settings extends com.ctk.model.Settings implements Serializable {
         }
     }
 
-    public void createDatabaseInfoFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathDatabaseInfo())))) {
-            writer.append("2000-01-01").append(";").append(countTotalRercords().toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void checkGrayScaleValue() {
 
         String line;
