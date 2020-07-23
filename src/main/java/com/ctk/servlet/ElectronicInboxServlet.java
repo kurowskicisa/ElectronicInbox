@@ -66,12 +66,22 @@ public class ElectronicInboxServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        APPLOGGER.info("doGet() | ");
+
+        doAction(req, resp);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        APPLOGGER.info("doGet() | ");
+
         doAction(req, resp);
 
     }
 
     private void doAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        APPLOGGER.info("doGet() | ");
 
         LocalTime startDoGet = now();
 
@@ -169,11 +179,6 @@ public class ElectronicInboxServlet extends HttpServlet {
 
         APPLOGGER.info("[time of action (milliseconds)] | "
                 + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doAction(req, resp);
     }
 
     private void resetFormFields() {

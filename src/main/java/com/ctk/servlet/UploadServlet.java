@@ -32,13 +32,13 @@ public class UploadServlet extends HttpServlet {
 
     @Override
     public void init() {
-        APPLOGGER.info("init()] | ");
+        APPLOGGER.info("init()");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        APPLOGGER.info("[doGet()] | ");
+        APPLOGGER.info("doGet()");
 
         Date dateToday = Calendar.getInstance().getTime();
 

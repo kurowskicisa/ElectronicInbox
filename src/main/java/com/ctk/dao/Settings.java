@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
-public class Settings extends com.ctk.model.Settings implements Serializable{
+public class Settings extends com.ctk.model.Settings implements Serializable {
 
     private static final int FIELD_DATABASE_DATE_UPDATE = 0;
     private static final int FIELD_DATABASE_RECORDS_COUNTER = 1;
@@ -173,9 +173,9 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
         }
     }
 
-    public void createDatabaseInfoFile() {
+    public void createDefaultDatabaseInfoFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(getPathDatabaseInfo())))) {
-            writer.append("2000-01-01;0");
+            writer.append("2000-01-01").append(";").append("0");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -229,7 +229,7 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
             reader.close();
 
             if (line.isEmpty()) {
-                createDatabaseInfoFile();
+                createDefaultDatabaseInfoFile();
             }
 
             if (!line.isEmpty()) {
@@ -237,19 +237,19 @@ public class Settings extends com.ctk.model.Settings implements Serializable{
                 if (tempList.size() == 2) {
                     if (tempList.get(FIELD_DATABASE_DATE_UPDATE).isEmpty()
                             || tempList.get(FIELD_DATABASE_RECORDS_COUNTER).isEmpty()) {
-                        createDatabaseInfoFile();
+                        createDefaultDatabaseInfoFile();
                     } else {
-                        if (!tempList.get(FIELD_DATABASE_RECORDS_COUNTER).matches("D*")) {
-                            createDatabaseInfoFile();
+                        if (!tempList.get(FIELD_DATABASE_RECORDS_COUNTER).matches("^[0-9]+$")) {
+                            createDefaultDatabaseInfoFile();
                         }
 
                         if (!tempList.get(FIELD_DATABASE_DATE_UPDATE)
                                 .matches("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
-                            createDatabaseInfoFile();
+                            createDefaultDatabaseInfoFile();
                         }
                     }
                 } else {
-                    createDatabaseInfoFile();
+                    createDefaultDatabaseInfoFile();
                 }
             }
         } catch (IOException e) {

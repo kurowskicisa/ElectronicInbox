@@ -54,14 +54,41 @@ public class StatisticsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        APPLOGGER.info("doGet() ");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        APPLOGGER.info("doGet()" );
 
         LocalTime startDoGet = now();
 
+        doServlet(req, resp);
+
+        LocalTime stopDoGet = now();
+
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        APPLOGGER.info("doPost()");
+
+        LocalTime startDoPost = now();
+
+        doServlet(req, resp);
+
+        LocalTime stopDoPost = now();
+
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoPost, stopDoPost)) / 1000000);
+    }
+
+
+    private void doServlet(HttpServletRequest req, HttpServletResponse resp){
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
+
+        APPLOGGER.info("\"/statistics | doGet()" );
 
         dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
@@ -144,14 +171,9 @@ public class StatisticsServlet extends HttpServlet {
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
             APPLOGGER.info("[statistics: WEB loaded] |");
 
-        } catch (TemplateException e) {
+        } catch (TemplateException | IOException e) {
             e.printStackTrace();
             APPLOGGER.info("[statistics: WEB NOT loaded] |");
         }
-
-        LocalTime stopDoGet = now();
-
-        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
-                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
 }

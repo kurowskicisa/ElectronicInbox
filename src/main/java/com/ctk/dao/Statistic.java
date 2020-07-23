@@ -94,6 +94,44 @@ public class Statistic extends com.ctk.model.Statistic implements Serializable {
         Integer placeLength;
         Integer uriLength;
 
+
+        setTotalRecords(0);
+        setDataErrorRegonCounter(0);
+        setDataEmptyRegonCounter(0);
+
+        setNameLengthMin(0);
+        setNameLengthMax(0);
+        setNameCounterEmpty(0);
+
+        setRegonLengthMin(0);
+        setRegonLengthMax(0);
+        setRegonCounterEmpty(0);
+
+        setAddressLengthMin(0);
+        setAddressLengthMax(0);
+        setAddressCounterEmpty(0);
+
+        setZipLengthMin(0);
+        setZipLengthMax(0);
+        setZipCounterEmpty(0);
+
+        setPlaceLengthMin(0);
+        setPlaceLengthMax(0);
+        setPlaceCounterEmpty(0);
+
+        setUriLengthMin(0);
+        setUriLengthMax(0);
+        setUriCounterEmpty(0);
+
+        setTotalRecords(0);
+
+        setDataErrorRegonCounter(0);
+        setDataErrorZipCounter(0);
+
+        setDataEmptyRegonCounter(0);
+        setDataEmptyZipCounter(0);
+
+
         while (line != null) {
 
             if (!line.equals("")) {
