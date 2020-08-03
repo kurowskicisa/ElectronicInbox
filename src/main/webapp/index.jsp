@@ -6,10 +6,10 @@
     <meta content-Type="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta http-equiv = "refresh" content ="5, /electronicinbox?nazwa=&adres=&miejscowosc=&strona=1">
+    <meta http-equiv = "refresh" content ="5, /electronicinbox">
 
     <script type="text/javascript">
-        windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+        windows.location.href = "/electronicinbox"
     </script>
 
     <!-- Bootstrap CSS -->

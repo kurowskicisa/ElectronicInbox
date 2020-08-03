@@ -4,7 +4,8 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content-Type="text/html" ; charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content-Type="text/html" ; charset="utf-8" ;>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <#include "include/grayscale.ftlh">
@@ -19,6 +20,10 @@
         function noBack() {
             window.history.forward();
         }
+
+        function updateBase() {
+            window.location.href = "/electronicinbox/upload-test";
+        }
     </script>
 
     <title>Elektroniczne Skrzynki Podawcze</title>
@@ -27,21 +32,62 @@
 
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
-      class ="graypage"
+      class="graypage"
       style="background-color: white">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-3 h1">
-            <a href="/electronicinbox" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
+            <a href="/electronicinbox/" style="color: rgb(000, 000, 000); text-decoration: none; display: block;"
                ;>
             Elektroniczne Skrzynki Podawcze
             </a>
         </span>
     </nav>
-
-
 </div>
+
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
+                <div class="card-header">ostatnia aktualizacja bazy</div>
+                <div class="card-body">
+                    <h1 class="card-text">${dataBaseDateUpdate_}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
+                <div class="card-header">liczba rekordów</div>
+                <div class="card-body">
+                    <h1 class="card-text">${totalRecords_}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card text-white bg-success text-center mb-12"
+                 style="max-width: 100%; height: 100%; alignment: center;">
+                <div class="card-body">
+                    <h1 class="card-text">
+                        <form method="get" action="/electronicinbox/upload" class="form-signin">
+                            <button
+                                    class="btn btn-lg btn-primary btn-block"
+                                    type="submit"
+                            >
+                                Aktualizacja bazy
+                            </button>
+                        </form>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
+    &nbsp;
 </div>
 
 <div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
@@ -149,20 +195,6 @@
             </div>
         </div>
 
-    </div>
-</div>
-
-
-<div class="container-fluid nopadding" style="padding-left: 20px; padding-right: 20px;">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card text-white bg-success text-center mb-12" style="max-width: 100%;">
-                <div class="card-header">Ilość rekordów</div>
-                <div class="card-body">
-                    <h1 class="card-text">${totalRecords_}</h1>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

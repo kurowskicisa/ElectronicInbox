@@ -4,22 +4,15 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content-Type="text/html" ; charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content-Type="text/html" ; charset="utf-8" ;>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script type="text/javascript">
-        windows.location.href = "/electronicinbox?nazwa=&adres=&miejscowosc=&strona=1"
+        windows.location.href = "/electronicinbox"
     </script>
 
-    <style>
-        .graypage {
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            filter: grayscale(${err_}100%);
-        }
-    </style>
+    <#include "include/grayscale.ftlh">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -40,7 +33,7 @@
 <body onload="noBack();"
       onpageshow="if (event.persisted) noBack();" onunload=""
       style="background-color: white"
-      class ="graypage">
+      class="graypage">
 
 <div class="position-sticky sticky-top">
     <nav class="navbar navbar-light bg-light">
@@ -70,16 +63,16 @@
                 <h3>&nbsp;</h3>
                 <h3>&nbsp;</h3>
 
-                <a class="btn btn-primary btn-lg"
-                   style="width: 99%;"
-                   href="/electronicinbox/eib?nazwa=&adres=&miejscowosc=&strona=1"
-                   role="button">Przeglądaj
-                </a>
+                <form method="get" action="/electronicinbox/eib" class="form-signin">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Przeglądaj i szukaj</button>
+                </form>
+
+
             </div>
         </div>
 
         <div class="col-lg-4">
-            <form class="form-signin">
+            <form method="post" action="/electronicinbox/api/statistics" class="form-signin">
 
                 <h1 class="h3 mb-3 font-weight-normal"></h1>
                 <label for="inputUser" class="sr-only">mail</label>
@@ -89,9 +82,7 @@
                        class="form-control"
                        placeholder="użytkownik"
                        required autofocus>
-
                 &nbsp;
-
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password"
                        id="inputPassword"
@@ -99,9 +90,7 @@
                        class="form-control"
                        placeholder="hasło"
                        required>
-
                 &nbsp;
-
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
 
             </form>
@@ -111,35 +100,31 @@
                     &nbsp;
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg">
                     <div class="card text-white bg-success text-center">
                         <div class="card-body mr-sm-3">
                             <h6 class="card-title">liczba rekordów</h6>
                             <h2 class="card-text">
-                                113110
+                                ${dataBaseRecordsCounter_}
                             </h2>
                         </div>
                     </div>
-
 
                     <div class="container-fluid">
                         <div class="row">
                             &nbsp;
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="card text-white bg-primary text-center\">
-                                <div class="card-body mr-sm-3\">
-                                    <h6 class="card-title">ostatnia aktualizacja bazy</h6>
-                                    <h2 class="card-text">
-                                        06 grudnia 2018
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
 
+                    <div class="card text-white bg-primary text-center">
+                        <div class="card-body mr-sm-3">
+                            <h6 class="card-title">ostatnia aktualizacja bazy</h6>
+                            <h2 class="card-text">
+                                ${dataBaseDateUpdate_}
+                            </h2>
+                        </div>
                     </div>
 
                     <div class="container-fluid">

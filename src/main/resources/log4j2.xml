@@ -47,7 +47,13 @@
             <AppenderRef ref="FileWin" level="INFO"/>
         </logger>
 
-        <logger name="com.ctk.servlet.StatisticSourceFileESPServlet" level="INFO">
+        <logger name="com.ctk.servlet.Statistic" level="INFO">
+            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="FileLin" level="INFO"/>
+            <AppenderRef ref="FileWin" level="INFO"/>
+        </logger>
+
+        <logger name="com.ctk.dao.Settings" level="INFO">
             <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="FileLin" level="INFO"/>
             <AppenderRef ref="FileWin" level="INFO"/>
@@ -55,8 +61,20 @@
 
         <logger name="com.ctk.dao.StatisticSourceFileESPReadFile" level="INFO">
             <AppenderRef ref="Console" level="INFO"/>
-            <AppenderRef ref="FileLinDataError" level="INFO"/>
-            <AppenderRef ref="FileWinDataError" level="INFO"/>
+            <AppenderRef ref="FileLin" level="INFO"/>
+            <AppenderRef ref="FileWin" level="INFO"/>
+        </logger>
+
+        <logger name="com.ctk.api.ElectronicInBoxAPI" level="INFO">
+            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="FileLin" level="INFO"/>
+            <AppenderRef ref="FileWin" level="INFO"/>
+        </logger>
+
+        <logger name="com.ctk.servlet.UploadServlet" level="INFO">
+            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="FileLin" level="INFO"/>
+            <AppenderRef ref="FileWin" level="INFO"/>
         </logger>
 
         <Root level="ERROR">

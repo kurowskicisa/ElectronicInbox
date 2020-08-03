@@ -1,12 +1,13 @@
 package com.ctk.dao;
 
-import com.ctk.model.ElectronicInboxImpl;
-import com.ctk.model.ElectronicInboxFilterFile;
+import com.ctk.model.ElectronicInbox;
+import com.ctk.model.ElectronicInboxFilter;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 
 import java.io.Serializable;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RequestScoped
-public class ElectronicinboxLoadFromFileFiltered implements Serializable {
+public class ElectronicinboxFilter implements Serializable {
 
     @Inject
     private Settings settings = new Settings();
@@ -26,7 +27,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
     private ElectronicInboxDao electronicInboxDao;
 
     @Inject
-    private ElectronicInboxFilterFile electronicInboxFilterFile;
+    private ElectronicInboxFilter electronicInboxFilter;
 
     private static final int RECORDS_ON_PAGE = 5;
     private static final int FIELD_NAME = 0;
@@ -40,30 +41,33 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         String line = null;
         BufferedReader reader = null;
 
-        try {
-
-            reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
-            line = reader.readLine();
-
-            line = reader.readLine();
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-
-        if (line != null && !line.isEmpty()) {
+        if (new File(String.valueOf(settings.getPathLESPcsv())).isFile()) {
 
             try {
-                readingLESPLinesFromFileFiltered(line, reader);
-                reader.close();
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                reader = Files.newBufferedReader(settings.getPathLESPcsv(), StandardCharsets.UTF_8);
+                line = reader.readLine();
+
+                line = reader.readLine();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            if (line != null && !line.isEmpty()) {
+
+                try {
+                    readFileFiltered(line, reader);
+                    reader.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    private void readingLESPLinesFromFileFiltered(
+    private void readFileFiltered(
             String line,
             BufferedReader reader)
             throws IOException {
@@ -71,12 +75,12 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
         double pagesCounter = 0.00;
         double dataCounter = 0.00;
         double dataTotalCounter = 0.00;
-        Integer currentPageN = 0;
+        double currentPageN = 0.00;
 
-        String currentPage = electronicInboxFilterFile.getPage();
-        String name = electronicInboxFilterFile.getName();
-        String address = electronicInboxFilterFile.getAddress();
-        String place = electronicInboxFilterFile.getPlace();
+        String currentPage = electronicInboxFilter.getPage();
+        String name = electronicInboxFilter.getName();
+        String address = electronicInboxFilter.getAddress();
+        String place = electronicInboxFilter.getPlace();
 
         if (currentPage.isEmpty()) {
             currentPageN = 1;
@@ -115,7 +119,7 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
 
                     if (dataCounter >= 1 + (RECORDS_ON_PAGE * currentPageN) - RECORDS_ON_PAGE
                             && dataCounter <= (RECORDS_ON_PAGE * currentPageN)) {
-                        electronicInboxDao.setList(new ElectronicInboxImpl(
+                        electronicInboxDao.setList(new ElectronicInbox(
                                 tempList.get(FIELD_NAME).trim().replace("\"", ""),
                                 tempList.get(FIELD_REGON).trim().replace("\"", ""),
                                 tempList.get(FIELD_ADDRESS).trim().replace("\"", ""),
@@ -135,8 +139,8 @@ public class ElectronicinboxLoadFromFileFiltered implements Serializable {
             pagesCounter++;
         }
 
-        electronicInboxFilterFile.setTotalPages((int) pagesCounter);
-        electronicInboxFilterFile.setTotalFilteredRecords(dataCounter);
-        electronicInboxFilterFile.setTotalRecords(dataTotalCounter);
+        electronicInboxFilter.setTotalPages((int) pagesCounter);
+        electronicInboxFilter.setTotalFilteredRecords(dataCounter);
+        electronicInboxFilter.setTotalRecords(dataTotalCounter);
     }
 }

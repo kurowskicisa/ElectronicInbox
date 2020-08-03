@@ -1,10 +1,10 @@
 package com.ctk.servlet;
 
-import com.ctk.dao.StatisticSourceFileESPReadFile;
-import com.ctk.dao.UserRepository;
+import com.ctk.dao.GrayScale;
+import com.ctk.dao.DataBase;
+import com.ctk.dao.Statistic;
 import com.ctk.freemarker.ModelGeneratorTemplate;
 import com.ctk.freemarker.TemplateProvider;
-import com.ctk.model.StatisticSourceFileESP;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +25,7 @@ import static java.time.LocalTime.now;
 
 @SessionScoped
 @WebServlet(urlPatterns = "/statistics")
-public class StatisticSourceFileESPServlet extends HttpServlet {
+public class StatisticsServlet extends HttpServlet {
 
     @Inject
     private TemplateProvider templateProvider;
@@ -34,99 +34,136 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
     private ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private StatisticSourceFileESP statisticSourceFileESP;
+    private Statistic statistic;
 
     @Inject
-    private StatisticSourceFileESPReadFile statisticSourceFileESPReadFile;
+    private GrayScale grayScale;
 
     @Inject
-    private UserRepository userRepository;
+    private DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(StatisticSourceFileESPServlet.class.getName());
+    private static Logger APPLOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
 
     @Override
     public void init() {
-        APPLOGGER.info("|statistics: init() ");
+
+        APPLOGGER.info("init() ");
+        grayScale.loadGrayScaleFile();
+        modelGeneratorTemplate.setModel("grayScale_",
+                grayScale.getGrayScale());
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        APPLOGGER.info("doGet()" );
 
         LocalTime startDoGet = now();
 
+        doServlet(req, resp);
+
+        LocalTime stopDoGet = now();
+
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        APPLOGGER.info("doPost()");
+
+        LocalTime startDoPost = now();
+
+        doServlet(req, resp);
+
+        LocalTime stopDoPost = now();
+
+        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
+                + (ChronoUnit.NANOS.between(startDoPost, stopDoPost)) / 1000000);
+    }
+
+
+    private void doServlet(HttpServletRequest req, HttpServletResponse resp){
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        statisticSourceFileESPReadFile.loadFileESP();
+        APPLOGGER.info("\"/statistics | doGet()" );
+
+        dataBase.loadDataBaseInfo();
+        modelGeneratorTemplate.setModel("dataBaseDateUpdate_",
+                dataBase.getDataBaseDateUpdate());
+
+        statistic.loadFileESP();
 
         modelGeneratorTemplate.setModel("nameLengthMin_",
-                statisticSourceFileESP.getNameLengthMin());
+                statistic.getNameLengthMin());
 
         modelGeneratorTemplate.setModel("nameLengthMax_",
-                statisticSourceFileESP.getNameLengthMax());
+                statistic.getNameLengthMax());
 
         modelGeneratorTemplate.setModel("nameCounterEmpty_",
-                statisticSourceFileESP.getNameCounterEmpty());
+                statistic.getNameCounterEmpty());
 
         modelGeneratorTemplate.setModel("regonLengthMin_",
-                statisticSourceFileESP.getRegonLengthMin());
+                statistic.getRegonLengthMin());
 
         modelGeneratorTemplate.setModel("regonCounterEmpty_",
-                statisticSourceFileESP.getRegonCounterEmpty());
+                statistic.getRegonCounterEmpty());
 
         modelGeneratorTemplate.setModel("regonLengthMax_",
-                statisticSourceFileESP.getRegonLengthMax());
+                statistic.getRegonLengthMax());
 
         modelGeneratorTemplate.setModel("addressLengthMin_",
-                statisticSourceFileESP.getAddressLengthMin());
+                statistic.getAddressLengthMin());
 
         modelGeneratorTemplate.setModel("addressCounterEmpty_",
-                statisticSourceFileESP.getAddressCounterEmpty());
+                statistic.getAddressCounterEmpty());
 
         modelGeneratorTemplate.setModel("addressLengthMax_",
-                statisticSourceFileESP.getAddressLengthMax());
+                statistic.getAddressLengthMax());
 
         modelGeneratorTemplate.setModel("zipLengthMin_",
-                statisticSourceFileESP.getZipLengthMin());
+                statistic.getZipLengthMin());
 
         modelGeneratorTemplate.setModel("zipCounterEmpty_",
-                statisticSourceFileESP.getZipCounterEmpty());
+                statistic.getZipCounterEmpty());
 
         modelGeneratorTemplate.setModel("zipLengthMax_",
-                statisticSourceFileESP.getZipLengthMax());
+                statistic.getZipLengthMax());
 
         modelGeneratorTemplate.setModel("placeLengthMin_",
-                statisticSourceFileESP.getPlaceLengthMin());
+                statistic.getPlaceLengthMin());
 
         modelGeneratorTemplate.setModel("placeCounterEmpty_",
-                statisticSourceFileESP.getPlaceCounterEmpty());
+                statistic.getPlaceCounterEmpty());
 
         modelGeneratorTemplate.setModel("placeLengthMax_",
-                statisticSourceFileESP.getPlaceLengthMax());
+                statistic.getPlaceLengthMax());
 
         modelGeneratorTemplate.setModel("uriLengthMin_",
-                statisticSourceFileESP.getUriLengthMin());
+                statistic.getUriLengthMin());
 
         modelGeneratorTemplate.setModel("uriCounterEmpty_",
-                statisticSourceFileESP.getUriCounterEmpty());
+                statistic.getUriCounterEmpty());
 
         modelGeneratorTemplate.setModel("uriLengthMax_",
-                statisticSourceFileESP.getUriLengthMax());
+                statistic.getUriLengthMax());
 
         modelGeneratorTemplate.setModel("totalRecords_",
-                statisticSourceFileESP.getTotalRecords());
+                statistic.getTotalRecords());
 
         modelGeneratorTemplate.setModel("dataErrorRegonCounter_",
-                statisticSourceFileESP.getDataErrorRegonCounter());
+                statistic.getDataErrorRegonCounter());
 
         modelGeneratorTemplate.setModel("dataErrorZipCounter_",
-                statisticSourceFileESP.getDataErrorZipCounter());
+                statistic.getDataErrorZipCounter());
 
         modelGeneratorTemplate.setModel("dataEmptyRegonCounter_",
-                statisticSourceFileESP.getDataEmptyRegonCounter());
+                statistic.getDataEmptyRegonCounter());
 
         modelGeneratorTemplate.setModel("dataEmptyZipCounter_",
-                statisticSourceFileESP.getDataEmptyZipCounter());
+                statistic.getDataEmptyZipCounter());
 
         try {
             Template template = templateProvider.getTemplate(getServletContext(), "statistics");
@@ -134,17 +171,9 @@ public class StatisticSourceFileESPServlet extends HttpServlet {
             template.process(modelGeneratorTemplate.getModel(), resp.getWriter());
             APPLOGGER.info("[statistics: WEB loaded] |");
 
-        } catch (TemplateException e) {
+        } catch (TemplateException | IOException e) {
             e.printStackTrace();
             APPLOGGER.info("[statistics: WEB NOT loaded] |");
         }
-
-        LocalTime stopDoGet = now();
-
-        userRepository.getList().get(0).setAutenticate(false);
-
-        APPLOGGER.info("[statistics: time of action (milliseconds)] | "
-                + (ChronoUnit.NANOS.between(startDoGet, stopDoGet)) / 1000000);
     }
-
 }
