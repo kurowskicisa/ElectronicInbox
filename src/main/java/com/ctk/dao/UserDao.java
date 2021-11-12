@@ -18,15 +18,15 @@ import java.util.List;
 public class UserDao extends com.ctk.model.User implements Serializable {
 
     @Inject
-    private Settings settings;
+    Settings settings;
 
-    private List<User> users = new ArrayList<>();
+    List<User> users = new ArrayList<>();
 
     public List<User> getList() {
         return users;
     }
 
-    public boolean isAutenticated(String username, String password) {
+    public boolean isAuthenticated(String username, String password) {
         return users.stream()
                 .filter(u -> u.getName().equals(username)
                         && u.getPassword().equals(password))

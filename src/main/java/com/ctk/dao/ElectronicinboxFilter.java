@@ -21,13 +21,13 @@ import java.util.List;
 public class ElectronicinboxFilter implements Serializable {
 
     @Inject
-    private Settings settings = new Settings();
+    Settings settings = new Settings();
 
     @Inject
-    private ElectronicInboxDao electronicInboxDao;
+    ElectronicInboxDao electronicInboxDao;
 
     @Inject
-    private ElectronicInboxFilter electronicInboxFilter;
+    ElectronicInboxFilter electronicInboxFilter;
 
     private static final int RECORDS_ON_PAGE = 5;
     private static final int FIELD_NAME = 0;
@@ -72,10 +72,10 @@ public class ElectronicinboxFilter implements Serializable {
             BufferedReader reader)
             throws IOException {
 
-        double pagesCounter = 0.00;
+        double pagesCounter;
         double dataCounter = 0.00;
         double dataTotalCounter = 0.00;
-        double currentPageN = 0.00;
+        double currentPageN;
 
         String currentPage = electronicInboxFilter.getPage();
         String name = electronicInboxFilter.getName();

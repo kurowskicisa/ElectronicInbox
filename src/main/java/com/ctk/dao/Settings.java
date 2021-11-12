@@ -5,7 +5,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-import java.time.format.DateTimeFormatter;
+// import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -13,14 +13,8 @@ import java.util.Optional;
 @ApplicationScoped
 public class Settings extends com.ctk.model.Settings implements Serializable {
 
-    private static final int FIELD_DATABASE_DATE_UPDATE = 0;
-    private static final int FIELD_DATABASE_RECORDS_COUNTER = 1;
-
-    private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-    public DateTimeFormatter getDateFormat() {
-        return dateFormat;
-    }
+    final int FIELD_DATABASE_DATE_UPDATE = 0;
+    final int FIELD_DATABASE_RECORDS_COUNTER = 1;
 
     public boolean isLESPcsvFile() {
         String patch;
@@ -134,7 +128,7 @@ public class Settings extends com.ctk.model.Settings implements Serializable {
                 datePolish = " marca ";
                 break;
             case "04":
-                datePolish = " kwoetnia ";
+                datePolish = " kwietnia ";
                 break;
             case "05":
                 datePolish = " maja ";

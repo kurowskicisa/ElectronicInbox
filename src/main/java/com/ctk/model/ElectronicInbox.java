@@ -2,6 +2,7 @@ package com.ctk.model;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.Objects;
 
 @RequestScoped
 public class ElectronicInbox implements com.ctk.services.ElectronicInbox, Serializable {
@@ -80,12 +81,12 @@ public class ElectronicInbox implements com.ctk.services.ElectronicInbox, Serial
 
         ElectronicInbox that = (ElectronicInbox) o;
 
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (regon != null ? !regon.equals(that.regon) : that.regon != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (zip != null ? !zip.equals(that.zip) : that.zip != null) return false;
-        if (place != null ? !place.equals(that.place) : that.place != null) return false;
-        return uri != null ? uri.equals(that.uri) : that.uri == null;
+        if (!Objects.equals(name, that.name)) return false;
+        if (!Objects.equals(regon, that.regon)) return false;
+        if (!Objects.equals(address, that.address)) return false;
+        if (!Objects.equals(zip, that.zip)) return false;
+        if (!Objects.equals(place, that.place)) return false;
+        return Objects.equals(uri, that.uri);
     }
 
     @Override

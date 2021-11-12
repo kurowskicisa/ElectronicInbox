@@ -7,7 +7,7 @@ import java.util.Map;
 @ApplicationScoped
 public class ModelGeneratorTemplate {
 
-    private Map<String, Object> model = new HashMap<>();
+    Map<String, Object> model = new HashMap<>();
 
     public Map<String, Object> getModel() {
         return model;
