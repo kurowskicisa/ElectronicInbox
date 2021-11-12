@@ -12,7 +12,7 @@ import java.util.List;
 public class Statistic extends com.ctk.model.Statistic implements Serializable {
 
     @Inject
-    private Settings settings;
+    Settings settings;
 
     private static final int FIELD_NAME = 0;
     private static final int FIELD_REGON = 1;
@@ -87,12 +87,12 @@ public class Statistic extends com.ctk.model.Statistic implements Serializable {
             BufferedReader reader)
             throws IOException {
 
-        Integer nameLength;
-        Integer regonLength;
-        Integer addressLength;
-        Integer zipLength;
-        Integer placeLength;
-        Integer uriLength;
+        int nameLength;
+        int regonLength;
+        int addressLength;
+        int zipLength;
+        int placeLength;
+        int uriLength;
 
 
         setTotalRecords(0);
