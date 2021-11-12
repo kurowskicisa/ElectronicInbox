@@ -12,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,21 +32,21 @@ import static java.time.LocalTime.now;
 public class IndexServlet extends HttpServlet {
 
     @Inject
-    private Settings settings;
+    Settings settings;
 
     @Inject
-    private TemplateProvider templateProvider;
+    TemplateProvider templateProvider;
 
     @Inject
-    private ModelGeneratorTemplate modelGeneratorTemplate;
+    ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private GrayScale grayScale;
+    GrayScale grayScale;
 
     @Inject
-    private DataBase dataBase;
+    DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
+    final private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.IndexServlet.class.getName());
 
     @Override
     public void init() {
@@ -85,7 +84,7 @@ public class IndexServlet extends HttpServlet {
 
         if (!settings.isLESPcsvFile()) {
             APPLOGGER.info("No file: " + settings.getPathLESPcsv());
-            if (dataBase.isEPUAPAvailable()) {
+            if (DataBase.isEPUAPAvailable()) {
                 dataBase.downloadfileLESP(new File(String.valueOf(settings.getPathLESPcsv())));
                 if (settings.isLESPcsvFile()) {
                     APPLOGGER.info("File: " + settings.getPathLESPcsv() + " is created with downloaded values");
@@ -114,7 +113,7 @@ public class IndexServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         APPLOGGER.info("doGet()");
 

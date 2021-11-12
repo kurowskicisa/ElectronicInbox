@@ -123,15 +123,11 @@ public class ElectronicInBoxAPI {
             @FormParam("miejscowosc") String choicePlace,
             @FormParam("strona") String choicePage) {
 
-        String _choiceName = null;
-        String _choiceAddress = null;
-        String _choicePlace = null;
-        String _choicePage = null;
 
-        _choiceName = Optional.ofNullable(new String(choiceName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
-        _choiceAddress = Optional.ofNullable(new String(choiceAddress.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
-        _choicePlace = Optional.ofNullable(new String(choicePlace.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
-        _choicePage = Optional.ofNullable(new String(choicePage.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        String _choiceName = Optional.of(new String(choiceName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        String _choiceAddress = Optional.of(new String(choiceAddress.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        String _choicePlace = Optional.of(new String(choicePlace.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
+        String _choicePage = Optional.of(new String(choicePage.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8)).orElse("");
 
         APPLOGGER.info("choiceName   : " + _choiceName);
         APPLOGGER.info("choiceAddress: " + _choiceAddress);

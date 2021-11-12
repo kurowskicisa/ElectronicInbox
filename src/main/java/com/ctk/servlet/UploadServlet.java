@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +22,12 @@ import java.util.Date;
 public class UploadServlet extends HttpServlet {
 
     @Inject
-    private Settings settings;
+    Settings settings;
 
     @Inject
-    private DataBase dataBase;
+    DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.UploadServlet.class.getName());
+    final private static Logger APPLOGGER = LogManager.getLogger(com.ctk.servlet.UploadServlet.class.getName());
 
     @Override
     public void init() {
@@ -36,7 +35,7 @@ public class UploadServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         APPLOGGER.info("doGet()");
 
@@ -68,7 +67,7 @@ public class UploadServlet extends HttpServlet {
             } else {
                 APPLOGGER.info("Update is necessary");
 
-                if (dataBase.isEPUAPAvailable()) {
+                if (DataBase.isEPUAPAvailable()) {
                     dataBase.renameFileLESP();
 
                     dataBase.downloadfileLESP(fileSource);

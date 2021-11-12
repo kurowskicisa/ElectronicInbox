@@ -18,7 +18,6 @@ import org.apache.logging.log4j.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,24 +34,24 @@ import static java.time.LocalTime.now;
 public class ElectronicInboxServlet extends HttpServlet {
 
     @Inject
-    private TemplateProvider templateProvider;
+    TemplateProvider templateProvider;
 
     @Inject
-    private ModelGeneratorTemplate modelGeneratorTemplate;
+    ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private ElectronicinboxFilter electronicinboxFilter;
+    ElectronicinboxFilter electronicinboxFilter;
 
     @Inject
-    private ElectronicInboxDao electronicInboxDao;
+    ElectronicInboxDao electronicInboxDao;
 
     @Inject
-    private ElectronicInboxFilter electronicInboxFilter;
+    ElectronicInboxFilter electronicInboxFilter;
 
     @Inject
-    private GrayScale grayScale;
+    GrayScale grayScale;
 
-    private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
+    final private static Logger APPLOGGER = LogManager.getLogger(ElectronicInboxServlet.class.getName());
 
     @Override
     public void init() {
@@ -64,7 +63,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         APPLOGGER.info("doGet() | ");
 
@@ -73,7 +72,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         APPLOGGER.info("doGet() | ");
 

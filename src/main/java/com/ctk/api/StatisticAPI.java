@@ -17,7 +17,7 @@ import static javax.ws.rs.core.Response.temporaryRedirect;
 public class StatisticAPI {
 
     @Inject
-    private UserDao userDao;
+    UserDao userDao;
 
     @POST
     @Path("/statistics")
@@ -30,10 +30,10 @@ public class StatisticAPI {
 
         if (!userDao.getList().isEmpty()) {
 
-            boolean authenticated = userDao.isAutenticated(loguser, password);
+            boolean authenticated = userDao.isAuthenticated(loguser, password);
 
             if (authenticated) {
-                userDao.getList().get(0).setAutenticate(true);
+                userDao.getList().get(0).setAuthenticate(true);
 
                 return temporaryRedirect(URI.create("/statistics")).build();
             }

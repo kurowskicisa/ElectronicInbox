@@ -12,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,21 +27,21 @@ import static java.time.LocalTime.now;
 public class StatisticsServlet extends HttpServlet {
 
     @Inject
-    private TemplateProvider templateProvider;
+    TemplateProvider templateProvider;
 
     @Inject
-    private ModelGeneratorTemplate modelGeneratorTemplate;
+    ModelGeneratorTemplate modelGeneratorTemplate;
 
     @Inject
-    private Statistic statistic;
+    Statistic statistic;
 
     @Inject
-    private GrayScale grayScale;
+    GrayScale grayScale;
 
     @Inject
-    private DataBase dataBase;
+    DataBase dataBase;
 
-    private static Logger APPLOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
+    final private static Logger APPLOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
 
     @Override
     public void init() {
@@ -54,8 +53,8 @@ public class StatisticsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        APPLOGGER.info("doGet()" );
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        APPLOGGER.info("doGet()");
 
         LocalTime startDoGet = now();
 
@@ -69,7 +68,7 @@ public class StatisticsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
         APPLOGGER.info("doPost()");
 
@@ -84,11 +83,11 @@ public class StatisticsServlet extends HttpServlet {
     }
 
 
-    private void doServlet(HttpServletRequest req, HttpServletResponse resp){
+    private void doServlet(HttpServletRequest req, HttpServletResponse resp) {
         resp.setHeader("Content-Type", "text/html; charset=UTF-8");
         resp.setContentType("text/html;charset=UTF-8 pageEncoding=\"UTF-8\"");
 
-        APPLOGGER.info("\"/statistics | doGet()" );
+        APPLOGGER.info("\"/statistics | doGet()");
 
         dataBase.loadDataBaseInfo();
         modelGeneratorTemplate.setModel("dataBaseDateUpdate_",

@@ -18,7 +18,7 @@ public class DataBase implements com.ctk.services.DataBase, Serializable {
     private String dataBaseRecordsCounter;
 
 
-    private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.DataBase.class.getName());
+    final private static Logger APPLOGGER = LogManager.getLogger(com.ctk.dao.DataBase.class.getName());
 
     private static final int FIELD_DATABASE_DATE_UPDATE = 0;
     private static final int FIELD_DATABASE_RECORDS_COUNTER = 1;
