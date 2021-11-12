@@ -3,7 +3,7 @@ package com.ctk.model;
 public class User implements com.ctk.services.User {
     private String name;
     private String password;
-    private boolean autenticate;
+    private boolean authenticate;
 
     public User() {
     }
@@ -24,13 +24,13 @@ public class User implements com.ctk.services.User {
     }
 
     @Override
-    public boolean isAutenticate() {
-        return autenticate;
+    public boolean isAuthenticate() {
+        return authenticate;
     }
 
     @Override
-    public void setAutenticate(boolean autenticate) {
-        this.autenticate = autenticate;
+    public void setAuthenticate(boolean authenticate) {
+        this.authenticate = authenticate;
     }
 
 }
