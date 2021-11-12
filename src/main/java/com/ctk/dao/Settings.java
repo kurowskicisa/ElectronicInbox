@@ -134,7 +134,7 @@ public class Settings extends com.ctk.model.Settings implements Serializable {
                 datePolish = " marca ";
                 break;
             case "04":
-                datePolish = " kwoetnia ";
+                datePolish = " kwietnia ";
                 break;
             case "05":
                 datePolish = " maja ";

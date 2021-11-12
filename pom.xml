@@ -7,7 +7,7 @@
     <groupId>com.ctk</groupId>
     <artifactId>ElectronicInbox</artifactId>
     <packaging>war</packaging>
-    <version>0.00.020-ALFA</version>
+    <version>2021.316.1</version>
     <name>ElectronicInbox</name>
 
     <url>http://maven.apache.org</url>
@@ -28,19 +28,19 @@
             <version>8.0.1</version>
         </dependency>
 
-        <!-- log4j 2.1 -->
+        <!-- log4j 2.14 -->
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.11.1</version>
+            <version>2.14.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.11.1</version>
+            <version>2.14.0</version>
         </dependency>
 
         <!-- JUnit -->
@@ -48,14 +48,14 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -64,15 +64,15 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.28</version>
+            <version>2.3.30</version>
         </dependency>
-
+<!--
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.12</version>
         </dependency>
-
+-->
     </dependencies>
 
     <build>
