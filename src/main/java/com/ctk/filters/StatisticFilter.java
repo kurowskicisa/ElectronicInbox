@@ -27,7 +27,7 @@ public class StatisticFilter extends HttpFilter {
 
         if (userDao.getList().size() > 0) {
 
-            logged = userDao.getList().get(0).isAutenticate();
+            logged = userDao.getList().get(0).isAuthenticate();
 
             if (logged) {
                 resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.

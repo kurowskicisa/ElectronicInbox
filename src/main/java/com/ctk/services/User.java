@@ -6,8 +6,8 @@ public interface User {
 
     String getPassword();
 
-    boolean isAutenticate();
+    boolean isAuthenticate();
 
-    void setAutenticate(boolean autenticate);
+    void setAuthenticate(boolean authenticate);
 
 }
