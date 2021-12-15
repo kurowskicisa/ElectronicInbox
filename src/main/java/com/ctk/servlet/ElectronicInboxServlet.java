@@ -74,7 +74,7 @@ public class ElectronicInboxServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        APPLOGGER.info("doGet() | ");
+        APPLOGGER.info("doPost() | ");
 
         doAction(req, resp);
 
